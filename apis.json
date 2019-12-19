@@ -1,0 +1,57 @@
+{
+    "name": "Snapchat",
+    "description": "<p>Snapchat is the fastest way to share a moment with friends. You control how long your friends can view your message &ndash; simply set the timer up to ten seconds and send. They'll have that long to view your message and then it disappears forever. We&rsquo;ll let you know if they take a screenshot! Build relationships, collect points, and view your best friends. Snapchat is instantly fun and insanely playful. Show your friends how clever you can be and enjoy the lightness of being!<\/p>",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/logos\/snapchat-logo.png",
+    "tags": [
+        "api activist target",
+        "chats",
+        "have api"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/snapchat\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Snapchat",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/logos\/snapchat-logo.png",
+            "humanURL": "https:\/\/www.snapchat.com\/",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/snapchat-openapi.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Blog",
+            "url": "http:\/\/blog.snapchat.com\/"
+        },
+        {
+            "type": "Blog RSS",
+            "url": "http:\/\/blog.snapchat.com\/rss"
+        },
+        {
+            "type": "Rogue SDK",
+            "url": "https:\/\/github.com\/mgp25\/SC-API"
+        },
+        {
+            "type": "Transparency Report",
+            "url": "https:\/\/www.snapchat.com\/transparency"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/snapchat"
+        },
+        {
+            "type": "Website",
+            "url": "https:\/\/www.snapchat.com\/"
+        }
+    ]
+}
