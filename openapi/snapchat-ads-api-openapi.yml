@@ -1,0 +1,1802 @@
+openapi: 3.1.0
+info:
+  title: Snapchat Ads API
+  description: >-
+    The Snapchat Ads API allows developers to programmatically create,
+    manage, and optimize advertising campaigns on the Snapchat platform.
+    It provides endpoints for managing organizations, ad accounts,
+    campaigns, ad squads, ads, creatives, media, funding sources,
+    audience segments, and measurement reporting. The API supports the
+    full advertising lifecycle from campaign setup through reporting
+    and optimization.
+  version: '1.0'
+  contact:
+    name: Snap for Developers
+    url: https://developers.snap.com
+  termsOfService: https://snap.com/en-US/terms
+externalDocs:
+  description: Snapchat Ads API Documentation
+  url: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+servers:
+  - url: https://adsapi.snapchat.com/v1
+    description: Production Server
+tags:
+  - name: Organizations
+    description: >-
+      Organizations represent brands, partners, or ad agencies.
+      Organizations are created via Snap Business Manager.
+  - name: Ad Accounts
+    description: >-
+      Ad Accounts are owned by an Organization and contain Ad Campaigns.
+      They have one or more Funding Sources.
+  - name: Funding Sources
+    description: >-
+      Funding Sources represent payment methods associated with an
+      organization, including credit cards, PayPal, and lines of credit.
+  - name: Campaigns
+    description: >-
+      Campaigns define a business objective and organize Ad Squads,
+      allowing advertisers to view aggregate statistics.
+  - name: Ad Squads
+    description: >-
+      Ad Squads organize ads within a campaign, defining targeting,
+      budget, schedule, and bid strategy.
+  - name: Ads
+    description: >-
+      Ads are the individual ad units that are delivered to users.
+      Each Ad belongs to an Ad Squad and references a Creative.
+  - name: Creatives
+    description: >-
+      Creatives define the visual and interactive content of ads,
+      including images, videos, and call-to-action overlays.
+  - name: Media
+    description: >-
+      Media endpoints handle uploading and managing media assets
+      such as images and videos used in creatives.
+  - name: Audience Segments
+    description: >-
+      Audience Segments allow advertisers to define and manage
+      custom audiences for ad targeting, including Snap Audience
+      Match, lookalike audiences, and pixel-based audiences.
+  - name: Measurement
+    description: >-
+      Measurement endpoints provide campaign performance statistics
+      and reporting data at various levels of the ad hierarchy.
+security:
+  - bearerAuth: []
+paths:
+  /me/organizations:
+    get:
+      operationId: listOrganizations
+      summary: List all organizations
+      description: >-
+        Retrieves all organizations the authenticated user has access to,
+        along with the ad accounts beneath each organization.
+      tags:
+        - Organizations
+      responses:
+        '200':
+          description: Successful retrieval of organizations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  organizations:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        organization:
+                          $ref: '#/components/schemas/Organization'
+        '401':
+          description: Unauthorized - invalid or expired access token
+        '403':
+          description: Forbidden - insufficient permissions
+  /organizations/{organization_id}:
+    get:
+      operationId: getOrganization
+      summary: Get a specific organization
+      description: >-
+        Retrieves details for a specific organization by its ID.
+      tags:
+        - Organizations
+      parameters:
+        - $ref: '#/components/parameters/organizationId'
+      responses:
+        '200':
+          description: Successful retrieval of organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  organizations:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        organization:
+                          $ref: '#/components/schemas/Organization'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Organization not found
+  /organizations/{organization_id}/adaccounts:
+    get:
+      operationId: listAdAccounts
+      summary: List all ad accounts for an organization
+      description: >-
+        Retrieves all ad accounts associated with the specified organization.
+      tags:
+        - Ad Accounts
+      parameters:
+        - $ref: '#/components/parameters/organizationId'
+      responses:
+        '200':
+          description: Successful retrieval of ad accounts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  adaccounts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        adaccount:
+                          $ref: '#/components/schemas/AdAccount'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Organization not found
+    post:
+      operationId: createAdAccount
+      summary: Create an ad account
+      description: >-
+        Creates a new ad account under the specified organization.
+      tags:
+        - Ad Accounts
+      parameters:
+        - $ref: '#/components/parameters/organizationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                adaccounts:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/AdAccount'
+      responses:
+        '200':
+          description: Ad account created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  adaccounts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        adaccount:
+                          $ref: '#/components/schemas/AdAccount'
+        '400':
+          description: Bad request - invalid parameters
+        '401':
+          description: Unauthorized
+    put:
+      operationId: updateAdAccount
+      summary: Update an ad account
+      description: >-
+        Updates one or more ad accounts under the specified organization.
+      tags:
+        - Ad Accounts
+      parameters:
+        - $ref: '#/components/parameters/organizationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                adaccounts:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/AdAccount'
+      responses:
+        '200':
+          description: Ad account updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  adaccounts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        adaccount:
+                          $ref: '#/components/schemas/AdAccount'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+  /adaccounts/{ad_account_id}:
+    get:
+      operationId: getAdAccount
+      summary: Get a specific ad account
+      description: >-
+        Retrieves details for a specific ad account by its ID.
+      tags:
+        - Ad Accounts
+      parameters:
+        - $ref: '#/components/parameters/adAccountId'
+      responses:
+        '200':
+          description: Successful retrieval of ad account
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  adaccounts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        adaccount:
+                          $ref: '#/components/schemas/AdAccount'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Ad account not found
+  /organizations/{organization_id}/fundingsources:
+    get:
+      operationId: listFundingSources
+      summary: List all funding sources for an organization
+      description: >-
+        Retrieves all funding sources associated with the specified
+        organization, including credit cards, PayPal, and lines of credit.
+      tags:
+        - Funding Sources
+      parameters:
+        - $ref: '#/components/parameters/organizationId'
+      responses:
+        '200':
+          description: Successful retrieval of funding sources
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  fundingsources:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        fundingsource:
+                          $ref: '#/components/schemas/FundingSource'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Organization not found
+  /adaccounts/{ad_account_id}/campaigns:
+    get:
+      operationId: listCampaigns
+      summary: List all campaigns for an ad account
+      description: >-
+        Retrieves all campaigns associated with the specified ad account.
+      tags:
+        - Campaigns
+      parameters:
+        - $ref: '#/components/parameters/adAccountId'
+      responses:
+        '200':
+          description: Successful retrieval of campaigns
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  campaigns:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        campaign:
+                          $ref: '#/components/schemas/Campaign'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Ad account not found
+    post:
+      operationId: createCampaign
+      summary: Create a campaign
+      description: >-
+        Creates a new campaign under the specified ad account.
+      tags:
+        - Campaigns
+      parameters:
+        - $ref: '#/components/parameters/adAccountId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                campaigns:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Campaign'
+      responses:
+        '200':
+          description: Campaign created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  campaigns:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        campaign:
+                          $ref: '#/components/schemas/Campaign'
+        '400':
+          description: Bad request - invalid parameters
+        '401':
+          description: Unauthorized
+  /campaigns/{campaign_id}:
+    get:
+      operationId: getCampaign
+      summary: Get a specific campaign
+      description: >-
+        Retrieves details for a specific campaign by its ID.
+      tags:
+        - Campaigns
+      parameters:
+        - $ref: '#/components/parameters/campaignId'
+      responses:
+        '200':
+          description: Successful retrieval of campaign
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  campaigns:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        campaign:
+                          $ref: '#/components/schemas/Campaign'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Campaign not found
+    put:
+      operationId: updateCampaign
+      summary: Update a campaign
+      description: >-
+        Updates an existing campaign.
+      tags:
+        - Campaigns
+      parameters:
+        - $ref: '#/components/parameters/campaignId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                campaigns:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Campaign'
+      responses:
+        '200':
+          description: Campaign updated successfully
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Campaign not found
+    delete:
+      operationId: deleteCampaign
+      summary: Delete a campaign
+      description: >-
+        Deletes a specific campaign by its ID.
+      tags:
+        - Campaigns
+      parameters:
+        - $ref: '#/components/parameters/campaignId'
+      responses:
+        '200':
+          description: Campaign deleted successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: Campaign not found
+  /campaigns/{campaign_id}/adsquads:
+    get:
+      operationId: listAdSquadsByCampaign
+      summary: List all ad squads for a campaign
+      description: >-
+        Retrieves all ad squads associated with the specified campaign.
+      tags:
+        - Ad Squads
+      parameters:
+        - $ref: '#/components/parameters/campaignId'
+      responses:
+        '200':
+          description: Successful retrieval of ad squads
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  adsquads:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        adsquad:
+                          $ref: '#/components/schemas/AdSquad'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Campaign not found
+  /adaccounts/{ad_account_id}/adsquads:
+    get:
+      operationId: listAdSquadsByAdAccount
+      summary: List all ad squads for an ad account
+      description: >-
+        Retrieves all ad squads associated with the specified ad account.
+      tags:
+        - Ad Squads
+      parameters:
+        - $ref: '#/components/parameters/adAccountId'
+      responses:
+        '200':
+          description: Successful retrieval of ad squads
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  adsquads:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        adsquad:
+                          $ref: '#/components/schemas/AdSquad'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Ad account not found
+    post:
+      operationId: createAdSquad
+      summary: Create an ad squad
+      description: >-
+        Creates a new ad squad under the specified ad account.
+      tags:
+        - Ad Squads
+      parameters:
+        - $ref: '#/components/parameters/adAccountId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                adsquads:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/AdSquad'
+      responses:
+        '200':
+          description: Ad squad created successfully
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+  /adsquads/{ad_squad_id}:
+    get:
+      operationId: getAdSquad
+      summary: Get a specific ad squad
+      description: >-
+        Retrieves details for a specific ad squad by its ID.
+      tags:
+        - Ad Squads
+      parameters:
+        - $ref: '#/components/parameters/adSquadId'
+      responses:
+        '200':
+          description: Successful retrieval of ad squad
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  adsquads:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        adsquad:
+                          $ref: '#/components/schemas/AdSquad'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Ad squad not found
+    put:
+      operationId: updateAdSquad
+      summary: Update an ad squad
+      description: >-
+        Updates an existing ad squad.
+      tags:
+        - Ad Squads
+      parameters:
+        - $ref: '#/components/parameters/adSquadId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                adsquads:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/AdSquad'
+      responses:
+        '200':
+          description: Ad squad updated successfully
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Ad squad not found
+    delete:
+      operationId: deleteAdSquad
+      summary: Delete an ad squad
+      description: >-
+        Deletes a specific ad squad by its ID.
+      tags:
+        - Ad Squads
+      parameters:
+        - $ref: '#/components/parameters/adSquadId'
+      responses:
+        '200':
+          description: Ad squad deleted successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: Ad squad not found
+  /adsquads/{ad_squad_id}/ads:
+    get:
+      operationId: listAdsByAdSquad
+      summary: List all ads for an ad squad
+      description: >-
+        Retrieves all ads within the specified ad squad.
+      tags:
+        - Ads
+      parameters:
+        - $ref: '#/components/parameters/adSquadId'
+      responses:
+        '200':
+          description: Successful retrieval of ads
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  ads:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ad:
+                          $ref: '#/components/schemas/Ad'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Ad squad not found
+    post:
+      operationId: createAd
+      summary: Create an ad
+      description: >-
+        Creates a new ad within the specified ad squad.
+      tags:
+        - Ads
+      parameters:
+        - $ref: '#/components/parameters/adSquadId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ads:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Ad'
+      responses:
+        '200':
+          description: Ad created successfully
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+  /campaigns/{campaign_id}/ads:
+    get:
+      operationId: listAdsByCampaign
+      summary: List all ads for a campaign
+      description: >-
+        Retrieves all ads under the specified campaign.
+      tags:
+        - Ads
+      parameters:
+        - $ref: '#/components/parameters/campaignId'
+      responses:
+        '200':
+          description: Successful retrieval of ads
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  ads:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ad:
+                          $ref: '#/components/schemas/Ad'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Campaign not found
+  /adaccounts/{ad_account_id}/ads:
+    get:
+      operationId: listAdsByAdAccount
+      summary: List all ads for an ad account
+      description: >-
+        Retrieves all ads under the specified ad account.
+      tags:
+        - Ads
+      parameters:
+        - $ref: '#/components/parameters/adAccountId'
+      responses:
+        '200':
+          description: Successful retrieval of ads
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  ads:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ad:
+                          $ref: '#/components/schemas/Ad'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Ad account not found
+  /ads/{ad_id}:
+    get:
+      operationId: getAd
+      summary: Get a specific ad
+      description: >-
+        Retrieves details for a specific ad by its ID.
+      tags:
+        - Ads
+      parameters:
+        - $ref: '#/components/parameters/adId'
+      responses:
+        '200':
+          description: Successful retrieval of ad
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  ads:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ad:
+                          $ref: '#/components/schemas/Ad'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Ad not found
+    put:
+      operationId: updateAd
+      summary: Update an ad
+      description: >-
+        Updates an existing ad.
+      tags:
+        - Ads
+      parameters:
+        - $ref: '#/components/parameters/adId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ads:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Ad'
+      responses:
+        '200':
+          description: Ad updated successfully
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Ad not found
+    delete:
+      operationId: deleteAd
+      summary: Delete an ad
+      description: >-
+        Deletes a specific ad by its ID.
+      tags:
+        - Ads
+      parameters:
+        - $ref: '#/components/parameters/adId'
+      responses:
+        '200':
+          description: Ad deleted successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: Ad not found
+  /adaccounts/{ad_account_id}/creatives:
+    get:
+      operationId: listCreatives
+      summary: List all creatives for an ad account
+      description: >-
+        Retrieves all creatives associated with the specified ad account.
+      tags:
+        - Creatives
+      parameters:
+        - $ref: '#/components/parameters/adAccountId'
+      responses:
+        '200':
+          description: Successful retrieval of creatives
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  creatives:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        creative:
+                          $ref: '#/components/schemas/Creative'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Ad account not found
+    post:
+      operationId: createCreative
+      summary: Create a creative
+      description: >-
+        Creates a new creative under the specified ad account.
+      tags:
+        - Creatives
+      parameters:
+        - $ref: '#/components/parameters/adAccountId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                creatives:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Creative'
+      responses:
+        '200':
+          description: Creative created successfully
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+  /creatives/{creative_id}:
+    get:
+      operationId: getCreative
+      summary: Get a specific creative
+      description: >-
+        Retrieves details for a specific creative by its ID.
+      tags:
+        - Creatives
+      parameters:
+        - $ref: '#/components/parameters/creativeId'
+      responses:
+        '200':
+          description: Successful retrieval of creative
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  creatives:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        creative:
+                          $ref: '#/components/schemas/Creative'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Creative not found
+  /adaccounts/{ad_account_id}/media:
+    get:
+      operationId: listMedia
+      summary: List all media for an ad account
+      description: >-
+        Retrieves all media objects associated with the specified ad account.
+      tags:
+        - Media
+      parameters:
+        - $ref: '#/components/parameters/adAccountId'
+      responses:
+        '200':
+          description: Successful retrieval of media
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  media:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        media:
+                          $ref: '#/components/schemas/Media'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Ad account not found
+    post:
+      operationId: createMedia
+      summary: Create a media object
+      description: >-
+        Creates a new media object under the specified ad account.
+        The media object must be created before uploading the actual
+        media file.
+      tags:
+        - Media
+      parameters:
+        - $ref: '#/components/parameters/adAccountId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                media:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Media'
+      responses:
+        '200':
+          description: Media object created successfully
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+  /media/{media_id}/upload:
+    post:
+      operationId: uploadMedia
+      summary: Upload media content
+      description: >-
+        Uploads the actual media file content to an existing media object.
+        Supports images, videos, and playable media. Maximum chunk size
+        is 32MB per request.
+      tags:
+        - Media
+      parameters:
+        - $ref: '#/components/parameters/mediaId'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: >-
+                    The media file to upload (image, video, or ZIP for playable)
+      responses:
+        '200':
+          description: Media uploaded successfully
+        '400':
+          description: Bad request - invalid file or exceeds size limit
+        '401':
+          description: Unauthorized
+        '404':
+          description: Media object not found
+  /adaccounts/{ad_account_id}/segments:
+    get:
+      operationId: listAudienceSegments
+      summary: List all audience segments for an ad account
+      description: >-
+        Retrieves all audience segments associated with the specified
+        ad account, including custom audiences, Snap Audience Match
+        segments, and lookalike audiences.
+      tags:
+        - Audience Segments
+      parameters:
+        - $ref: '#/components/parameters/adAccountId'
+      responses:
+        '200':
+          description: Successful retrieval of audience segments
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  segments:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        segment:
+                          $ref: '#/components/schemas/AudienceSegment'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Ad account not found
+    post:
+      operationId: createAudienceSegment
+      summary: Create an audience segment
+      description: >-
+        Creates a new audience segment under the specified ad account.
+      tags:
+        - Audience Segments
+      parameters:
+        - $ref: '#/components/parameters/adAccountId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                segments:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/AudienceSegment'
+      responses:
+        '200':
+          description: Audience segment created successfully
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+  /campaigns/{campaign_id}/stats:
+    get:
+      operationId: getCampaignStats
+      summary: Get campaign statistics
+      description: >-
+        Retrieves performance statistics for a specific campaign,
+        including impressions, spend, and conversion metrics.
+      tags:
+        - Measurement
+      parameters:
+        - $ref: '#/components/parameters/campaignId'
+        - $ref: '#/components/parameters/granularity'
+        - $ref: '#/components/parameters/startTime'
+        - $ref: '#/components/parameters/endTime'
+      responses:
+        '200':
+          description: Successful retrieval of campaign stats
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  total_stats:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Stats'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Campaign not found
+  /adsquads/{ad_squad_id}/stats:
+    get:
+      operationId: getAdSquadStats
+      summary: Get ad squad statistics
+      description: >-
+        Retrieves performance statistics for a specific ad squad.
+      tags:
+        - Measurement
+      parameters:
+        - $ref: '#/components/parameters/adSquadId'
+        - $ref: '#/components/parameters/granularity'
+        - $ref: '#/components/parameters/startTime'
+        - $ref: '#/components/parameters/endTime'
+      responses:
+        '200':
+          description: Successful retrieval of ad squad stats
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  total_stats:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Stats'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Ad squad not found
+  /ads/{ad_id}/stats:
+    get:
+      operationId: getAdStats
+      summary: Get ad statistics
+      description: >-
+        Retrieves performance statistics for a specific ad.
+      tags:
+        - Measurement
+      parameters:
+        - $ref: '#/components/parameters/adId'
+        - $ref: '#/components/parameters/granularity'
+        - $ref: '#/components/parameters/startTime'
+        - $ref: '#/components/parameters/endTime'
+      responses:
+        '200':
+          description: Successful retrieval of ad stats
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  total_stats:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Stats'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Ad not found
+  /adaccounts/{ad_account_id}/stats:
+    get:
+      operationId: getAdAccountStats
+      summary: Get ad account statistics
+      description: >-
+        Retrieves performance statistics for a specific ad account.
+      tags:
+        - Measurement
+      parameters:
+        - $ref: '#/components/parameters/adAccountId'
+        - $ref: '#/components/parameters/granularity'
+        - $ref: '#/components/parameters/startTime'
+        - $ref: '#/components/parameters/endTime'
+      responses:
+        '200':
+          description: Successful retrieval of ad account stats
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  total_stats:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Stats'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Ad account not found
+components:
+  securitySchemes:
+    bearerAuth:
+      type: oauth2
+      description: >-
+        OAuth 2.0 authorization. Access tokens are obtained via the
+        authorization code flow and expire after 3600 seconds.
+        Refresh tokens can be used to obtain new access tokens.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://accounts.snapchat.com/accounts/oauth2/auth
+          tokenUrl: https://accounts.snapchat.com/login/oauth2/access_token
+          scopes:
+            snapchat-marketing-api: Access to the Snapchat Marketing API
+  parameters:
+    organizationId:
+      name: organization_id
+      in: path
+      required: true
+      description: The unique identifier of the organization
+      schema:
+        type: string
+    adAccountId:
+      name: ad_account_id
+      in: path
+      required: true
+      description: The unique identifier of the ad account
+      schema:
+        type: string
+    campaignId:
+      name: campaign_id
+      in: path
+      required: true
+      description: The unique identifier of the campaign
+      schema:
+        type: string
+    adSquadId:
+      name: ad_squad_id
+      in: path
+      required: true
+      description: The unique identifier of the ad squad
+      schema:
+        type: string
+    adId:
+      name: ad_id
+      in: path
+      required: true
+      description: The unique identifier of the ad
+      schema:
+        type: string
+    creativeId:
+      name: creative_id
+      in: path
+      required: true
+      description: The unique identifier of the creative
+      schema:
+        type: string
+    mediaId:
+      name: media_id
+      in: path
+      required: true
+      description: The unique identifier of the media object
+      schema:
+        type: string
+    granularity:
+      name: granularity
+      in: query
+      required: false
+      description: >-
+        The time granularity for statistics. Determines how data
+        points are grouped in the response.
+      schema:
+        type: string
+        enum:
+          - TOTAL
+          - DAY
+          - HOUR
+    startTime:
+      name: start_time
+      in: query
+      required: false
+      description: >-
+        The start time for the statistics query in ISO 8601 format.
+      schema:
+        type: string
+        format: date-time
+    endTime:
+      name: end_time
+      in: query
+      required: false
+      description: >-
+        The end time for the statistics query in ISO 8601 format.
+      schema:
+        type: string
+        format: date-time
+  schemas:
+    Organization:
+      type: object
+      description: >-
+        An Organization represents a brand, partner, or ad agency
+        on the Snapchat advertising platform.
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the organization
+        updated_at:
+          type: string
+          format: date-time
+          description: The timestamp when the organization was last updated
+        created_at:
+          type: string
+          format: date-time
+          description: The timestamp when the organization was created
+        name:
+          type: string
+          description: The name of the organization
+        address_line_1:
+          type: string
+          description: First line of the organization address
+        locality:
+          type: string
+          description: City or locality of the organization
+        administrative_district_level_1:
+          type: string
+          description: State or province of the organization
+        country:
+          type: string
+          description: Country code of the organization
+        postal_code:
+          type: string
+          description: Postal code of the organization
+        type:
+          type: string
+          description: The type of organization
+          enum:
+            - ENTERPRISE
+            - PARTNER
+        my_display_name:
+          type: string
+          description: The display name of the authenticated user within this organization
+        my_invited_email:
+          type: string
+          format: email
+          description: The email address used to invite the authenticated user
+        my_member_id:
+          type: string
+          description: The member ID of the authenticated user within this organization
+    AdAccount:
+      type: object
+      description: >-
+        An Ad Account contains advertising campaigns and is owned
+        by an Organization. Each Ad Account has one or more Funding Sources.
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the ad account
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp of last update
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp of creation
+        name:
+          type: string
+          description: The name of the ad account
+        type:
+          type: string
+          description: The type of ad account
+          enum:
+            - PARTNER
+            - DIRECT
+        status:
+          type: string
+          description: The status of the ad account
+          enum:
+            - ACTIVE
+            - PAUSED
+            - DISABLED
+        organization_id:
+          type: string
+          description: The ID of the parent organization
+        funding_source_ids:
+          type: array
+          items:
+            type: string
+          description: Array of funding source IDs associated with this account
+        currency:
+          type: string
+          description: The currency code for the ad account (e.g., USD)
+        timezone:
+          type: string
+          description: The timezone of the ad account (e.g., America/Los_Angeles)
+        advertiser:
+          type: string
+          description: The name of the advertiser
+    FundingSource:
+      type: object
+      description: >-
+        A Funding Source represents a payment method for an organization,
+        such as a credit card, PayPal account, or line of credit.
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the funding source
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp of last update
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp of creation
+        type:
+          type: string
+          description: The type of funding source
+          enum:
+            - CREDIT_CARD
+            - PAYPAL
+            - LINE_OF_CREDIT
+            - COUPON
+        organization_id:
+          type: string
+          description: The ID of the parent organization
+        status:
+          type: string
+          description: The status of the funding source
+        currency:
+          type: string
+          description: The currency code
+        total_budget_micro:
+          type: integer
+          format: int64
+          description: Total budget in micro-currency units
+        available_credit_micro:
+          type: integer
+          format: int64
+          description: Available credit in micro-currency units
+    Campaign:
+      type: object
+      description: >-
+        A Campaign defines a business objective and organizes Ad Squads.
+        It provides aggregate statistics for all ad squads within it.
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the campaign
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp of last update
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp of creation
+        name:
+          type: string
+          description: The name of the campaign
+        ad_account_id:
+          type: string
+          description: The ID of the parent ad account
+        status:
+          type: string
+          description: The status of the campaign
+          enum:
+            - ACTIVE
+            - PAUSED
+        daily_budget_micro:
+          type: integer
+          format: int64
+          description: Daily budget in micro-currency units
+        lifetime_spend_cap_micro:
+          type: integer
+          format: int64
+          description: Lifetime spend cap in micro-currency units
+        start_time:
+          type: string
+          format: date-time
+          description: The start time of the campaign
+        end_time:
+          type: string
+          format: date-time
+          description: The end time of the campaign
+        objective_v2_properties:
+          type: object
+          description: >-
+            The objective properties for the campaign using the v2 objective
+            format, which replaces the deprecated objective field.
+          properties:
+            objective:
+              type: string
+              description: The campaign objective type
+    AdSquad:
+      type: object
+      description: >-
+        An Ad Squad organizes ads within a campaign, defining targeting
+        criteria, budget allocation, schedule, and bid strategy.
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the ad squad
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp of last update
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp of creation
+        name:
+          type: string
+          description: The name of the ad squad
+        campaign_id:
+          type: string
+          description: The ID of the parent campaign
+        status:
+          type: string
+          description: The status of the ad squad
+          enum:
+            - ACTIVE
+            - PAUSED
+        type:
+          type: string
+          description: The delivery type of the ad squad
+          enum:
+            - SNAP_ADS
+            - STORY_ADS
+        placement:
+          type: string
+          description: Where ads will be placed
+        bid_micro:
+          type: integer
+          format: int64
+          description: The bid amount in micro-currency units
+        daily_budget_micro:
+          type: integer
+          format: int64
+          description: Daily budget in micro-currency units
+        lifetime_budget_micro:
+          type: integer
+          format: int64
+          description: Lifetime budget in micro-currency units
+        start_time:
+          type: string
+          format: date-time
+          description: The start time of the ad squad
+        end_time:
+          type: string
+          format: date-time
+          description: The end time of the ad squad
+        targeting:
+          type: object
+          description: Targeting criteria for the ad squad
+    Ad:
+      type: object
+      description: >-
+        An Ad is an individual ad unit delivered to users. Each Ad
+        belongs to an Ad Squad and references a Creative.
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the ad
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp of last update
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp of creation
+        name:
+          type: string
+          description: The name of the ad
+        ad_squad_id:
+          type: string
+          description: The ID of the parent ad squad
+        creative_id:
+          type: string
+          description: The ID of the creative used by this ad
+        status:
+          type: string
+          description: The status of the ad
+          enum:
+            - ACTIVE
+            - PAUSED
+        type:
+          type: string
+          description: The type of ad
+    Creative:
+      type: object
+      description: >-
+        A Creative defines the visual and interactive content of an ad,
+        including media references and call-to-action elements.
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the creative
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp of last update
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp of creation
+        name:
+          type: string
+          description: The name of the creative
+        ad_account_id:
+          type: string
+          description: The ID of the parent ad account
+        type:
+          type: string
+          description: The type of creative
+          enum:
+            - SNAP_AD
+            - APP_INSTALL
+            - LONGFORM_VIDEO
+            - WEB_VIEW
+            - DEEP_LINK
+            - LENS
+            - COLLECTION
+            - DYNAMIC
+            - PREVIEW
+        headline:
+          type: string
+          description: The headline text
+          maxLength: 34
+        brand_name:
+          type: string
+          description: The brand name displayed on the creative
+          maxLength: 25
+        shareable:
+          type: boolean
+          description: Whether the creative can be shared by users
+        call_to_action:
+          type: string
+          description: The call-to-action type
+          enum:
+            - INSTALL_NOW
+            - WATCH_MORE
+            - VIEW_MORE
+            - SIGN_UP
+            - SHOP_NOW
+            - BUY_NOW
+            - GET_NOW
+            - BOOK_NOW
+            - LISTEN
+            - ORDER_NOW
+            - PLAY
+            - APPLY_NOW
+            - DOWNLOAD
+            - SEND
+            - MORE
+        top_snap_media_id:
+          type: string
+          description: The media ID for the top snap
+        top_snap_crop_position:
+          type: string
+          description: Crop position for the top snap media
+    Media:
+      type: object
+      description: >-
+        A Media object represents an uploaded media asset such as
+        an image, video, or playable content used in creatives.
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the media object
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp of last update
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp of creation
+        name:
+          type: string
+          description: The name of the media object
+        ad_account_id:
+          type: string
+          description: The ID of the parent ad account
+        type:
+          type: string
+          description: The type of media
+          enum:
+            - IMAGE
+            - VIDEO
+            - PLAYABLE
+        media_status:
+          type: string
+          description: The processing status of the media
+          enum:
+            - PENDING_UPLOAD
+            - READY
+            - ERROR
+    AudienceSegment:
+      type: object
+      description: >-
+        An Audience Segment defines a group of users for ad targeting,
+        including custom audiences, Snap Audience Match, pixel-based
+        audiences, and lookalike audiences.
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the segment
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp of last update
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp of creation
+        name:
+          type: string
+          description: The name of the segment
+        ad_account_id:
+          type: string
+          description: The ID of the parent ad account
+        description:
+          type: string
+          description: A description of the segment
+        status:
+          type: string
+          description: The status of the segment
+          enum:
+            - ACTIVE
+            - PAUSED
+        source_type:
+          type: string
+          description: The source type of the audience segment
+          enum:
+            - FIRST_PARTY
+            - THIRD_PARTY
+            - LOOKALIKE
+        approximate_number_users:
+          type: integer
+          description: Approximate number of users in the segment
+    Stats:
+      type: object
+      description: >-
+        Performance statistics for an advertising entity including
+        impressions, spend, swipe-ups, and conversion metrics.
+      properties:
+        id:
+          type: string
+          description: The ID of the entity these stats belong to
+        type:
+          type: string
+          description: The type of entity
+        granularity:
+          type: string
+          description: The time granularity of the stats
+        stats:
+          type: object
+          properties:
+            impressions:
+              type: integer
+              description: Total number of impressions
+            swipes:
+              type: integer
+              description: Total number of swipe-ups
+            spend:
+              type: number
+              format: double
+              description: Total spend in micro-currency units
+            video_views:
+              type: integer
+              description: Total number of video views

@@ -1,0 +1,264 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://developers.snap.com/schemas/snapchat/conversion-event.json",
+  "title": "Snapchat Conversion Event",
+  "description": "Schema for validating Snapchat Conversions API (CAPI) v3 event payloads sent via the server-to-server integration for web, app, and offline conversion tracking.",
+  "type": "object",
+  "required": ["data"],
+  "properties": {
+    "data": {
+      "type": "array",
+      "description": "Array of conversion event objects to submit. Maximum 2,000 events per request.",
+      "minItems": 1,
+      "maxItems": 2000,
+      "items": {
+        "$ref": "#/$defs/ConversionEvent"
+      }
+    }
+  },
+  "$defs": {
+    "ConversionEvent": {
+      "type": "object",
+      "description": "A single conversion event with event metadata, user identification data, and optional custom data.",
+      "required": ["event_name", "event_time", "action_source"],
+      "properties": {
+        "event_name": {
+          "type": "string",
+          "description": "The name of the conversion event being reported.",
+          "enum": [
+            "PAGE_VIEW",
+            "VIEW_CONTENT",
+            "ADD_CART",
+            "ADD_TO_WISHLIST",
+            "SIGN_UP",
+            "SEARCH",
+            "PURCHASE",
+            "ADD_BILLING",
+            "COMPLETE_TUTORIAL",
+            "SUBSCRIBE",
+            "AD_CLICK",
+            "AD_VIEW",
+            "START_CHECKOUT",
+            "RATE",
+            "LIST_VIEW",
+            "ADD_TO_CART",
+            "LEVEL_COMPLETE",
+            "ACHIEVEMENT_UNLOCKED",
+            "SPEND_CREDITS",
+            "SAVE",
+            "SHARE",
+            "INVITE",
+            "LOGIN",
+            "RESERVE",
+            "START_TRIAL",
+            "CUSTOM_EVENT_1",
+            "CUSTOM_EVENT_2",
+            "CUSTOM_EVENT_3",
+            "CUSTOM_EVENT_4",
+            "CUSTOM_EVENT_5"
+          ]
+        },
+        "event_time": {
+          "type": "integer",
+          "description": "Unix timestamp in seconds when the event occurred. Events can be up to 37 days in the past.",
+          "minimum": 0
+        },
+        "event_source_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL of the web page where the event occurred. Required for web events."
+        },
+        "event_id": {
+          "type": "string",
+          "description": "A unique identifier for the event, used for deduplication across multiple submissions."
+        },
+        "action_source": {
+          "type": "string",
+          "description": "The source indicating where the conversion event originated.",
+          "enum": ["WEB", "MOBILE_APP", "OFFLINE"]
+        },
+        "user_data": {
+          "$ref": "#/$defs/UserData"
+        },
+        "custom_data": {
+          "$ref": "#/$defs/CustomData"
+        },
+        "app_data": {
+          "$ref": "#/$defs/AppData"
+        }
+      }
+    },
+    "UserData": {
+      "type": "object",
+      "description": "User identification data for matching conversion events to Snapchat users. All PII fields should be SHA-256 hashed before sending.",
+      "properties": {
+        "em": {
+          "type": "string",
+          "description": "SHA-256 hashed lowercase email address of the user."
+        },
+        "ph": {
+          "type": "string",
+          "description": "SHA-256 hashed phone number in E.164 format."
+        },
+        "fn": {
+          "type": "string",
+          "description": "SHA-256 hashed lowercase first name of the user."
+        },
+        "ln": {
+          "type": "string",
+          "description": "SHA-256 hashed lowercase last name of the user."
+        },
+        "ge": {
+          "type": "string",
+          "description": "SHA-256 hashed gender (m or f)."
+        },
+        "db": {
+          "type": "string",
+          "description": "SHA-256 hashed date of birth in YYYYMMDD format."
+        },
+        "ct": {
+          "type": "string",
+          "description": "SHA-256 hashed lowercase city name."
+        },
+        "st": {
+          "type": "string",
+          "description": "SHA-256 hashed lowercase two-letter state code."
+        },
+        "zp": {
+          "type": "string",
+          "description": "SHA-256 hashed five-digit zip code."
+        },
+        "country": {
+          "type": "string",
+          "description": "SHA-256 hashed lowercase two-letter country code."
+        },
+        "external_id": {
+          "type": "string",
+          "description": "SHA-256 hashed external identifier for the user."
+        },
+        "client_ip_address": {
+          "type": "string",
+          "description": "The IP address of the user's browser or device."
+        },
+        "client_user_agent": {
+          "type": "string",
+          "description": "The user agent string of the user's browser."
+        },
+        "sc_click_id": {
+          "type": "string",
+          "description": "The Snapchat click ID from the ad click URL parameter."
+        },
+        "sc_cookie1": {
+          "type": "string",
+          "description": "The Snapchat first-party cookie value."
+        },
+        "idfv": {
+          "type": "string",
+          "description": "iOS identifier for vendor."
+        },
+        "idfa": {
+          "type": "string",
+          "description": "iOS identifier for advertisers."
+        },
+        "madid": {
+          "type": "string",
+          "description": "Mobile advertising device ID (Android)."
+        }
+      }
+    },
+    "CustomData": {
+      "type": "object",
+      "description": "Custom data associated with the conversion event, such as purchase details and product information.",
+      "properties": {
+        "currency": {
+          "type": "string",
+          "description": "ISO 4217 currency code (e.g., USD, EUR).",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "price": {
+          "type": "number",
+          "description": "The monetary value or price associated with the event.",
+          "minimum": 0
+        },
+        "transaction_id": {
+          "type": "string",
+          "description": "A unique transaction identifier for deduplication."
+        },
+        "search_string": {
+          "type": "string",
+          "description": "The search query string for SEARCH events."
+        },
+        "sign_up_method": {
+          "type": "string",
+          "description": "The method used for sign-up (e.g., email, google, facebook)."
+        },
+        "num_items": {
+          "type": "integer",
+          "description": "Number of items associated with the event.",
+          "minimum": 0
+        },
+        "payment_info_available": {
+          "type": "integer",
+          "description": "Whether payment info is available (1) or not (0).",
+          "enum": [0, 1]
+        },
+        "contents": {
+          "type": "array",
+          "description": "Array of product or content items associated with the event.",
+          "items": {
+            "$ref": "#/$defs/ContentItem"
+          }
+        }
+      }
+    },
+    "ContentItem": {
+      "type": "object",
+      "description": "A product or content item associated with a conversion event.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The product or content identifier."
+        },
+        "quantity": {
+          "type": "integer",
+          "description": "The quantity of the item.",
+          "minimum": 1
+        },
+        "item_price": {
+          "type": "number",
+          "description": "The price of the individual item.",
+          "minimum": 0
+        },
+        "brand": {
+          "type": "string",
+          "description": "The brand name of the item."
+        },
+        "category": {
+          "type": "string",
+          "description": "The category of the item."
+        }
+      }
+    },
+    "AppData": {
+      "type": "object",
+      "description": "App-specific data for mobile app conversion events.",
+      "properties": {
+        "advertiser_tracking_enabled": {
+          "type": "boolean",
+          "description": "Whether the user has enabled advertiser tracking."
+        },
+        "application_tracking_enabled": {
+          "type": "boolean",
+          "description": "Whether the app has tracking enabled."
+        },
+        "extinfo": {
+          "type": "array",
+          "description": "Extended device information array.",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

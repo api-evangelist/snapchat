@@ -1,0 +1,380 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://developers.snap.com/schemas/snapchat/ad-campaign.json",
+  "title": "Snapchat Ad Campaign",
+  "description": "Schema for validating Snapchat Ads API campaign, ad squad, ad, and creative entities used in the advertising lifecycle.",
+  "type": "object",
+  "$defs": {
+    "Organization": {
+      "type": "object",
+      "description": "An Organization represents a brand, partner, or ad agency on the Snapchat advertising platform.",
+      "required": ["name"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier of the organization."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the organization."
+        },
+        "address_line_1": {
+          "type": "string",
+          "description": "First line of the organization address."
+        },
+        "locality": {
+          "type": "string",
+          "description": "City or locality of the organization."
+        },
+        "administrative_district_level_1": {
+          "type": "string",
+          "description": "State or province of the organization."
+        },
+        "country": {
+          "type": "string",
+          "description": "Two-letter country code.",
+          "pattern": "^[A-Z]{2}$"
+        },
+        "postal_code": {
+          "type": "string",
+          "description": "Postal code of the organization."
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of organization.",
+          "enum": ["ENTERPRISE", "PARTNER"]
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the organization was created."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the organization was last updated."
+        }
+      }
+    },
+    "AdAccount": {
+      "type": "object",
+      "description": "An Ad Account contains advertising campaigns and is owned by an Organization.",
+      "required": ["name", "organization_id", "currency", "timezone"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier of the ad account."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the ad account."
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "The ID of the parent organization."
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of ad account.",
+          "enum": ["PARTNER", "DIRECT"]
+        },
+        "status": {
+          "type": "string",
+          "description": "The status of the ad account.",
+          "enum": ["ACTIVE", "PAUSED", "DISABLED"]
+        },
+        "currency": {
+          "type": "string",
+          "description": "ISO 4217 currency code for the ad account.",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "timezone": {
+          "type": "string",
+          "description": "IANA timezone identifier (e.g., America/Los_Angeles)."
+        },
+        "advertiser": {
+          "type": "string",
+          "description": "The name of the advertiser."
+        },
+        "funding_source_ids": {
+          "type": "array",
+          "description": "Array of funding source IDs associated with this account.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the ad account was created."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the ad account was last updated."
+        }
+      }
+    },
+    "Campaign": {
+      "type": "object",
+      "description": "A Campaign defines a business objective and organizes Ad Squads for aggregate reporting.",
+      "required": ["name", "ad_account_id", "status"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier of the campaign."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the campaign."
+        },
+        "ad_account_id": {
+          "type": "string",
+          "description": "The ID of the parent ad account."
+        },
+        "status": {
+          "type": "string",
+          "description": "The status of the campaign.",
+          "enum": ["ACTIVE", "PAUSED"]
+        },
+        "daily_budget_micro": {
+          "type": "integer",
+          "description": "Daily budget in micro-currency units (1,000,000 micro = 1 unit of currency).",
+          "minimum": 0
+        },
+        "lifetime_spend_cap_micro": {
+          "type": "integer",
+          "description": "Lifetime spend cap in micro-currency units.",
+          "minimum": 0
+        },
+        "start_time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The start time of the campaign."
+        },
+        "end_time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The end time of the campaign."
+        },
+        "objective_v2_properties": {
+          "type": "object",
+          "description": "The v2 objective properties for the campaign, replacing the deprecated objective field.",
+          "properties": {
+            "objective": {
+              "type": "string",
+              "description": "The campaign objective type."
+            }
+          }
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the campaign was created."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the campaign was last updated."
+        }
+      }
+    },
+    "AdSquad": {
+      "type": "object",
+      "description": "An Ad Squad organizes ads within a campaign, defining targeting, budget, schedule, and bid strategy.",
+      "required": ["name", "campaign_id", "status"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier of the ad squad."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the ad squad."
+        },
+        "campaign_id": {
+          "type": "string",
+          "description": "The ID of the parent campaign."
+        },
+        "status": {
+          "type": "string",
+          "description": "The status of the ad squad.",
+          "enum": ["ACTIVE", "PAUSED"]
+        },
+        "type": {
+          "type": "string",
+          "description": "The delivery type.",
+          "enum": ["SNAP_ADS", "STORY_ADS"]
+        },
+        "placement": {
+          "type": "string",
+          "description": "Where ads will be placed."
+        },
+        "bid_micro": {
+          "type": "integer",
+          "description": "The bid amount in micro-currency units.",
+          "minimum": 0
+        },
+        "daily_budget_micro": {
+          "type": "integer",
+          "description": "Daily budget in micro-currency units.",
+          "minimum": 0
+        },
+        "lifetime_budget_micro": {
+          "type": "integer",
+          "description": "Lifetime budget in micro-currency units.",
+          "minimum": 0
+        },
+        "start_time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The start time of the ad squad."
+        },
+        "end_time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The end time of the ad squad."
+        },
+        "targeting": {
+          "type": "object",
+          "description": "Targeting criteria for the ad squad."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the ad squad was created."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the ad squad was last updated."
+        }
+      }
+    },
+    "Ad": {
+      "type": "object",
+      "description": "An Ad is an individual ad unit delivered to users, belonging to an Ad Squad and referencing a Creative.",
+      "required": ["name", "ad_squad_id", "creative_id", "status"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier of the ad."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the ad."
+        },
+        "ad_squad_id": {
+          "type": "string",
+          "description": "The ID of the parent ad squad."
+        },
+        "creative_id": {
+          "type": "string",
+          "description": "The ID of the creative used by this ad."
+        },
+        "status": {
+          "type": "string",
+          "description": "The status of the ad.",
+          "enum": ["ACTIVE", "PAUSED"]
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of ad."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the ad was created."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the ad was last updated."
+        }
+      }
+    },
+    "Creative": {
+      "type": "object",
+      "description": "A Creative defines the visual and interactive content of an ad.",
+      "required": ["name", "ad_account_id", "type"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier of the creative."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the creative."
+        },
+        "ad_account_id": {
+          "type": "string",
+          "description": "The ID of the parent ad account."
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of creative.",
+          "enum": [
+            "SNAP_AD",
+            "APP_INSTALL",
+            "LONGFORM_VIDEO",
+            "WEB_VIEW",
+            "DEEP_LINK",
+            "LENS",
+            "COLLECTION",
+            "DYNAMIC",
+            "PREVIEW"
+          ]
+        },
+        "headline": {
+          "type": "string",
+          "description": "The headline text displayed on the creative.",
+          "maxLength": 34
+        },
+        "brand_name": {
+          "type": "string",
+          "description": "The brand name displayed on the creative.",
+          "maxLength": 25
+        },
+        "shareable": {
+          "type": "boolean",
+          "description": "Whether the creative can be shared by users."
+        },
+        "call_to_action": {
+          "type": "string",
+          "description": "The call-to-action button type.",
+          "enum": [
+            "INSTALL_NOW",
+            "WATCH_MORE",
+            "VIEW_MORE",
+            "SIGN_UP",
+            "SHOP_NOW",
+            "BUY_NOW",
+            "GET_NOW",
+            "BOOK_NOW",
+            "LISTEN",
+            "ORDER_NOW",
+            "PLAY",
+            "APPLY_NOW",
+            "DOWNLOAD",
+            "SEND",
+            "MORE"
+          ]
+        },
+        "top_snap_media_id": {
+          "type": "string",
+          "description": "The media ID for the top snap creative asset."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the creative was created."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the creative was last updated."
+        }
+      }
+    }
+  }
+}

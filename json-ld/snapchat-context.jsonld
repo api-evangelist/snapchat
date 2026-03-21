@@ -1,0 +1,243 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "snap": "https://developers.snap.com/ns/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Organization": {
+      "@id": "snap:Organization",
+      "@context": {
+        "name": "schema:name",
+        "type": "snap:organizationType",
+        "addressLine1": "schema:streetAddress",
+        "locality": "schema:addressLocality",
+        "administrativeDistrictLevel1": "schema:addressRegion",
+        "country": "schema:addressCountry",
+        "postalCode": "schema:postalCode",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "AdAccount": {
+      "@id": "snap:AdAccount",
+      "@context": {
+        "name": "schema:name",
+        "organization": {
+          "@id": "snap:organization",
+          "@type": "@id"
+        },
+        "status": "snap:status",
+        "currency": "schema:currency",
+        "timezone": "snap:timezone",
+        "advertiser": "snap:advertiser",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Campaign": {
+      "@id": "snap:Campaign",
+      "@context": {
+        "name": "schema:name",
+        "adAccount": {
+          "@id": "snap:adAccount",
+          "@type": "@id"
+        },
+        "status": "snap:status",
+        "dailyBudget": {
+          "@id": "snap:dailyBudgetMicro",
+          "@type": "xsd:integer"
+        },
+        "lifetimeSpendCap": {
+          "@id": "snap:lifetimeSpendCapMicro",
+          "@type": "xsd:integer"
+        },
+        "startTime": {
+          "@id": "schema:startDate",
+          "@type": "xsd:dateTime"
+        },
+        "endTime": {
+          "@id": "schema:endDate",
+          "@type": "xsd:dateTime"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "AdSquad": {
+      "@id": "snap:AdSquad",
+      "@context": {
+        "name": "schema:name",
+        "campaign": {
+          "@id": "snap:campaign",
+          "@type": "@id"
+        },
+        "status": "snap:status",
+        "type": "snap:adSquadType",
+        "placement": "snap:placement",
+        "bid": {
+          "@id": "snap:bidMicro",
+          "@type": "xsd:integer"
+        },
+        "startTime": {
+          "@id": "schema:startDate",
+          "@type": "xsd:dateTime"
+        },
+        "endTime": {
+          "@id": "schema:endDate",
+          "@type": "xsd:dateTime"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Ad": {
+      "@id": "snap:Ad",
+      "@context": {
+        "name": "schema:name",
+        "adSquad": {
+          "@id": "snap:adSquad",
+          "@type": "@id"
+        },
+        "creative": {
+          "@id": "snap:creative",
+          "@type": "@id"
+        },
+        "status": "snap:status",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Creative": {
+      "@id": "snap:Creative",
+      "@context": {
+        "name": "schema:name",
+        "type": "snap:creativeType",
+        "headline": "schema:headline",
+        "brandName": "schema:brand",
+        "shareable": "snap:shareable",
+        "callToAction": "snap:callToAction",
+        "topSnapMediaId": {
+          "@id": "snap:topSnapMedia",
+          "@type": "@id"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Media": {
+      "@id": "snap:Media",
+      "@context": {
+        "name": "schema:name",
+        "type": "snap:mediaType",
+        "mediaStatus": "snap:mediaStatus",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "ConversionEvent": {
+      "@id": "snap:ConversionEvent",
+      "@context": {
+        "eventName": "snap:eventName",
+        "eventTime": {
+          "@id": "snap:eventTime",
+          "@type": "xsd:integer"
+        },
+        "eventSourceUrl": {
+          "@id": "snap:eventSourceUrl",
+          "@type": "@id"
+        },
+        "actionSource": "snap:actionSource",
+        "currency": "schema:currency",
+        "price": {
+          "@id": "schema:price",
+          "@type": "xsd:decimal"
+        }
+      }
+    },
+
+    "AudienceSegment": {
+      "@id": "snap:AudienceSegment",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "status": "snap:status",
+        "sourceType": "snap:sourceType",
+        "approximateNumberUsers": {
+          "@id": "snap:approximateNumberUsers",
+          "@type": "xsd:integer"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "UserProfile": {
+      "@id": "snap:UserProfile",
+      "@context": {
+        "externalId": "snap:externalId",
+        "displayName": "schema:name",
+        "bitmojiAvatar": {
+          "@id": "snap:bitmojiAvatar",
+          "@type": "@id"
+        }
+      }
+    }
+  }
+}
