@@ -21,22 +21,10 @@ servers:
   - url: https://adsapi.snapchat.com/v1
     description: Production Server
 tags:
-  - name: Organizations
-    description: >-
-      Organizations represent brands, partners, or ad agencies.
-      Organizations are created via Snap Business Manager.
   - name: Ad Accounts
     description: >-
       Ad Accounts are owned by an Organization and contain Ad Campaigns.
       They have one or more Funding Sources.
-  - name: Funding Sources
-    description: >-
-      Funding Sources represent payment methods associated with an
-      organization, including credit cards, PayPal, and lines of credit.
-  - name: Campaigns
-    description: >-
-      Campaigns define a business objective and organize Ad Squads,
-      allowing advertisers to view aggregate statistics.
   - name: Ad Squads
     description: >-
       Ad Squads organize ads within a campaign, defining targeting,
@@ -45,23 +33,35 @@ tags:
     description: >-
       Ads are the individual ad units that are delivered to users.
       Each Ad belongs to an Ad Squad and references a Creative.
-  - name: Creatives
-    description: >-
-      Creatives define the visual and interactive content of ads,
-      including images, videos, and call-to-action overlays.
-  - name: Media
-    description: >-
-      Media endpoints handle uploading and managing media assets
-      such as images and videos used in creatives.
   - name: Audience Segments
     description: >-
       Audience Segments allow advertisers to define and manage
       custom audiences for ad targeting, including Snap Audience
       Match, lookalike audiences, and pixel-based audiences.
+  - name: Campaigns
+    description: >-
+      Campaigns define a business objective and organize Ad Squads,
+      allowing advertisers to view aggregate statistics.
+  - name: Creatives
+    description: >-
+      Creatives define the visual and interactive content of ads,
+      including images, videos, and call-to-action overlays.
+  - name: Funding Sources
+    description: >-
+      Funding Sources represent payment methods associated with an
+      organization, including credit cards, PayPal, and lines of credit.
   - name: Measurement
     description: >-
       Measurement endpoints provide campaign performance statistics
       and reporting data at various levels of the ad hierarchy.
+  - name: Media
+    description: >-
+      Media endpoints handle uploading and managing media assets
+      such as images and videos used in creatives.
+  - name: Organizations
+    description: >-
+      Organizations represent brands, partners, or ad agencies.
+      Organizations are created via Snap Business Manager.
 security:
   - bearerAuth: []
 paths:
