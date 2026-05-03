@@ -1,0 +1,104 @@
+extends: spectral:oas
+rules:
+  # Naming conventions
+  snapchat-operation-id-camel-case:
+    description: Operation IDs must use camelCase naming
+    message: "operationId '{{value}}' must be camelCase"
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  snapchat-path-kebab-case:
+    description: Path segments must use kebab-case or path parameters
+    message: "Path segment must use kebab-case or path parameters: {{value}}"
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(/[a-z][a-z0-9-]*|/\\{[a-zA-Z_]+\\})+/?$"
+
+  # Response conventions
+  snapchat-response-envelope:
+    description: >-
+      Snapchat Ads API responses use an envelope pattern with request_status
+      and request_id fields in 200 responses.
+    message: "200 responses should include request_status and request_id envelope fields"
+    severity: info
+    given: "$.paths[*][get,post,put].responses['200'].content['application/json'].schema.properties"
+    then:
+      function: truthy
+
+  # Auth requirements
+  snapchat-security-defined:
+    description: All operations must define security requirements
+    message: "Operation must define security requirements"
+    severity: error
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: security
+      function: truthy
+
+  # Tag requirements
+  snapchat-operation-tag:
+    description: All operations must have at least one tag
+    message: "Operation must have at least one tag for grouping"
+    severity: warn
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: tags
+      function: truthy
+
+  # Summary requirements
+  snapchat-operation-summary:
+    description: All operations must have a summary in Title Case
+    message: "Operation must have a summary"
+    severity: warn
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: summary
+      function: truthy
+
+  # Description requirements
+  snapchat-operation-description:
+    description: All operations should have a description
+    message: "Operation should have a detailed description"
+    severity: info
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: description
+      function: truthy
+
+  # Media type conventions
+  snapchat-json-content-type:
+    description: Request and response bodies should use application/json
+    message: "Content type should be application/json"
+    severity: info
+    given: "$.paths[*][post,put,patch].requestBody.content"
+    then:
+      function: truthy
+
+  # Parameter naming
+  snapchat-path-param-naming:
+    description: Path parameters should use snake_case
+    message: "Path parameter '{{value}}' should use snake_case"
+    severity: info
+    given: "$.paths[*][*].parameters[*][?(@.in == 'path')].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-z0-9_]*$"
+
+  # Version prefix
+  snapchat-server-versioned:
+    description: Servers should include a versioned base path (v1, v2, v3)
+    message: "Server URL should include an API version prefix"
+    severity: warn
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: ".*/v[0-9]+$"

@@ -1,0 +1,45 @@
+{
+  "title": "Send Web Conversion Events via CAPI",
+  "description": "Example request and response for sending purchase conversion events via the Snapchat Conversions API v3",
+  "request": {
+    "method": "POST",
+    "url": "https://tr.snapchat.com/v3/{pixel_id}/events?access_token={access_token}",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "data": [
+        {
+          "event_type": "PURCHASE",
+          "event_conversion_type": "WEB",
+          "event_tag": "purchase_confirmed",
+          "timestamp": "2026-05-02T14:30:00Z",
+          "price": "49.99",
+          "currency": "USD",
+          "transaction_id": "order_abc12345",
+          "item_ids": ["sku_001", "sku_002"],
+          "item_category": "Electronics",
+          "brands": ["ExampleBrand"],
+          "user_data": {
+            "em": ["a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3"],
+            "ph": ["7b502c3a1f48c8609ae212cdfb639dee39673f5e"],
+            "client_ip_address": "198.51.100.42",
+            "client_user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X)",
+            "sc_click_id": "a3f4b5c6-d7e8-9012-3456-7890abcdef12"
+          },
+          "page_url": "https://example.com/order-confirmation"
+        }
+      ]
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "status": "SUCCESS",
+      "reason": "SUCCESS"
+    }
+  }
+}

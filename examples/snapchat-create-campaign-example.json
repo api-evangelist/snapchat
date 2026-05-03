@@ -1,0 +1,53 @@
+{
+  "title": "Create a Snapchat Campaign",
+  "description": "Example request and response for creating an awareness campaign via the Snapchat Ads API",
+  "request": {
+    "method": "POST",
+    "url": "https://adsapi.snapchat.com/v1/adaccounts/{ad_account_id}/campaigns",
+    "headers": {
+      "Authorization": "Bearer {access_token}",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "campaigns": [
+        {
+          "name": "Spring 2026 Brand Awareness",
+          "ad_account_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+          "status": "ACTIVE",
+          "objective": "AWARENESS",
+          "start_time": "2026-05-01T00:00:00.000-0700",
+          "end_time": "2026-05-31T23:59:59.000-0700",
+          "daily_budget_micro": 50000000
+        }
+      ]
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "request_status": "SUCCESS",
+      "request_id": "5a7b8c9d-0e1f-2345-6789-abcdef012345",
+      "campaigns": [
+        {
+          "sub_request_status": "SUCCESS",
+          "campaign": {
+            "id": "c1d2e3f4-5678-90ab-cdef-1234567890ab",
+            "name": "Spring 2026 Brand Awareness",
+            "ad_account_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+            "status": "ACTIVE",
+            "objective": "AWARENESS",
+            "start_time": "2026-05-01T07:00:00.000Z",
+            "end_time": "2026-06-01T06:59:59.000Z",
+            "daily_budget_micro": 50000000,
+            "lifetime_spend_cap_micro": null,
+            "created_at": "2026-05-02T12:00:00.000Z",
+            "updated_at": "2026-05-02T12:00:00.000Z"
+          }
+        }
+      ]
+    }
+  }
+}

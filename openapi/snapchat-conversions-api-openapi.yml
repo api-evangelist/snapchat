@@ -31,7 +31,7 @@ paths:
   /{pixel_id}/events:
     post:
       operationId: sendWebConversionEvents
-      summary: Send web conversion events
+      summary: Send Web Conversion Events
       description: >-
         Sends one or more web conversion events to Snap using a Pixel ID.
         Events can include purchases, page views, add-to-cart actions,
@@ -69,7 +69,7 @@ paths:
   /{snap_app_id}/events:
     post:
       operationId: sendAppConversionEvents
-      summary: Send app conversion events
+      summary: Send App Conversion Events
       description: >-
         Sends one or more app conversion events to Snap using a Snap App ID.
         Used for tracking in-app events such as app installs, purchases,

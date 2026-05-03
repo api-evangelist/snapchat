@@ -1,0 +1,212 @@
+name: Snapchat Vocabulary
+description: >-
+  Domain vocabulary for Snapchat developer APIs including the Ads API,
+  Conversions API, Login Kit, Creative Kit, and Camera Kit. Covers
+  advertising concepts, AR/camera terminology, and platform-specific
+  authentication patterns.
+tags:
+  - Advertising
+  - AR
+  - Augmented Reality
+  - Marketing
+  - Messaging
+  - Social Media
+created: '2026-05-02'
+modified: '2026-05-02'
+
+terms:
+  - term: Snap
+    definition: >-
+      A photo or video message sent via Snapchat. Also used as an abbreviation
+      for Snap Inc., the parent company that operates Snapchat.
+    tags:
+      - Core Concept
+
+  - term: Snapchat
+    definition: >-
+      A visual messaging and camera platform by Snap Inc. where users share
+      photos, videos, and messages that can disappear. The platform has
+      expanded to include Stories, Spotlight, Map, and AR features.
+    tags:
+      - Platform
+
+  - term: Organization
+    definition: >-
+      In the Snapchat Ads API, an Organization is the top-level entity
+      representing a brand, partner, or ad agency. Organizations contain
+      Ad Accounts and are created via Snap Business Manager.
+    tags:
+      - Advertising
+
+  - term: Ad Account
+    definition: >-
+      A container within an Organization that holds Campaigns. Ad Accounts
+      have one or more Funding Sources and define the currency and timezone
+      for campaign billing.
+    tags:
+      - Advertising
+
+  - term: Campaign
+    definition: >-
+      A Snapchat advertising Campaign defines a business objective (such as
+      AWARENESS, CONVERSIONS, or APP_INSTALLS) and organizes Ad Squads.
+      Campaigns have budgets, schedules, and objective goals.
+    tags:
+      - Advertising
+
+  - term: Ad Squad
+    definition: >-
+      Within a Campaign, an Ad Squad defines targeting parameters, bid
+      strategy, budget, and schedule for a group of ads. Targeting includes
+      demographics, geographies, device types, and custom audience segments.
+    tags:
+      - Advertising
+
+  - term: Creative
+    definition: >-
+      A Creative defines the visual and interactive content of an ad, including
+      the top-snap media (image or video), headline, call-to-action, and
+      attachment URL. Multiple ad types are supported: Snap Ads, Story Ads,
+      Collection Ads, Lens AR Ads, and Filter Ads.
+    tags:
+      - Advertising
+      - Creative
+
+  - term: Audience Segment
+    definition: >-
+      A custom audience group used for ad targeting. Snapchat supports Snap
+      Audience Match (SAM), lookalike audiences, pixel-based audiences, and
+      engagement audiences. Segments are associated with an Ad Account.
+    tags:
+      - Advertising
+      - Targeting
+
+  - term: Conversions API (CAPI)
+    abbreviation: CAPI
+    definition: >-
+      A server-to-server interface for passing conversion events directly to
+      Snap, bypassing browser-side tracking limitations. Supports web, app,
+      and offline events. Current version is v3; v2 was deprecated in 2025.
+    tags:
+      - Advertising
+      - Measurement
+      - Privacy
+
+  - term: Snap Pixel
+    definition: >-
+      A JavaScript tracking snippet placed on websites to capture conversion
+      events (page views, purchases, sign-ups). Works alongside CAPI for
+      redundant conversion measurement.
+    tags:
+      - Advertising
+      - Tracking
+
+  - term: Pixel ID
+    definition: >-
+      The unique identifier for a Snap Pixel, used as the path parameter in
+      CAPI requests to attribute web conversion events to the correct pixel.
+    tags:
+      - Advertising
+      - Tracking
+
+  - term: Snap Click ID (sc_click_id)
+    definition: >-
+      A unique identifier appended to click URLs by Snap when a user clicks
+      an ad. Used in CAPI events to match conversions back to the originating
+      ad click, improving attribution accuracy.
+    tags:
+      - Advertising
+      - Attribution
+
+  - term: Login Kit
+    definition: >-
+      A Snapchat developer product that allows users to authenticate in
+      third-party apps using their Snapchat credentials via OAuth 2.0.
+      Provides access to display name and Bitmoji avatar data.
+    tags:
+      - Authentication
+      - Identity
+      - OAuth
+
+  - term: Creative Kit
+    definition: >-
+      A Snapchat developer product allowing users to share content (lenses,
+      filters, stickers, videos, links) from third-party apps directly to
+      Snapchat's camera or preview screen. Supports Dynamic Lenses, Stickers,
+      and Spotlight Posting.
+    tags:
+      - Content Sharing
+      - Integration
+
+  - term: Camera Kit
+    definition: >-
+      A Snapchat SDK that embeds Snap's AR camera and lens capabilities
+      directly into iOS, Android, and web applications, without requiring
+      users to switch to the Snapchat app.
+    tags:
+      - AR
+      - Augmented Reality
+      - SDK
+
+  - term: Lens
+    definition: >-
+      An augmented reality experience created with Lens Studio that overlays
+      visual effects, animations, or interactive content on the Snapchat camera
+      view. Lenses can be static or dynamic (data-driven).
+    tags:
+      - AR
+      - Augmented Reality
+      - Creative
+
+  - term: Lens Studio
+    definition: >-
+      Snap's desktop application for creating augmented reality lenses for
+      Snapchat and Spectacles. Provides scripting APIs for dynamic lenses
+      and publishing to the Snap Lens Network.
+    tags:
+      - AR
+      - Creative Tools
+      - SDK
+
+  - term: Bitmoji
+    definition: >-
+      A personalized avatar system integrated into Snapchat. Developers can
+      access a user's Bitmoji avatar URL via Login Kit for use in third-party
+      applications.
+    tags:
+      - Avatar
+      - Identity
+
+  - term: Spotlight
+    definition: >-
+      Snapchat's short-form video discovery feed (similar to TikTok For You).
+      Creative Kit supports Spotlight Posting for creators and Snapstars.
+    tags:
+      - Content
+      - Social Media
+
+  - term: Snap Kit
+    definition: >-
+      The umbrella term for Snap's developer platform including Login Kit,
+      Creative Kit, Story Kit, Ad Kit, and Bitmoji Kit — enabling developers
+      to integrate Snapchat functionality into their apps.
+    tags:
+      - Developer Platform
+      - SDK
+
+  - term: Micro (budget unit)
+    definition: >-
+      Snapchat Ads API represents monetary values in micro-currency units.
+      One US dollar = 1,000,000 micro. For example, a $50 daily budget is
+      expressed as 50000000 in the API.
+    tags:
+      - Advertising
+      - Currency
+
+  - term: Snap Business Manager
+    definition: >-
+      Snap's web interface for managing advertising accounts, users, permissions,
+      and billing. Organizations are created and managed via Business Manager.
+    tags:
+      - Advertising
+      - Management

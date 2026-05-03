@@ -1,0 +1,158 @@
+{
+  "name": "Snapchat Campaign Structure",
+  "description": "Hierarchical structure of Snapchat advertising objects from Organization down to individual Ad",
+  "version": "1.0",
+  "structure": {
+    "Organization": {
+      "description": "Top-level entity representing a brand, partner, or ad agency",
+      "fields": {
+        "id": "string (UUID)",
+        "name": "string",
+        "address_line_1": "string",
+        "locality": "string",
+        "administrative_district_level_1": "string",
+        "country": "string",
+        "postal_code": "string",
+        "type": "enum: AGENCY | ADVERTISER",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      },
+      "children": {
+        "AdAccount": {
+          "description": "Container for campaigns; has one or more funding sources",
+          "fields": {
+            "id": "string (UUID)",
+            "name": "string",
+            "organization_id": "string (ref: Organization.id)",
+            "status": "enum: ACTIVE | INACTIVE",
+            "currency": "string (ISO 4217)",
+            "timezone": "string (tz database)",
+            "lifetime_spend_cap_micro": "integer",
+            "type": "enum: DIRECT | PARTNER",
+            "created_at": "datetime",
+            "updated_at": "datetime"
+          },
+          "children": {
+            "Campaign": {
+              "description": "Defines business objective and organizes Ad Squads",
+              "fields": {
+                "id": "string (UUID)",
+                "name": "string",
+                "ad_account_id": "string (ref: AdAccount.id)",
+                "status": "enum: ACTIVE | PAUSED | ARCHIVED",
+                "objective": "enum: AWARENESS | CONSIDERATION | CONVERSIONS | CATALOG_SALES | APP_INSTALLS",
+                "start_time": "datetime",
+                "end_time": "datetime",
+                "daily_budget_micro": "integer",
+                "lifetime_spend_cap_micro": "integer",
+                "created_at": "datetime",
+                "updated_at": "datetime"
+              },
+              "children": {
+                "AdSquad": {
+                  "description": "Organizes ads within a campaign, defines targeting, budget, schedule, bid strategy",
+                  "fields": {
+                    "id": "string (UUID)",
+                    "name": "string",
+                    "campaign_id": "string (ref: Campaign.id)",
+                    "ad_account_id": "string (ref: AdAccount.id)",
+                    "status": "enum: ACTIVE | PAUSED | ARCHIVED",
+                    "type": "enum: SNAP_ADS | STORY_ADS | COLLECTION_ADS | LENS_AR_ADS | FILTER_ADS",
+                    "targeting": {
+                      "demographics": {
+                        "age_groups": "array[string]",
+                        "genders": "array[string]",
+                        "languages": "array[string]"
+                      },
+                      "geos": "array[{country, region, metro, postal_code}]",
+                      "segments": "array[string (ref: AudienceSegment.id)]",
+                      "devices": "array[string]"
+                    },
+                    "bid_micro": "integer",
+                    "bid_strategy": "enum: AUTO_BID | LOWEST_COST_WITH_MAX_BID | TARGET_COST",
+                    "daily_budget_micro": "integer",
+                    "created_at": "datetime",
+                    "updated_at": "datetime"
+                  },
+                  "children": {
+                    "Ad": {
+                      "description": "Individual ad unit delivered to users",
+                      "fields": {
+                        "id": "string (UUID)",
+                        "name": "string",
+                        "ad_squad_id": "string (ref: AdSquad.id)",
+                        "creative_id": "string (ref: Creative.id)",
+                        "status": "enum: ACTIVE | PAUSED | ARCHIVED",
+                        "type": "enum: SNAP_AD | STORY_AD | COLLECTION_AD | LENS_AR_AD | FILTER_AD",
+                        "created_at": "datetime",
+                        "updated_at": "datetime"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "standalone_entities": {
+    "Creative": {
+      "description": "Visual and interactive content of an ad",
+      "fields": {
+        "id": "string (UUID)",
+        "name": "string",
+        "ad_account_id": "string (ref: AdAccount.id)",
+        "type": "enum: SNAP_AD | STORY_AD | COLLECTION_AD | LENS_AR_AD | FILTER_AD",
+        "top_snap_media_id": "string (ref: Media.id)",
+        "headline": "string",
+        "call_to_action": "enum: APPLY_NOW | BUY_NOW | CONTACT_US | DOWNLOAD | GET_NOW | LEARN_MORE | LISTEN | MORE | OPEN_APP | ORDER_NOW | PLAY | SHOP_NOW | SIGN_UP | SUBSCRIBE | TRY | VIEW | WATCH | WATCH_MORE",
+        "shareable": "boolean",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "AudienceSegment": {
+      "description": "Custom audience for ad targeting",
+      "fields": {
+        "id": "string (UUID)",
+        "name": "string",
+        "ad_account_id": "string (ref: AdAccount.id)",
+        "description": "string",
+        "status": "enum: PENDING | READY | FAILED",
+        "source_type": "enum: LOOKALIKE | SNAP_AUDIENCE_MATCH | ENGAGEMENT_AUDIENCE | CONVERSION_AUDIENCE",
+        "retention_in_days": "integer",
+        "approximate_number_users": "integer",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "Media": {
+      "description": "Image or video asset used in creatives",
+      "fields": {
+        "id": "string (UUID)",
+        "name": "string",
+        "ad_account_id": "string (ref: AdAccount.id)",
+        "type": "enum: VIDEO | IMAGE",
+        "media_status": "enum: PENDING_UPLOAD | UPLOADED | READY | FAILED",
+        "duration_in_seconds": "number",
+        "file_size_in_bytes": "integer",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "FundingSource": {
+      "description": "Payment method associated with an organization",
+      "fields": {
+        "id": "string (UUID)",
+        "type": "enum: CREDIT_CARD | LINE_OF_CREDIT | COUPON",
+        "status": "enum: ACTIVE | INACTIVE",
+        "total_budget_micro": "integer",
+        "available_budget_micro": "integer",
+        "currency": "string (ISO 4217)",
+        "value_micro": "integer"
+      }
+    }
+  }
+}

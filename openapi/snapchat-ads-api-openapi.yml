@@ -68,7 +68,7 @@ paths:
   /me/organizations:
     get:
       operationId: listOrganizations
-      summary: List all organizations
+      summary: List All Organizations
       description: >-
         Retrieves all organizations the authenticated user has access to,
         along with the ad accounts beneath each organization.
@@ -100,7 +100,7 @@ paths:
   /organizations/{organization_id}:
     get:
       operationId: getOrganization
-      summary: Get a specific organization
+      summary: Get a Specific Organization
       description: >-
         Retrieves details for a specific organization by its ID.
       tags:
@@ -133,7 +133,7 @@ paths:
   /organizations/{organization_id}/adaccounts:
     get:
       operationId: listAdAccounts
-      summary: List all ad accounts for an organization
+      summary: List All Ad Accounts for an Organization
       description: >-
         Retrieves all ad accounts associated with the specified organization.
       tags:
@@ -165,7 +165,7 @@ paths:
           description: Organization not found
     post:
       operationId: createAdAccount
-      summary: Create an ad account
+      summary: Create an Ad Account
       description: >-
         Creates a new ad account under the specified organization.
       tags:
@@ -208,7 +208,7 @@ paths:
           description: Unauthorized
     put:
       operationId: updateAdAccount
-      summary: Update an ad account
+      summary: Update an Ad Account
       description: >-
         Updates one or more ad accounts under the specified organization.
       tags:
@@ -252,7 +252,7 @@ paths:
   /adaccounts/{ad_account_id}:
     get:
       operationId: getAdAccount
-      summary: Get a specific ad account
+      summary: Get a Specific Ad Account
       description: >-
         Retrieves details for a specific ad account by its ID.
       tags:
@@ -285,7 +285,7 @@ paths:
   /organizations/{organization_id}/fundingsources:
     get:
       operationId: listFundingSources
-      summary: List all funding sources for an organization
+      summary: List All Funding Sources for an Organization
       description: >-
         Retrieves all funding sources associated with the specified
         organization, including credit cards, PayPal, and lines of credit.
@@ -319,7 +319,7 @@ paths:
   /adaccounts/{ad_account_id}/campaigns:
     get:
       operationId: listCampaigns
-      summary: List all campaigns for an ad account
+      summary: List All Campaigns for an Ad Account
       description: >-
         Retrieves all campaigns associated with the specified ad account.
       tags:
@@ -351,7 +351,7 @@ paths:
           description: Ad account not found
     post:
       operationId: createCampaign
-      summary: Create a campaign
+      summary: Create a Campaign
       description: >-
         Creates a new campaign under the specified ad account.
       tags:
@@ -395,7 +395,7 @@ paths:
   /campaigns/{campaign_id}:
     get:
       operationId: getCampaign
-      summary: Get a specific campaign
+      summary: Get a Specific Campaign
       description: >-
         Retrieves details for a specific campaign by its ID.
       tags:
@@ -427,7 +427,7 @@ paths:
           description: Campaign not found
     put:
       operationId: updateCampaign
-      summary: Update a campaign
+      summary: Update a Campaign
       description: >-
         Updates an existing campaign.
       tags:
@@ -456,7 +456,7 @@ paths:
           description: Campaign not found
     delete:
       operationId: deleteCampaign
-      summary: Delete a campaign
+      summary: Delete a Campaign
       description: >-
         Deletes a specific campaign by its ID.
       tags:
@@ -473,7 +473,7 @@ paths:
   /campaigns/{campaign_id}/adsquads:
     get:
       operationId: listAdSquadsByCampaign
-      summary: List all ad squads for a campaign
+      summary: List All Ad Squads for a Campaign
       description: >-
         Retrieves all ad squads associated with the specified campaign.
       tags:
@@ -506,7 +506,7 @@ paths:
   /adaccounts/{ad_account_id}/adsquads:
     get:
       operationId: listAdSquadsByAdAccount
-      summary: List all ad squads for an ad account
+      summary: List All Ad Squads for an Ad Account
       description: >-
         Retrieves all ad squads associated with the specified ad account.
       tags:
@@ -538,7 +538,7 @@ paths:
           description: Ad account not found
     post:
       operationId: createAdSquad
-      summary: Create an ad squad
+      summary: Create an Ad Squad
       description: >-
         Creates a new ad squad under the specified ad account.
       tags:
@@ -566,7 +566,7 @@ paths:
   /adsquads/{ad_squad_id}:
     get:
       operationId: getAdSquad
-      summary: Get a specific ad squad
+      summary: Get a Specific Ad Squad
       description: >-
         Retrieves details for a specific ad squad by its ID.
       tags:
@@ -598,7 +598,7 @@ paths:
           description: Ad squad not found
     put:
       operationId: updateAdSquad
-      summary: Update an ad squad
+      summary: Update an Ad Squad
       description: >-
         Updates an existing ad squad.
       tags:
@@ -627,7 +627,7 @@ paths:
           description: Ad squad not found
     delete:
       operationId: deleteAdSquad
-      summary: Delete an ad squad
+      summary: Delete an Ad Squad
       description: >-
         Deletes a specific ad squad by its ID.
       tags:
@@ -644,7 +644,7 @@ paths:
   /adsquads/{ad_squad_id}/ads:
     get:
       operationId: listAdsByAdSquad
-      summary: List all ads for an ad squad
+      summary: List All Ads for an Ad Squad
       description: >-
         Retrieves all ads within the specified ad squad.
       tags:
@@ -676,7 +676,7 @@ paths:
           description: Ad squad not found
     post:
       operationId: createAd
-      summary: Create an ad
+      summary: Create an Ad
       description: >-
         Creates a new ad within the specified ad squad.
       tags:
@@ -704,7 +704,7 @@ paths:
   /campaigns/{campaign_id}/ads:
     get:
       operationId: listAdsByCampaign
-      summary: List all ads for a campaign
+      summary: List All Ads for a Campaign
       description: >-
         Retrieves all ads under the specified campaign.
       tags:
@@ -737,7 +737,7 @@ paths:
   /adaccounts/{ad_account_id}/ads:
     get:
       operationId: listAdsByAdAccount
-      summary: List all ads for an ad account
+      summary: List All Ads for an Ad Account
       description: >-
         Retrieves all ads under the specified ad account.
       tags:
@@ -770,7 +770,7 @@ paths:
   /ads/{ad_id}:
     get:
       operationId: getAd
-      summary: Get a specific ad
+      summary: Get a Specific Ad
       description: >-
         Retrieves details for a specific ad by its ID.
       tags:
@@ -802,7 +802,7 @@ paths:
           description: Ad not found
     put:
       operationId: updateAd
-      summary: Update an ad
+      summary: Update an Ad
       description: >-
         Updates an existing ad.
       tags:
@@ -831,7 +831,7 @@ paths:
           description: Ad not found
     delete:
       operationId: deleteAd
-      summary: Delete an ad
+      summary: Delete an Ad
       description: >-
         Deletes a specific ad by its ID.
       tags:
@@ -848,7 +848,7 @@ paths:
   /adaccounts/{ad_account_id}/creatives:
     get:
       operationId: listCreatives
-      summary: List all creatives for an ad account
+      summary: List All Creatives for an Ad Account
       description: >-
         Retrieves all creatives associated with the specified ad account.
       tags:
@@ -880,7 +880,7 @@ paths:
           description: Ad account not found
     post:
       operationId: createCreative
-      summary: Create a creative
+      summary: Create a Creative
       description: >-
         Creates a new creative under the specified ad account.
       tags:
@@ -908,7 +908,7 @@ paths:
   /creatives/{creative_id}:
     get:
       operationId: getCreative
-      summary: Get a specific creative
+      summary: Get a Specific Creative
       description: >-
         Retrieves details for a specific creative by its ID.
       tags:
@@ -941,7 +941,7 @@ paths:
   /adaccounts/{ad_account_id}/media:
     get:
       operationId: listMedia
-      summary: List all media for an ad account
+      summary: List All Media for an Ad Account
       description: >-
         Retrieves all media objects associated with the specified ad account.
       tags:
@@ -973,7 +973,7 @@ paths:
           description: Ad account not found
     post:
       operationId: createMedia
-      summary: Create a media object
+      summary: Create a Media Object
       description: >-
         Creates a new media object under the specified ad account.
         The media object must be created before uploading the actual
@@ -1003,7 +1003,7 @@ paths:
   /media/{media_id}/upload:
     post:
       operationId: uploadMedia
-      summary: Upload media content
+      summary: Upload Media Content
       description: >-
         Uploads the actual media file content to an existing media object.
         Supports images, videos, and playable media. Maximum chunk size
@@ -1036,7 +1036,7 @@ paths:
   /adaccounts/{ad_account_id}/segments:
     get:
       operationId: listAudienceSegments
-      summary: List all audience segments for an ad account
+      summary: List All Audience Segments for an Ad Account
       description: >-
         Retrieves all audience segments associated with the specified
         ad account, including custom audiences, Snap Audience Match
@@ -1070,7 +1070,7 @@ paths:
           description: Ad account not found
     post:
       operationId: createAudienceSegment
-      summary: Create an audience segment
+      summary: Create an Audience Segment
       description: >-
         Creates a new audience segment under the specified ad account.
       tags:
@@ -1098,7 +1098,7 @@ paths:
   /campaigns/{campaign_id}/stats:
     get:
       operationId: getCampaignStats
-      summary: Get campaign statistics
+      summary: Get Campaign Statistics
       description: >-
         Retrieves performance statistics for a specific campaign,
         including impressions, spend, and conversion metrics.
@@ -1132,7 +1132,7 @@ paths:
   /adsquads/{ad_squad_id}/stats:
     get:
       operationId: getAdSquadStats
-      summary: Get ad squad statistics
+      summary: Get Ad Squad Statistics
       description: >-
         Retrieves performance statistics for a specific ad squad.
       tags:
@@ -1165,7 +1165,7 @@ paths:
   /ads/{ad_id}/stats:
     get:
       operationId: getAdStats
-      summary: Get ad statistics
+      summary: Get Ad Statistics
       description: >-
         Retrieves performance statistics for a specific ad.
       tags:
@@ -1198,7 +1198,7 @@ paths:
   /adaccounts/{ad_account_id}/stats:
     get:
       operationId: getAdAccountStats
-      summary: Get ad account statistics
+      summary: Get Ad Account Statistics
       description: >-
         Retrieves performance statistics for a specific ad account.
       tags:

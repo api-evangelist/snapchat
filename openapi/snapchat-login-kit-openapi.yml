@@ -34,7 +34,7 @@ paths:
   /accounts/oauth2/auth:
     get:
       operationId: authorize
-      summary: Authorize a user via Snapchat
+      summary: Authorize a User via Snapchat
       description: >-
         Redirects the user to the Snapchat authorization page where
         they can grant permission to the application. This is the
@@ -98,7 +98,7 @@ paths:
   /login/oauth2/access_token:
     post:
       operationId: exchangeToken
-      summary: Exchange authorization code for tokens
+      summary: Exchange Authorization Code for Tokens
       description: >-
         Exchanges an authorization code for an access token and
         refresh token. Access tokens expire after 3600 seconds
@@ -167,7 +167,7 @@ paths:
   /me:
     get:
       operationId: getUserProfile
-      summary: Get authenticated user profile
+      summary: Get Authenticated User Profile
       description: >-
         Retrieves the profile information of the authenticated
         Snapchat user, including their external ID, display name,
