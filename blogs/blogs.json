@@ -1,0 +1,13 @@
+{
+  "repo": "snapchat",
+  "feeds": [
+    {
+      "source": "https://eng.snap.com",
+      "feed_url": "https://eng.snap.com/feed",
+      "saved": 10,
+      "title": "eng-blog"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:36:33Z"
+}
