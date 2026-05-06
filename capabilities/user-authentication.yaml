@@ -1,64 +1,75 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Snapchat User Authentication"
-  description: >-
-    Workflow capability for integrating Snapchat user identity into third-party
-    applications. Uses Login Kit OAuth 2.0 to authenticate users via their
-    Snapchat credentials, retrieve user profile data including display name and
-    Bitmoji avatar, and manage token lifecycle. Used by app developers building
-    social features, personalization, or Snapchat-connected experiences.
+  label: Snapchat User Authentication
+  description: Workflow capability for integrating Snapchat user identity into third-party applications. Uses Login Kit OAuth
+    2.0 to authenticate users via their Snapchat credentials, retrieve user profile data including display name and Bitmoji
+    avatar, and manage token lifecycle. Used by app developers building social features, personalization, or Snapchat-connected
+    experiences.
   tags:
-    - Authentication
-    - Identity
-    - OAuth
-    - Snapchat
-    - User Management
-  created: "2026-05-02"
-  modified: "2026-05-02"
-
+  - Authentication
+  - Identity
+  - OAuth
+  - Snapchat
+  - User Management
+  created: '2026-05-02'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      SNAPCHAT_CLIENT_ID: SNAPCHAT_CLIENT_ID
-      SNAPCHAT_CLIENT_SECRET: SNAPCHAT_CLIENT_SECRET
-      SNAPCHAT_ACCESS_TOKEN: SNAPCHAT_ACCESS_TOKEN
-
+- namespace: env
+  keys:
+    SNAPCHAT_CLIENT_ID: SNAPCHAT_CLIENT_ID
+    SNAPCHAT_CLIENT_SECRET: SNAPCHAT_CLIENT_SECRET
+    SNAPCHAT_ACCESS_TOKEN: SNAPCHAT_ACCESS_TOKEN
 capability:
   consumes:
-    - import: snapchat-login
-      location: ./shared/login-kit.yaml
-
+  - type: http
+    namespace: snapchat-login
+    baseUri: https://kit.snapchat.com/v1
+    description: Snapchat Login Kit API for OAuth user authentication
+    authentication:
+      type: bearer
+      token: '{{SNAPCHAT_ACCESS_TOKEN}}'
+    resources:
+    - name: user-profile
+      path: /me
+      description: Retrieve authenticated user profile
+      operations:
+      - name: get-user-profile
+        method: GET
+        description: Get Authenticated User Profile
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8081
-      namespace: snapchat-auth-api
-      description: "Unified REST API for Snapchat user authentication and profile access."
-      resources:
-        - path: /v1/me
-          name: user-profile
-          description: "Get the authenticated user's Snapchat profile"
-          operations:
-            - method: GET
-              name: get-user-profile
-              description: "Get Authenticated User Profile"
-              call: "snapchat-login.get-user-profile"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9091
-      namespace: snapchat-auth-mcp
-      transport: http
-      description: "MCP server for AI-assisted Snapchat user identity and profile management."
-      tools:
-        - name: get-user-profile
-          description: "Retrieve the authenticated Snapchat user's display name and Bitmoji avatar"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "snapchat-login.get-user-profile"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8081
+    namespace: snapchat-auth-api
+    description: Unified REST API for Snapchat user authentication and profile access.
+    resources:
+    - path: /v1/me
+      name: user-profile
+      description: Get the authenticated user's Snapchat profile
+      operations:
+      - method: GET
+        name: get-user-profile
+        description: Get Authenticated User Profile
+        call: snapchat-login.get-user-profile
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9091
+    namespace: snapchat-auth-mcp
+    transport: http
+    description: MCP server for AI-assisted Snapchat user identity and profile management.
+    tools:
+    - name: get-user-profile
+      description: Retrieve the authenticated Snapchat user's display name and Bitmoji avatar
+      hints:
+        readOnly: true
+        openWorld: false
+      call: snapchat-login.get-user-profile
+      outputParameters:
+      - type: object
+        mapping: $.
