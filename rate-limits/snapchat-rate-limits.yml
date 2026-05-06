@@ -4,112 +4,45 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Snapchat
 providerId: snapchat
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
   - Advertising
   - AR
-  - Augmented Reality
   - Marketing
-  - Messaging
   - Social Media
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Snapchat API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+description: Snap publishes two-level rate limits on its Marketing API. App-scope limits apply across
+  every Access Token issued to a registered Snap developer application; token-scope limits apply per individual
+  Access Token. When either average is exceeded the API returns HTTP 429 and Snap recommends slowing the
+  request rate. Snap does not document specific Retry-After or X-RateLimit headers in the published rate-limits
+  page.
+sources:
+  - https://developers.snap.com/api/marketing-api/Ads-API/rate-limits
 responseCodes:
   throttled: 429
   quotaExceeded: 429
-  serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
+  - name: Marketing API - Application scope
+    scope: application
+    metric: requests_per_second
+    limit: 20
+    timeFrame: second
+    notes: Average sustained limit across all Access Tokens issued to the registered application.
+  - name: Marketing API - Access Token scope
+    scope: key
+    metric: requests_per_second
     limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Snapchat Ads API
-      - Snapchat Conversions API
-      - Snapchat Login Kit API
-      - Snapchat Creative Kit
-      - Snapchat Camera Kit
-      - Lens Studio
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Snapchat Ads API
-      - Snapchat Conversions API
-      - Snapchat Login Kit API
-      - Snapchat Creative Kit
-      - Snapchat Camera Kit
-      - Lens Studio
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Snapchat Ads API
-      - Snapchat Conversions API
-      - Snapchat Login Kit API
-      - Snapchat Creative Kit
-      - Snapchat Camera Kit
-      - Lens Studio
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Snapchat Ads API
-      - Snapchat Conversions API
-      - Snapchat Login Kit API
-      - Snapchat Creative Kit
-      - Snapchat Camera Kit
-      - Lens Studio
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Snapchat Ads API
-      - Snapchat Conversions API
-      - Snapchat Login Kit API
-      - Snapchat Creative Kit
-      - Snapchat Camera Kit
-      - Lens Studio
+    timeFrame: second
+    notes: Average sustained limit per individual OAuth Access Token.
 policies:
   - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+    description: When the API returns 429, Snap's documented guidance is to lower the rate at which the
+      app sends requests. Specific Retry-After header behavior is not documented; clients should implement
+      exponential backoff with jitter.
+  - name: Two-level scoping
+    description: Both the application-wide cap (20 req/s) and the per-token cap (10 req/s) apply simultaneously.
+      Distributing load across more tokens does not bypass the application-wide ceiling.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

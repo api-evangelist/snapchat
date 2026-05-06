@@ -1,177 +1,87 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Snapchat
+providerId: snapchat
+created: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
+tags:
+  - Advertising
+  - Marketing
+  - Social Media
+  - FinOps
+  - FOCUS
+description: 'FOCUS-aligned FinOps for Snapchat: API access is free for approved developers; the billable
+  surface is auction-based ad spend invoiced through Snap Business Manager.'
+sources:
+  - https://developers.snap.com/api/marketing-api/Ads-API/rate-limits
+  - https://developers.snap.com/api/marketing-api/Ads-API/getting-started
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
   dataSpec: FOCUS
   dataSpecVersion: '1.3'
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
-provider: Snapchat
-providerId: snapchat
-publisherName: Snapchat
-serviceCategory: API
-created: '2026-05-04'
-modified: '2026-05-04'
-tags:
-  - Advertising
-  - AR
-  - Augmented Reality
-  - Marketing
-  - Messaging
-  - Social Media
-  - FinOps
-  - Cost Management
-  - FOCUS
-description: FinOps framework definition for the Snapchat API surface. Provides a FOCUS-aligned mapping
-  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+publisherName: Snap Inc.
+serviceCategory: Advertising
 billingModel:
-  pricingCategory: Usage-Based
+  pricingCategory: Auction-Based Ad Spend
   billingFrequency: Monthly
   billingCurrency: USD
   chargeCategories:
     - Usage
-    - Purchase
     - Tax
-    - Credit
     - Adjustment
-  chargeFrequency: Recurring
+    - Credit
 focusColumns:
-  ServiceName: Snapchat
-  ServiceCategory: Developer Tools / API
-  ProviderName: Snapchat
-  PublisherName: Snapchat
-  InvoiceIssuerName: Snapchat
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  ServiceName: Snapchat Ads
+  ServiceCategory: Advertising
+  ProviderName: Snap
+  PublisherName: Snap Inc.
+  InvoiceIssuerName: Snap Inc.
   BillingCurrency: USD
   ChargeCategory: Usage
 meters:
+  - name: ad_impressions
+    unit: impression
+    aggregation: sum
+    dimensions:
+      - ad_account
+      - campaign
+      - country
+  - name: ad_clicks
+    unit: click
+    aggregation: sum
+    dimensions:
+      - ad_account
+      - campaign
+  - name: ad_spend
+    unit: USD
+    aggregation: sum
+    dimensions:
+      - ad_account
+      - campaign
+      - objective
   - name: api_requests
-    description: Count of billable API requests
     unit: request
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
-    aggregation: sum
-    dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Snapchat Ads API
-    baseURL: ''
-    tags:
-      - Advertising
-      - Campaigns
-      - Marketing
-    serviceName: Snapchat Ads API
-    serviceCategory: API
-  - name: Snapchat Conversions API
-    baseURL: ''
-    tags:
-      - Advertising
-      - Analytics
-      - Conversions
-      - Privacy
-    serviceName: Snapchat Conversions API
-    serviceCategory: API
-  - name: Snapchat Login Kit API
-    baseURL: ''
-    tags:
-      - Authentication
-      - Identity
-      - OAuth
-    serviceName: Snapchat Login Kit API
-    serviceCategory: API
-  - name: Snapchat Creative Kit
-    baseURL: ''
-    tags:
-      - AR
-      - Content Sharing
-      - Integration
-      - Social Media
-    serviceName: Snapchat Creative Kit
-    serviceCategory: API
-  - name: Snapchat Camera Kit
-    baseURL: ''
-    tags:
-      - AR
-      - Augmented Reality
-      - Camera
-      - SDK
-    serviceName: Snapchat Camera Kit
-    serviceCategory: API
-  - name: Lens Studio
-    baseURL: ''
-    tags:
-      - AR
-      - Augmented Reality
-      - Creative Tools
-      - Lens
-    serviceName: Lens Studio
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+      - app
+      - access_token
+principles:
+  - name: Visibility
+    description: Use Snap Business Manager reporting plus the Marketing API stats endpoints to retrieve
+      spend, impressions, clicks, and conversions per campaign and ad account.
+  - name: Allocation
+    description: Allocate ad spend by ad account, campaign, ad squad, and country dimensions returned
+      by the Marketing API; tag campaigns to the internal team or product driving them.
+  - name: Optimization
+    description: Tune bid strategy, audience targeting, and creative rotation; respect the 20 req/s app
+      and 10 req/s per-token Marketing API limits to avoid wasted retries.
+  - name: Accountability
+    description: Each Snap Business Manager organization assigns roles for finance and campaign owners
+      who reconcile invoices against Marketing API reporting.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
