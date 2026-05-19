@@ -1,0 +1,102 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Snapchat Ads API — Organizations
+  description: 'Snapchat Ads API — Organizations. 2 operations. Lead operation: List All Organizations. Self-contained Naftiko
+    capability covering one Snapchat business surface.'
+  tags:
+  - Snapchat
+  - Organizations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SNAPCHAT_API_KEY: SNAPCHAT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ads-organizations
+    baseUri: https://adsapi.snapchat.com/v1
+    description: Snapchat Ads API — Organizations business capability. Self-contained, no shared references.
+    resources:
+    - name: me-organizations
+      path: /me/organizations
+      operations:
+      - name: listorganizations
+        method: GET
+        description: List All Organizations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: organizations-organization_id
+      path: /organizations/{organization_id}
+      operations:
+      - name: getorganization
+        method: GET
+        description: Get a Specific Organization
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SNAPCHAT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: ads-organizations-rest
+    port: 8080
+    description: REST adapter for Snapchat Ads API — Organizations. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/me/organizations
+      name: me-organizations
+      description: REST surface for me-organizations.
+      operations:
+      - method: GET
+        name: listorganizations
+        description: List All Organizations
+        call: ads-organizations.listorganizations
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/organizations/{organization-id}
+      name: organizations-organization-id
+      description: REST surface for organizations-organization_id.
+      operations:
+      - method: GET
+        name: getorganization
+        description: Get a Specific Organization
+        call: ads-organizations.getorganization
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ads-organizations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Snapchat Ads API — Organizations. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-all-organizations
+      description: List All Organizations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ads-organizations.listorganizations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-specific-organization
+      description: Get a Specific Organization
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ads-organizations.getorganization
+      outputParameters:
+      - type: object
+        mapping: $.

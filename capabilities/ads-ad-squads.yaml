@@ -1,0 +1,229 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Snapchat Ads API — Ad Squads
+  description: 'Snapchat Ads API — Ad Squads. 6 operations. Lead operation: List All Ad Squads for an Ad Account. Self-contained
+    Naftiko capability covering one Snapchat business surface.'
+  tags:
+  - Snapchat
+  - Ad Squads
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SNAPCHAT_API_KEY: SNAPCHAT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ads-ad-squads
+    baseUri: https://adsapi.snapchat.com/v1
+    description: Snapchat Ads API — Ad Squads business capability. Self-contained, no shared references.
+    resources:
+    - name: adaccounts-ad_account_id-adsquads
+      path: /adaccounts/{ad_account_id}/adsquads
+      operations:
+      - name: listadsquadsbyadaccount
+        method: GET
+        description: List All Ad Squads for an Ad Account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createadsquad
+        method: POST
+        description: Create an Ad Squad
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: adsquads-ad_squad_id
+      path: /adsquads/{ad_squad_id}
+      operations:
+      - name: getadsquad
+        method: GET
+        description: Get a Specific Ad Squad
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateadsquad
+        method: PUT
+        description: Update an Ad Squad
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteadsquad
+        method: DELETE
+        description: Delete an Ad Squad
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: campaigns-campaign_id-adsquads
+      path: /campaigns/{campaign_id}/adsquads
+      operations:
+      - name: listadsquadsbycampaign
+        method: GET
+        description: List All Ad Squads for a Campaign
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SNAPCHAT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: ads-ad-squads-rest
+    port: 8080
+    description: REST adapter for Snapchat Ads API — Ad Squads. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/adaccounts/{ad-account-id}/adsquads
+      name: adaccounts-ad-account-id-adsquads
+      description: REST surface for adaccounts-ad_account_id-adsquads.
+      operations:
+      - method: GET
+        name: listadsquadsbyadaccount
+        description: List All Ad Squads for an Ad Account
+        call: ads-ad-squads.listadsquadsbyadaccount
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createadsquad
+        description: Create an Ad Squad
+        call: ads-ad-squads.createadsquad
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/adsquads/{ad-squad-id}
+      name: adsquads-ad-squad-id
+      description: REST surface for adsquads-ad_squad_id.
+      operations:
+      - method: GET
+        name: getadsquad
+        description: Get a Specific Ad Squad
+        call: ads-ad-squads.getadsquad
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateadsquad
+        description: Update an Ad Squad
+        call: ads-ad-squads.updateadsquad
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteadsquad
+        description: Delete an Ad Squad
+        call: ads-ad-squads.deleteadsquad
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/campaigns/{campaign-id}/adsquads
+      name: campaigns-campaign-id-adsquads
+      description: REST surface for campaigns-campaign_id-adsquads.
+      operations:
+      - method: GET
+        name: listadsquadsbycampaign
+        description: List All Ad Squads for a Campaign
+        call: ads-ad-squads.listadsquadsbycampaign
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ads-ad-squads-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Snapchat Ads API — Ad Squads. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-all-ad-squads-ad
+      description: List All Ad Squads for an Ad Account
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ads-ad-squads.listadsquadsbyadaccount
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-ad-squad
+      description: Create an Ad Squad
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: ads-ad-squads.createadsquad
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-specific-ad-squad
+      description: Get a Specific Ad Squad
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ads-ad-squads.getadsquad
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-ad-squad
+      description: Update an Ad Squad
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: ads-ad-squads.updateadsquad
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-ad-squad
+      description: Delete an Ad Squad
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: ads-ad-squads.deleteadsquad
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-ad-squads-campaign
+      description: List All Ad Squads for a Campaign
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ads-ad-squads.listadsquadsbycampaign
+      outputParameters:
+      - type: object
+        mapping: $.

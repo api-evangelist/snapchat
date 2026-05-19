@@ -1,0 +1,124 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Snapchat Conversions API — Conversion Events
+  description: 'Snapchat Conversions API — Conversion Events. 2 operations. Lead operation: Send Web Conversion Events. Self-contained
+    Naftiko capability covering one Snapchat business surface.'
+  tags:
+  - Snapchat
+  - Conversion Events
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SNAPCHAT_API_KEY: SNAPCHAT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: conversions-conversion-events
+    baseUri: https://tr.snapchat.com/v3
+    description: Snapchat Conversions API — Conversion Events business capability. Self-contained, no shared references.
+    resources:
+    - name: pixel_id-events
+      path: /{pixel_id}/events
+      operations:
+      - name: sendwebconversionevents
+        method: POST
+        description: Send Web Conversion Events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: snap_app_id-events
+      path: /{snap_app_id}/events
+      operations:
+      - name: sendappconversionevents
+        method: POST
+        description: Send App Conversion Events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: access_token
+      value: '{{env.SNAPCHAT_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: conversions-conversion-events-rest
+    port: 8080
+    description: REST adapter for Snapchat Conversions API — Conversion Events. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/{pixel-id}/events
+      name: pixel-id-events
+      description: REST surface for pixel_id-events.
+      operations:
+      - method: POST
+        name: sendwebconversionevents
+        description: Send Web Conversion Events
+        call: conversions-conversion-events.sendwebconversionevents
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{snap-app-id}/events
+      name: snap-app-id-events
+      description: REST surface for snap_app_id-events.
+      operations:
+      - method: POST
+        name: sendappconversionevents
+        description: Send App Conversion Events
+        call: conversions-conversion-events.sendappconversionevents
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: conversions-conversion-events-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Snapchat Conversions API — Conversion Events. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: send-web-conversion-events
+      description: Send Web Conversion Events
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: conversions-conversion-events.sendwebconversionevents
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: send-app-conversion-events
+      description: Send App Conversion Events
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: conversions-conversion-events.sendappconversionevents
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

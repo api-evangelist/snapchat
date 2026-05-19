@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Snapchat Ads API — Funding Sources
+  description: 'Snapchat Ads API — Funding Sources. 1 operations. Lead operation: List All Funding Sources for an Organization.
+    Self-contained Naftiko capability covering one Snapchat business surface.'
+  tags:
+  - Snapchat
+  - Funding Sources
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SNAPCHAT_API_KEY: SNAPCHAT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ads-funding-sources
+    baseUri: https://adsapi.snapchat.com/v1
+    description: Snapchat Ads API — Funding Sources business capability. Self-contained, no shared references.
+    resources:
+    - name: organizations-organization_id-fundingsources
+      path: /organizations/{organization_id}/fundingsources
+      operations:
+      - name: listfundingsources
+        method: GET
+        description: List All Funding Sources for an Organization
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SNAPCHAT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: ads-funding-sources-rest
+    port: 8080
+    description: REST adapter for Snapchat Ads API — Funding Sources. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/organizations/{organization-id}/fundingsources
+      name: organizations-organization-id-fundingsources
+      description: REST surface for organizations-organization_id-fundingsources.
+      operations:
+      - method: GET
+        name: listfundingsources
+        description: List All Funding Sources for an Organization
+        call: ads-funding-sources.listfundingsources
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ads-funding-sources-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Snapchat Ads API — Funding Sources. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-all-funding-sources-organization
+      description: List All Funding Sources for an Organization
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ads-funding-sources.listfundingsources
+      outputParameters:
+      - type: object
+        mapping: $.

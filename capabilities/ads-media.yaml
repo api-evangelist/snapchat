@@ -1,0 +1,147 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Snapchat Ads API — Media
+  description: 'Snapchat Ads API — Media. 3 operations. Lead operation: List All Media for an Ad Account. Self-contained Naftiko
+    capability covering one Snapchat business surface.'
+  tags:
+  - Snapchat
+  - Media
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SNAPCHAT_API_KEY: SNAPCHAT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ads-media
+    baseUri: https://adsapi.snapchat.com/v1
+    description: Snapchat Ads API — Media business capability. Self-contained, no shared references.
+    resources:
+    - name: adaccounts-ad_account_id-media
+      path: /adaccounts/{ad_account_id}/media
+      operations:
+      - name: listmedia
+        method: GET
+        description: List All Media for an Ad Account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createmedia
+        method: POST
+        description: Create a Media Object
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: media-media_id-upload
+      path: /media/{media_id}/upload
+      operations:
+      - name: uploadmedia
+        method: POST
+        description: Upload Media Content
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SNAPCHAT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: ads-media-rest
+    port: 8080
+    description: REST adapter for Snapchat Ads API — Media. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/adaccounts/{ad-account-id}/media
+      name: adaccounts-ad-account-id-media
+      description: REST surface for adaccounts-ad_account_id-media.
+      operations:
+      - method: GET
+        name: listmedia
+        description: List All Media for an Ad Account
+        call: ads-media.listmedia
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createmedia
+        description: Create a Media Object
+        call: ads-media.createmedia
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/media/{media-id}/upload
+      name: media-media-id-upload
+      description: REST surface for media-media_id-upload.
+      operations:
+      - method: POST
+        name: uploadmedia
+        description: Upload Media Content
+        call: ads-media.uploadmedia
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ads-media-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Snapchat Ads API — Media. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-all-media-ad-account
+      description: List All Media for an Ad Account
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ads-media.listmedia
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-media-object
+      description: Create a Media Object
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: ads-media.createmedia
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: upload-media-content
+      description: Upload Media Content
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: ads-media.uploadmedia
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
