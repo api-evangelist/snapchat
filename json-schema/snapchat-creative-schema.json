@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Creative",
+  "title": "Creative",
+  "type": "object",
+  "description": "A Creative defines the visual and interactive content of an ad, including media references and call-to-action elements.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the creative"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of last update"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of creation"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the creative"
+    },
+    "ad_account_id": {
+      "type": "string",
+      "description": "The ID of the parent ad account"
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of creative",
+      "enum": [
+        "SNAP_AD",
+        "APP_INSTALL",
+        "LONGFORM_VIDEO",
+        "WEB_VIEW",
+        "DEEP_LINK",
+        "LENS",
+        "COLLECTION",
+        "DYNAMIC",
+        "PREVIEW"
+      ]
+    },
+    "headline": {
+      "type": "string",
+      "description": "The headline text",
+      "maxLength": 34
+    },
+    "brand_name": {
+      "type": "string",
+      "description": "The brand name displayed on the creative",
+      "maxLength": 25
+    },
+    "shareable": {
+      "type": "boolean",
+      "description": "Whether the creative can be shared by users"
+    },
+    "call_to_action": {
+      "type": "string",
+      "description": "The call-to-action type",
+      "enum": [
+        "INSTALL_NOW",
+        "WATCH_MORE",
+        "VIEW_MORE",
+        "SIGN_UP",
+        "SHOP_NOW",
+        "BUY_NOW",
+        "GET_NOW",
+        "BOOK_NOW",
+        "LISTEN",
+        "ORDER_NOW",
+        "PLAY",
+        "APPLY_NOW",
+        "DOWNLOAD",
+        "SEND",
+        "MORE"
+      ]
+    },
+    "top_snap_media_id": {
+      "type": "string",
+      "description": "The media ID for the top snap"
+    },
+    "top_snap_crop_position": {
+      "type": "string",
+      "description": "Crop position for the top snap media"
+    }
+  }
+}

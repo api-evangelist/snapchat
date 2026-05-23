@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FundingSource",
+  "title": "FundingSource",
+  "type": "object",
+  "description": "A Funding Source represents a payment method for an organization, such as a credit card, PayPal account, or line of credit.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the funding source"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of last update"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of creation"
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of funding source",
+      "enum": [
+        "CREDIT_CARD",
+        "PAYPAL",
+        "LINE_OF_CREDIT",
+        "COUPON"
+      ]
+    },
+    "organization_id": {
+      "type": "string",
+      "description": "The ID of the parent organization"
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the funding source"
+    },
+    "currency": {
+      "type": "string",
+      "description": "The currency code"
+    },
+    "total_budget_micro": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Total budget in micro-currency units"
+    },
+    "available_credit_micro": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Available credit in micro-currency units"
+    }
+  }
+}

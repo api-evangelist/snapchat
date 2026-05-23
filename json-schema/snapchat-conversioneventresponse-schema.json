@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConversionEventResponse",
+  "title": "ConversionEventResponse",
+  "type": "object",
+  "description": "Response returned after successfully submitting conversion events.",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "The status of the request"
+    },
+    "reason": {
+      "type": "string",
+      "description": "Additional details about the response"
+    }
+  }
+}

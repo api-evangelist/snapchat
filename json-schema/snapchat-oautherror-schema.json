@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OAuthError",
+  "title": "OAuthError",
+  "type": "object",
+  "description": "Error response from the OAuth token endpoint.",
+  "properties": {
+    "error": {
+      "type": "string",
+      "description": "The error code.",
+      "enum": [
+        "invalid_request",
+        "invalid_client",
+        "invalid_grant",
+        "unauthorized_client",
+        "unsupported_grant_type"
+      ]
+    },
+    "error_description": {
+      "type": "string",
+      "description": "A human-readable description of the error."
+    }
+  }
+}

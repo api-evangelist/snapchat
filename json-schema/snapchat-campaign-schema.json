@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Campaign",
+  "title": "Campaign",
+  "type": "object",
+  "description": "A Campaign defines a business objective and organizes Ad Squads. It provides aggregate statistics for all ad squads within it.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the campaign"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of last update"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of creation"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the campaign"
+    },
+    "ad_account_id": {
+      "type": "string",
+      "description": "The ID of the parent ad account"
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the campaign",
+      "enum": [
+        "ACTIVE",
+        "PAUSED"
+      ]
+    },
+    "daily_budget_micro": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Daily budget in micro-currency units"
+    },
+    "lifetime_spend_cap_micro": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Lifetime spend cap in micro-currency units"
+    },
+    "start_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The start time of the campaign"
+    },
+    "end_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The end time of the campaign"
+    },
+    "objective_v2_properties": {
+      "type": "object",
+      "description": "The objective properties for the campaign using the v2 objective format, which replaces the deprecated objective field.",
+      "properties": {
+        "objective": {
+          "type": "string",
+          "description": "The campaign objective type"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AppData",
+  "title": "AppData",
+  "type": "object",
+  "description": "App-specific data for mobile app conversion events.",
+  "properties": {
+    "advertiser_tracking_enabled": {
+      "type": "boolean",
+      "description": "Whether the user has enabled advertiser tracking."
+    },
+    "application_tracking_enabled": {
+      "type": "boolean",
+      "description": "Whether the app has tracking enabled."
+    },
+    "extinfo": {
+      "type": "array",
+      "description": "Extended device information array.",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

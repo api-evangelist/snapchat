@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Organization",
+  "title": "Organization",
+  "type": "object",
+  "description": "An Organization represents a brand, partner, or ad agency on the Snapchat advertising platform.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the organization"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp when the organization was last updated"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp when the organization was created"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the organization"
+    },
+    "address_line_1": {
+      "type": "string",
+      "description": "First line of the organization address"
+    },
+    "locality": {
+      "type": "string",
+      "description": "City or locality of the organization"
+    },
+    "administrative_district_level_1": {
+      "type": "string",
+      "description": "State or province of the organization"
+    },
+    "country": {
+      "type": "string",
+      "description": "Country code of the organization"
+    },
+    "postal_code": {
+      "type": "string",
+      "description": "Postal code of the organization"
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of organization",
+      "enum": [
+        "ENTERPRISE",
+        "PARTNER"
+      ]
+    },
+    "my_display_name": {
+      "type": "string",
+      "description": "The display name of the authenticated user within this organization"
+    },
+    "my_invited_email": {
+      "type": "string",
+      "format": "email",
+      "description": "The email address used to invite the authenticated user"
+    },
+    "my_member_id": {
+      "type": "string",
+      "description": "The member ID of the authenticated user within this organization"
+    }
+  }
+}

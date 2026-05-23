@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AudienceSegment",
+  "title": "AudienceSegment",
+  "type": "object",
+  "description": "An Audience Segment defines a group of users for ad targeting, including custom audiences, Snap Audience Match, pixel-based audiences, and lookalike audiences.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the segment"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of last update"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of creation"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the segment"
+    },
+    "ad_account_id": {
+      "type": "string",
+      "description": "The ID of the parent ad account"
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the segment"
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the segment",
+      "enum": [
+        "ACTIVE",
+        "PAUSED"
+      ]
+    },
+    "source_type": {
+      "type": "string",
+      "description": "The source type of the audience segment",
+      "enum": [
+        "FIRST_PARTY",
+        "THIRD_PARTY",
+        "LOOKALIKE"
+      ]
+    },
+    "approximate_number_users": {
+      "type": "integer",
+      "description": "Approximate number of users in the segment"
+    }
+  }
+}

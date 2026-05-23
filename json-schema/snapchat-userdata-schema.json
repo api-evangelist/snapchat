@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserData",
+  "title": "UserData",
+  "type": "object",
+  "description": "User identification data for matching conversion events to Snapchat users. All personally identifiable information should be hashed using SHA-256 before sending.",
+  "properties": {
+    "em": {
+      "type": "string",
+      "description": "SHA-256 hashed lowercase email address of the user."
+    },
+    "ph": {
+      "type": "string",
+      "description": "SHA-256 hashed phone number in E.164 format."
+    },
+    "fn": {
+      "type": "string",
+      "description": "SHA-256 hashed lowercase first name of the user."
+    },
+    "ln": {
+      "type": "string",
+      "description": "SHA-256 hashed lowercase last name of the user."
+    },
+    "ge": {
+      "type": "string",
+      "description": "SHA-256 hashed gender (m or f)."
+    },
+    "db": {
+      "type": "string",
+      "description": "SHA-256 hashed date of birth in YYYYMMDD format."
+    },
+    "ct": {
+      "type": "string",
+      "description": "SHA-256 hashed lowercase city name."
+    },
+    "st": {
+      "type": "string",
+      "description": "SHA-256 hashed lowercase two-letter state code."
+    },
+    "zp": {
+      "type": "string",
+      "description": "SHA-256 hashed five-digit zip code."
+    },
+    "country": {
+      "type": "string",
+      "description": "SHA-256 hashed lowercase two-letter country code."
+    },
+    "external_id": {
+      "type": "string",
+      "description": "SHA-256 hashed external ID for the user."
+    },
+    "client_ip_address": {
+      "type": "string",
+      "description": "The IP address of the user's browser or device."
+    },
+    "client_user_agent": {
+      "type": "string",
+      "description": "The user agent string of the user's browser."
+    },
+    "sc_click_id": {
+      "type": "string",
+      "description": "The Snapchat click ID from the ad click URL parameter."
+    },
+    "sc_cookie1": {
+      "type": "string",
+      "description": "The Snapchat first-party cookie value."
+    },
+    "idfv": {
+      "type": "string",
+      "description": "iOS identifier for vendor."
+    },
+    "idfa": {
+      "type": "string",
+      "description": "iOS identifier for advertisers."
+    },
+    "madid": {
+      "type": "string",
+      "description": "Mobile advertising device ID (Android)."
+    }
+  }
+}

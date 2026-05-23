@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Stats",
+  "title": "Stats",
+  "type": "object",
+  "description": "Performance statistics for an advertising entity including impressions, spend, swipe-ups, and conversion metrics.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The ID of the entity these stats belong to"
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of entity"
+    },
+    "granularity": {
+      "type": "string",
+      "description": "The time granularity of the stats"
+    },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "impressions": {
+          "type": "integer",
+          "description": "Total number of impressions"
+        },
+        "swipes": {
+          "type": "integer",
+          "description": "Total number of swipe-ups"
+        },
+        "spend": {
+          "type": "number",
+          "format": "double",
+          "description": "Total spend in micro-currency units"
+        },
+        "video_views": {
+          "type": "integer",
+          "description": "Total number of video views"
+        }
+      }
+    }
+  }
+}

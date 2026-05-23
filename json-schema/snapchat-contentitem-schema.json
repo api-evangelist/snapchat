@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ContentItem",
+  "title": "ContentItem",
+  "type": "object",
+  "description": "A product or content item associated with a conversion event.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The product or content identifier."
+    },
+    "quantity": {
+      "type": "integer",
+      "description": "The quantity of the item.",
+      "minimum": 1
+    },
+    "item_price": {
+      "type": "number",
+      "format": "double",
+      "description": "The price of the individual item."
+    },
+    "brand": {
+      "type": "string",
+      "description": "The brand name of the item."
+    },
+    "category": {
+      "type": "string",
+      "description": "The category of the item."
+    }
+  }
+}

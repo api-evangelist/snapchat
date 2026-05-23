@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CustomData",
+  "title": "CustomData",
+  "type": "object",
+  "description": "Custom data associated with the conversion event, such as purchase amount, currency, and product information.",
+  "properties": {
+    "currency": {
+      "type": "string",
+      "description": "ISO 4217 currency code (e.g., USD, EUR).",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "price": {
+      "type": "number",
+      "format": "double",
+      "description": "The value or price associated with the event."
+    },
+    "transaction_id": {
+      "type": "string",
+      "description": "A unique transaction identifier for deduplication."
+    },
+    "search_string": {
+      "type": "string",
+      "description": "The search query string for SEARCH events."
+    },
+    "sign_up_method": {
+      "type": "string",
+      "description": "The method used for sign-up (e.g., email, google, facebook)."
+    },
+    "num_items": {
+      "type": "integer",
+      "description": "Number of items associated with the event."
+    },
+    "payment_info_available": {
+      "type": "integer",
+      "description": "Whether payment info is available (1 or 0).",
+      "enum": [
+        0,
+        1
+      ]
+    },
+    "contents": {
+      "type": "array",
+      "description": "Array of product or content items associated with the event.",
+      "items": {
+        "$ref": "#/components/schemas/ContentItem"
+      }
+    }
+  }
+}

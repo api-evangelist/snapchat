@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConversionEventRequest",
+  "title": "ConversionEventRequest",
+  "type": "object",
+  "description": "The request body for sending conversion events. Contains an array of one or more event objects.",
+  "required": [
+    "data"
+  ],
+  "properties": {
+    "data": {
+      "type": "array",
+      "description": "Array of conversion event objects. Maximum 2,000 events per request.",
+      "maxItems": 2000,
+      "minItems": 1,
+      "items": {
+        "$ref": "#/components/schemas/ConversionEvent"
+      }
+    }
+  }
+}

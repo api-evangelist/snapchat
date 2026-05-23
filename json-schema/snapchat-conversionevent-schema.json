@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConversionEvent",
+  "title": "ConversionEvent",
+  "type": "object",
+  "description": "A single conversion event with event details, user data, and optional custom data.",
+  "required": [
+    "event_name",
+    "event_time",
+    "action_source"
+  ],
+  "properties": {
+    "event_name": {
+      "type": "string",
+      "description": "The name of the conversion event being reported.",
+      "enum": [
+        "PAGE_VIEW",
+        "VIEW_CONTENT",
+        "ADD_CART",
+        "ADD_TO_WISHLIST",
+        "SIGN_UP",
+        "SEARCH",
+        "PURCHASE",
+        "ADD_BILLING",
+        "COMPLETE_TUTORIAL",
+        "SUBSCRIBE",
+        "AD_CLICK",
+        "AD_VIEW",
+        "START_CHECKOUT",
+        "RATE",
+        "LIST_VIEW",
+        "ADD_TO_CART",
+        "LEVEL_COMPLETE",
+        "ACHIEVEMENT_UNLOCKED",
+        "SPEND_CREDITS",
+        "SAVE",
+        "SHARE",
+        "INVITE",
+        "LOGIN",
+        "RESERVE",
+        "START_TRIAL",
+        "CUSTOM_EVENT_1",
+        "CUSTOM_EVENT_2",
+        "CUSTOM_EVENT_3",
+        "CUSTOM_EVENT_4",
+        "CUSTOM_EVENT_5"
+      ]
+    },
+    "event_time": {
+      "type": "integer",
+      "description": "Unix timestamp in seconds when the event occurred. Events can be up to 37 days in the past."
+    },
+    "event_source_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL of the web page where the event occurred. Required for web events."
+    },
+    "event_id": {
+      "type": "string",
+      "description": "A unique identifier for the event, used for deduplication."
+    },
+    "action_source": {
+      "type": "string",
+      "description": "The source of the conversion event.",
+      "enum": [
+        "WEB",
+        "MOBILE_APP",
+        "OFFLINE"
+      ]
+    },
+    "user_data": {
+      "$ref": "#/components/schemas/UserData"
+    },
+    "custom_data": {
+      "$ref": "#/components/schemas/CustomData"
+    },
+    "app_data": {
+      "$ref": "#/components/schemas/AppData"
+    }
+  }
+}

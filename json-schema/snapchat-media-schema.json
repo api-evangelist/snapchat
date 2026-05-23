@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Media",
+  "title": "Media",
+  "type": "object",
+  "description": "A Media object represents an uploaded media asset such as an image, video, or playable content used in creatives.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the media object"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of last update"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of creation"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the media object"
+    },
+    "ad_account_id": {
+      "type": "string",
+      "description": "The ID of the parent ad account"
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of media",
+      "enum": [
+        "IMAGE",
+        "VIDEO",
+        "PLAYABLE"
+      ]
+    },
+    "media_status": {
+      "type": "string",
+      "description": "The processing status of the media",
+      "enum": [
+        "PENDING_UPLOAD",
+        "READY",
+        "ERROR"
+      ]
+    }
+  }
+}

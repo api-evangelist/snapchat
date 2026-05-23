@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserProfile",
+  "title": "UserProfile",
+  "type": "object",
+  "description": "The authenticated user's Snapchat profile information. Fields available depend on the scopes granted during authorization.",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "me": {
+          "type": "object",
+          "properties": {
+            "externalId": {
+              "type": "string",
+              "description": "The unique external identifier for the user on the Snapchat platform."
+            },
+            "displayName": {
+              "type": "string",
+              "description": "The user's Snapchat display name. Requires the user.display_name scope."
+            },
+            "bitmoji": {
+              "type": "object",
+              "description": "The user's Bitmoji avatar information. Requires the user.bitmoji.avatar scope.",
+              "properties": {
+                "avatar": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "URL to the user's Bitmoji avatar image."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The unique identifier of the user's Bitmoji."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

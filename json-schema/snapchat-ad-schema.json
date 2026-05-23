@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Ad",
+  "title": "Ad",
+  "type": "object",
+  "description": "An Ad is an individual ad unit delivered to users. Each Ad belongs to an Ad Squad and references a Creative.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the ad"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of last update"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of creation"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the ad"
+    },
+    "ad_squad_id": {
+      "type": "string",
+      "description": "The ID of the parent ad squad"
+    },
+    "creative_id": {
+      "type": "string",
+      "description": "The ID of the creative used by this ad"
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the ad",
+      "enum": [
+        "ACTIVE",
+        "PAUSED"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of ad"
+    }
+  }
+}

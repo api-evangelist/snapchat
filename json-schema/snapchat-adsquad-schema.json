@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AdSquad",
+  "title": "AdSquad",
+  "type": "object",
+  "description": "An Ad Squad organizes ads within a campaign, defining targeting criteria, budget allocation, schedule, and bid strategy.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the ad squad"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of last update"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of creation"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the ad squad"
+    },
+    "campaign_id": {
+      "type": "string",
+      "description": "The ID of the parent campaign"
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the ad squad",
+      "enum": [
+        "ACTIVE",
+        "PAUSED"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "description": "The delivery type of the ad squad",
+      "enum": [
+        "SNAP_ADS",
+        "STORY_ADS"
+      ]
+    },
+    "placement": {
+      "type": "string",
+      "description": "Where ads will be placed"
+    },
+    "bid_micro": {
+      "type": "integer",
+      "format": "int64",
+      "description": "The bid amount in micro-currency units"
+    },
+    "daily_budget_micro": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Daily budget in micro-currency units"
+    },
+    "lifetime_budget_micro": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Lifetime budget in micro-currency units"
+    },
+    "start_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The start time of the ad squad"
+    },
+    "end_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The end time of the ad squad"
+    },
+    "targeting": {
+      "type": "object",
+      "description": "Targeting criteria for the ad squad"
+    }
+  }
+}

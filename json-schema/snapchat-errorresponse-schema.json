@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ErrorResponse",
+  "title": "ErrorResponse",
+  "type": "object",
+  "description": "Error response returned when conversion event submission fails.",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "The error status"
+    },
+    "reason": {
+      "type": "string",
+      "description": "Human-readable error message"
+    },
+    "param": {
+      "type": "string",
+      "description": "The parameter that caused the error"
+    }
+  }
+}

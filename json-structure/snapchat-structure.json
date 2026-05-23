@@ -1,0 +1,405 @@
+{
+  "provider": "Snapchat",
+  "providerId": "snapchat",
+  "kind": "json-structure",
+  "description": "Structural overview of the Snapchat API surface; extracted from openapi/.",
+  "schemaCount": 10,
+  "operationCount": 37,
+  "schemas": [
+    {
+      "name": "Organization",
+      "type": "object",
+      "propertyCount": 13,
+      "required": []
+    },
+    {
+      "name": "AdAccount",
+      "type": "object",
+      "propertyCount": 11,
+      "required": []
+    },
+    {
+      "name": "FundingSource",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "Campaign",
+      "type": "object",
+      "propertyCount": 11,
+      "required": []
+    },
+    {
+      "name": "AdSquad",
+      "type": "object",
+      "propertyCount": 14,
+      "required": []
+    },
+    {
+      "name": "Ad",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "Creative",
+      "type": "object",
+      "propertyCount": 12,
+      "required": []
+    },
+    {
+      "name": "Media",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "AudienceSegment",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "Stats",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/me/organizations",
+      "operationId": "listOrganizations",
+      "summary": "List All Organizations",
+      "tags": [
+        "Organizations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/{organization_id}",
+      "operationId": "getOrganization",
+      "summary": "Get a Specific Organization",
+      "tags": [
+        "Organizations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/{organization_id}/adaccounts",
+      "operationId": "listAdAccounts",
+      "summary": "List All Ad Accounts for an Organization",
+      "tags": [
+        "Ad Accounts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/organizations/{organization_id}/adaccounts",
+      "operationId": "createAdAccount",
+      "summary": "Create an Ad Account",
+      "tags": [
+        "Ad Accounts"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/organizations/{organization_id}/adaccounts",
+      "operationId": "updateAdAccount",
+      "summary": "Update an Ad Account",
+      "tags": [
+        "Ad Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/adaccounts/{ad_account_id}",
+      "operationId": "getAdAccount",
+      "summary": "Get a Specific Ad Account",
+      "tags": [
+        "Ad Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/{organization_id}/fundingsources",
+      "operationId": "listFundingSources",
+      "summary": "List All Funding Sources for an Organization",
+      "tags": [
+        "Funding Sources"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/adaccounts/{ad_account_id}/campaigns",
+      "operationId": "listCampaigns",
+      "summary": "List All Campaigns for an Ad Account",
+      "tags": [
+        "Campaigns"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/adaccounts/{ad_account_id}/campaigns",
+      "operationId": "createCampaign",
+      "summary": "Create a Campaign",
+      "tags": [
+        "Campaigns"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/campaigns/{campaign_id}",
+      "operationId": "getCampaign",
+      "summary": "Get a Specific Campaign",
+      "tags": [
+        "Campaigns"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/campaigns/{campaign_id}",
+      "operationId": "updateCampaign",
+      "summary": "Update a Campaign",
+      "tags": [
+        "Campaigns"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/campaigns/{campaign_id}",
+      "operationId": "deleteCampaign",
+      "summary": "Delete a Campaign",
+      "tags": [
+        "Campaigns"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/campaigns/{campaign_id}/adsquads",
+      "operationId": "listAdSquadsByCampaign",
+      "summary": "List All Ad Squads for a Campaign",
+      "tags": [
+        "Ad Squads"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/adaccounts/{ad_account_id}/adsquads",
+      "operationId": "listAdSquadsByAdAccount",
+      "summary": "List All Ad Squads for an Ad Account",
+      "tags": [
+        "Ad Squads"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/adaccounts/{ad_account_id}/adsquads",
+      "operationId": "createAdSquad",
+      "summary": "Create an Ad Squad",
+      "tags": [
+        "Ad Squads"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/adsquads/{ad_squad_id}",
+      "operationId": "getAdSquad",
+      "summary": "Get a Specific Ad Squad",
+      "tags": [
+        "Ad Squads"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/adsquads/{ad_squad_id}",
+      "operationId": "updateAdSquad",
+      "summary": "Update an Ad Squad",
+      "tags": [
+        "Ad Squads"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/adsquads/{ad_squad_id}",
+      "operationId": "deleteAdSquad",
+      "summary": "Delete an Ad Squad",
+      "tags": [
+        "Ad Squads"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/adsquads/{ad_squad_id}/ads",
+      "operationId": "listAdsByAdSquad",
+      "summary": "List All Ads for an Ad Squad",
+      "tags": [
+        "Ads"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/adsquads/{ad_squad_id}/ads",
+      "operationId": "createAd",
+      "summary": "Create an Ad",
+      "tags": [
+        "Ads"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/campaigns/{campaign_id}/ads",
+      "operationId": "listAdsByCampaign",
+      "summary": "List All Ads for a Campaign",
+      "tags": [
+        "Ads"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/adaccounts/{ad_account_id}/ads",
+      "operationId": "listAdsByAdAccount",
+      "summary": "List All Ads for an Ad Account",
+      "tags": [
+        "Ads"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ads/{ad_id}",
+      "operationId": "getAd",
+      "summary": "Get a Specific Ad",
+      "tags": [
+        "Ads"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/ads/{ad_id}",
+      "operationId": "updateAd",
+      "summary": "Update an Ad",
+      "tags": [
+        "Ads"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/ads/{ad_id}",
+      "operationId": "deleteAd",
+      "summary": "Delete an Ad",
+      "tags": [
+        "Ads"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/adaccounts/{ad_account_id}/creatives",
+      "operationId": "listCreatives",
+      "summary": "List All Creatives for an Ad Account",
+      "tags": [
+        "Creatives"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/adaccounts/{ad_account_id}/creatives",
+      "operationId": "createCreative",
+      "summary": "Create a Creative",
+      "tags": [
+        "Creatives"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/creatives/{creative_id}",
+      "operationId": "getCreative",
+      "summary": "Get a Specific Creative",
+      "tags": [
+        "Creatives"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/adaccounts/{ad_account_id}/media",
+      "operationId": "listMedia",
+      "summary": "List All Media for an Ad Account",
+      "tags": [
+        "Media"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/adaccounts/{ad_account_id}/media",
+      "operationId": "createMedia",
+      "summary": "Create a Media Object",
+      "tags": [
+        "Media"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/media/{media_id}/upload",
+      "operationId": "uploadMedia",
+      "summary": "Upload Media Content",
+      "tags": [
+        "Media"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/adaccounts/{ad_account_id}/segments",
+      "operationId": "listAudienceSegments",
+      "summary": "List All Audience Segments for an Ad Account",
+      "tags": [
+        "Audience Segments"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/adaccounts/{ad_account_id}/segments",
+      "operationId": "createAudienceSegment",
+      "summary": "Create an Audience Segment",
+      "tags": [
+        "Audience Segments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/campaigns/{campaign_id}/stats",
+      "operationId": "getCampaignStats",
+      "summary": "Get Campaign Statistics",
+      "tags": [
+        "Measurement"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/adsquads/{ad_squad_id}/stats",
+      "operationId": "getAdSquadStats",
+      "summary": "Get Ad Squad Statistics",
+      "tags": [
+        "Measurement"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ads/{ad_id}/stats",
+      "operationId": "getAdStats",
+      "summary": "Get Ad Statistics",
+      "tags": [
+        "Measurement"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/adaccounts/{ad_account_id}/stats",
+      "operationId": "getAdAccountStats",
+      "summary": "Get Ad Account Statistics",
+      "tags": [
+        "Measurement"
+      ]
+    }
+  ]
+}

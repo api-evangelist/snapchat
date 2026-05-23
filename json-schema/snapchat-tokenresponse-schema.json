@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TokenResponse",
+  "title": "TokenResponse",
+  "type": "object",
+  "description": "The response from a successful token exchange or refresh request.",
+  "properties": {
+    "access_token": {
+      "type": "string",
+      "description": "The access token for authenticating API requests."
+    },
+    "token_type": {
+      "type": "string",
+      "description": "The type of token, always 'Bearer'.",
+      "enum": [
+        "Bearer"
+      ]
+    },
+    "expires_in": {
+      "type": "integer",
+      "description": "The number of seconds until the access token expires. Typically 3600 (60 minutes).",
+      "example": 3600
+    },
+    "refresh_token": {
+      "type": "string",
+      "description": "The refresh token for obtaining new access tokens after expiration."
+    },
+    "scope": {
+      "type": "string",
+      "description": "The scopes granted by the user during authorization."
+    }
+  }
+}

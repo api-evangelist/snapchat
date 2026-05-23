@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AdAccount",
+  "title": "AdAccount",
+  "type": "object",
+  "description": "An Ad Account contains advertising campaigns and is owned by an Organization. Each Ad Account has one or more Funding Sources.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the ad account"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of last update"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of creation"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the ad account"
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of ad account",
+      "enum": [
+        "PARTNER",
+        "DIRECT"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the ad account",
+      "enum": [
+        "ACTIVE",
+        "PAUSED",
+        "DISABLED"
+      ]
+    },
+    "organization_id": {
+      "type": "string",
+      "description": "The ID of the parent organization"
+    },
+    "funding_source_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Array of funding source IDs associated with this account"
+    },
+    "currency": {
+      "type": "string",
+      "description": "The currency code for the ad account (e.g., USD)"
+    },
+    "timezone": {
+      "type": "string",
+      "description": "The timezone of the ad account (e.g., America/Los_Angeles)"
+    },
+    "advertiser": {
+      "type": "string",
+      "description": "The name of the advertiser"
+    }
+  }
+}
