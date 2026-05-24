@@ -159,6 +159,8 @@ common:
   url: https://ads.snapchat.com
 - type: SignUp
   url: https://kit.snapchat.com/manage/
+- type: LLMsTxt
+  url: https://developers.snap.com/llms.txt
 segments:
 - Social Media
 - Advertising
