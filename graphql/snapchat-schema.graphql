@@ -1,0 +1,897 @@
+"""
+Snapchat conceptual GraphQL schema.
+Derived from: Snapchat Ads API, Conversions API, Login Kit, Creative Kit, Camera Kit, Lens Studio.
+Source documentation: https://developers.snap.com
+"""
+
+# ─── Scalars ─────────────────────────────────────────────────────────────────
+
+scalar DateTime
+scalar URL
+scalar JSON
+scalar Long
+
+# ─── Enums ───────────────────────────────────────────────────────────────────
+
+enum FriendStatusValue {
+  FRIEND
+  PENDING
+  BLOCKED
+  NOT_FRIEND
+}
+
+enum SnapMediaType {
+  IMAGE
+  VIDEO
+  BOOMERANG
+}
+
+enum StoryType {
+  USER
+  PUBLIC
+  DISCOVER
+  SPOTLIGHT
+}
+
+enum AdStatus {
+  ACTIVE
+  PAUSED
+  ARCHIVED
+  DELETED
+}
+
+enum CampaignObjective {
+  AWARENESS
+  APP_INSTALLS
+  TRAFFIC
+  VIDEO_VIEWS
+  LEAD_GENERATION
+  CATALOG_SALES
+  CONVERSIONS
+  ENGAGEMENT
+}
+
+enum BillingEvent {
+  IMPRESSION
+  SWIPE
+  APP_INSTALL
+  VIDEO_VIEW
+}
+
+enum AudienceType {
+  PIXEL
+  LOOKALIKE
+  CUSTOMER_LIST
+  SAVED
+  RETARGETING
+  SAM
+}
+
+enum CreativeType {
+  SNAP_AD
+  STORY_AD
+  COLLECTION_AD
+  DYNAMIC_AD
+  FILTER
+  LENS
+  LONG_FORM_VIDEO
+  PROMOTED_STORY
+}
+
+enum PixelEventType {
+  PAGE_VIEW
+  ADD_TO_CART
+  PURCHASE
+  SIGN_UP
+  APP_INSTALL
+  APP_OPEN
+  SEARCH
+  VIEW_CONTENT
+  ADD_BILLING
+  START_CHECKOUT
+  CUSTOM
+}
+
+enum DeviceOS {
+  IOS
+  ANDROID
+  WEB
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  ALL
+}
+
+# ─── User & Identity ─────────────────────────────────────────────────────────
+
+"""A Snapchat platform user as returned by Login Kit."""
+type User {
+  id: ID!
+  externalId: String
+  displayName: String
+  bitmoji: Bitmoji
+  friends: [Friend!]
+  stories: [UserStory!]
+  snaps: [Snap!]
+  token: Token
+  oauthApp: OAuthApp
+  createdAt: DateTime
+}
+
+"""Snapchat user identity resolved via Login Kit OAuth."""
+type SnapUser {
+  id: ID!
+  externalId: String!
+  displayName: String!
+  bitmoji: Bitmoji
+  profileUrl: URL
+}
+
+"""A user's Bitmoji avatar and associated scenes."""
+type Bitmoji {
+  id: ID!
+  avatarId: String!
+  avatar: BitmojiAvatar
+  scenes: [BitmojiScene!]
+  selfieUrl: URL
+  kit: BitmojiFriendship
+}
+
+"""Rendered Bitmoji avatar asset."""
+type BitmojiAvatar {
+  id: ID!
+  url: URL!
+  width: Int
+  height: Int
+  format: String
+  style: String
+}
+
+"""A Bitmoji scene (contextual illustration with avatar)."""
+type BitmojiScene {
+  id: ID!
+  sceneId: String!
+  url: URL!
+  description: String
+}
+
+"""Represents a friendship between two Snapchat users."""
+type Friend {
+  id: ID!
+  user: SnapUser!
+  status: FriendStatus!
+  addedAt: DateTime
+  displayName: String
+  bitmoji: Bitmoji
+}
+
+"""A pending friend request."""
+type FriendRequest {
+  id: ID!
+  fromUser: SnapUser!
+  toUser: SnapUser!
+  sentAt: DateTime!
+  expiresAt: DateTime
+}
+
+"""The friendship/follow status between two users."""
+type FriendStatus {
+  value: FriendStatusValue!
+  updatedAt: DateTime
+}
+
+"""Bitmoji friendship art shared between two friends."""
+type BitmojiFriendship {
+  id: ID!
+  user1: SnapUser!
+  user2: SnapUser!
+  sceneUrl: URL
+  updatedAt: DateTime
+}
+
+# ─── Auth & API Access ───────────────────────────────────────────────────────
+
+"""An OAuth application registered in Snap Kit."""
+type OAuthApp {
+  id: ID!
+  name: String!
+  clientId: String!
+  redirectUris: [URL!]
+  scopes: [String!]
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""Login Kit integration details."""
+type LoginKit {
+  appId: String!
+  scopes: [String!]
+  redirectUri: URL!
+  platform: String
+}
+
+"""An API key credential."""
+type APIKey {
+  id: ID!
+  key: String!
+  name: String
+  scopes: [String!]
+  createdAt: DateTime
+  expiresAt: DateTime
+}
+
+"""OAuth access/refresh token pair."""
+type Token {
+  accessToken: String!
+  refreshToken: String
+  tokenType: String
+  expiresIn: Int
+  scope: String
+}
+
+# ─── Content & Snaps ─────────────────────────────────────────────────────────
+
+"""A Snap (ephemeral content item) sent between users."""
+type Snap {
+  id: ID!
+  sender: SnapUser!
+  recipients: [SnapUser!]
+  media: SnapMedia
+  caption: String
+  duration: Int
+  sentAt: DateTime!
+  expiresAt: DateTime
+  viewed: Boolean
+  filter: Filter
+  lens: Lens
+}
+
+"""Media payload attached to a Snap."""
+type SnapMedia {
+  id: ID!
+  type: SnapMediaType!
+  photo: Photo
+  video: Video
+  url: URL
+  thumbnailUrl: URL
+  durationMs: Int
+}
+
+"""A photo asset."""
+type Photo {
+  id: ID!
+  url: URL!
+  width: Int
+  height: Int
+  format: String
+  fileSizeBytes: Long
+  createdAt: DateTime
+}
+
+"""A video asset."""
+type Video {
+  id: ID!
+  url: URL!
+  thumbnailUrl: URL
+  durationMs: Int
+  width: Int
+  height: Int
+  format: String
+  fileSizeBytes: Long
+  createdAt: DateTime
+}
+
+"""An overlay filter applied to a Snap or Story."""
+type Filter {
+  id: ID!
+  name: String!
+  imageUrl: URL!
+  category: String
+  geoFenced: Boolean
+  geoTarget: GeoTarget
+  startTime: DateTime
+  endTime: DateTime
+}
+
+"""An augmented reality Lens."""
+type Lens {
+  id: ID!
+  name: String!
+  iconUrl: URL
+  previewUrl: URL
+  deepLinkUrl: URL
+  scanlCode: String
+  category: String
+  createdAt: DateTime
+  analytics: LensAnalytics
+}
+
+"""Lens Studio desktop tool integration metadata."""
+type LensStudio {
+  lensId: ID!
+  projectName: String
+  version: String
+  publishedAt: DateTime
+  lens: Lens
+}
+
+"""Performance analytics for a published Lens."""
+type LensAnalytics {
+  lensId: ID!
+  impressions: Long
+  plays: Long
+  shares: Long
+  timeSpentMs: Long
+  date: DateTime
+}
+
+# ─── Stories ─────────────────────────────────────────────────────────────────
+
+"""A Story (collection of Snaps visible for 24h or longer)."""
+type Story {
+  id: ID!
+  type: StoryType!
+  media: [StoryMedia!]
+  createdAt: DateTime!
+  expiresAt: DateTime
+  viewCount: Long
+}
+
+"""A personal Story posted by a user."""
+type UserStory {
+  id: ID!
+  user: SnapUser!
+  media: [StoryMedia!]
+  caption: String
+  createdAt: DateTime!
+  expiresAt: DateTime
+  viewCount: Long
+}
+
+"""A public or Our Story visible beyond friends."""
+type PublicStory {
+  id: ID!
+  title: String
+  publisher: Publisher
+  media: [StoryMedia!]
+  thumbnailUrl: URL
+  viewCount: Long
+  shareCount: Long
+  createdAt: DateTime
+}
+
+"""An individual media element within a Story."""
+type StoryMedia {
+  id: ID!
+  sequenceIndex: Int
+  snap: Snap
+  photo: Photo
+  video: Video
+  caption: String
+  url: URL
+  durationMs: Int
+}
+
+"""A Spotlight short-form video post."""
+type SpotlightVideo {
+  id: ID!
+  user: SnapUser!
+  video: Video
+  caption: String
+  soundTrack: String
+  viewCount: Long
+  likeCount: Long
+  shareCount: Long
+  createdAt: DateTime!
+}
+
+"""A Discover content show from a publisher."""
+type DiscoverShow {
+  id: ID!
+  publisher: Publisher!
+  title: String!
+  description: String
+  thumbnailUrl: URL
+  episodes: [PublicStory!]
+  subscriberCount: Long
+  updatedAt: DateTime
+}
+
+"""A Snapchat content publisher (media partner)."""
+type Publisher {
+  id: ID!
+  name: String!
+  profile: PublisherProfile
+  shows: [DiscoverShow!]
+  snapchatUsername: String
+  verifiedAt: DateTime
+}
+
+"""Detailed profile of a Snapchat publisher."""
+type PublisherProfile {
+  publisherId: ID!
+  bio: String
+  logoUrl: URL
+  websiteUrl: URL
+  category: String
+  followerCount: Long
+  country: String
+}
+
+"""Story Kit integration (sharing stories from third-party apps)."""
+type StoryKit {
+  appId: String!
+  caption: String
+  attachmentUrl: URL
+  backgroundMedia: SnapMedia
+  stickerAsset: SnapMedia
+}
+
+# ─── Advertising ─────────────────────────────────────────────────────────────
+
+"""An advertising account on the Snapchat Ads platform."""
+type AdAccount {
+  id: ID!
+  name: String!
+  organizationId: String
+  currency: String
+  timezone: String
+  status: AdStatus
+  campaigns: [Campaign!]
+  audiences: [Audience!]
+  pixels: [SnapPixel!]
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""An advertising campaign."""
+type Campaign {
+  id: ID!
+  adAccount: AdAccount!
+  name: String!
+  objective: CampaignObjective!
+  status: AdStatus!
+  startTime: DateTime
+  endTime: DateTime
+  dailyBudgetMicro: Long
+  lifetimeBudgetMicro: Long
+  adSquads: [AdSquad!]
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""An ad squad (ad set) within a campaign."""
+type AdSquad {
+  id: ID!
+  campaign: Campaign!
+  name: String!
+  status: AdStatus!
+  billingEvent: BillingEvent
+  bidMicro: Long
+  dailyBudgetMicro: Long
+  targeting: Targeting
+  ads: [Ad!]
+  startTime: DateTime
+  endTime: DateTime
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""An individual ad within an ad squad."""
+type Ad {
+  id: ID!
+  adSquad: AdSquad!
+  name: String!
+  status: AdStatus!
+  type: CreativeType
+  creative: Creative
+  media: AdMedia
+  deliveryStatus: String
+  impressions: Long
+  swipes: Long
+  spend: Long
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""Media asset used in an ad."""
+type AdMedia {
+  id: ID!
+  name: String!
+  type: SnapMediaType
+  mediaUrl: URL
+  thumbnailUrl: URL
+  durationMs: Int
+  width: Int
+  height: Int
+  fileSizeBytes: Long
+  adAccount: AdAccount
+  createdAt: DateTime
+}
+
+"""A Story Ad unit (multi-snap ad experience)."""
+type StoryAd {
+  id: ID!
+  ad: Ad!
+  thumbnailMediaId: String
+  brandName: String
+  headline: String
+  tiles: [StoryMedia!]
+  createdAt: DateTime
+}
+
+"""A Collection Ad (product catalog swipe carousel)."""
+type CollectionAd {
+  id: ID!
+  ad: Ad!
+  headline: String
+  brandName: String
+  defaultFallbackUrl: URL
+  products: [DynamicAd!]
+  createdAt: DateTime
+}
+
+"""A Dynamic Ad generated from a product catalog."""
+type DynamicAd {
+  id: ID!
+  adAccount: AdAccount!
+  catalogId: String
+  productSetId: String
+  templateId: String
+  headline: String
+  description: String
+  callToAction: String
+  destinationUrl: URL
+  createdAt: DateTime
+}
+
+# ─── Creatives ───────────────────────────────────────────────────────────────
+
+"""A creative asset package for an ad."""
+type Creative {
+  id: ID!
+  adAccount: AdAccount!
+  name: String!
+  type: CreativeType!
+  elements: [CreativeElement!]
+  media: CreativeMedia
+  headline: String
+  brandName: String
+  callToAction: String
+  webViewUrl: URL
+  appInstallUrl: URL
+  deepLinkUri: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""Media bundle within a Creative."""
+type CreativeMedia {
+  id: ID!
+  creative: Creative!
+  photo: Photo
+  video: Video
+  overlayMedia: AdMedia
+  topSnapMedia: AdMedia
+}
+
+"""An element (tile, product, etc.) within a composite creative."""
+type CreativeElement {
+  id: ID!
+  creative: Creative!
+  index: Int
+  title: String
+  description: String
+  imageUrl: URL
+  interactionType: String
+  webViewUrl: URL
+}
+
+# ─── Audiences ───────────────────────────────────────────────────────────────
+
+"""An audience segment for ad targeting."""
+type Audience {
+  id: ID!
+  adAccount: AdAccount!
+  name: String!
+  type: AudienceType!
+  size: Long
+  status: String
+  retentionDays: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""An audience built from Snap Pixel events."""
+type PixelAudience {
+  id: ID!
+  audience: Audience!
+  pixel: SnapPixel!
+  eventType: PixelEventType!
+  retentionDays: Int
+}
+
+"""A Lookalike Audience (LAL) derived from a seed audience."""
+type LALAudience {
+  id: ID!
+  audience: Audience!
+  seedAudience: Audience!
+  country: String
+  reachPercentage: Float
+  createdAt: DateTime
+}
+
+"""A customer list uploaded for targeting."""
+type CustomerList {
+  id: ID!
+  adAccount: AdAccount!
+  name: String
+  uploadedAt: DateTime
+  matchRate: Float
+  size: Long
+  status: String
+}
+
+"""A saved reusable audience definition."""
+type SavedAudience {
+  id: ID!
+  adAccount: AdAccount!
+  name: String!
+  targeting: Targeting!
+  createdAt: DateTime
+}
+
+"""An audience built from retargeting engaged users."""
+type RetargetingAudience {
+  id: ID!
+  audience: Audience!
+  engagementType: String
+  adIds: [String!]
+  retentionDays: Int
+}
+
+# ─── Targeting ───────────────────────────────────────────────────────────────
+
+"""Targeting criteria for an ad squad."""
+type Targeting {
+  id: ID!
+  adSquad: AdSquad
+  geoTargets: [GeoTarget!]
+  demographics: DemographicTarget
+  interests: [InterestTarget!]
+  devices: [Device!]
+  audiences: [Audience!]
+  customAudiences: [CustomerList!]
+}
+
+"""Geographic targeting specification."""
+type GeoTarget {
+  id: ID!
+  name: String
+  countryCode: String
+  regionCode: String
+  city: String
+  postalCode: String
+  radius: Float
+  radiusUnit: String
+  latitude: Float
+  longitude: Float
+}
+
+"""Demographic targeting criteria."""
+type DemographicTarget {
+  minAge: Int
+  maxAge: Int
+  gender: Gender
+  languages: [String!]
+  advancedDemographics: [String!]
+}
+
+"""Interest-based targeting category."""
+type InterestTarget {
+  id: ID!
+  name: String!
+  category: String
+  subcategory: String
+}
+
+# ─── Devices ─────────────────────────────────────────────────────────────────
+
+"""Device context for targeting and attribution."""
+type Device {
+  id: ID!
+  os: DeviceOS
+  osVersionMin: String
+  osVersionMax: String
+  carriers: [String!]
+  connectionTypes: [String!]
+  manufacturer: String
+  model: String
+}
+
+# ─── Pixels & Conversions ────────────────────────────────────────────────────
+
+"""A Snap Pixel installed on an advertiser's website."""
+type SnapPixel {
+  id: ID!
+  adAccount: AdAccount!
+  name: String!
+  pixelJsUrl: URL
+  status: String
+  events: [PixelEvent!]
+  audiences: [PixelAudience!]
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""An event captured by the Snap Pixel or Conversions API."""
+type PixelEvent {
+  id: ID!
+  pixel: SnapPixel
+  eventType: PixelEventType!
+  timestamp: DateTime!
+  pageUrl: URL
+  ipAddress: String
+  userAgent: String
+  clickId: String
+  device: Device
+  revenue: Revenue
+  customData: JSON
+}
+
+"""A log entry from the Conversions API (CAPI)."""
+type ConversionLog {
+  id: ID!
+  adAccount: AdAccount!
+  eventType: PixelEventType!
+  eventTime: DateTime!
+  snapClickId: String
+  snapAppId: String
+  userId: String
+  emailHash: String
+  phoneHash: String
+  ipAddress: String
+  userAgent: String
+  revenue: Revenue
+  status: String
+  errorMessage: String
+  processedAt: DateTime
+}
+
+"""An app install conversion event."""
+type AppInstall {
+  id: ID!
+  adAccount: AdAccount!
+  device: Device
+  appId: String
+  campaignId: String
+  adId: String
+  clickId: String
+  timestamp: DateTime!
+}
+
+"""An app open / re-engagement event."""
+type AppOpen {
+  id: ID!
+  adAccount: AdAccount!
+  device: Device
+  appId: String
+  sessionId: String
+  clickId: String
+  timestamp: DateTime!
+}
+
+"""A purchase conversion event."""
+type Purchase {
+  id: ID!
+  pixelEvent: PixelEvent
+  orderId: String
+  currency: String
+  value: Float
+  items: [JSON!]
+  timestamp: DateTime!
+}
+
+"""Revenue reported for a conversion."""
+type Revenue {
+  amount: Float!
+  currency: String!
+}
+
+"""Return on Ad Spend metric."""
+type ROAS {
+  adAccountId: ID!
+  campaignId: ID
+  adSquadId: ID
+  adId: ID
+  revenue: Float
+  spend: Float
+  roasValue: Float
+  startDate: DateTime
+  endDate: DateTime
+}
+
+# ─── Root Operations ──────────────────────────────────────────────────────────
+
+type Query {
+  # User & Identity
+  user(id: ID!): User
+  snapUser(externalId: String!): SnapUser
+  bitmoji(id: ID!): Bitmoji
+  friends(userId: ID!): [Friend!]
+  friendRequests(userId: ID!): [FriendRequest!]
+
+  # Content
+  snap(id: ID!): Snap
+  story(id: ID!): Story
+  userStory(id: ID!): UserStory
+  publicStory(id: ID!): PublicStory
+  spotlightVideos(limit: Int, offset: Int): [SpotlightVideo!]
+  discoverShows(limit: Int, offset: Int): [DiscoverShow!]
+  lens(id: ID!): Lens
+  filter(id: ID!): Filter
+
+  # Ads
+  adAccount(id: ID!): AdAccount
+  campaign(id: ID!): Campaign
+  campaigns(adAccountId: ID!): [Campaign!]
+  adSquad(id: ID!): AdSquad
+  ad(id: ID!): Ad
+  creative(id: ID!): Creative
+  adMedia(id: ID!): AdMedia
+
+  # Audiences & Targeting
+  audience(id: ID!): Audience
+  audiences(adAccountId: ID!): [Audience!]
+  pixelAudience(id: ID!): PixelAudience
+  lalAudience(id: ID!): LALAudience
+  customerList(id: ID!): CustomerList
+  savedAudience(id: ID!): SavedAudience
+
+  # Pixels & Conversions
+  snapPixel(id: ID!): SnapPixel
+  pixelEvents(pixelId: ID!, limit: Int): [PixelEvent!]
+  conversionLogs(adAccountId: ID!, limit: Int): [ConversionLog!]
+
+  # Reporting
+  roas(adAccountId: ID!, startDate: DateTime!, endDate: DateTime!): [ROAS!]
+  lensAnalytics(lensId: ID!, startDate: DateTime!, endDate: DateTime!): LensAnalytics
+}
+
+type Mutation {
+  # Campaigns
+  createCampaign(adAccountId: ID!, name: String!, objective: CampaignObjective!): Campaign
+  updateCampaign(id: ID!, name: String, status: AdStatus): Campaign
+  deleteCampaign(id: ID!): Boolean
+
+  # Ad Squads
+  createAdSquad(campaignId: ID!, name: String!, targeting: ID): AdSquad
+  updateAdSquad(id: ID!, status: AdStatus, bidMicro: Long): AdSquad
+  deleteAdSquad(id: ID!): Boolean
+
+  # Ads
+  createAd(adSquadId: ID!, name: String!, creativeId: ID!): Ad
+  updateAd(id: ID!, status: AdStatus): Ad
+  deleteAd(id: ID!): Boolean
+
+  # Creatives
+  createCreative(adAccountId: ID!, name: String!, type: CreativeType!): Creative
+  updateCreative(id: ID!, name: String, headline: String): Creative
+  deleteCreative(id: ID!): Boolean
+
+  # Audiences
+  createCustomerList(adAccountId: ID!, name: String!): CustomerList
+  createLALAudience(adAccountId: ID!, seedAudienceId: ID!, country: String): LALAudience
+  deleteAudience(id: ID!): Boolean
+
+  # Pixels
+  createSnapPixel(adAccountId: ID!, name: String!): SnapPixel
+  logConversionEvent(adAccountId: ID!, eventType: PixelEventType!, eventTime: DateTime!): ConversionLog
+
+  # Friend actions
+  sendFriendRequest(toUserId: ID!): FriendRequest
+  acceptFriendRequest(requestId: ID!): Friend
+  removeFriend(friendId: ID!): Boolean
+}
