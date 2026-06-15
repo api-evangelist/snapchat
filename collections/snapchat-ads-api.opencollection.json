@@ -1,0 +1,923 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snapchat Ads API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://accounts.snapchat.com/accounts/oauth2/auth",
+      "accessTokenUrl": "https://accounts.snapchat.com/login/oauth2/access_token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/me/organizations"
+          },
+          "docs": "Retrieves all organizations the authenticated user has access to, along with the ad accounts beneath each organization."
+        },
+        {
+          "info": {
+            "name": "Get a Specific Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/organizations/:organization_id",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the organization"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific organization by its ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Ad Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Ad Accounts for an Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/organizations/:organization_id/adaccounts",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the organization"
+              }
+            ]
+          },
+          "docs": "Retrieves all ad accounts associated with the specified organization."
+        },
+        {
+          "info": {
+            "name": "Create an Ad Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://adsapi.snapchat.com/v1/organizations/:organization_id/adaccounts",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the organization"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new ad account under the specified organization."
+        },
+        {
+          "info": {
+            "name": "Update an Ad Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://adsapi.snapchat.com/v1/organizations/:organization_id/adaccounts",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the organization"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates one or more ad accounts under the specified organization."
+        },
+        {
+          "info": {
+            "name": "Get a Specific Ad Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/adaccounts/:ad_account_id",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad account"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific ad account by its ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Funding Sources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Funding Sources for an Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/organizations/:organization_id/fundingsources",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the organization"
+              }
+            ]
+          },
+          "docs": "Retrieves all funding sources associated with the specified organization, including credit cards, PayPal, and lines of credit."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Campaigns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Campaigns for an Ad Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/adaccounts/:ad_account_id/campaigns",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad account"
+              }
+            ]
+          },
+          "docs": "Retrieves all campaigns associated with the specified ad account."
+        },
+        {
+          "info": {
+            "name": "Create a Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://adsapi.snapchat.com/v1/adaccounts/:ad_account_id/campaigns",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad account"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new campaign under the specified ad account."
+        },
+        {
+          "info": {
+            "name": "Get a Specific Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/campaigns/:campaign_id",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the campaign"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific campaign by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://adsapi.snapchat.com/v1/campaigns/:campaign_id",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the campaign"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing campaign."
+        },
+        {
+          "info": {
+            "name": "Delete a Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://adsapi.snapchat.com/v1/campaigns/:campaign_id",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the campaign"
+              }
+            ]
+          },
+          "docs": "Deletes a specific campaign by its ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Ad Squads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Ad Squads for a Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/campaigns/:campaign_id/adsquads",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the campaign"
+              }
+            ]
+          },
+          "docs": "Retrieves all ad squads associated with the specified campaign."
+        },
+        {
+          "info": {
+            "name": "List All Ad Squads for an Ad Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/adaccounts/:ad_account_id/adsquads",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad account"
+              }
+            ]
+          },
+          "docs": "Retrieves all ad squads associated with the specified ad account."
+        },
+        {
+          "info": {
+            "name": "Create an Ad Squad",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://adsapi.snapchat.com/v1/adaccounts/:ad_account_id/adsquads",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad account"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new ad squad under the specified ad account."
+        },
+        {
+          "info": {
+            "name": "Get a Specific Ad Squad",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/adsquads/:ad_squad_id",
+            "params": [
+              {
+                "name": "ad_squad_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad squad"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific ad squad by its ID."
+        },
+        {
+          "info": {
+            "name": "Update an Ad Squad",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://adsapi.snapchat.com/v1/adsquads/:ad_squad_id",
+            "params": [
+              {
+                "name": "ad_squad_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad squad"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing ad squad."
+        },
+        {
+          "info": {
+            "name": "Delete an Ad Squad",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://adsapi.snapchat.com/v1/adsquads/:ad_squad_id",
+            "params": [
+              {
+                "name": "ad_squad_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad squad"
+              }
+            ]
+          },
+          "docs": "Deletes a specific ad squad by its ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Ads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Ads for an Ad Squad",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/adsquads/:ad_squad_id/ads",
+            "params": [
+              {
+                "name": "ad_squad_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad squad"
+              }
+            ]
+          },
+          "docs": "Retrieves all ads within the specified ad squad."
+        },
+        {
+          "info": {
+            "name": "Create an Ad",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://adsapi.snapchat.com/v1/adsquads/:ad_squad_id/ads",
+            "params": [
+              {
+                "name": "ad_squad_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad squad"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new ad within the specified ad squad."
+        },
+        {
+          "info": {
+            "name": "List All Ads for a Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/campaigns/:campaign_id/ads",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the campaign"
+              }
+            ]
+          },
+          "docs": "Retrieves all ads under the specified campaign."
+        },
+        {
+          "info": {
+            "name": "List All Ads for an Ad Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/adaccounts/:ad_account_id/ads",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad account"
+              }
+            ]
+          },
+          "docs": "Retrieves all ads under the specified ad account."
+        },
+        {
+          "info": {
+            "name": "Get a Specific Ad",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/ads/:ad_id",
+            "params": [
+              {
+                "name": "ad_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific ad by its ID."
+        },
+        {
+          "info": {
+            "name": "Update an Ad",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://adsapi.snapchat.com/v1/ads/:ad_id",
+            "params": [
+              {
+                "name": "ad_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing ad."
+        },
+        {
+          "info": {
+            "name": "Delete an Ad",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://adsapi.snapchat.com/v1/ads/:ad_id",
+            "params": [
+              {
+                "name": "ad_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad"
+              }
+            ]
+          },
+          "docs": "Deletes a specific ad by its ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Creatives",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Creatives for an Ad Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/adaccounts/:ad_account_id/creatives",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad account"
+              }
+            ]
+          },
+          "docs": "Retrieves all creatives associated with the specified ad account."
+        },
+        {
+          "info": {
+            "name": "Create a Creative",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://adsapi.snapchat.com/v1/adaccounts/:ad_account_id/creatives",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad account"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new creative under the specified ad account."
+        },
+        {
+          "info": {
+            "name": "Get a Specific Creative",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/creatives/:creative_id",
+            "params": [
+              {
+                "name": "creative_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the creative"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific creative by its ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Media",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Media for an Ad Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/adaccounts/:ad_account_id/media",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad account"
+              }
+            ]
+          },
+          "docs": "Retrieves all media objects associated with the specified ad account."
+        },
+        {
+          "info": {
+            "name": "Create a Media Object",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://adsapi.snapchat.com/v1/adaccounts/:ad_account_id/media",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad account"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new media object under the specified ad account. The media object must be created before uploading the actual media file."
+        },
+        {
+          "info": {
+            "name": "Upload Media Content",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://adsapi.snapchat.com/v1/media/:media_id/upload",
+            "params": [
+              {
+                "name": "media_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the media object"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Uploads the actual media file content to an existing media object. Supports images, videos, and playable media. Maximum chunk size is 32MB per request."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Audience Segments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Audience Segments for an Ad Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/adaccounts/:ad_account_id/segments",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad account"
+              }
+            ]
+          },
+          "docs": "Retrieves all audience segments associated with the specified ad account, including custom audiences, Snap Audience Match segments, and lookalike audiences."
+        },
+        {
+          "info": {
+            "name": "Create an Audience Segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://adsapi.snapchat.com/v1/adaccounts/:ad_account_id/segments",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad account"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new audience segment under the specified ad account."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Measurement",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Campaign Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/campaigns/:campaign_id/stats",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the campaign"
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query",
+                "description": "The time granularity for statistics. Determines how data points are grouped in the response."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "The start time for the statistics query in ISO 8601 format."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "The end time for the statistics query in ISO 8601 format."
+              }
+            ]
+          },
+          "docs": "Retrieves performance statistics for a specific campaign, including impressions, spend, and conversion metrics."
+        },
+        {
+          "info": {
+            "name": "Get Ad Squad Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/adsquads/:ad_squad_id/stats",
+            "params": [
+              {
+                "name": "ad_squad_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad squad"
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query",
+                "description": "The time granularity for statistics. Determines how data points are grouped in the response."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "The start time for the statistics query in ISO 8601 format."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "The end time for the statistics query in ISO 8601 format."
+              }
+            ]
+          },
+          "docs": "Retrieves performance statistics for a specific ad squad."
+        },
+        {
+          "info": {
+            "name": "Get Ad Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/ads/:ad_id/stats",
+            "params": [
+              {
+                "name": "ad_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad"
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query",
+                "description": "The time granularity for statistics. Determines how data points are grouped in the response."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "The start time for the statistics query in ISO 8601 format."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "The end time for the statistics query in ISO 8601 format."
+              }
+            ]
+          },
+          "docs": "Retrieves performance statistics for a specific ad."
+        },
+        {
+          "info": {
+            "name": "Get Ad Account Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/adaccounts/:ad_account_id/stats",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad account"
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query",
+                "description": "The time granularity for statistics. Determines how data points are grouped in the response."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "The start time for the statistics query in ISO 8601 format."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "The end time for the statistics query in ISO 8601 format."
+              }
+            ]
+          },
+          "docs": "Retrieves performance statistics for a specific ad account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
