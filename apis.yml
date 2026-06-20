@@ -7,7 +7,7 @@ description: Snap Inc. operates Snapchat, a visual messaging app and camera plat
   Creative Kit for content sharing to Snapchat, Camera Kit for embedding Snap AR technology
   into third-party apps, and Lens Studio for building augmented reality experiences.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - Advertising
 - AR
