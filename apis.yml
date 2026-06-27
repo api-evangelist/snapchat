@@ -143,9 +143,9 @@ common:
   url: https://kit.snapchat.com/manage/
 - type: Pricing
   url: https://ads.snapchat.com
-- type: SignUp
+- type: Signup
   url: https://kit.snapchat.com/manage/
-- type: LLMsTxt
+- type: LlmsText
   url: https://developers.snap.com/llms.txt
 segments:
 - Social Media
