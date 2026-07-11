@@ -1,0 +1,19 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/snapchat-ads-api-openapi.yml
+schemes:
+- name: bearerAuth
+  source: openapi/snapchat-ads-api-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://accounts.snapchat.com/accounts/oauth2/auth
+    tokenUrl: https://accounts.snapchat.com/login/oauth2/access_token
+  description: OAuth 2.0 authorization. Access tokens are obtained via the authorization code
+    flow and expire after 3600 seconds. Refresh tokens can be used to obtain new access tokens.
+scopes:
+- scope: snapchat-marketing-api
+  description: Access to the Snapchat Marketing API
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/snapchat-ads-api-openapi.yml

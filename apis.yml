@@ -121,6 +121,10 @@ apis:
   - type: Documentation
     url: https://developers.snap.com/lens-studio/home
 common:
+- type: Authentication
+  url: authentication/snapchat-authentication.yml
+- type: OAuthScopes
+  url: scopes/snapchat-scopes.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/snap-inc-co
 - type: Website
