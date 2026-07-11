@@ -121,6 +121,8 @@ apis:
   - type: Documentation
     url: https://developers.snap.com/lens-studio/home
 common:
+- type: DomainSecurity
+  url: security/snapchat-domain-security.yml
 - type: Authentication
   url: authentication/snapchat-authentication.yml
 - type: OAuthScopes

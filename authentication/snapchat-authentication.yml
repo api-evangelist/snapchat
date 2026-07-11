@@ -1,0 +1,40 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/snapchat-ads-api-openapi.yml, openapi/snapchat-conversions-api-openapi.yml,
+  openapi/snapchat-login-kit-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  - oauth2
+  api_key_in:
+  - query
+  oauth2_flows:
+  - authorizationCode
+schemes:
+- name: bearerAuth
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://accounts.snapchat.com/accounts/oauth2/auth
+    tokenUrl: https://accounts.snapchat.com/login/oauth2/access_token
+    scopes: 1
+  description: OAuth 2.0 authorization. Access tokens are obtained via the authorization code
+    flow and expire after 3600 seconds. Refresh tokens can be used to obtain new access tokens.
+  sources:
+  - openapi/snapchat-ads-api-openapi.yml
+- name: accessToken
+  type: apiKey
+  in: query
+  parameter: access_token
+  description: Static long-lived access token generated from the Business Details page of Ads
+    Manager.
+  sources:
+  - openapi/snapchat-conversions-api-openapi.yml
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Bearer access token obtained via the OAuth 2.0 authorization code flow. Tokens
+    expire after 3600 seconds.
+  sources:
+  - openapi/snapchat-login-kit-openapi.yml
