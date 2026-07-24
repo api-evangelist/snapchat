@@ -1,0 +1,139 @@
+openapi: 3.1.0
+info:
+  title: Snapchat Ads Ad Accounts Audience Segments API
+  description: The Snapchat Ads API allows developers to programmatically create, manage, and optimize advertising campaigns on the Snapchat platform. It provides endpoints for managing organizations, ad accounts, campaigns, ad squads, ads, creatives, media, funding sources, audience segments, and measurement reporting. The API supports the full advertising lifecycle from campaign setup through reporting and optimization.
+  version: '1.0'
+  contact:
+    name: Snap for Developers
+    url: https://developers.snap.com
+  termsOfService: https://snap.com/en-US/terms
+servers:
+- url: https://adsapi.snapchat.com/v1
+  description: Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Audience Segments
+  description: Audience Segments allow advertisers to define and manage custom audiences for ad targeting, including Snap Audience Match, lookalike audiences, and pixel-based audiences.
+paths:
+  /adaccounts/{ad_account_id}/segments:
+    get:
+      operationId: listAudienceSegments
+      summary: List All Audience Segments for an Ad Account
+      description: Retrieves all audience segments associated with the specified ad account, including custom audiences, Snap Audience Match segments, and lookalike audiences.
+      tags:
+      - Audience Segments
+      parameters:
+      - $ref: '#/components/parameters/adAccountId'
+      responses:
+        '200':
+          description: Successful retrieval of audience segments
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  segments:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        segment:
+                          $ref: '#/components/schemas/AudienceSegment'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Ad account not found
+    post:
+      operationId: createAudienceSegment
+      summary: Create an Audience Segment
+      description: Creates a new audience segment under the specified ad account.
+      tags:
+      - Audience Segments
+      parameters:
+      - $ref: '#/components/parameters/adAccountId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                segments:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/AudienceSegment'
+      responses:
+        '200':
+          description: Audience segment created successfully
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    AudienceSegment:
+      type: object
+      description: An Audience Segment defines a group of users for ad targeting, including custom audiences, Snap Audience Match, pixel-based audiences, and lookalike audiences.
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the segment
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp of last update
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp of creation
+        name:
+          type: string
+          description: The name of the segment
+        ad_account_id:
+          type: string
+          description: The ID of the parent ad account
+        description:
+          type: string
+          description: A description of the segment
+        status:
+          type: string
+          description: The status of the segment
+          enum:
+          - ACTIVE
+          - PAUSED
+        source_type:
+          type: string
+          description: The source type of the audience segment
+          enum:
+          - FIRST_PARTY
+          - THIRD_PARTY
+          - LOOKALIKE
+        approximate_number_users:
+          type: integer
+          description: Approximate number of users in the segment
+  parameters:
+    adAccountId:
+      name: ad_account_id
+      in: path
+      required: true
+      description: The unique identifier of the ad account
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: oauth2
+      description: OAuth 2.0 authorization. Access tokens are obtained via the authorization code flow and expire after 3600 seconds. Refresh tokens can be used to obtain new access tokens.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://accounts.snapchat.com/accounts/oauth2/auth
+          tokenUrl: https://accounts.snapchat.com/login/oauth2/access_token
+          scopes:
+            snapchat-marketing-api: Access to the Snapchat Marketing API
+externalDocs:
+  description: Snapchat Ads API Documentation
+  url: https://developers.snap.com/api/marketing-api/Ads-API/introduction

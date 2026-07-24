@@ -1,0 +1,87 @@
+openapi: 3.1.0
+info:
+  title: Snapchat Ads Ad Accounts User Profile API
+  description: The Snapchat Ads API allows developers to programmatically create, manage, and optimize advertising campaigns on the Snapchat platform. It provides endpoints for managing organizations, ad accounts, campaigns, ad squads, ads, creatives, media, funding sources, audience segments, and measurement reporting. The API supports the full advertising lifecycle from campaign setup through reporting and optimization.
+  version: '1.0'
+  contact:
+    name: Snap for Developers
+    url: https://developers.snap.com
+  termsOfService: https://snap.com/en-US/terms
+servers:
+- url: https://adsapi.snapchat.com/v1
+  description: Production Server
+security:
+- bearerAuth: []
+tags:
+- name: User Profile
+  description: Endpoints for retrieving authenticated user profile information including display name and Bitmoji avatar.
+paths:
+  /me:
+    get:
+      operationId: getUserProfile
+      summary: Get Authenticated User Profile
+      description: Retrieves the profile information of the authenticated Snapchat user, including their external ID, display name, and Bitmoji avatar URL based on the scopes granted during authorization.
+      tags:
+      - User Profile
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: query
+        in: query
+        required: false
+        description: A JSON-encoded query string specifying which fields to retrieve from the user profile.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: User profile retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+        '401':
+          description: Unauthorized - invalid or expired access token
+        '403':
+          description: Forbidden - insufficient scopes
+components:
+  schemas:
+    UserProfile:
+      type: object
+      description: The authenticated user's Snapchat profile information. Fields available depend on the scopes granted during authorization.
+      properties:
+        data:
+          type: object
+          properties:
+            me:
+              type: object
+              properties:
+                externalId:
+                  type: string
+                  description: The unique external identifier for the user on the Snapchat platform.
+                displayName:
+                  type: string
+                  description: The user's Snapchat display name. Requires the user.display_name scope.
+                bitmoji:
+                  type: object
+                  description: The user's Bitmoji avatar information. Requires the user.bitmoji.avatar scope.
+                  properties:
+                    avatar:
+                      type: string
+                      format: uri
+                      description: URL to the user's Bitmoji avatar image.
+                    id:
+                      type: string
+                      description: The unique identifier of the user's Bitmoji.
+  securitySchemes:
+    bearerAuth:
+      type: oauth2
+      description: OAuth 2.0 authorization. Access tokens are obtained via the authorization code flow and expire after 3600 seconds. Refresh tokens can be used to obtain new access tokens.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://accounts.snapchat.com/accounts/oauth2/auth
+          tokenUrl: https://accounts.snapchat.com/login/oauth2/access_token
+          scopes:
+            snapchat-marketing-api: Access to the Snapchat Marketing API
+externalDocs:
+  description: Snapchat Ads API Documentation
+  url: https://developers.snap.com/api/marketing-api/Ads-API/introduction

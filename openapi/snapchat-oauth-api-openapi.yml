@@ -1,0 +1,175 @@
+openapi: 3.1.0
+info:
+  title: Snapchat Ads Ad Accounts OAuth API
+  description: The Snapchat Ads API allows developers to programmatically create, manage, and optimize advertising campaigns on the Snapchat platform. It provides endpoints for managing organizations, ad accounts, campaigns, ad squads, ads, creatives, media, funding sources, audience segments, and measurement reporting. The API supports the full advertising lifecycle from campaign setup through reporting and optimization.
+  version: '1.0'
+  contact:
+    name: Snap for Developers
+    url: https://developers.snap.com
+  termsOfService: https://snap.com/en-US/terms
+servers:
+- url: https://adsapi.snapchat.com/v1
+  description: Production Server
+security:
+- bearerAuth: []
+tags:
+- name: OAuth
+  description: OAuth 2.0 authorization and token management endpoints for authenticating users via their Snapchat account.
+paths:
+  /accounts/oauth2/auth:
+    get:
+      operationId: authorize
+      summary: Authorize a User via Snapchat
+      description: Redirects the user to the Snapchat authorization page where they can grant permission to the application. This is the initial step in the OAuth 2.0 authorization code flow. After authorization, the user is redirected back to the specified redirect URI with an authorization code.
+      tags:
+      - OAuth
+      parameters:
+      - name: client_id
+        in: query
+        required: true
+        description: The OAuth client ID assigned to the application.
+        schema:
+          type: string
+      - name: redirect_uri
+        in: query
+        required: true
+        description: The URI to redirect the user to after authorization. Must match one of the registered redirect URIs.
+        schema:
+          type: string
+          format: uri
+      - name: response_type
+        in: query
+        required: true
+        description: The OAuth response type. Use 'code' for authorization code flow or 'token' for implicit flow.
+        schema:
+          type: string
+          enum:
+          - code
+          - token
+      - name: scope
+        in: query
+        required: true
+        description: Space-separated list of requested scopes defining what user data the application wants access to.
+        schema:
+          type: string
+          examples:
+          - https://auth.snapchat.com/oauth2/api/user.display_name https://auth.snapchat.com/oauth2/api/user.bitmoji.avatar
+      - name: state
+        in: query
+        required: false
+        description: An opaque value used to maintain state between the request and callback for CSRF protection.
+        schema:
+          type: string
+      responses:
+        '302':
+          description: Redirects to Snapchat login page for user authorization
+        '400':
+          description: Bad request - invalid parameters
+  /login/oauth2/access_token:
+    post:
+      operationId: exchangeToken
+      summary: Exchange Authorization Code for Tokens
+      description: Exchanges an authorization code for an access token and refresh token. Access tokens expire after 3600 seconds (60 minutes). This endpoint is also used to refresh expired access tokens using a refresh token.
+      tags:
+      - OAuth
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - client_id
+              - client_secret
+              - grant_type
+              properties:
+                grant_type:
+                  type: string
+                  description: The type of token exchange. Use 'authorization_code' for initial exchange or 'refresh_token' for renewal.
+                  enum:
+                  - authorization_code
+                  - refresh_token
+                client_id:
+                  type: string
+                  description: The OAuth client ID assigned to the application.
+                client_secret:
+                  type: string
+                  description: The OAuth client secret assigned to the application.
+                code:
+                  type: string
+                  description: The authorization code received from the authorization endpoint. Required when grant_type is authorization_code.
+                redirect_uri:
+                  type: string
+                  format: uri
+                  description: The redirect URI used in the authorization request. Required when grant_type is authorization_code.
+                refresh_token:
+                  type: string
+                  description: The refresh token for obtaining a new access token. Required when grant_type is refresh_token.
+      responses:
+        '200':
+          description: Token exchange successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '400':
+          description: Bad request - invalid grant or parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuthError'
+        '401':
+          description: Unauthorized - invalid client credentials
+components:
+  schemas:
+    TokenResponse:
+      type: object
+      description: The response from a successful token exchange or refresh request.
+      properties:
+        access_token:
+          type: string
+          description: The access token for authenticating API requests.
+        token_type:
+          type: string
+          description: The type of token, always 'Bearer'.
+          enum:
+          - Bearer
+        expires_in:
+          type: integer
+          description: The number of seconds until the access token expires. Typically 3600 (60 minutes).
+          example: 3600
+        refresh_token:
+          type: string
+          description: The refresh token for obtaining new access tokens after expiration.
+        scope:
+          type: string
+          description: The scopes granted by the user during authorization.
+    OAuthError:
+      type: object
+      description: Error response from the OAuth token endpoint.
+      properties:
+        error:
+          type: string
+          description: The error code.
+          enum:
+          - invalid_request
+          - invalid_client
+          - invalid_grant
+          - unauthorized_client
+          - unsupported_grant_type
+        error_description:
+          type: string
+          description: A human-readable description of the error.
+  securitySchemes:
+    bearerAuth:
+      type: oauth2
+      description: OAuth 2.0 authorization. Access tokens are obtained via the authorization code flow and expire after 3600 seconds. Refresh tokens can be used to obtain new access tokens.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://accounts.snapchat.com/accounts/oauth2/auth
+          tokenUrl: https://accounts.snapchat.com/login/oauth2/access_token
+          scopes:
+            snapchat-marketing-api: Access to the Snapchat Marketing API
+externalDocs:
+  description: Snapchat Ads API Documentation
+  url: https://developers.snap.com/api/marketing-api/Ads-API/introduction

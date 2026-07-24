@@ -1,0 +1,244 @@
+openapi: 3.1.0
+info:
+  title: Snapchat Ads Ad Accounts API
+  description: The Snapchat Ads API allows developers to programmatically create, manage, and optimize advertising campaigns on the Snapchat platform. It provides endpoints for managing organizations, ad accounts, campaigns, ad squads, ads, creatives, media, funding sources, audience segments, and measurement reporting. The API supports the full advertising lifecycle from campaign setup through reporting and optimization.
+  version: '1.0'
+  contact:
+    name: Snap for Developers
+    url: https://developers.snap.com
+  termsOfService: https://snap.com/en-US/terms
+servers:
+- url: https://adsapi.snapchat.com/v1
+  description: Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Ad Accounts
+  description: Ad Accounts are owned by an Organization and contain Ad Campaigns. They have one or more Funding Sources.
+paths:
+  /organizations/{organization_id}/adaccounts:
+    get:
+      operationId: listAdAccounts
+      summary: List All Ad Accounts for an Organization
+      description: Retrieves all ad accounts associated with the specified organization.
+      tags:
+      - Ad Accounts
+      parameters:
+      - $ref: '#/components/parameters/organizationId'
+      responses:
+        '200':
+          description: Successful retrieval of ad accounts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  adaccounts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        adaccount:
+                          $ref: '#/components/schemas/AdAccount'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Organization not found
+    post:
+      operationId: createAdAccount
+      summary: Create an Ad Account
+      description: Creates a new ad account under the specified organization.
+      tags:
+      - Ad Accounts
+      parameters:
+      - $ref: '#/components/parameters/organizationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                adaccounts:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/AdAccount'
+      responses:
+        '200':
+          description: Ad account created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  adaccounts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        adaccount:
+                          $ref: '#/components/schemas/AdAccount'
+        '400':
+          description: Bad request - invalid parameters
+        '401':
+          description: Unauthorized
+    put:
+      operationId: updateAdAccount
+      summary: Update an Ad Account
+      description: Updates one or more ad accounts under the specified organization.
+      tags:
+      - Ad Accounts
+      parameters:
+      - $ref: '#/components/parameters/organizationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                adaccounts:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/AdAccount'
+      responses:
+        '200':
+          description: Ad account updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  adaccounts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        adaccount:
+                          $ref: '#/components/schemas/AdAccount'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+  /adaccounts/{ad_account_id}:
+    get:
+      operationId: getAdAccount
+      summary: Get a Specific Ad Account
+      description: Retrieves details for a specific ad account by its ID.
+      tags:
+      - Ad Accounts
+      parameters:
+      - $ref: '#/components/parameters/adAccountId'
+      responses:
+        '200':
+          description: Successful retrieval of ad account
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  adaccounts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        adaccount:
+                          $ref: '#/components/schemas/AdAccount'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Ad account not found
+components:
+  schemas:
+    AdAccount:
+      type: object
+      description: An Ad Account contains advertising campaigns and is owned by an Organization. Each Ad Account has one or more Funding Sources.
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the ad account
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp of last update
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp of creation
+        name:
+          type: string
+          description: The name of the ad account
+        type:
+          type: string
+          description: The type of ad account
+          enum:
+          - PARTNER
+          - DIRECT
+        status:
+          type: string
+          description: The status of the ad account
+          enum:
+          - ACTIVE
+          - PAUSED
+          - DISABLED
+        organization_id:
+          type: string
+          description: The ID of the parent organization
+        funding_source_ids:
+          type: array
+          items:
+            type: string
+          description: Array of funding source IDs associated with this account
+        currency:
+          type: string
+          description: The currency code for the ad account (e.g., USD)
+        timezone:
+          type: string
+          description: The timezone of the ad account (e.g., America/Los_Angeles)
+        advertiser:
+          type: string
+          description: The name of the advertiser
+  parameters:
+    organizationId:
+      name: organization_id
+      in: path
+      required: true
+      description: The unique identifier of the organization
+      schema:
+        type: string
+    adAccountId:
+      name: ad_account_id
+      in: path
+      required: true
+      description: The unique identifier of the ad account
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: oauth2
+      description: OAuth 2.0 authorization. Access tokens are obtained via the authorization code flow and expire after 3600 seconds. Refresh tokens can be used to obtain new access tokens.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://accounts.snapchat.com/accounts/oauth2/auth
+          tokenUrl: https://accounts.snapchat.com/login/oauth2/access_token
+          scopes:
+            snapchat-marketing-api: Access to the Snapchat Marketing API
+externalDocs:
+  description: Snapchat Ads API Documentation
+  url: https://developers.snap.com/api/marketing-api/Ads-API/introduction

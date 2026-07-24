@@ -1,0 +1,246 @@
+openapi: 3.1.0
+info:
+  title: Snapchat Ads Ad Accounts Measurement API
+  description: The Snapchat Ads API allows developers to programmatically create, manage, and optimize advertising campaigns on the Snapchat platform. It provides endpoints for managing organizations, ad accounts, campaigns, ad squads, ads, creatives, media, funding sources, audience segments, and measurement reporting. The API supports the full advertising lifecycle from campaign setup through reporting and optimization.
+  version: '1.0'
+  contact:
+    name: Snap for Developers
+    url: https://developers.snap.com
+  termsOfService: https://snap.com/en-US/terms
+servers:
+- url: https://adsapi.snapchat.com/v1
+  description: Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Measurement
+  description: Measurement endpoints provide campaign performance statistics and reporting data at various levels of the ad hierarchy.
+paths:
+  /campaigns/{campaign_id}/stats:
+    get:
+      operationId: getCampaignStats
+      summary: Get Campaign Statistics
+      description: Retrieves performance statistics for a specific campaign, including impressions, spend, and conversion metrics.
+      tags:
+      - Measurement
+      parameters:
+      - $ref: '#/components/parameters/campaignId'
+      - $ref: '#/components/parameters/granularity'
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+      responses:
+        '200':
+          description: Successful retrieval of campaign stats
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  total_stats:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Stats'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Campaign not found
+  /adsquads/{ad_squad_id}/stats:
+    get:
+      operationId: getAdSquadStats
+      summary: Get Ad Squad Statistics
+      description: Retrieves performance statistics for a specific ad squad.
+      tags:
+      - Measurement
+      parameters:
+      - $ref: '#/components/parameters/adSquadId'
+      - $ref: '#/components/parameters/granularity'
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+      responses:
+        '200':
+          description: Successful retrieval of ad squad stats
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  total_stats:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Stats'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Ad squad not found
+  /ads/{ad_id}/stats:
+    get:
+      operationId: getAdStats
+      summary: Get Ad Statistics
+      description: Retrieves performance statistics for a specific ad.
+      tags:
+      - Measurement
+      parameters:
+      - $ref: '#/components/parameters/adId'
+      - $ref: '#/components/parameters/granularity'
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+      responses:
+        '200':
+          description: Successful retrieval of ad stats
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  total_stats:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Stats'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Ad not found
+  /adaccounts/{ad_account_id}/stats:
+    get:
+      operationId: getAdAccountStats
+      summary: Get Ad Account Statistics
+      description: Retrieves performance statistics for a specific ad account.
+      tags:
+      - Measurement
+      parameters:
+      - $ref: '#/components/parameters/adAccountId'
+      - $ref: '#/components/parameters/granularity'
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+      responses:
+        '200':
+          description: Successful retrieval of ad account stats
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  total_stats:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Stats'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Ad account not found
+components:
+  parameters:
+    granularity:
+      name: granularity
+      in: query
+      required: false
+      description: The time granularity for statistics. Determines how data points are grouped in the response.
+      schema:
+        type: string
+        enum:
+        - TOTAL
+        - DAY
+        - HOUR
+    campaignId:
+      name: campaign_id
+      in: path
+      required: true
+      description: The unique identifier of the campaign
+      schema:
+        type: string
+    startTime:
+      name: start_time
+      in: query
+      required: false
+      description: The start time for the statistics query in ISO 8601 format.
+      schema:
+        type: string
+        format: date-time
+    adAccountId:
+      name: ad_account_id
+      in: path
+      required: true
+      description: The unique identifier of the ad account
+      schema:
+        type: string
+    endTime:
+      name: end_time
+      in: query
+      required: false
+      description: The end time for the statistics query in ISO 8601 format.
+      schema:
+        type: string
+        format: date-time
+    adSquadId:
+      name: ad_squad_id
+      in: path
+      required: true
+      description: The unique identifier of the ad squad
+      schema:
+        type: string
+    adId:
+      name: ad_id
+      in: path
+      required: true
+      description: The unique identifier of the ad
+      schema:
+        type: string
+  schemas:
+    Stats:
+      type: object
+      description: Performance statistics for an advertising entity including impressions, spend, swipe-ups, and conversion metrics.
+      properties:
+        id:
+          type: string
+          description: The ID of the entity these stats belong to
+        type:
+          type: string
+          description: The type of entity
+        granularity:
+          type: string
+          description: The time granularity of the stats
+        stats:
+          type: object
+          properties:
+            impressions:
+              type: integer
+              description: Total number of impressions
+            swipes:
+              type: integer
+              description: Total number of swipe-ups
+            spend:
+              type: number
+              format: double
+              description: Total spend in micro-currency units
+            video_views:
+              type: integer
+              description: Total number of video views
+  securitySchemes:
+    bearerAuth:
+      type: oauth2
+      description: OAuth 2.0 authorization. Access tokens are obtained via the authorization code flow and expire after 3600 seconds. Refresh tokens can be used to obtain new access tokens.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://accounts.snapchat.com/accounts/oauth2/auth
+          tokenUrl: https://accounts.snapchat.com/login/oauth2/access_token
+          scopes:
+            snapchat-marketing-api: Access to the Snapchat Marketing API
+externalDocs:
+  description: Snapchat Ads API Documentation
+  url: https://developers.snap.com/api/marketing-api/Ads-API/introduction

@@ -1,0 +1,208 @@
+openapi: 3.1.0
+info:
+  title: Snapchat Ads Ad Accounts Creatives API
+  description: The Snapchat Ads API allows developers to programmatically create, manage, and optimize advertising campaigns on the Snapchat platform. It provides endpoints for managing organizations, ad accounts, campaigns, ad squads, ads, creatives, media, funding sources, audience segments, and measurement reporting. The API supports the full advertising lifecycle from campaign setup through reporting and optimization.
+  version: '1.0'
+  contact:
+    name: Snap for Developers
+    url: https://developers.snap.com
+  termsOfService: https://snap.com/en-US/terms
+servers:
+- url: https://adsapi.snapchat.com/v1
+  description: Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Creatives
+  description: Creatives define the visual and interactive content of ads, including images, videos, and call-to-action overlays.
+paths:
+  /adaccounts/{ad_account_id}/creatives:
+    get:
+      operationId: listCreatives
+      summary: List All Creatives for an Ad Account
+      description: Retrieves all creatives associated with the specified ad account.
+      tags:
+      - Creatives
+      parameters:
+      - $ref: '#/components/parameters/adAccountId'
+      responses:
+        '200':
+          description: Successful retrieval of creatives
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  creatives:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        creative:
+                          $ref: '#/components/schemas/Creative'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Ad account not found
+    post:
+      operationId: createCreative
+      summary: Create a Creative
+      description: Creates a new creative under the specified ad account.
+      tags:
+      - Creatives
+      parameters:
+      - $ref: '#/components/parameters/adAccountId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                creatives:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Creative'
+      responses:
+        '200':
+          description: Creative created successfully
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+  /creatives/{creative_id}:
+    get:
+      operationId: getCreative
+      summary: Get a Specific Creative
+      description: Retrieves details for a specific creative by its ID.
+      tags:
+      - Creatives
+      parameters:
+      - $ref: '#/components/parameters/creativeId'
+      responses:
+        '200':
+          description: Successful retrieval of creative
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  creatives:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        creative:
+                          $ref: '#/components/schemas/Creative'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Creative not found
+components:
+  schemas:
+    Creative:
+      type: object
+      description: A Creative defines the visual and interactive content of an ad, including media references and call-to-action elements.
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the creative
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp of last update
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp of creation
+        name:
+          type: string
+          description: The name of the creative
+        ad_account_id:
+          type: string
+          description: The ID of the parent ad account
+        type:
+          type: string
+          description: The type of creative
+          enum:
+          - SNAP_AD
+          - APP_INSTALL
+          - LONGFORM_VIDEO
+          - WEB_VIEW
+          - DEEP_LINK
+          - LENS
+          - COLLECTION
+          - DYNAMIC
+          - PREVIEW
+        headline:
+          type: string
+          description: The headline text
+          maxLength: 34
+        brand_name:
+          type: string
+          description: The brand name displayed on the creative
+          maxLength: 25
+        shareable:
+          type: boolean
+          description: Whether the creative can be shared by users
+        call_to_action:
+          type: string
+          description: The call-to-action type
+          enum:
+          - INSTALL_NOW
+          - WATCH_MORE
+          - VIEW_MORE
+          - SIGN_UP
+          - SHOP_NOW
+          - BUY_NOW
+          - GET_NOW
+          - BOOK_NOW
+          - LISTEN
+          - ORDER_NOW
+          - PLAY
+          - APPLY_NOW
+          - DOWNLOAD
+          - SEND
+          - MORE
+        top_snap_media_id:
+          type: string
+          description: The media ID for the top snap
+        top_snap_crop_position:
+          type: string
+          description: Crop position for the top snap media
+  parameters:
+    creativeId:
+      name: creative_id
+      in: path
+      required: true
+      description: The unique identifier of the creative
+      schema:
+        type: string
+    adAccountId:
+      name: ad_account_id
+      in: path
+      required: true
+      description: The unique identifier of the ad account
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: oauth2
+      description: OAuth 2.0 authorization. Access tokens are obtained via the authorization code flow and expire after 3600 seconds. Refresh tokens can be used to obtain new access tokens.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://accounts.snapchat.com/accounts/oauth2/auth
+          tokenUrl: https://accounts.snapchat.com/login/oauth2/access_token
+          scopes:
+            snapchat-marketing-api: Access to the Snapchat Marketing API
+externalDocs:
+  description: Snapchat Ads API Documentation
+  url: https://developers.snap.com/api/marketing-api/Ads-API/introduction
