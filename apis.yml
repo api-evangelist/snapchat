@@ -7,7 +7,20 @@ description: Snap Inc. operates Snapchat, a visual messaging app and camera plat
   Creative Kit for content sharing to Snapchat, Camera Kit for embedding Snap AR technology
   into third-party apps, and Lens Studio for building augmented reality experiences.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/snapchat.png
 tags:
 - Advertising
 - AR
@@ -21,12 +34,12 @@ specificationVersion: '0.19'
 apis:
 - aid: snapchat:snapchat-ads-api
   name: Snapchat Ads API
-  description: The Snapchat Ads API (Marketing API) allows developers to programmatically
-    create, manage, and optimize advertising campaigns on the Snapchat platform. It
-    provides endpoints for managing organizations, ad accounts, campaigns, ad squads,
-    ads, creatives, media, funding sources, audience segments, and measurement reporting.
-    The API supports the full advertising lifecycle from campaign setup through reporting
-    and optimization.
+  description: >-
+    The Snapchat Ads API (Marketing API) allows developers to programmatically create, manage, and optimize
+    advertising campaigns on the Snapchat platform. It provides endpoints for managing organizations,
+    ad accounts, campaigns, ad squads, ads, creatives, media, funding sources, audience segments, and
+    measurement reporting. The API supports the full advertising lifecycle from campaign setup through
+    reporting and optimization.
   humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
   tags:
   - Advertising
@@ -36,51 +49,17 @@ apis:
   - type: Documentation
     url: https://developers.snap.com/api/marketing-api/Ads-API/introduction
   - type: OpenAPI
-    url: https://raw.githubusercontent.com/api-evangelist/snapchat/refs/heads/main/openapi/snapchat-ads-api-openapi.yml
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/snapchat/refs/heads/main/openapi/snapchat-ads-api-openapi.yml
   - url: graphql/snapchat-graphql.md
     type: GraphQL
-- aid: snapchat:snapchat-conversions-api
-  name: Snapchat Conversions API
-  description: The Snapchat Conversions API (CAPI) is a structured, privacy-centric
-    server-to-server interface allowing advertisers to pass web, app, and offline
-    conversion events directly to Snap. It helps optimize ad campaigns, improve targeting,
-    and measure conversions while supporting first-party custom audience population
-    in real-time. Current version is v3.
-  humanURL: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
-  tags:
-  - Advertising
-  - Analytics
-  - Conversions
-  - Privacy
-  properties:
-  - type: Documentation
-    url: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
-  - type: OpenAPI
-    url: https://raw.githubusercontent.com/api-evangelist/snapchat/refs/heads/main/openapi/snapchat-conversions-api-openapi.yml
-- aid: snapchat:snapchat-login-kit
-  name: Snapchat Login Kit API
-  description: Snapchat Login Kit enables developers to let users sign up and log
-    in to their apps using their Snapchat account credentials. Built on the OAuth
-    2.0 standard, it provides endpoints for authorization, token exchange, token refresh,
-    and retrieving user profile information including display name and Bitmoji avatar.
-    Available for iOS, Android, and Web platforms.
-  humanURL: https://developers.snap.com/snap-kit/login-kit/overview
-  tags:
-  - Authentication
-  - Identity
-  - OAuth
-  properties:
-  - type: Documentation
-    url: https://developers.snap.com/snap-kit/login-kit/overview
-  - type: OpenAPI
-    url: https://raw.githubusercontent.com/api-evangelist/snapchat/refs/heads/main/openapi/snapchat-login-kit-openapi.yml
 - aid: snapchat:snapchat-creative-kit
   name: Snapchat Creative Kit
-  description: Creative Kit allows developers to let users share content including
-    Lenses, AR experiences, filters, GIFs, videos, links, and captions from a website
-    or app directly to Snapchat's camera or preview screen. Supports Dynamic Lenses,
-    Stickers, and Spotlight Posting. Available as a code-only integration (SDK deprecated
-    October 2024).
+  description: >-
+    Creative Kit allows developers to let users share content including Lenses, AR experiences, filters,
+    GIFs, videos, links, and captions from a website or app directly to Snapchat's camera or preview screen.
+    Supports Dynamic Lenses, Stickers, and Spotlight Posting. Available as a code-only integration (SDK
+    deprecated October 2024).
   humanURL: https://developers.snap.com/snap-kit/creative-kit/overview
   tags:
   - AR
@@ -94,9 +73,10 @@ apis:
     url: https://github.com/Snapchat/creative-kit
 - aid: snapchat:snapchat-camera-kit
   name: Snapchat Camera Kit
-  description: Camera Kit enables developers to integrate Snap's AR camera technology
-    directly into iOS, Android, and web applications, giving users access to Snap's
-    lens library and AR experiences without leaving the host app.
+  description: >-
+    Camera Kit enables developers to integrate Snap's AR camera technology directly into iOS, Android,
+    and web applications, giving users access to Snap's lens library and AR experiences without leaving
+    the host app.
   humanURL: https://developers.snap.com/camera-kit/home
   tags:
   - AR
@@ -108,9 +88,10 @@ apis:
     url: https://developers.snap.com/camera-kit/home
 - aid: snapchat:snapchat-lens-studio
   name: Lens Studio
-  description: Lens Studio is Snap's desktop application for building augmented reality
-    lenses for Snapchat and Spectacles. Provides an API for scripting lens behaviors,
-    integrating dynamic data, and publishing to the Snap Lens Network.
+  description: >-
+    Lens Studio is Snap's desktop application for building augmented reality lenses for Snapchat and Spectacles.
+    Provides an API for scripting lens behaviors, integrating dynamic data, and publishing to the Snap
+    Lens Network.
   humanURL: https://developers.snap.com/lens-studio/home
   tags:
   - AR
@@ -120,6 +101,183 @@ apis:
   properties:
   - type: Documentation
     url: https://developers.snap.com/lens-studio/home
+- aid: snapchat:snapchat-ad-accounts-api
+  name: Snapchat Ad Accounts API
+  description: >-
+    Ad Accounts are owned by an Organization and contain Ad Campaigns. They have one or more Funding Sources.
+  humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+  tags:
+  - Ad Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/snapchat-ad-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
+  - type: Documentation
+    url: https://developers.snap.com/snap-kit/login-kit/overview
+- aid: snapchat:snapchat-ad-squads-api
+  name: Snapchat Ad Squads API
+  description: >-
+    Ad Squads organize ads within a campaign, defining targeting, budget, schedule, and bid strategy.
+  humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+  tags:
+  - Ad Squads
+  properties:
+  - type: OpenAPI
+    url: openapi/snapchat-ad-squads-api-openapi.yml
+  - type: Documentation
+    url: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
+  - type: Documentation
+    url: https://developers.snap.com/snap-kit/login-kit/overview
+- aid: snapchat:snapchat-audience-segments-api
+  name: Snapchat Audience Segments API
+  description: >-
+    Audience Segments allow advertisers to define and manage custom audiences for ad targeting, including
+    Snap Audience Match, lookalike audiences, and pixel-based audiences.
+  humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+  tags:
+  - Audience Segments
+  properties:
+  - type: OpenAPI
+    url: openapi/snapchat-audience-segments-api-openapi.yml
+  - type: Documentation
+    url: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
+  - type: Documentation
+    url: https://developers.snap.com/snap-kit/login-kit/overview
+- aid: snapchat:snapchat-campaigns-api
+  name: Snapchat Campaigns API
+  description: >-
+    Campaigns define a business objective and organize Ad Squads, allowing advertisers to view aggregate
+    statistics.
+  humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+  tags:
+  - Campaigns
+  properties:
+  - type: OpenAPI
+    url: openapi/snapchat-campaigns-api-openapi.yml
+  - type: Documentation
+    url: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
+  - type: Documentation
+    url: https://developers.snap.com/snap-kit/login-kit/overview
+- aid: snapchat:snapchat-conversion-events-api
+  name: Snapchat Conversion Events API
+  description: >-
+    Endpoints for sending web, app, and offline conversion events to Snap for campaign measurement and
+    optimization.
+  humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+  tags:
+  - Conversion Events
+  properties:
+  - type: OpenAPI
+    url: openapi/snapchat-conversion-events-api-openapi.yml
+  - type: Documentation
+    url: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
+  - type: Documentation
+    url: https://developers.snap.com/snap-kit/login-kit/overview
+- aid: snapchat:snapchat-creatives-api
+  name: Snapchat Creatives API
+  description: >-
+    Creatives define the visual and interactive content of ads, including images, videos, and call-to-action
+    overlays.
+  humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+  tags:
+  - Creatives
+  properties:
+  - type: OpenAPI
+    url: openapi/snapchat-creatives-api-openapi.yml
+  - type: Documentation
+    url: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
+  - type: Documentation
+    url: https://developers.snap.com/snap-kit/login-kit/overview
+- aid: snapchat:snapchat-funding-sources-api
+  name: Snapchat Funding Sources API
+  description: >-
+    Funding Sources represent payment methods associated with an organization, including credit cards,
+    PayPal, and lines of credit.
+  humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+  tags:
+  - Funding Sources
+  properties:
+  - type: OpenAPI
+    url: openapi/snapchat-funding-sources-api-openapi.yml
+  - type: Documentation
+    url: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
+  - type: Documentation
+    url: https://developers.snap.com/snap-kit/login-kit/overview
+- aid: snapchat:snapchat-measurement-api
+  name: Snapchat Measurement API
+  description: >-
+    Measurement endpoints provide campaign performance statistics and reporting data at various levels
+    of the ad hierarchy.
+  humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+  tags:
+  - Measurement
+  properties:
+  - type: OpenAPI
+    url: openapi/snapchat-measurement-api-openapi.yml
+  - type: Documentation
+    url: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
+  - type: Documentation
+    url: https://developers.snap.com/snap-kit/login-kit/overview
+- aid: snapchat:snapchat-media-api
+  name: Snapchat Media API
+  description: >-
+    Media endpoints handle uploading and managing media assets such as images and videos used in creatives.
+  humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+  tags:
+  - Media
+  properties:
+  - type: OpenAPI
+    url: openapi/snapchat-media-api-openapi.yml
+  - type: Documentation
+    url: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
+  - type: Documentation
+    url: https://developers.snap.com/snap-kit/login-kit/overview
+- aid: snapchat:snapchat-oauth-api
+  name: Snapchat OAuth API
+  description: >-
+    OAuth 2.0 authorization and token management endpoints for authenticating users via their Snapchat
+    account.
+  humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+  tags:
+  - OAuth
+  properties:
+  - type: OpenAPI
+    url: openapi/snapchat-oauth-api-openapi.yml
+  - type: Documentation
+    url: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
+  - type: Documentation
+    url: https://developers.snap.com/snap-kit/login-kit/overview
+- aid: snapchat:snapchat-organizations-api
+  name: Snapchat Organizations API
+  description: >-
+    Organizations represent brands, partners, or ad agencies. Organizations are created via Snap Business
+    Manager.
+  humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+  tags:
+  - Organizations
+  properties:
+  - type: OpenAPI
+    url: openapi/snapchat-organizations-api-openapi.yml
+  - type: Documentation
+    url: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
+  - type: Documentation
+    url: https://developers.snap.com/snap-kit/login-kit/overview
+- aid: snapchat:snapchat-user-profile-api
+  name: Snapchat User Profile API
+  description: >-
+    Endpoints for retrieving authenticated user profile information including display name and Bitmoji
+    avatar.
+  humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+  tags:
+  - User Profile
+  properties:
+  - type: OpenAPI
+    url: openapi/snapchat-user-profile-api-openapi.yml
+  - type: Documentation
+    url: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
+  - type: Documentation
+    url: https://developers.snap.com/snap-kit/login-kit/overview
 common:
 - type: AgenticAccess
   url: agentic-access/snapchat-agentic-access.yml
