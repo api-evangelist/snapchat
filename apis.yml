@@ -29,7 +29,7 @@ tags:
 - Messaging
 - Social Media
 created: '2026-05-02'
-modified: '2026-05-19'
+modified: '2026-08-13'
 specificationVersion: '0.19'
 apis:
 - aid: snapchat:snapchat-ads-api
@@ -41,6 +41,7 @@ apis:
     measurement reporting. The API supports the full advertising lifecycle from campaign setup through
     reporting and optimization.
   humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+  baseURL: https://adsapi.snapchat.com/v1
   tags:
   - Advertising
   - Campaigns
@@ -51,8 +52,9 @@ apis:
   - type: OpenAPI
     url: >-
       https://raw.githubusercontent.com/api-evangelist/snapchat/refs/heads/main/openapi/snapchat-ads-api-openapi.yml
-  - url: graphql/snapchat-graphql.md
-    type: GraphQL
+  - type: Overlay
+    url: overlays/snapchat-ads-api-overlay.yaml
+
 - aid: snapchat:snapchat-creative-kit
   name: Snapchat Creative Kit
   description: >-
@@ -106,6 +108,7 @@ apis:
   description: >-
     Ad Accounts are owned by an Organization and contain Ad Campaigns. They have one or more Funding Sources.
   humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+  baseURL: https://adsapi.snapchat.com/v1
   tags:
   - Ad Accounts
   properties:
@@ -115,11 +118,15 @@ apis:
     url: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
   - type: Documentation
     url: https://developers.snap.com/snap-kit/login-kit/overview
+  - type: Overlay
+    url: overlays/snapchat-ad-accounts-api-overlay.yaml
+
 - aid: snapchat:snapchat-ad-squads-api
   name: Snapchat Ad Squads API
   description: >-
     Ad Squads organize ads within a campaign, defining targeting, budget, schedule, and bid strategy.
   humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+  baseURL: https://adsapi.snapchat.com/v1
   tags:
   - Ad Squads
   properties:
@@ -129,12 +136,16 @@ apis:
     url: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
   - type: Documentation
     url: https://developers.snap.com/snap-kit/login-kit/overview
+  - type: Overlay
+    url: overlays/snapchat-ad-squads-api-overlay.yaml
+
 - aid: snapchat:snapchat-audience-segments-api
   name: Snapchat Audience Segments API
   description: >-
     Audience Segments allow advertisers to define and manage custom audiences for ad targeting, including
     Snap Audience Match, lookalike audiences, and pixel-based audiences.
   humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+  baseURL: https://adsapi.snapchat.com/v1
   tags:
   - Audience Segments
   properties:
@@ -144,12 +155,16 @@ apis:
     url: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
   - type: Documentation
     url: https://developers.snap.com/snap-kit/login-kit/overview
+  - type: Overlay
+    url: overlays/snapchat-audience-segments-api-overlay.yaml
+
 - aid: snapchat:snapchat-campaigns-api
   name: Snapchat Campaigns API
   description: >-
     Campaigns define a business objective and organize Ad Squads, allowing advertisers to view aggregate
     statistics.
   humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+  baseURL: https://adsapi.snapchat.com/v1
   tags:
   - Campaigns
   properties:
@@ -159,12 +174,16 @@ apis:
     url: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
   - type: Documentation
     url: https://developers.snap.com/snap-kit/login-kit/overview
+  - type: Overlay
+    url: overlays/snapchat-campaigns-api-overlay.yaml
+
 - aid: snapchat:snapchat-conversion-events-api
   name: Snapchat Conversion Events API
   description: >-
     Endpoints for sending web, app, and offline conversion events to Snap for campaign measurement and
     optimization.
   humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+  baseURL: https://tr.snapchat.com/v3
   tags:
   - Conversion Events
   properties:
@@ -174,12 +193,16 @@ apis:
     url: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
   - type: Documentation
     url: https://developers.snap.com/snap-kit/login-kit/overview
+  - type: Overlay
+    url: overlays/snapchat-conversion-events-api-overlay.yaml
+
 - aid: snapchat:snapchat-creatives-api
   name: Snapchat Creatives API
   description: >-
     Creatives define the visual and interactive content of ads, including images, videos, and call-to-action
     overlays.
   humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+  baseURL: https://adsapi.snapchat.com/v1
   tags:
   - Creatives
   properties:
@@ -189,12 +212,16 @@ apis:
     url: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
   - type: Documentation
     url: https://developers.snap.com/snap-kit/login-kit/overview
+  - type: Overlay
+    url: overlays/snapchat-creatives-api-overlay.yaml
+
 - aid: snapchat:snapchat-funding-sources-api
   name: Snapchat Funding Sources API
   description: >-
     Funding Sources represent payment methods associated with an organization, including credit cards,
     PayPal, and lines of credit.
   humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+  baseURL: https://adsapi.snapchat.com/v1
   tags:
   - Funding Sources
   properties:
@@ -204,12 +231,16 @@ apis:
     url: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
   - type: Documentation
     url: https://developers.snap.com/snap-kit/login-kit/overview
+  - type: Overlay
+    url: overlays/snapchat-funding-sources-api-overlay.yaml
+
 - aid: snapchat:snapchat-measurement-api
   name: Snapchat Measurement API
   description: >-
     Measurement endpoints provide campaign performance statistics and reporting data at various levels
     of the ad hierarchy.
   humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+  baseURL: https://adsapi.snapchat.com/v1
   tags:
   - Measurement
   properties:
@@ -219,11 +250,15 @@ apis:
     url: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
   - type: Documentation
     url: https://developers.snap.com/snap-kit/login-kit/overview
+  - type: Overlay
+    url: overlays/snapchat-measurement-api-overlay.yaml
+
 - aid: snapchat:snapchat-media-api
   name: Snapchat Media API
   description: >-
     Media endpoints handle uploading and managing media assets such as images and videos used in creatives.
   humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+  baseURL: https://adsapi.snapchat.com/v1
   tags:
   - Media
   properties:
@@ -233,12 +268,16 @@ apis:
     url: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
   - type: Documentation
     url: https://developers.snap.com/snap-kit/login-kit/overview
+  - type: Overlay
+    url: overlays/snapchat-media-api-overlay.yaml
+
 - aid: snapchat:snapchat-oauth-api
   name: Snapchat OAuth API
   description: >-
     OAuth 2.0 authorization and token management endpoints for authenticating users via their Snapchat
     account.
   humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+  baseURL: https://accounts.snapchat.com
   tags:
   - OAuth
   properties:
@@ -248,12 +287,16 @@ apis:
     url: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
   - type: Documentation
     url: https://developers.snap.com/snap-kit/login-kit/overview
+  - type: Overlay
+    url: overlays/snapchat-oauth-api-overlay.yaml
+
 - aid: snapchat:snapchat-organizations-api
   name: Snapchat Organizations API
   description: >-
     Organizations represent brands, partners, or ad agencies. Organizations are created via Snap Business
     Manager.
   humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+  baseURL: https://adsapi.snapchat.com/v1
   tags:
   - Organizations
   properties:
@@ -263,12 +306,16 @@ apis:
     url: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
   - type: Documentation
     url: https://developers.snap.com/snap-kit/login-kit/overview
+  - type: Overlay
+    url: overlays/snapchat-organizations-api-overlay.yaml
+
 - aid: snapchat:snapchat-user-profile-api
   name: Snapchat User Profile API
   description: >-
     Endpoints for retrieving authenticated user profile information including display name and Bitmoji
     avatar.
   humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+  baseURL: https://kit.snapchat.com/v1
   tags:
   - User Profile
   properties:
@@ -278,6 +325,35 @@ apis:
     url: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
   - type: Documentation
     url: https://developers.snap.com/snap-kit/login-kit/overview
+  - type: Overlay
+    url: overlays/snapchat-user-profile-api-overlay.yaml
+
+- aid: snapchat:snapchat-ads-mcp
+  name: Snapchat Ads MCP Server
+  description: >-
+    Snap's first-party hosted Model Context Protocol server for the Snapchat Ads API. A supported
+    agent connects over streamable HTTP to https://mcp.snapchat.com/ads and authenticates with
+    OAuth 2.0 (authorization code + PKCE S256, public client, scope snapads.read) against Snap's
+    own authorization server at mcp.snapchat.com. The current release is read-only — an agent can
+    read authorized Snapchat Ads data but cannot create, update or delete. Onboarding is self-serve:
+    an organization Admin or Business Admin approves each agent once, then every member authorizes
+    individually, and no member gains a permission their Ads Manager role does not already grant.
+  humanURL: https://developers.snap.com/marketing-api/Ads-MCP/Introduction
+  baseURL: https://mcp.snapchat.com/ads
+  tags:
+  - Advertising
+  - Agents
+  - MCP
+  - Marketing
+  properties:
+  - type: Documentation
+    url: https://developers.snap.com/marketing-api/Ads-MCP/Introduction
+  - type: GettingStarted
+    url: https://developers.snap.com/marketing-api/Ads-MCP/connect-an-agent
+  - type: MCPServer
+    url: mcp/snapchat-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/snapchat-tool-crosswalk.yml
 common:
 - type: AgenticAccess
   url: agentic-access/snapchat-agentic-access.yml
@@ -313,6 +389,58 @@ common:
   url: https://kit.snapchat.com/manage/
 - type: LlmsText
   url: https://developers.snap.com/llms.txt
+- type: Packages
+  url: packages/snapchat-packages.yml
+- type: SDKs
+  url: packages/snapchat-packages.yml
+- type: WellKnown
+  url: well-known/snapchat-well-known.yml
+- type: SecurityTxt
+  url: well-known/snapchat-security.txt
+- type: MCPServer
+  url: mcp/snapchat-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/snapchat-tool-crosswalk.yml
+- type: LLMsTxt
+  url: llms/snapchat-llms.txt
+- type: Overlay
+  url: overlays/snapchat-ads-api-overlay.yaml
+- type: Conformance
+  url: conformance/snapchat-conformance.yml
+- type: ErrorCatalog
+  url: errors/snapchat-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/snapchat-lifecycle.yml
+- type: Deprecation
+  url: lifecycle/snapchat-lifecycle.yml
+- type: VulnerabilityDisclosure
+  url: security/snapchat-vulnerability-disclosure.yml
+- type: Security
+  url: security/snapchat-vulnerability-disclosure.yml
+- type: TrustCenter
+  url: security/snapchat-trust-center.yml
+- type: Sandbox
+  url: sandbox/snapchat-sandbox.yml
+- type: Conventions
+  url: conventions/snapchat-conventions.yml
+- type: ChangeLog
+  url: changelog/snapchat-changelog.yml
+- type: Components
+  url: components/snapchat-components.yml
+- type: DataModel
+  url: data-model/snapchat-data-model.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Plans
+  url: plans/snapchat-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/snapchat-rate-limits.yml
+- type: APIReference
+  url: https://developers.snap.com/marketing-api/Ads-API/introduction
+- type: GettingStarted
+  url: https://developers.snap.com/marketing-api/home
+- type: ChangeLog
+  url: https://developers.snap.com/marketing-api/Ads-API/changelog
 segments:
 - Social Media
 - Advertising
@@ -320,3 +448,8 @@ segments:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 36
+  pass: local-v1
