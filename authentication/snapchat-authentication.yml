@@ -1,40 +1,141 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/snapchat-ads-api-openapi.yml, openapi/snapchat-conversions-api-openapi.yml,
-  openapi/snapchat-login-kit-openapi.yml
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://developers.snap.com/marketing-api/Ads-API/authentication,
+  https://developers.snap.com/snap-kit/login-kit/overview,
+  https://developers.snap.com/marketing-api/Ads-MCP/Introduction,
+  https://mcp.snapchat.com/.well-known/oauth-authorization-server/ads,
+  openapi/*.yml, openapi/_original/*.yml
+docs:
+- https://developers.snap.com/marketing-api/Ads-API/authentication
+- https://developers.snap.com/snap-kit/login-kit/overview
+provider: Snapchat
+providerId: snapchat
+description: >-
+  Every Snapchat developer surface authenticates with OAuth 2.0, but through three different
+  authorization servers with three different token shapes. The Marketing API and Login Kit both go
+  through accounts.snapchat.com; the Ads MCP server runs its own authorization server at
+  mcp.snapchat.com with pre-registered per-vendor client ids and a single read scope. The
+  Conversions API additionally accepts a long-lived static token generated in Ads Manager and
+  passed as a QUERY PARAMETER, which is the weakest link in the set — it puts a credential in URLs,
+  logs and referrers.
 summary:
   types:
-  - apiKey
-  - http
   - oauth2
+  - http
+  - apiKey
   api_key_in:
   - query
   oauth2_flows:
   - authorizationCode
+  - implicit
+  - refresh_token
+  pkce: S256
+  openid_connect: false
+  mtls: false
 schemes:
 - name: bearerAuth
   type: oauth2
+  product: Snapchat Marketing API
   flows:
   - flow: authorizationCode
     authorizationUrl: https://accounts.snapchat.com/accounts/oauth2/auth
     tokenUrl: https://accounts.snapchat.com/login/oauth2/access_token
-    scopes: 1
-  description: OAuth 2.0 authorization. Access tokens are obtained via the authorization code
-    flow and expire after 3600 seconds. Refresh tokens can be used to obtain new access tokens.
+    refreshUrl: https://accounts.snapchat.com/login/oauth2/access_token
+    scopes:
+    - snapchat-marketing-api
+  header: 'Authorization: Bearer <access_token>'
+  token_ttl_seconds: 3600
+  refresh: true
+  description: >-
+    OAuth 2.0 authorization code flow. Access tokens expire after 3600 seconds; refresh tokens
+    obtain new ones. The token reflects the authorizing user's Business Manager permissions, so API
+    calls are scoped to what that user can already access.
   sources:
   - openapi/snapchat-ads-api-openapi.yml
+  - https://developers.snap.com/marketing-api/Ads-API/authentication
+- name: loginKitOAuth
+  type: oauth2
+  product: Login Kit
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://accounts.snapchat.com/accounts/oauth2/auth
+    tokenUrl: https://accounts.snapchat.com/login/oauth2/access_token
+    pkce: required for public clients (code_challenge_method=S256)
+  - flow: authorizationCode
+    variant: server-side (confidential client with client_secret, long-term refresh tokens)
+  - flow: implicit
+    variant: response_type=token for SPAs
+    note: Snap documents this as "limited security compared to other flows".
+  required_parameters:
+  - client_id
+  - redirect_uri
+  - response_type
+  - scope
+  - state
+  - code_challenge
+  - code_challenge_method
+  app_management: https://kit.snapchat.com/manage/apps
+  description: >-
+    Snap's implementation of OAuth 2.0 for "Log in with Snapchat". The Login Kit SDKs are being
+    deprecated; the OAuth 2.0 service behind them remains fully supported. Returns no id_token —
+    identity is read from GET /me on kit.snapchat.com.
+  sources:
+  - openapi/_original/snapchat-login-kit-openapi.yml
+  - https://developers.snap.com/snap-kit/login-kit/overview
+- name: mcpOAuth
+  type: oauth2
+  product: Snapchat Ads MCP Server
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://mcp.snapchat.com/authorize
+    tokenUrl: https://mcp.snapchat.com/token
+    pkce: S256
+    scopes:
+    - snapads.read
+  resource: https://mcp.snapchat.com/ads
+  token_endpoint_auth_method: none
+  dynamic_client_registration: false
+  description: >-
+    Separate authorization server for the hosted MCP endpoint. Client ids are registered by Snap per
+    agent vendor (claude-snap-ads, codex-snap-ads, chatgpt-snap-ads, antigravity-snap-ads,
+    gemini-snap-ads) — advertisers cannot register their own, and other client ids are rejected.
+    Approval is two-stage: an org Admin or Business Admin approves the agent for the organization,
+    then each member authorizes individually.
+  revocation: https://accounts.snapchat.com/v2/manage-apps
+  sources:
+  - https://developers.snap.com/marketing-api/Ads-MCP/Introduction
+  - https://mcp.snapchat.com/.well-known/oauth-authorization-server/ads
 - name: accessToken
   type: apiKey
   in: query
   parameter: access_token
-  description: Static long-lived access token generated from the Business Details page of Ads
-    Manager.
+  product: Snapchat Conversions API
+  description: >-
+    Static long-lived access token generated from the Business Details page of Ads Manager, passed
+    as a query parameter. Accepted alongside OAuth bearer tokens on the Conversions API and its
+    /events/validate test endpoint, provided the pixel or app is owned by the organization that
+    generated the token.
+  risk: >-
+    A long-lived bearer credential in a URL leaks into access logs, browser history and Referer
+    headers. Prefer the OAuth flow where the integration can support it.
   sources:
-  - openapi/snapchat-conversions-api-openapi.yml
+  - openapi/_original/snapchat-conversions-api-openapi.yml
+  - https://developers.snap.com/marketing-api/Conversions-API/GetStarted
 - name: bearerAuth
   type: http
   scheme: bearer
-  description: Bearer access token obtained via the OAuth 2.0 authorization code flow. Tokens
-    expire after 3600 seconds.
+  product: Login Kit profile API
+  description: Bearer access token from the Login Kit OAuth flow, used against https://kit.snapchat.com/v1/me.
   sources:
-  - openapi/snapchat-login-kit-openapi.yml
+  - openapi/_original/snapchat-login-kit-openapi.yml
+scopes: scopes/snapchat-scopes.yml
+notes:
+- No OpenID Connect layer. /.well-known/openid-configuration 404s on accounts.snapchat.com, snapchat.com and mcp.snapchat.com.
+- No mutual TLS, no HTTP signature scheme, no request signing.
+- >-
+  Roles, not scopes, carry most Marketing API authorization. Business Manager roles (including
+  agency_admin and agency_member, added 2026-07-01) determine what an authorized token can reach.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

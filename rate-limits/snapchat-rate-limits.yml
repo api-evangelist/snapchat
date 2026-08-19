@@ -4,7 +4,13 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Snapchat
 providerId: snapchat
 created: '2026-05-04'
-modified: '2026-05-05'
+# 2026-08-13: upgraded generated -> searched. Re-fetched
+# https://developers.snap.com/marketing-api/Ads-API/rate-limits and confirmed both published
+# numbers verbatim ("the App is able to support an overall average volume of 20 requests/second,
+# individual Access tokens issued by the App can make requests at an average of 10 requests/second")
+# and the 429 guidance. Also confirmed the negative: Snap documents NO rate-limit response headers.
+method: searched
+modified: '2026-08-13'
 reconciled: true
 tags:
   - Advertising
@@ -17,11 +23,22 @@ description: Snap publishes two-level rate limits on its Marketing API. App-scop
   Access Token. When either average is exceeded the API returns HTTP 429 and Snap recommends slowing the
   request rate. Snap does not document specific Retry-After or X-RateLimit headers in the published rate-limits
   page.
+limit_count: 2
 sources:
-  - https://developers.snap.com/api/marketing-api/Ads-API/rate-limits
+  - https://developers.snap.com/marketing-api/Ads-API/rate-limits
 responseCodes:
   throttled: 429
   quotaExceeded: 429
+headers:
+  request: []
+  response: []
+  retry_after: false
+  note: >-
+    Confirmed absent 2026-08-13. Snap's rate-limits page publishes the caps and the 429 but names no
+    X-RateLimit-*, RateLimit-* (RFC 9239 draft) or Retry-After header, and none appears in any of
+    the 13 OpenAPI files in this repo. A client has no runtime signal of remaining quota and cannot
+    compute a correct backoff delay from the response — it only learns it is throttled after the
+    fact.
 limits:
   - name: Marketing API - Application scope
     scope: application

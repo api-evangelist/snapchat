@@ -1,19 +1,117 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/snapchat-ads-api-openapi.yml
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://developers.snap.com/snap-kit/login-kit/overview#scopes,
+  https://developers.snap.com/marketing-api/Ads-MCP/Introduction,
+  https://mcp.snapchat.com/.well-known/oauth-authorization-server/ads, openapi/*.yml
+docs: https://developers.snap.com/snap-kit/login-kit/overview#scopes
+provider: Snapchat
+providerId: snapchat
+description: >-
+  Snap's OAuth scope surface is deliberately narrow and splits across three authorization servers.
+  Login Kit publishes four fully-qualified URI scopes covering identity only — Snap states plainly
+  that Login Kit "does not provide access to personal user data, such as private messages, shared
+  content or contacts". The Marketing API is coarse: one scope for the whole ads surface, with real
+  authorization carried by Business Manager ROLES rather than scopes. The Ads MCP server has
+  exactly one scope, snapads.read, matching its read-only release.
 schemes:
-- name: bearerAuth
-  source: openapi/snapchat-ads-api-openapi.yml
+- name: loginKitOAuth
+  authorizationUrl: https://accounts.snapchat.com/accounts/oauth2/auth
+  tokenUrl: https://accounts.snapchat.com/login/oauth2/access_token
   flows:
-  - flow: authorizationCode
-    authorizationUrl: https://accounts.snapchat.com/accounts/oauth2/auth
-    tokenUrl: https://accounts.snapchat.com/login/oauth2/access_token
-  description: OAuth 2.0 authorization. Access tokens are obtained via the authorization code
-    flow and expire after 3600 seconds. Refresh tokens can be used to obtain new access tokens.
+  - authorizationCode
+  - implicit
+  pkce: S256
+  source: https://developers.snap.com/snap-kit/login-kit/overview
+- name: bearerAuth
+  authorizationUrl: https://accounts.snapchat.com/accounts/oauth2/auth
+  tokenUrl: https://accounts.snapchat.com/login/oauth2/access_token
+  flows:
+  - authorizationCode
+  source: openapi/snapchat-ads-api-openapi.yml
+- name: mcpOAuth
+  authorizationUrl: https://mcp.snapchat.com/authorize
+  tokenUrl: https://mcp.snapchat.com/token
+  flows:
+  - authorizationCode
+  pkce: S256
+  source: https://mcp.snapchat.com/.well-known/oauth-authorization-server/ads
 scopes:
+- scope: https://auth.snapchat.com/oauth2/api/user.display_name
+  product: Login Kit
+  description: Grants access to the user's display name.
+  user_toggleable: false
+  flows:
+  - authorizationCode
+  - implicit
+  sources:
+  - https://developers.snap.com/snap-kit/login-kit/overview
+- scope: https://auth.snapchat.com/oauth2/api/user.external_id
+  product: Login Kit
+  description: >-
+    Grants access to a unique app-specific user ID. Pseudonymous and scoped per application — the
+    same Snapchatter has a different external_id in every integrating app.
+  user_toggleable: false
+  flows:
+  - authorizationCode
+  - implicit
+  sources:
+  - https://developers.snap.com/snap-kit/login-kit/overview
+- scope: https://auth.snapchat.com/oauth2/api/user.bitmoji.avatar
+  product: Login Kit
+  description: Grants access to the user's Bitmoji avatar.
+  user_toggleable: true
+  flows:
+  - authorizationCode
+  - implicit
+  sources:
+  - https://developers.snap.com/snap-kit/login-kit/overview
+- scope: https://auth.snapchat.com/oauth2/api/camkit_lens_push_to_device
+  product: Camera Kit
+  description: >-
+    Enables Lens Push-to-Device for Camera Kit-enabled apps. Automatically available to apps with
+    Camera Kit enabled and cannot be toggled by users.
+  user_toggleable: false
+  conditional: Available only to applications with Camera Kit enabled.
+  sources:
+  - https://developers.snap.com/snap-kit/login-kit/overview
+- scope: https://auth.snapchat.com/oauth2/api/user
+  product: Login Kit
+  description: >-
+    Parent scope value observed in Snap's own documented token-endpoint response examples
+    (`"scope": "https://auth.snapchat.com/oauth2/api/user"`). Not listed in the scope table; it
+    appears to be the granted-scope form returned after exchange rather than a scope to request.
+  user_toggleable: null
+  note: Recorded because it appears verbatim in the docs, flagged because the docs do not define it.
+  sources:
+  - https://developers.snap.com/snap-kit/login-kit/overview
+- scope: snapads.read
+  product: Snapchat Ads MCP Server
+  description: >-
+    Read-only access to authorized Snapchat Ads data through https://mcp.snapchat.com/ads. The only
+    scope the MCP authorization server accepts — Snap's own docs warn that omitting it causes the
+    bridge to request a default set the server rejects.
+  flows:
+  - authorizationCode
+  sources:
+  - https://developers.snap.com/marketing-api/Ads-MCP/connect-an-agent
 - scope: snapchat-marketing-api
-  description: Access to the Snapchat Marketing API
+  product: Snapchat Marketing API
+  description: >-
+    Single coarse scope covering the entire Marketing API surface — organizations, ad accounts,
+    campaigns, ad squads, ads, creatives, media, audience segments, funding sources and
+    measurement. There is no read/write split and no per-resource scope.
   flows:
   - authorizationCode
   sources:
   - openapi/snapchat-ads-api-openapi.yml
+scope_count: 7
+authorization_model_note: >-
+  Scopes are not where Marketing API authorization actually lives. Snap states "the access token
+  reflects the user's permissions, so API calls are scoped to what that user can access" — the
+  effective permission set comes from Business Manager roles (admin, member, and since 2026-07-01
+  agency_admin and agency_member), not from the OAuth scope string. A least-privilege review of a
+  Snap integration has to look at roles, not at the scopes requested.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

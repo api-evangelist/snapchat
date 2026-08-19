@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snapchat Ads Ad Accounts Funding Sources API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://accounts.snapchat.com/accounts/oauth2/auth",
+      "accessTokenUrl": "https://accounts.snapchat.com/login/oauth2/access_token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Funding Sources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Funding Sources for an Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/organizations/:organization_id/fundingsources",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the organization"
+              }
+            ]
+          },
+          "docs": "Retrieves all funding sources associated with the specified organization, including credit cards, PayPal, and lines of credit."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

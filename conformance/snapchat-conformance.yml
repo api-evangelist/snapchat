@@ -1,0 +1,154 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://developers.snap.com/marketing-api/Ads-API/authentication,
+  https://developers.snap.com/snap-kit/login-kit/overview,
+  https://developers.snap.com/marketing-api/Ads-MCP/Introduction,
+  probes of https://mcp.snapchat.com/.well-known/*, openapi/*.yml
+provider: Snapchat
+providerId: snapchat
+description: >-
+  Cross-cutting standards assertion for Snapchat's developer surface. Snap conforms strongly on the
+  OAuth 2.0 family — authorization code with PKCE S256 on both Login Kit and the Ads MCP server,
+  plus a correctly served RFC 8414 / RFC 9728 metadata pair and an RFC 9116 security.txt. It does
+  not conform on HTTP error semantics: the Marketing API wraps every response in its own
+  request_status envelope and returns 200 for partial failures, so RFC 9457 problem+json is absent.
+  Every entry below carries the evidence it was judged on.
+standards:
+- id: oauth2
+  name: OAuth 2.0 (RFC 6749)
+  conforms: true
+  evidence: >-
+    Marketing API authenticates with OAuth 2.0 bearer access tokens
+    (https://developers.snap.com/marketing-api/Ads-API/authentication). Login Kit is described by
+    Snap as "Snap's implementation of the OAuth 2.0 standard" with authorization code, server-side
+    authorization code, and implicit grant flows.
+- id: oauth2-pkce
+  name: PKCE (RFC 7636)
+  conforms: true
+  evidence: >-
+    Login Kit documents code_challenge / code_challenge_method=S256 as required parameters for
+    public clients. The Ads MCP authorization server metadata advertises
+    code_challenge_methods_supported ["S256"].
+- id: oauth2-authorization-server-metadata
+  name: OAuth 2.0 Authorization Server Metadata (RFC 8414)
+  conforms: true
+  partial: true
+  evidence: >-
+    https://mcp.snapchat.com/.well-known/oauth-authorization-server/ads returns 200 with issuer,
+    authorization_endpoint, token_endpoint, response_types_supported, grant_types_supported,
+    code_challenge_methods_supported and token_endpoint_auth_methods_supported. PARTIAL because it
+    covers only the MCP resource — accounts.snapchat.com, the authorization server for Login Kit
+    and the Marketing API, 404s on the same path.
+- id: oauth2-protected-resource-metadata
+  name: OAuth 2.0 Protected Resource Metadata (RFC 9728)
+  conforms: true
+  evidence: >-
+    https://mcp.snapchat.com/.well-known/oauth-protected-resource/ads returns 200, and an
+    unauthenticated POST to https://mcp.snapchat.com/ads returns 401 with
+    WWW-Authenticate: Bearer resource_metadata="..." pointing at it.
+- id: oauth2-dynamic-client-registration
+  name: OAuth 2.0 Dynamic Client Registration (RFC 7591)
+  conforms: false
+  evidence: >-
+    Snap states plainly for the Ads MCP server: "This server supports neither dynamic client
+    registration nor OpenID Connect." Client ids are pre-registered by Snap per agent vendor.
+- id: oidc
+  name: OpenID Connect
+  conforms: false
+  evidence: >-
+    No /.well-known/openid-configuration on accounts.snapchat.com (404), snapchat.com (404) or
+    mcp.snapchat.com (404). Login Kit returns no id_token; identity is read from GET /me on
+    kit.snapchat.com.
+- id: mcp
+  name: Model Context Protocol
+  conforms: true
+  evidence: >-
+    First-party hosted MCP server at https://mcp.snapchat.com/ads over streamable HTTP with OAuth.
+    tools/list returns a spec-correct 401 + resource_metadata challenge. Read-only in the current
+    release. See mcp/snapchat-mcp.yml.
+- id: rfc9116
+  name: security.txt (RFC 9116)
+  conforms: true
+  partial: true
+  evidence: >-
+    https://snapchat.com/.well-known/security.txt returns 200 with Contact, Policy, Canonical,
+    Acknowledgements, Preferred-Languages and Hiring. PARTIAL — the REQUIRED Expires field is
+    missing and the file is served from only one of five Snap hosts.
+- id: rfc9457
+  name: Problem Details for HTTP APIs (RFC 9457)
+  conforms: false
+  evidence: >-
+    No application/problem+json media type appears in any of the 13 OpenAPI files. Errors use a
+    Snap-specific envelope — request_status / sub_request_status / request_id / display_message /
+    error_code — documented at
+    https://developers.snap.com/marketing-api/Ads-API/errors and in api-patterns.
+- id: http-status-semantics
+  name: Correct HTTP status semantics
+  conforms: false
+  evidence: >-
+    The Marketing API returns HTTP 200 for partially-failed batch writes and signals per-entity
+    outcome in sub_request_status, so a client cannot rely on the status line alone. The published
+    error-code table is also unmaintained joke copy ("Bad Request -- Your request sucks",
+    "418 I'm a teapot", "the kitten requested could not be found") carried over from a Slate
+    template.
+- id: pagination
+  name: Cursor pagination
+  conforms: true
+  evidence: >-
+    Documented at https://developers.snap.com/marketing-api/Ads-API/api-patterns — a `limit`
+    parameter between 50 and 1000, a `paging.next_link` absolute URL carrying an opaque `cursor`,
+    and ordering by CreatedAt. Applies to a documented list of 15 collection endpoints.
+- id: idempotency
+  name: Idempotency keys
+  conforms: false
+  evidence: >-
+    No Idempotency-Key header, no idempotency section in the docs, and no idempotency parameter in
+    any OpenAPI operation. Retrying a POST creates a duplicate entity.
+- id: json-api
+  name: JSON:API
+  conforms: false
+  evidence: Custom envelope, not JSON:API document structure.
+- id: odata
+  name: OData
+  conforms: false
+  evidence: No OData metadata or query conventions.
+- id: fhir
+  name: FHIR
+  conforms: false
+  evidence: Not a healthcare API.
+- id: scim
+  name: SCIM
+  conforms: false
+  evidence: >-
+    User and role management (including the agency_admin / agency_member roles added 2026-07-01)
+    is Snap-proprietary via Business Manager, not SCIM.
+- id: fapi
+  name: FAPI
+  conforms: false
+  evidence: Not a financial-grade API profile.
+- id: psd2
+  name: PSD2
+  conforms: false
+  evidence: Not a payments API.
+- id: rfc8594
+  name: Sunset header (RFC 8594)
+  conforms: false
+  evidence: >-
+    No Sunset or Deprecation response header is documented. Deprecations are announced only through
+    the Marketing API Newsletter and the Lens API Deprecation guide. See lifecycle/.
+- id: soc2
+  name: SOC 2
+  conforms: unknown
+  evidence: >-
+    trust.snap.com publishes an assurance profile but names no certification — its
+    certificationSelections list is empty and every attached document is request-gated. See
+    security/snapchat-trust-center.yml. Recorded as unknown rather than false because absence from
+    a public profile is not proof of absence of an audit.
+summary:
+  conformant: 7
+  non_conformant: 10
+  unknown: 1
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

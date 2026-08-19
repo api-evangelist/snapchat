@@ -1,0 +1,474 @@
+{
+  "item": [
+    {
+      "id": "44e3abb6-c884-4c88-8245-523be07e329f",
+      "name": "Audience Segments",
+      "description": {
+        "content": "Audience Segments allow advertisers to define and manage custom audiences for ad targeting, including Snap Audience Match, lookalike audiences, and pixel-based audiences.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "20cf6cdd-ae5b-45ce-8c07-da5c76c26661",
+          "name": "List All Audience Segments for an Ad Account",
+          "request": {
+            "name": "List All Audience Segments for an Ad Account",
+            "description": {
+              "content": "Retrieves all audience segments associated with the specified ad account, including custom audiences, Snap Audience Match segments, and lookalike audiences.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "adaccounts",
+                ":ad_account_id",
+                "segments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ad_account_id",
+                  "description": "(Required) The unique identifier of the ad account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea7d4fba-fe76-4b56-8db8-a3b4dc89e29f",
+              "name": "Successful retrieval of audience segments",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "adaccounts",
+                    ":ad_account_id",
+                    "segments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_account_id",
+                      "description": "(Required) The unique identifier of the ad account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_status\": \"string\",\n  \"request_id\": \"string\",\n  \"segments\": [\n    {\n      \"segment\": {\n        \"id\": \"string\",\n        \"updated_at\": \"1993-08-14T09:51:14.506Z\",\n        \"created_at\": \"1984-11-19T09:53:11.969Z\",\n        \"name\": \"string\",\n        \"ad_account_id\": \"string\",\n        \"description\": \"string\",\n        \"status\": \"ACTIVE\",\n        \"source_type\": \"THIRD_PARTY\",\n        \"approximate_number_users\": 9975\n      }\n    },\n    {\n      \"segment\": {\n        \"id\": \"string\",\n        \"updated_at\": \"2004-09-06T14:03:24.068Z\",\n        \"created_at\": \"1951-06-19T07:56:00.838Z\",\n        \"name\": \"string\",\n        \"ad_account_id\": \"string\",\n        \"description\": \"string\",\n        \"status\": \"ACTIVE\",\n        \"source_type\": \"THIRD_PARTY\",\n        \"approximate_number_users\": 4841\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "474f255b-4722-4ec5-98ac-83db707c35d4",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "adaccounts",
+                    ":ad_account_id",
+                    "segments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_account_id",
+                      "description": "(Required) The unique identifier of the ad account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "14815f38-61a2-46e0-b561-42b346c2652a",
+              "name": "Ad account not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "adaccounts",
+                    ":ad_account_id",
+                    "segments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_account_id",
+                      "description": "(Required) The unique identifier of the ad account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c56ad528-5296-44cf-897b-fc49ccd324d5",
+          "name": "Create an Audience Segment",
+          "request": {
+            "name": "Create an Audience Segment",
+            "description": {
+              "content": "Creates a new audience segment under the specified ad account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "adaccounts",
+                ":ad_account_id",
+                "segments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ad_account_id",
+                  "description": "(Required) The unique identifier of the ad account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"segments\": [\n    {\n      \"id\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"ad_account_id\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"<string>\",\n      \"source_type\": \"<string>\",\n      \"approximate_number_users\": \"<integer>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"ad_account_id\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"<string>\",\n      \"source_type\": \"<string>\",\n      \"approximate_number_users\": \"<integer>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "08c7e6cb-55aa-410f-81e3-88d3b59b8625",
+              "name": "Audience segment created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "adaccounts",
+                    ":ad_account_id",
+                    "segments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_account_id",
+                      "description": "(Required) The unique identifier of the ad account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"segments\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1955-11-11T14:40:47.148Z\",\n      \"created_at\": \"2025-05-25T00:59:39.394Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"PAUSED\",\n      \"source_type\": \"THIRD_PARTY\",\n      \"approximate_number_users\": 1546\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"2005-11-13T10:57:35.254Z\",\n      \"created_at\": \"1969-11-19T05:22:36.373Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"PAUSED\",\n      \"source_type\": \"THIRD_PARTY\",\n      \"approximate_number_users\": 6168\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4f1b90cf-94eb-4036-80d0-e24af7a333c5",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "adaccounts",
+                    ":ad_account_id",
+                    "segments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_account_id",
+                      "description": "(Required) The unique identifier of the ad account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"segments\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1955-11-11T14:40:47.148Z\",\n      \"created_at\": \"2025-05-25T00:59:39.394Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"PAUSED\",\n      \"source_type\": \"THIRD_PARTY\",\n      \"approximate_number_users\": 1546\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"2005-11-13T10:57:35.254Z\",\n      \"created_at\": \"1969-11-19T05:22:36.373Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"PAUSED\",\n      \"source_type\": \"THIRD_PARTY\",\n      \"approximate_number_users\": 6168\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e5452a12-a427-4e41-a71b-d88c4d8e85cf",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "adaccounts",
+                    ":ad_account_id",
+                    "segments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_account_id",
+                      "description": "(Required) The unique identifier of the ad account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"segments\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1955-11-11T14:40:47.148Z\",\n      \"created_at\": \"2025-05-25T00:59:39.394Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"PAUSED\",\n      \"source_type\": \"THIRD_PARTY\",\n      \"approximate_number_users\": 1546\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"2005-11-13T10:57:35.254Z\",\n      \"created_at\": \"1969-11-19T05:22:36.373Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"PAUSED\",\n      \"source_type\": \"THIRD_PARTY\",\n      \"approximate_number_users\": 6168\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://adsapi.snapchat.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "snapchat-marketing-api"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://accounts.snapchat.com/login/oauth2/access_token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://accounts.snapchat.com/accounts/oauth2/auth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "70410d3c-0b6c-4c63-9893-086e655d7077",
+    "name": "Snapchat Ads Ad Accounts Audience Segments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Snapchat Ads API allows developers to programmatically create, manage, and optimize advertising campaigns on the Snapchat platform. It provides endpoints for managing organizations, ad accounts, campaigns, ad squads, ads, creatives, media, funding sources, audience segments, and measurement reporting. The API supports the full advertising lifecycle from campaign setup through reporting and optimization.\n\nContact Support:\n Name: Snap for Developers",
+      "type": "text/plain"
+    }
+  }
+}

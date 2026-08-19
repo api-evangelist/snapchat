@@ -4,7 +4,19 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Snapchat
 providerId: snapchat
 created: '2026-05-04'
-modified: '2026-05-05'
+# 2026-08-13: upgraded generated -> searched. Re-checked the developer portal and
+# developers.snap.com/llms.txt for any API pricing, plan, quota-tier or metered-billing page.
+# There is none: Snap publishes no developer plan SKU for the Marketing API, Conversions API,
+# Login Kit, Creative Kit, Camera Kit, Lens Studio or the Ads MCP server. Access is gated on a
+# Business Manager account, not on a paid tier, and the only money in the loop is auction ad spend
+# invoiced through Snap Business Manager. plan_count is 1 because "free developer access" is the
+# one real access tier, not because a priced plan was found.
+method: searched
+plan_count: 1
+plan_note: >-
+  No paid API plan exists. The single entry below records free, self-serve programmatic access.
+  Ad spend is auction-priced and billed outside any developer plan.
+modified: '2026-08-13'
 reconciled: true
 tags:
   - Advertising
@@ -18,8 +30,8 @@ description: Snapchat does not publish a paid pricing tier for its Marketing API
   and Snap Business Manager accounts. Cost is incurred only when running paid ads (auction-based) and
   is invoiced through Snap Business Manager rather than a developer plan SKU.
 sources:
-  - https://developers.snap.com/api/marketing-api/Ads-API/rate-limits
-  - https://developers.snap.com/api/marketing-api/Ads-API/getting-started
+  - https://developers.snap.com/marketing-api/Ads-API/rate-limits
+  - https://developers.snap.com/marketing-api/home
 plans:
   - id: snapchat-developer-access
     name: Developer Access

@@ -1,0 +1,113 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snapchat Ads Ad Accounts OAuth API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://accounts.snapchat.com/accounts/oauth2/auth",
+      "accessTokenUrl": "https://accounts.snapchat.com/login/oauth2/access_token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OAuth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authorize a User via Snapchat",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/accounts/oauth2/auth",
+            "params": [
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "The OAuth client ID assigned to the application."
+              },
+              {
+                "name": "redirect_uri",
+                "value": "",
+                "type": "query",
+                "description": "The URI to redirect the user to after authorization. Must match one of the registered redirect URIs."
+              },
+              {
+                "name": "response_type",
+                "value": "",
+                "type": "query",
+                "description": "The OAuth response type. Use 'code' for authorization code flow or 'token' for implicit flow."
+              },
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query",
+                "description": "Space-separated list of requested scopes defining what user data the application wants access to."
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "An opaque value used to maintain state between the request and callback for CSRF protection."
+              }
+            ]
+          },
+          "docs": "Redirects the user to the Snapchat authorization page where they can grant permission to the application. This is the initial step in the OAuth 2.0 authorization code flow. After authorization, the user is redirected back to the specified redirect URI with an authorization code."
+        },
+        {
+          "info": {
+            "name": "Exchange Authorization Code for Tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://adsapi.snapchat.com/v1/login/oauth2/access_token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "grant_type",
+                  "value": ""
+                },
+                {
+                  "name": "client_id",
+                  "value": ""
+                },
+                {
+                  "name": "client_secret",
+                  "value": ""
+                },
+                {
+                  "name": "code",
+                  "value": ""
+                },
+                {
+                  "name": "redirect_uri",
+                  "value": ""
+                },
+                {
+                  "name": "refresh_token",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Exchanges an authorization code for an access token and refresh token. Access tokens expire after 3600 seconds (60 minutes). This endpoint is also used to refresh expired access tokens using a refresh token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

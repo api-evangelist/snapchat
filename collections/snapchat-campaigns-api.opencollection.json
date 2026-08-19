@@ -1,0 +1,133 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snapchat Ads Ad Accounts Campaigns API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://accounts.snapchat.com/accounts/oauth2/auth",
+      "accessTokenUrl": "https://accounts.snapchat.com/login/oauth2/access_token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Campaigns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Campaigns for an Ad Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/adaccounts/:ad_account_id/campaigns",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad account"
+              }
+            ]
+          },
+          "docs": "Retrieves all campaigns associated with the specified ad account."
+        },
+        {
+          "info": {
+            "name": "Create a Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://adsapi.snapchat.com/v1/adaccounts/:ad_account_id/campaigns",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad account"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new campaign under the specified ad account."
+        },
+        {
+          "info": {
+            "name": "Get a Specific Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/campaigns/:campaign_id",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the campaign"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific campaign by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://adsapi.snapchat.com/v1/campaigns/:campaign_id",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the campaign"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing campaign."
+        },
+        {
+          "info": {
+            "name": "Delete a Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://adsapi.snapchat.com/v1/campaigns/:campaign_id",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the campaign"
+              }
+            ]
+          },
+          "docs": "Deletes a specific campaign by its ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

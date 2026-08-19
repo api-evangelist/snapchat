@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snapchat Ads Ad Accounts Organizations API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://accounts.snapchat.com/accounts/oauth2/auth",
+      "accessTokenUrl": "https://accounts.snapchat.com/login/oauth2/access_token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/me/organizations"
+          },
+          "docs": "Retrieves all organizations the authenticated user has access to, along with the ad accounts beneath each organization."
+        },
+        {
+          "info": {
+            "name": "Get a Specific Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/organizations/:organization_id",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the organization"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific organization by its ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,644 +1,27 @@
 {
   "item": [
     {
-      "id": "25e24d3e-783a-4065-920f-8e6fe6722093",
-      "name": "Ads",
+      "id": "91ad62ee-ad1d-4a3a-a9b7-56c322d206f4",
+      "name": "Campaigns",
       "description": {
-        "content": "Ads are the individual ad units that are delivered to users. Each Ad belongs to an Ad Squad and references a Creative.",
+        "content": "Campaigns define a business objective and organize Ad Squads, allowing advertisers to view aggregate statistics.",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "b718b26e-4038-4d3c-90cd-9b484683dc6b",
-          "name": "List All Ads for an Ad Squad",
+          "id": "973317de-aed4-48c5-b78a-af744f30059a",
+          "name": "List All Campaigns for an Ad Account",
           "request": {
-            "name": "List All Ads for an Ad Squad",
+            "name": "List All Campaigns for an Ad Account",
             "description": {
-              "content": "Retrieves all ads within the specified ad squad.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "adsquads",
-                ":ad_squad_id",
-                "ads"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ad_squad_id",
-                  "description": "(Required) The unique identifier of the ad squad"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "bf66a6e9-e3e3-49d5-bbad-c6c64cda33f3",
-              "name": "Successful retrieval of ads",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "adsquads",
-                    ":ad_squad_id",
-                    "ads"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ad_squad_id",
-                      "description": "(Required) The unique identifier of the ad squad"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"request_status\": \"string\",\n  \"request_id\": \"string\",\n  \"ads\": [\n    {\n      \"ad\": {\n        \"id\": \"string\",\n        \"updated_at\": \"1997-07-27T05:59:56.518Z\",\n        \"created_at\": \"1961-10-02T18:39:11.607Z\",\n        \"name\": \"string\",\n        \"ad_squad_id\": \"string\",\n        \"creative_id\": \"string\",\n        \"status\": \"PAUSED\",\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"ad\": {\n        \"id\": \"string\",\n        \"updated_at\": \"1989-09-05T19:29:56.396Z\",\n        \"created_at\": \"2023-02-22T10:43:50.316Z\",\n        \"name\": \"string\",\n        \"ad_squad_id\": \"string\",\n        \"creative_id\": \"string\",\n        \"status\": \"ACTIVE\",\n        \"type\": \"string\"\n      }\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2f968769-8232-4bcf-8254-c53d92f15958",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "adsquads",
-                    ":ad_squad_id",
-                    "ads"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ad_squad_id",
-                      "description": "(Required) The unique identifier of the ad squad"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "2272cea0-9ad3-4017-93b0-42477e9258a9",
-              "name": "Ad squad not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "adsquads",
-                    ":ad_squad_id",
-                    "ads"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ad_squad_id",
-                      "description": "(Required) The unique identifier of the ad squad"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "6658d47b-69b1-4969-b2bf-73d1cc0c283e",
-          "name": "Create an Ad",
-          "request": {
-            "name": "Create an Ad",
-            "description": {
-              "content": "Creates a new ad within the specified ad squad.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "adsquads",
-                ":ad_squad_id",
-                "ads"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ad_squad_id",
-                  "description": "(Required) The unique identifier of the ad squad"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"ads\": [\n    {\n      \"id\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"ad_squad_id\": \"<string>\",\n      \"creative_id\": \"<string>\",\n      \"status\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"ad_squad_id\": \"<string>\",\n      \"creative_id\": \"<string>\",\n      \"status\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "59e398fe-4653-45bc-829b-f4cf6f07836d",
-              "name": "Ad created successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "adsquads",
-                    ":ad_squad_id",
-                    "ads"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ad_squad_id",
-                      "description": "(Required) The unique identifier of the ad squad"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"ads\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1955-01-21T16:43:28.299Z\",\n      \"created_at\": \"1954-08-19T23:38:12.002Z\",\n      \"name\": \"string\",\n      \"ad_squad_id\": \"string\",\n      \"creative_id\": \"string\",\n      \"status\": \"ACTIVE\",\n      \"type\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"2021-09-15T22:14:50.637Z\",\n      \"created_at\": \"2004-02-20T02:37:20.113Z\",\n      \"name\": \"string\",\n      \"ad_squad_id\": \"string\",\n      \"creative_id\": \"string\",\n      \"status\": \"PAUSED\",\n      \"type\": \"string\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "0b4ee6e5-6b77-4d7b-8b52-0cbf86e8f685",
-              "name": "Bad request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "adsquads",
-                    ":ad_squad_id",
-                    "ads"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ad_squad_id",
-                      "description": "(Required) The unique identifier of the ad squad"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"ads\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1955-01-21T16:43:28.299Z\",\n      \"created_at\": \"1954-08-19T23:38:12.002Z\",\n      \"name\": \"string\",\n      \"ad_squad_id\": \"string\",\n      \"creative_id\": \"string\",\n      \"status\": \"ACTIVE\",\n      \"type\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"2021-09-15T22:14:50.637Z\",\n      \"created_at\": \"2004-02-20T02:37:20.113Z\",\n      \"name\": \"string\",\n      \"ad_squad_id\": \"string\",\n      \"creative_id\": \"string\",\n      \"status\": \"PAUSED\",\n      \"type\": \"string\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "5a7da068-9ffd-49e6-ba74-29c32562d44b",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "adsquads",
-                    ":ad_squad_id",
-                    "ads"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ad_squad_id",
-                      "description": "(Required) The unique identifier of the ad squad"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"ads\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1955-01-21T16:43:28.299Z\",\n      \"created_at\": \"1954-08-19T23:38:12.002Z\",\n      \"name\": \"string\",\n      \"ad_squad_id\": \"string\",\n      \"creative_id\": \"string\",\n      \"status\": \"ACTIVE\",\n      \"type\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"2021-09-15T22:14:50.637Z\",\n      \"created_at\": \"2004-02-20T02:37:20.113Z\",\n      \"name\": \"string\",\n      \"ad_squad_id\": \"string\",\n      \"creative_id\": \"string\",\n      \"status\": \"PAUSED\",\n      \"type\": \"string\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "b6ddf5f8-e648-443e-8458-a43b801e6fa6",
-          "name": "List All Ads for a Campaign",
-          "request": {
-            "name": "List All Ads for a Campaign",
-            "description": {
-              "content": "Retrieves all ads under the specified campaign.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "campaigns",
-                ":campaign_id",
-                "ads"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "campaign_id",
-                  "description": "(Required) The unique identifier of the campaign"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "e7a879d5-a84b-4123-a725-ef207550337a",
-              "name": "Successful retrieval of ads",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "campaigns",
-                    ":campaign_id",
-                    "ads"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "campaign_id",
-                      "description": "(Required) The unique identifier of the campaign"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"request_status\": \"string\",\n  \"request_id\": \"string\",\n  \"ads\": [\n    {\n      \"ad\": {\n        \"id\": \"string\",\n        \"updated_at\": \"1997-07-27T05:59:56.518Z\",\n        \"created_at\": \"1961-10-02T18:39:11.607Z\",\n        \"name\": \"string\",\n        \"ad_squad_id\": \"string\",\n        \"creative_id\": \"string\",\n        \"status\": \"PAUSED\",\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"ad\": {\n        \"id\": \"string\",\n        \"updated_at\": \"1989-09-05T19:29:56.396Z\",\n        \"created_at\": \"2023-02-22T10:43:50.316Z\",\n        \"name\": \"string\",\n        \"ad_squad_id\": \"string\",\n        \"creative_id\": \"string\",\n        \"status\": \"ACTIVE\",\n        \"type\": \"string\"\n      }\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2f1c7d01-9bca-4a5c-a74e-28869eca8750",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "campaigns",
-                    ":campaign_id",
-                    "ads"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "campaign_id",
-                      "description": "(Required) The unique identifier of the campaign"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "ff62f155-4d63-487f-b3f3-c6b16b29ff69",
-              "name": "Campaign not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "campaigns",
-                    ":campaign_id",
-                    "ads"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "campaign_id",
-                      "description": "(Required) The unique identifier of the campaign"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "458794a9-d750-470d-876e-0b3e05db1995",
-          "name": "List All Ads for an Ad Account",
-          "request": {
-            "name": "List All Ads for an Ad Account",
-            "description": {
-              "content": "Retrieves all ads under the specified ad account.",
+              "content": "Retrieves all campaigns associated with the specified ad account.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "adaccounts",
                 ":ad_account_id",
-                "ads"
+                "campaigns"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -665,14 +48,14 @@
           },
           "response": [
             {
-              "id": "12d15d67-e9b9-4d09-8e93-ec0145c48bd1",
-              "name": "Successful retrieval of ads",
+              "id": "f92be3b6-ea59-480c-b7ca-1837c70b19fa",
+              "name": "Successful retrieval of campaigns",
               "originalRequest": {
                 "url": {
                   "path": [
                     "adaccounts",
                     ":ad_account_id",
-                    "ads"
+                    "campaigns"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -713,19 +96,19 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"request_status\": \"string\",\n  \"request_id\": \"string\",\n  \"ads\": [\n    {\n      \"ad\": {\n        \"id\": \"string\",\n        \"updated_at\": \"1997-07-27T05:59:56.518Z\",\n        \"created_at\": \"1961-10-02T18:39:11.607Z\",\n        \"name\": \"string\",\n        \"ad_squad_id\": \"string\",\n        \"creative_id\": \"string\",\n        \"status\": \"PAUSED\",\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"ad\": {\n        \"id\": \"string\",\n        \"updated_at\": \"1989-09-05T19:29:56.396Z\",\n        \"created_at\": \"2023-02-22T10:43:50.316Z\",\n        \"name\": \"string\",\n        \"ad_squad_id\": \"string\",\n        \"creative_id\": \"string\",\n        \"status\": \"ACTIVE\",\n        \"type\": \"string\"\n      }\n    }\n  ]\n}",
+              "body": "{\n  \"request_status\": \"string\",\n  \"request_id\": \"string\",\n  \"campaigns\": [\n    {\n      \"campaign\": {\n        \"id\": \"string\",\n        \"updated_at\": \"1975-11-05T00:28:04.596Z\",\n        \"created_at\": \"2024-10-18T14:32:37.744Z\",\n        \"name\": \"string\",\n        \"ad_account_id\": \"string\",\n        \"status\": \"ACTIVE\",\n        \"daily_budget_micro\": 272,\n        \"lifetime_spend_cap_micro\": 697,\n        \"start_time\": \"2018-05-01T22:48:02.523Z\",\n        \"end_time\": \"2012-02-25T02:46:38.463Z\",\n        \"objective_v2_properties\": {\n          \"objective\": \"string\"\n        }\n      }\n    },\n    {\n      \"campaign\": {\n        \"id\": \"string\",\n        \"updated_at\": \"1996-01-04T23:50:15.577Z\",\n        \"created_at\": \"1996-05-25T15:29:33.426Z\",\n        \"name\": \"string\",\n        \"ad_account_id\": \"string\",\n        \"status\": \"PAUSED\",\n        \"daily_budget_micro\": 5349,\n        \"lifetime_spend_cap_micro\": 1196,\n        \"start_time\": \"1976-05-26T05:02:08.626Z\",\n        \"end_time\": \"2025-09-28T13:20:01.781Z\",\n        \"objective_v2_properties\": {\n          \"objective\": \"string\"\n        }\n      }\n    }\n  ]\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "6135ab72-6298-4ab2-b738-89869580dae8",
+              "id": "c1bdd827-749e-4d47-80de-bc195a515577",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "adaccounts",
                     ":ad_account_id",
-                    "ads"
+                    "campaigns"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -767,14 +150,14 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "ec42f146-d704-4d36-b969-a05af2d88f76",
+              "id": "836474c3-4215-4736-acc3-7830e6715928",
               "name": "Ad account not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "adaccounts",
                     ":ad_account_id",
-                    "ads"
+                    "campaigns"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -822,18 +205,19 @@
           }
         },
         {
-          "id": "d03792e1-8c1d-45cb-a646-3348ed2b4423",
-          "name": "Get a Specific Ad",
+          "id": "9a96e2f6-f788-4e0b-9a75-9709783e8697",
+          "name": "Create a Campaign",
           "request": {
-            "name": "Get a Specific Ad",
+            "name": "Create a Campaign",
             "description": {
-              "content": "Retrieves details for a specific ad by its ID.",
+              "content": "Creates a new campaign under the specified ad account.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "ads",
-                ":ad_id"
+                "adaccounts",
+                ":ad_account_id",
+                "campaigns"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -844,200 +228,8 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "ad_id",
-                  "description": "(Required) The unique identifier of the ad"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "568221d5-5e15-4ab5-86fa-7f093487f9f4",
-              "name": "Successful retrieval of ad",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "ads",
-                    ":ad_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ad_id",
-                      "description": "(Required) The unique identifier of the ad"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"request_status\": \"string\",\n  \"request_id\": \"string\",\n  \"ads\": [\n    {\n      \"ad\": {\n        \"id\": \"string\",\n        \"updated_at\": \"1997-07-27T05:59:56.518Z\",\n        \"created_at\": \"1961-10-02T18:39:11.607Z\",\n        \"name\": \"string\",\n        \"ad_squad_id\": \"string\",\n        \"creative_id\": \"string\",\n        \"status\": \"PAUSED\",\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"ad\": {\n        \"id\": \"string\",\n        \"updated_at\": \"1989-09-05T19:29:56.396Z\",\n        \"created_at\": \"2023-02-22T10:43:50.316Z\",\n        \"name\": \"string\",\n        \"ad_squad_id\": \"string\",\n        \"creative_id\": \"string\",\n        \"status\": \"ACTIVE\",\n        \"type\": \"string\"\n      }\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "a940c89e-60be-45e3-95d1-cb0c49b60b48",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "ads",
-                    ":ad_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ad_id",
-                      "description": "(Required) The unique identifier of the ad"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "9e4f2722-88ef-494c-a685-b42fee4b58a9",
-              "name": "Ad not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "ads",
-                    ":ad_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "ad_id",
-                      "description": "(Required) The unique identifier of the ad"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "ddabc673-b249-48ca-bda2-a73b2cd411dc",
-          "name": "Update an Ad",
-          "request": {
-            "name": "Update an Ad",
-            "description": {
-              "content": "Updates an existing ad.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "ads",
-                ":ad_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "ad_id",
-                  "description": "(Required) The unique identifier of the ad"
+                  "key": "ad_account_id",
+                  "description": "(Required) The unique identifier of the ad account"
                 }
               ]
             },
@@ -1045,13 +237,17 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
               }
             ],
-            "method": "PUT",
+            "method": "POST",
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"ads\": [\n    {\n      \"id\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"ad_squad_id\": \"<string>\",\n      \"creative_id\": \"<string>\",\n      \"status\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"ad_squad_id\": \"<string>\",\n      \"creative_id\": \"<string>\",\n      \"status\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+              "raw": "{\n  \"campaigns\": [\n    {\n      \"id\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"ad_account_id\": \"<string>\",\n      \"status\": \"<string>\",\n      \"daily_budget_micro\": \"<long>\",\n      \"lifetime_spend_cap_micro\": \"<long>\",\n      \"start_time\": \"<dateTime>\",\n      \"end_time\": \"<dateTime>\",\n      \"objective_v2_properties\": {\n        \"objective\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"ad_account_id\": \"<string>\",\n      \"status\": \"<string>\",\n      \"daily_budget_micro\": \"<long>\",\n      \"lifetime_spend_cap_micro\": \"<long>\",\n      \"start_time\": \"<dateTime>\",\n      \"end_time\": \"<dateTime>\",\n      \"objective_v2_properties\": {\n        \"objective\": \"<string>\"\n      }\n    }\n  ]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1061,13 +257,14 @@
           },
           "response": [
             {
-              "id": "2d4f0f31-3536-42ff-afc8-0f32b4b1d44b",
-              "name": "Ad updated successfully",
+              "id": "7bf47a55-df3c-4f4d-92e7-bb1c9f845b67",
+              "name": "Campaign created successfully",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "ads",
-                    ":ad_id"
+                    "adaccounts",
+                    ":ad_account_id",
+                    "campaigns"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -1078,8 +275,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "ad_id",
-                      "description": "(Required) The unique identifier of the ad"
+                      "key": "ad_account_id",
+                      "description": "(Required) The unique identifier of the ad account"
                     }
                   ]
                 },
@@ -1091,12 +288,16 @@
                     },
                     "key": "Authorization",
                     "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
                   }
                 ],
-                "method": "PUT",
+                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"ads\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1955-01-21T16:43:28.299Z\",\n      \"created_at\": \"1954-08-19T23:38:12.002Z\",\n      \"name\": \"string\",\n      \"ad_squad_id\": \"string\",\n      \"creative_id\": \"string\",\n      \"status\": \"ACTIVE\",\n      \"type\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"2021-09-15T22:14:50.637Z\",\n      \"created_at\": \"2004-02-20T02:37:20.113Z\",\n      \"name\": \"string\",\n      \"ad_squad_id\": \"string\",\n      \"creative_id\": \"string\",\n      \"status\": \"PAUSED\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+                  "raw": "{\n  \"campaigns\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"2011-10-20T16:26:09.243Z\",\n      \"created_at\": \"1960-07-30T08:46:35.223Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"status\": \"ACTIVE\",\n      \"daily_budget_micro\": 3672,\n      \"lifetime_spend_cap_micro\": 7935,\n      \"start_time\": \"1986-05-28T02:04:50.115Z\",\n      \"end_time\": \"1949-12-30T07:55:09.920Z\",\n      \"objective_v2_properties\": {\n        \"objective\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1984-01-23T20:25:41.877Z\",\n      \"created_at\": \"1969-08-09T21:29:51.502Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"status\": \"PAUSED\",\n      \"daily_budget_micro\": 611,\n      \"lifetime_spend_cap_micro\": 3280,\n      \"start_time\": \"2014-08-20T05:22:48.757Z\",\n      \"end_time\": \"1958-08-29T18:12:45.673Z\",\n      \"objective_v2_properties\": {\n        \"objective\": \"string\"\n      }\n    }\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -1109,21 +310,22 @@
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "text/plain"
+                  "value": "application/json"
                 }
               ],
-              "body": "",
+              "body": "{\n  \"request_status\": \"string\",\n  \"request_id\": \"string\",\n  \"campaigns\": [\n    {\n      \"campaign\": {\n        \"id\": \"string\",\n        \"updated_at\": \"1975-11-05T00:28:04.596Z\",\n        \"created_at\": \"2024-10-18T14:32:37.744Z\",\n        \"name\": \"string\",\n        \"ad_account_id\": \"string\",\n        \"status\": \"ACTIVE\",\n        \"daily_budget_micro\": 272,\n        \"lifetime_spend_cap_micro\": 697,\n        \"start_time\": \"2018-05-01T22:48:02.523Z\",\n        \"end_time\": \"2012-02-25T02:46:38.463Z\",\n        \"objective_v2_properties\": {\n          \"objective\": \"string\"\n        }\n      }\n    },\n    {\n      \"campaign\": {\n        \"id\": \"string\",\n        \"updated_at\": \"1996-01-04T23:50:15.577Z\",\n        \"created_at\": \"1996-05-25T15:29:33.426Z\",\n        \"name\": \"string\",\n        \"ad_account_id\": \"string\",\n        \"status\": \"PAUSED\",\n        \"daily_budget_micro\": 5349,\n        \"lifetime_spend_cap_micro\": 1196,\n        \"start_time\": \"1976-05-26T05:02:08.626Z\",\n        \"end_time\": \"2025-09-28T13:20:01.781Z\",\n        \"objective_v2_properties\": {\n          \"objective\": \"string\"\n        }\n      }\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "_postman_previewlanguage": "json"
             },
             {
-              "id": "d9928991-6272-45b5-8215-7fa8eb2406a5",
-              "name": "Bad request",
+              "id": "5261e49a-6611-4d1d-944f-e85d5917b94f",
+              "name": "Bad request - invalid parameters",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "ads",
-                    ":ad_id"
+                    "adaccounts",
+                    ":ad_account_id",
+                    "campaigns"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -1134,8 +336,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "ad_id",
-                      "description": "(Required) The unique identifier of the ad"
+                      "key": "ad_account_id",
+                      "description": "(Required) The unique identifier of the ad account"
                     }
                   ]
                 },
@@ -1149,10 +351,10 @@
                     "value": "<token>"
                   }
                 ],
-                "method": "PUT",
+                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"ads\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1955-01-21T16:43:28.299Z\",\n      \"created_at\": \"1954-08-19T23:38:12.002Z\",\n      \"name\": \"string\",\n      \"ad_squad_id\": \"string\",\n      \"creative_id\": \"string\",\n      \"status\": \"ACTIVE\",\n      \"type\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"2021-09-15T22:14:50.637Z\",\n      \"created_at\": \"2004-02-20T02:37:20.113Z\",\n      \"name\": \"string\",\n      \"ad_squad_id\": \"string\",\n      \"creative_id\": \"string\",\n      \"status\": \"PAUSED\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+                  "raw": "{\n  \"campaigns\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"2011-10-20T16:26:09.243Z\",\n      \"created_at\": \"1960-07-30T08:46:35.223Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"status\": \"ACTIVE\",\n      \"daily_budget_micro\": 3672,\n      \"lifetime_spend_cap_micro\": 7935,\n      \"start_time\": \"1986-05-28T02:04:50.115Z\",\n      \"end_time\": \"1949-12-30T07:55:09.920Z\",\n      \"objective_v2_properties\": {\n        \"objective\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1984-01-23T20:25:41.877Z\",\n      \"created_at\": \"1969-08-09T21:29:51.502Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"status\": \"PAUSED\",\n      \"daily_budget_micro\": 611,\n      \"lifetime_spend_cap_micro\": 3280,\n      \"start_time\": \"2014-08-20T05:22:48.757Z\",\n      \"end_time\": \"1958-08-29T18:12:45.673Z\",\n      \"objective_v2_properties\": {\n        \"objective\": \"string\"\n      }\n    }\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -1173,13 +375,14 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "a2d893fd-7839-4d0b-ad7b-df863ef0db4d",
+              "id": "0c301cfe-faa2-438f-89f8-4785599de7d8",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "ads",
-                    ":ad_id"
+                    "adaccounts",
+                    ":ad_account_id",
+                    "campaigns"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -1190,8 +393,309 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "ad_id",
-                      "description": "(Required) The unique identifier of the ad"
+                      "key": "ad_account_id",
+                      "description": "(Required) The unique identifier of the ad account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"campaigns\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"2011-10-20T16:26:09.243Z\",\n      \"created_at\": \"1960-07-30T08:46:35.223Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"status\": \"ACTIVE\",\n      \"daily_budget_micro\": 3672,\n      \"lifetime_spend_cap_micro\": 7935,\n      \"start_time\": \"1986-05-28T02:04:50.115Z\",\n      \"end_time\": \"1949-12-30T07:55:09.920Z\",\n      \"objective_v2_properties\": {\n        \"objective\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1984-01-23T20:25:41.877Z\",\n      \"created_at\": \"1969-08-09T21:29:51.502Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"status\": \"PAUSED\",\n      \"daily_budget_micro\": 611,\n      \"lifetime_spend_cap_micro\": 3280,\n      \"start_time\": \"2014-08-20T05:22:48.757Z\",\n      \"end_time\": \"1958-08-29T18:12:45.673Z\",\n      \"objective_v2_properties\": {\n        \"objective\": \"string\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5db1f4f9-9ac4-4597-8ca5-4fe043a2ddc4",
+          "name": "Get a Specific Campaign",
+          "request": {
+            "name": "Get a Specific Campaign",
+            "description": {
+              "content": "Retrieves details for a specific campaign by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "campaigns",
+                ":campaign_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaign_id",
+                  "description": "(Required) The unique identifier of the campaign"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aa5dd740-8249-42be-b37a-8fc55a42e95c",
+              "name": "Successful retrieval of campaign",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    ":campaign_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign_id",
+                      "description": "(Required) The unique identifier of the campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_status\": \"string\",\n  \"request_id\": \"string\",\n  \"campaigns\": [\n    {\n      \"campaign\": {\n        \"id\": \"string\",\n        \"updated_at\": \"1975-11-05T00:28:04.596Z\",\n        \"created_at\": \"2024-10-18T14:32:37.744Z\",\n        \"name\": \"string\",\n        \"ad_account_id\": \"string\",\n        \"status\": \"ACTIVE\",\n        \"daily_budget_micro\": 272,\n        \"lifetime_spend_cap_micro\": 697,\n        \"start_time\": \"2018-05-01T22:48:02.523Z\",\n        \"end_time\": \"2012-02-25T02:46:38.463Z\",\n        \"objective_v2_properties\": {\n          \"objective\": \"string\"\n        }\n      }\n    },\n    {\n      \"campaign\": {\n        \"id\": \"string\",\n        \"updated_at\": \"1996-01-04T23:50:15.577Z\",\n        \"created_at\": \"1996-05-25T15:29:33.426Z\",\n        \"name\": \"string\",\n        \"ad_account_id\": \"string\",\n        \"status\": \"PAUSED\",\n        \"daily_budget_micro\": 5349,\n        \"lifetime_spend_cap_micro\": 1196,\n        \"start_time\": \"1976-05-26T05:02:08.626Z\",\n        \"end_time\": \"2025-09-28T13:20:01.781Z\",\n        \"objective_v2_properties\": {\n          \"objective\": \"string\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dde2af96-b5d0-4282-acb3-3c1e43e4bc2f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    ":campaign_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign_id",
+                      "description": "(Required) The unique identifier of the campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3e859e45-016e-41ef-91f7-551f0a8dde6d",
+              "name": "Campaign not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    ":campaign_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign_id",
+                      "description": "(Required) The unique identifier of the campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c35fdc6-b8f4-4e69-90f9-adf14425cf64",
+          "name": "Update a Campaign",
+          "request": {
+            "name": "Update a Campaign",
+            "description": {
+              "content": "Updates an existing campaign.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "campaigns",
+                ":campaign_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaign_id",
+                  "description": "(Required) The unique identifier of the campaign"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"campaigns\": [\n    {\n      \"id\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"ad_account_id\": \"<string>\",\n      \"status\": \"<string>\",\n      \"daily_budget_micro\": \"<long>\",\n      \"lifetime_spend_cap_micro\": \"<long>\",\n      \"start_time\": \"<dateTime>\",\n      \"end_time\": \"<dateTime>\",\n      \"objective_v2_properties\": {\n        \"objective\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"ad_account_id\": \"<string>\",\n      \"status\": \"<string>\",\n      \"daily_budget_micro\": \"<long>\",\n      \"lifetime_spend_cap_micro\": \"<long>\",\n      \"start_time\": \"<dateTime>\",\n      \"end_time\": \"<dateTime>\",\n      \"objective_v2_properties\": {\n        \"objective\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a37f4cf6-5453-41d1-9062-b82b38eaf2f9",
+              "name": "Campaign updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    ":campaign_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign_id",
+                      "description": "(Required) The unique identifier of the campaign"
                     }
                   ]
                 },
@@ -1208,7 +712,119 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"ads\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1955-01-21T16:43:28.299Z\",\n      \"created_at\": \"1954-08-19T23:38:12.002Z\",\n      \"name\": \"string\",\n      \"ad_squad_id\": \"string\",\n      \"creative_id\": \"string\",\n      \"status\": \"ACTIVE\",\n      \"type\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"2021-09-15T22:14:50.637Z\",\n      \"created_at\": \"2004-02-20T02:37:20.113Z\",\n      \"name\": \"string\",\n      \"ad_squad_id\": \"string\",\n      \"creative_id\": \"string\",\n      \"status\": \"PAUSED\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+                  "raw": "{\n  \"campaigns\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"2011-10-20T16:26:09.243Z\",\n      \"created_at\": \"1960-07-30T08:46:35.223Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"status\": \"ACTIVE\",\n      \"daily_budget_micro\": 3672,\n      \"lifetime_spend_cap_micro\": 7935,\n      \"start_time\": \"1986-05-28T02:04:50.115Z\",\n      \"end_time\": \"1949-12-30T07:55:09.920Z\",\n      \"objective_v2_properties\": {\n        \"objective\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1984-01-23T20:25:41.877Z\",\n      \"created_at\": \"1969-08-09T21:29:51.502Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"status\": \"PAUSED\",\n      \"daily_budget_micro\": 611,\n      \"lifetime_spend_cap_micro\": 3280,\n      \"start_time\": \"2014-08-20T05:22:48.757Z\",\n      \"end_time\": \"1958-08-29T18:12:45.673Z\",\n      \"objective_v2_properties\": {\n        \"objective\": \"string\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f30a360b-233d-429a-9dbf-389c4e522a23",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    ":campaign_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign_id",
+                      "description": "(Required) The unique identifier of the campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"campaigns\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"2011-10-20T16:26:09.243Z\",\n      \"created_at\": \"1960-07-30T08:46:35.223Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"status\": \"ACTIVE\",\n      \"daily_budget_micro\": 3672,\n      \"lifetime_spend_cap_micro\": 7935,\n      \"start_time\": \"1986-05-28T02:04:50.115Z\",\n      \"end_time\": \"1949-12-30T07:55:09.920Z\",\n      \"objective_v2_properties\": {\n        \"objective\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1984-01-23T20:25:41.877Z\",\n      \"created_at\": \"1969-08-09T21:29:51.502Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"status\": \"PAUSED\",\n      \"daily_budget_micro\": 611,\n      \"lifetime_spend_cap_micro\": 3280,\n      \"start_time\": \"2014-08-20T05:22:48.757Z\",\n      \"end_time\": \"1958-08-29T18:12:45.673Z\",\n      \"objective_v2_properties\": {\n        \"objective\": \"string\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "51f3f1ad-de39-46a7-82b7-6291e5db9267",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    ":campaign_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign_id",
+                      "description": "(Required) The unique identifier of the campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"campaigns\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"2011-10-20T16:26:09.243Z\",\n      \"created_at\": \"1960-07-30T08:46:35.223Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"status\": \"ACTIVE\",\n      \"daily_budget_micro\": 3672,\n      \"lifetime_spend_cap_micro\": 7935,\n      \"start_time\": \"1986-05-28T02:04:50.115Z\",\n      \"end_time\": \"1949-12-30T07:55:09.920Z\",\n      \"objective_v2_properties\": {\n        \"objective\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1984-01-23T20:25:41.877Z\",\n      \"created_at\": \"1969-08-09T21:29:51.502Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"status\": \"PAUSED\",\n      \"daily_budget_micro\": 611,\n      \"lifetime_spend_cap_micro\": 3280,\n      \"start_time\": \"2014-08-20T05:22:48.757Z\",\n      \"end_time\": \"1958-08-29T18:12:45.673Z\",\n      \"objective_v2_properties\": {\n        \"objective\": \"string\"\n      }\n    }\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -1229,13 +845,13 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "c3f06ee3-eb2d-4294-b932-2ef9c70fd1bb",
-              "name": "Ad not found",
+              "id": "c4dcf98d-1ebe-4d80-b133-2f66c8a91f7f",
+              "name": "Campaign not found",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "ads",
-                    ":ad_id"
+                    "campaigns",
+                    ":campaign_id"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -1246,8 +862,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "ad_id",
-                      "description": "(Required) The unique identifier of the ad"
+                      "key": "campaign_id",
+                      "description": "(Required) The unique identifier of the campaign"
                     }
                   ]
                 },
@@ -1264,7 +880,7 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"ads\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1955-01-21T16:43:28.299Z\",\n      \"created_at\": \"1954-08-19T23:38:12.002Z\",\n      \"name\": \"string\",\n      \"ad_squad_id\": \"string\",\n      \"creative_id\": \"string\",\n      \"status\": \"ACTIVE\",\n      \"type\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"2021-09-15T22:14:50.637Z\",\n      \"created_at\": \"2004-02-20T02:37:20.113Z\",\n      \"name\": \"string\",\n      \"ad_squad_id\": \"string\",\n      \"creative_id\": \"string\",\n      \"status\": \"PAUSED\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+                  "raw": "{\n  \"campaigns\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"2011-10-20T16:26:09.243Z\",\n      \"created_at\": \"1960-07-30T08:46:35.223Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"status\": \"ACTIVE\",\n      \"daily_budget_micro\": 3672,\n      \"lifetime_spend_cap_micro\": 7935,\n      \"start_time\": \"1986-05-28T02:04:50.115Z\",\n      \"end_time\": \"1949-12-30T07:55:09.920Z\",\n      \"objective_v2_properties\": {\n        \"objective\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1984-01-23T20:25:41.877Z\",\n      \"created_at\": \"1969-08-09T21:29:51.502Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"status\": \"PAUSED\",\n      \"daily_budget_micro\": 611,\n      \"lifetime_spend_cap_micro\": 3280,\n      \"start_time\": \"2014-08-20T05:22:48.757Z\",\n      \"end_time\": \"1958-08-29T18:12:45.673Z\",\n      \"objective_v2_properties\": {\n        \"objective\": \"string\"\n      }\n    }\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -1291,18 +907,18 @@
           }
         },
         {
-          "id": "88ec571f-b596-472b-a807-019b8d8a4f2f",
-          "name": "Delete an Ad",
+          "id": "82f3d27b-6833-414c-922f-defd9013816e",
+          "name": "Delete a Campaign",
           "request": {
-            "name": "Delete an Ad",
+            "name": "Delete a Campaign",
             "description": {
-              "content": "Deletes a specific ad by its ID.",
+              "content": "Deletes a specific campaign by its ID.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "ads",
-                ":ad_id"
+                "campaigns",
+                ":campaign_id"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -1313,8 +929,8 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "ad_id",
-                  "description": "(Required) The unique identifier of the ad"
+                  "key": "campaign_id",
+                  "description": "(Required) The unique identifier of the campaign"
                 }
               ]
             },
@@ -1323,13 +939,13 @@
           },
           "response": [
             {
-              "id": "d5602ce8-928c-4dbd-9b94-eb1ea16356bb",
-              "name": "Ad deleted successfully",
+              "id": "650be6e5-b90d-47f6-90b0-c8f1cfffd0fc",
+              "name": "Campaign deleted successfully",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "ads",
-                    ":ad_id"
+                    "campaigns",
+                    ":campaign_id"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -1340,8 +956,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "ad_id",
-                      "description": "(Required) The unique identifier of the ad"
+                      "key": "campaign_id",
+                      "description": "(Required) The unique identifier of the campaign"
                     }
                   ]
                 },
@@ -1371,13 +987,13 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "3399d6a0-49ac-4d7f-bee5-e3a39b25a03a",
+              "id": "1f80d3e5-6c8b-4ab5-91c8-c4df273a6209",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "ads",
-                    ":ad_id"
+                    "campaigns",
+                    ":campaign_id"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -1388,8 +1004,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "ad_id",
-                      "description": "(Required) The unique identifier of the ad"
+                      "key": "campaign_id",
+                      "description": "(Required) The unique identifier of the campaign"
                     }
                   ]
                 },
@@ -1419,13 +1035,13 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "7640154e-5733-4916-822c-b89e9b2f36e0",
-              "name": "Ad not found",
+              "id": "4083cac1-ff7a-4a19-acee-a4ab60259a57",
+              "name": "Campaign not found",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "ads",
-                    ":ad_id"
+                    "campaigns",
+                    ":campaign_id"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -1436,8 +1052,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "ad_id",
-                      "description": "(Required) The unique identifier of the ad"
+                      "key": "campaign_id",
+                      "description": "(Required) The unique identifier of the campaign"
                     }
                   ]
                 },
@@ -1506,8 +1122,8 @@
     ]
   },
   "info": {
-    "_postman_id": "99b09bba-2957-4a6f-970a-a6059074d7b1",
-    "name": "Snapchat Ad Accounts Ads API",
+    "_postman_id": "9c232cb3-3edf-4866-aac0-2e553b25e0bc",
+    "name": "Snapchat Ads Ad Accounts Campaigns API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "The Snapchat Ads API allows developers to programmatically create, manage, and optimize advertising campaigns on the Snapchat platform. It provides endpoints for managing organizations, ad accounts, campaigns, ad squads, ads, creatives, media, funding sources, audience segments, and measurement reporting. The API supports the full advertising lifecycle from campaign setup through reporting and optimization.\n\nContact Support:\n Name: Snap for Developers",

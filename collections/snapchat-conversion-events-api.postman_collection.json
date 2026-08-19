@@ -1,0 +1,685 @@
+{
+  "item": [
+    {
+      "id": "1e99cf97-6e9a-4f50-af8c-64021d1dc73c",
+      "name": "Conversion Events",
+      "description": {
+        "content": "Endpoints for sending web, app, and offline conversion events to Snap for campaign measurement and optimization.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "31891c34-482d-4ae7-8d0b-4081e51982fb",
+          "name": "Send Web Conversion Events",
+          "request": {
+            "name": "Send Web Conversion Events",
+            "description": {
+              "content": "Sends one or more web conversion events to Snap using a Pixel ID. Events can include purchases, page views, add-to-cart actions, sign-ups, and other custom conversion events. Multiple events can be sent in a single request (up to 2,000 per request). Events can have a timestamp of up to 37 days in the past.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":pixel_id",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_token",
+                  "value": "<string>",
+                  "description": "(Required) The static long-lived access token for authentication."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pixel_id",
+                  "description": "(Required) The Snap Pixel ID used for tracking web conversion events."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": [\n    {\n      \"event_name\": \"<string>\",\n      \"event_time\": \"<integer>\",\n      \"action_source\": \"<string>\",\n      \"event_source_url\": \"<uri>\",\n      \"event_id\": \"<string>\",\n      \"user_data\": {\n        \"em\": \"<string>\",\n        \"ph\": \"<string>\",\n        \"fn\": \"<string>\",\n        \"ln\": \"<string>\",\n        \"ge\": \"<string>\",\n        \"db\": \"<string>\",\n        \"ct\": \"<string>\",\n        \"st\": \"<string>\",\n        \"zp\": \"<string>\",\n        \"country\": \"<string>\",\n        \"external_id\": \"<string>\",\n        \"client_ip_address\": \"<string>\",\n        \"client_user_agent\": \"<string>\",\n        \"sc_click_id\": \"<string>\",\n        \"sc_cookie1\": \"<string>\",\n        \"idfv\": \"<string>\",\n        \"idfa\": \"<string>\",\n        \"madid\": \"<string>\"\n      },\n      \"custom_data\": {\n        \"currency\": \"<string>\",\n        \"price\": \"<double>\",\n        \"transaction_id\": \"<string>\",\n        \"search_string\": \"<string>\",\n        \"sign_up_method\": \"<string>\",\n        \"num_items\": \"<integer>\",\n        \"payment_info_available\": \"<integer>\",\n        \"contents\": [\n          {\n            \"id\": \"<string>\",\n            \"quantity\": \"<integer>\",\n            \"item_price\": \"<double>\",\n            \"brand\": \"<string>\",\n            \"category\": \"<string>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"quantity\": \"<integer>\",\n            \"item_price\": \"<double>\",\n            \"brand\": \"<string>\",\n            \"category\": \"<string>\"\n          }\n        ]\n      },\n      \"app_data\": {\n        \"advertiser_tracking_enabled\": \"<boolean>\",\n        \"application_tracking_enabled\": \"<boolean>\",\n        \"extinfo\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b9dd8fe0-86c4-43c2-9b88-130f8616a58b",
+              "name": "Events received successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":pixel_id",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pixel_id",
+                      "description": "(Required) The Snap Pixel ID used for tracking web conversion events."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"event_name\": \"AD_VIEW\",\n      \"event_time\": 2118,\n      \"action_source\": \"OFFLINE\",\n      \"event_source_url\": \"https://LDmaOAf.uaqyd08pjw8R6\",\n      \"event_id\": \"string\",\n      \"user_data\": {\n        \"em\": \"string\",\n        \"ph\": \"string\",\n        \"fn\": \"string\",\n        \"ln\": \"string\",\n        \"ge\": \"string\",\n        \"db\": \"string\",\n        \"ct\": \"string\",\n        \"st\": \"string\",\n        \"zp\": \"string\",\n        \"country\": \"string\",\n        \"external_id\": \"string\",\n        \"client_ip_address\": \"string\",\n        \"client_user_agent\": \"string\",\n        \"sc_click_id\": \"string\",\n        \"sc_cookie1\": \"string\",\n        \"idfv\": \"string\",\n        \"idfa\": \"string\",\n        \"madid\": \"string\"\n      },\n      \"custom_data\": {\n        \"currency\": \"NBR\",\n        \"price\": 1063.482276904466,\n        \"transaction_id\": \"string\",\n        \"search_string\": \"string\",\n        \"sign_up_method\": \"string\",\n        \"num_items\": 4204,\n        \"payment_info_available\": 1,\n        \"contents\": [\n          {\n            \"id\": \"string\",\n            \"quantity\": 9584,\n            \"item_price\": 8748.015549727099,\n            \"brand\": \"string\",\n            \"category\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"quantity\": 5323,\n            \"item_price\": 8351.950448672695,\n            \"brand\": \"string\",\n            \"category\": \"string\"\n          }\n        ]\n      },\n      \"app_data\": {\n        \"advertiser_tracking_enabled\": true,\n        \"application_tracking_enabled\": false,\n        \"extinfo\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"reason\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38ede120-6147-4233-859e-a18b8ef64090",
+              "name": "Bad request - invalid event data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":pixel_id",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pixel_id",
+                      "description": "(Required) The Snap Pixel ID used for tracking web conversion events."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"event_name\": \"AD_VIEW\",\n      \"event_time\": 2118,\n      \"action_source\": \"OFFLINE\",\n      \"event_source_url\": \"https://LDmaOAf.uaqyd08pjw8R6\",\n      \"event_id\": \"string\",\n      \"user_data\": {\n        \"em\": \"string\",\n        \"ph\": \"string\",\n        \"fn\": \"string\",\n        \"ln\": \"string\",\n        \"ge\": \"string\",\n        \"db\": \"string\",\n        \"ct\": \"string\",\n        \"st\": \"string\",\n        \"zp\": \"string\",\n        \"country\": \"string\",\n        \"external_id\": \"string\",\n        \"client_ip_address\": \"string\",\n        \"client_user_agent\": \"string\",\n        \"sc_click_id\": \"string\",\n        \"sc_cookie1\": \"string\",\n        \"idfv\": \"string\",\n        \"idfa\": \"string\",\n        \"madid\": \"string\"\n      },\n      \"custom_data\": {\n        \"currency\": \"NBR\",\n        \"price\": 1063.482276904466,\n        \"transaction_id\": \"string\",\n        \"search_string\": \"string\",\n        \"sign_up_method\": \"string\",\n        \"num_items\": 4204,\n        \"payment_info_available\": 1,\n        \"contents\": [\n          {\n            \"id\": \"string\",\n            \"quantity\": 9584,\n            \"item_price\": 8748.015549727099,\n            \"brand\": \"string\",\n            \"category\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"quantity\": 5323,\n            \"item_price\": 8351.950448672695,\n            \"brand\": \"string\",\n            \"category\": \"string\"\n          }\n        ]\n      },\n      \"app_data\": {\n        \"advertiser_tracking_enabled\": true,\n        \"application_tracking_enabled\": false,\n        \"extinfo\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"param\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c424d9f-0a80-4d76-99b9-0de25d66c5cc",
+              "name": "Unauthorized - invalid or missing access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":pixel_id",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pixel_id",
+                      "description": "(Required) The Snap Pixel ID used for tracking web conversion events."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"event_name\": \"AD_VIEW\",\n      \"event_time\": 2118,\n      \"action_source\": \"OFFLINE\",\n      \"event_source_url\": \"https://LDmaOAf.uaqyd08pjw8R6\",\n      \"event_id\": \"string\",\n      \"user_data\": {\n        \"em\": \"string\",\n        \"ph\": \"string\",\n        \"fn\": \"string\",\n        \"ln\": \"string\",\n        \"ge\": \"string\",\n        \"db\": \"string\",\n        \"ct\": \"string\",\n        \"st\": \"string\",\n        \"zp\": \"string\",\n        \"country\": \"string\",\n        \"external_id\": \"string\",\n        \"client_ip_address\": \"string\",\n        \"client_user_agent\": \"string\",\n        \"sc_click_id\": \"string\",\n        \"sc_cookie1\": \"string\",\n        \"idfv\": \"string\",\n        \"idfa\": \"string\",\n        \"madid\": \"string\"\n      },\n      \"custom_data\": {\n        \"currency\": \"NBR\",\n        \"price\": 1063.482276904466,\n        \"transaction_id\": \"string\",\n        \"search_string\": \"string\",\n        \"sign_up_method\": \"string\",\n        \"num_items\": 4204,\n        \"payment_info_available\": 1,\n        \"contents\": [\n          {\n            \"id\": \"string\",\n            \"quantity\": 9584,\n            \"item_price\": 8748.015549727099,\n            \"brand\": \"string\",\n            \"category\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"quantity\": 5323,\n            \"item_price\": 8351.950448672695,\n            \"brand\": \"string\",\n            \"category\": \"string\"\n          }\n        ]\n      },\n      \"app_data\": {\n        \"advertiser_tracking_enabled\": true,\n        \"application_tracking_enabled\": false,\n        \"extinfo\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d2f9a839-5549-447b-896e-a3ed272828ba",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":pixel_id",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pixel_id",
+                      "description": "(Required) The Snap Pixel ID used for tracking web conversion events."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"event_name\": \"AD_VIEW\",\n      \"event_time\": 2118,\n      \"action_source\": \"OFFLINE\",\n      \"event_source_url\": \"https://LDmaOAf.uaqyd08pjw8R6\",\n      \"event_id\": \"string\",\n      \"user_data\": {\n        \"em\": \"string\",\n        \"ph\": \"string\",\n        \"fn\": \"string\",\n        \"ln\": \"string\",\n        \"ge\": \"string\",\n        \"db\": \"string\",\n        \"ct\": \"string\",\n        \"st\": \"string\",\n        \"zp\": \"string\",\n        \"country\": \"string\",\n        \"external_id\": \"string\",\n        \"client_ip_address\": \"string\",\n        \"client_user_agent\": \"string\",\n        \"sc_click_id\": \"string\",\n        \"sc_cookie1\": \"string\",\n        \"idfv\": \"string\",\n        \"idfa\": \"string\",\n        \"madid\": \"string\"\n      },\n      \"custom_data\": {\n        \"currency\": \"NBR\",\n        \"price\": 1063.482276904466,\n        \"transaction_id\": \"string\",\n        \"search_string\": \"string\",\n        \"sign_up_method\": \"string\",\n        \"num_items\": 4204,\n        \"payment_info_available\": 1,\n        \"contents\": [\n          {\n            \"id\": \"string\",\n            \"quantity\": 9584,\n            \"item_price\": 8748.015549727099,\n            \"brand\": \"string\",\n            \"category\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"quantity\": 5323,\n            \"item_price\": 8351.950448672695,\n            \"brand\": \"string\",\n            \"category\": \"string\"\n          }\n        ]\n      },\n      \"app_data\": {\n        \"advertiser_tracking_enabled\": true,\n        \"application_tracking_enabled\": false,\n        \"extinfo\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1af3ca06-f82b-4ff0-b289-1f6590ab5b30",
+          "name": "Send App Conversion Events",
+          "request": {
+            "name": "Send App Conversion Events",
+            "description": {
+              "content": "Sends one or more app conversion events to Snap using a Snap App ID. Used for tracking in-app events such as app installs, purchases, level completions, and other app-specific conversion events. Multiple events can be sent in a single request (up to 2,000 per request).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":snap_app_id",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_token",
+                  "value": "<string>",
+                  "description": "(Required) The static long-lived access token for authentication."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "snap_app_id",
+                  "description": "(Required) The Snap App ID used for tracking app conversion events."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": [\n    {\n      \"event_name\": \"<string>\",\n      \"event_time\": \"<integer>\",\n      \"action_source\": \"<string>\",\n      \"event_source_url\": \"<uri>\",\n      \"event_id\": \"<string>\",\n      \"user_data\": {\n        \"em\": \"<string>\",\n        \"ph\": \"<string>\",\n        \"fn\": \"<string>\",\n        \"ln\": \"<string>\",\n        \"ge\": \"<string>\",\n        \"db\": \"<string>\",\n        \"ct\": \"<string>\",\n        \"st\": \"<string>\",\n        \"zp\": \"<string>\",\n        \"country\": \"<string>\",\n        \"external_id\": \"<string>\",\n        \"client_ip_address\": \"<string>\",\n        \"client_user_agent\": \"<string>\",\n        \"sc_click_id\": \"<string>\",\n        \"sc_cookie1\": \"<string>\",\n        \"idfv\": \"<string>\",\n        \"idfa\": \"<string>\",\n        \"madid\": \"<string>\"\n      },\n      \"custom_data\": {\n        \"currency\": \"<string>\",\n        \"price\": \"<double>\",\n        \"transaction_id\": \"<string>\",\n        \"search_string\": \"<string>\",\n        \"sign_up_method\": \"<string>\",\n        \"num_items\": \"<integer>\",\n        \"payment_info_available\": \"<integer>\",\n        \"contents\": [\n          {\n            \"id\": \"<string>\",\n            \"quantity\": \"<integer>\",\n            \"item_price\": \"<double>\",\n            \"brand\": \"<string>\",\n            \"category\": \"<string>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"quantity\": \"<integer>\",\n            \"item_price\": \"<double>\",\n            \"brand\": \"<string>\",\n            \"category\": \"<string>\"\n          }\n        ]\n      },\n      \"app_data\": {\n        \"advertiser_tracking_enabled\": \"<boolean>\",\n        \"application_tracking_enabled\": \"<boolean>\",\n        \"extinfo\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ba3a1d53-d4b9-4c08-bfa2-5cf0e08b5ae8",
+              "name": "Events received successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":snap_app_id",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "snap_app_id",
+                      "description": "(Required) The Snap App ID used for tracking app conversion events."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"event_name\": \"AD_VIEW\",\n      \"event_time\": 2118,\n      \"action_source\": \"OFFLINE\",\n      \"event_source_url\": \"https://LDmaOAf.uaqyd08pjw8R6\",\n      \"event_id\": \"string\",\n      \"user_data\": {\n        \"em\": \"string\",\n        \"ph\": \"string\",\n        \"fn\": \"string\",\n        \"ln\": \"string\",\n        \"ge\": \"string\",\n        \"db\": \"string\",\n        \"ct\": \"string\",\n        \"st\": \"string\",\n        \"zp\": \"string\",\n        \"country\": \"string\",\n        \"external_id\": \"string\",\n        \"client_ip_address\": \"string\",\n        \"client_user_agent\": \"string\",\n        \"sc_click_id\": \"string\",\n        \"sc_cookie1\": \"string\",\n        \"idfv\": \"string\",\n        \"idfa\": \"string\",\n        \"madid\": \"string\"\n      },\n      \"custom_data\": {\n        \"currency\": \"NBR\",\n        \"price\": 1063.482276904466,\n        \"transaction_id\": \"string\",\n        \"search_string\": \"string\",\n        \"sign_up_method\": \"string\",\n        \"num_items\": 4204,\n        \"payment_info_available\": 1,\n        \"contents\": [\n          {\n            \"id\": \"string\",\n            \"quantity\": 9584,\n            \"item_price\": 8748.015549727099,\n            \"brand\": \"string\",\n            \"category\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"quantity\": 5323,\n            \"item_price\": 8351.950448672695,\n            \"brand\": \"string\",\n            \"category\": \"string\"\n          }\n        ]\n      },\n      \"app_data\": {\n        \"advertiser_tracking_enabled\": true,\n        \"application_tracking_enabled\": false,\n        \"extinfo\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"reason\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "595af446-b5ad-4979-9546-53ca47c7ef65",
+              "name": "Bad request - invalid event data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":snap_app_id",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "snap_app_id",
+                      "description": "(Required) The Snap App ID used for tracking app conversion events."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"event_name\": \"AD_VIEW\",\n      \"event_time\": 2118,\n      \"action_source\": \"OFFLINE\",\n      \"event_source_url\": \"https://LDmaOAf.uaqyd08pjw8R6\",\n      \"event_id\": \"string\",\n      \"user_data\": {\n        \"em\": \"string\",\n        \"ph\": \"string\",\n        \"fn\": \"string\",\n        \"ln\": \"string\",\n        \"ge\": \"string\",\n        \"db\": \"string\",\n        \"ct\": \"string\",\n        \"st\": \"string\",\n        \"zp\": \"string\",\n        \"country\": \"string\",\n        \"external_id\": \"string\",\n        \"client_ip_address\": \"string\",\n        \"client_user_agent\": \"string\",\n        \"sc_click_id\": \"string\",\n        \"sc_cookie1\": \"string\",\n        \"idfv\": \"string\",\n        \"idfa\": \"string\",\n        \"madid\": \"string\"\n      },\n      \"custom_data\": {\n        \"currency\": \"NBR\",\n        \"price\": 1063.482276904466,\n        \"transaction_id\": \"string\",\n        \"search_string\": \"string\",\n        \"sign_up_method\": \"string\",\n        \"num_items\": 4204,\n        \"payment_info_available\": 1,\n        \"contents\": [\n          {\n            \"id\": \"string\",\n            \"quantity\": 9584,\n            \"item_price\": 8748.015549727099,\n            \"brand\": \"string\",\n            \"category\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"quantity\": 5323,\n            \"item_price\": 8351.950448672695,\n            \"brand\": \"string\",\n            \"category\": \"string\"\n          }\n        ]\n      },\n      \"app_data\": {\n        \"advertiser_tracking_enabled\": true,\n        \"application_tracking_enabled\": false,\n        \"extinfo\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"param\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75d45e7f-a043-404f-8a50-c60a04686767",
+              "name": "Unauthorized - invalid or missing access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":snap_app_id",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "snap_app_id",
+                      "description": "(Required) The Snap App ID used for tracking app conversion events."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"event_name\": \"AD_VIEW\",\n      \"event_time\": 2118,\n      \"action_source\": \"OFFLINE\",\n      \"event_source_url\": \"https://LDmaOAf.uaqyd08pjw8R6\",\n      \"event_id\": \"string\",\n      \"user_data\": {\n        \"em\": \"string\",\n        \"ph\": \"string\",\n        \"fn\": \"string\",\n        \"ln\": \"string\",\n        \"ge\": \"string\",\n        \"db\": \"string\",\n        \"ct\": \"string\",\n        \"st\": \"string\",\n        \"zp\": \"string\",\n        \"country\": \"string\",\n        \"external_id\": \"string\",\n        \"client_ip_address\": \"string\",\n        \"client_user_agent\": \"string\",\n        \"sc_click_id\": \"string\",\n        \"sc_cookie1\": \"string\",\n        \"idfv\": \"string\",\n        \"idfa\": \"string\",\n        \"madid\": \"string\"\n      },\n      \"custom_data\": {\n        \"currency\": \"NBR\",\n        \"price\": 1063.482276904466,\n        \"transaction_id\": \"string\",\n        \"search_string\": \"string\",\n        \"sign_up_method\": \"string\",\n        \"num_items\": 4204,\n        \"payment_info_available\": 1,\n        \"contents\": [\n          {\n            \"id\": \"string\",\n            \"quantity\": 9584,\n            \"item_price\": 8748.015549727099,\n            \"brand\": \"string\",\n            \"category\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"quantity\": 5323,\n            \"item_price\": 8351.950448672695,\n            \"brand\": \"string\",\n            \"category\": \"string\"\n          }\n        ]\n      },\n      \"app_data\": {\n        \"advertiser_tracking_enabled\": true,\n        \"application_tracking_enabled\": false,\n        \"extinfo\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f10d5fc9-3f34-48dd-aedd-2c19128fd3ec",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":snap_app_id",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "snap_app_id",
+                      "description": "(Required) The Snap App ID used for tracking app conversion events."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"event_name\": \"AD_VIEW\",\n      \"event_time\": 2118,\n      \"action_source\": \"OFFLINE\",\n      \"event_source_url\": \"https://LDmaOAf.uaqyd08pjw8R6\",\n      \"event_id\": \"string\",\n      \"user_data\": {\n        \"em\": \"string\",\n        \"ph\": \"string\",\n        \"fn\": \"string\",\n        \"ln\": \"string\",\n        \"ge\": \"string\",\n        \"db\": \"string\",\n        \"ct\": \"string\",\n        \"st\": \"string\",\n        \"zp\": \"string\",\n        \"country\": \"string\",\n        \"external_id\": \"string\",\n        \"client_ip_address\": \"string\",\n        \"client_user_agent\": \"string\",\n        \"sc_click_id\": \"string\",\n        \"sc_cookie1\": \"string\",\n        \"idfv\": \"string\",\n        \"idfa\": \"string\",\n        \"madid\": \"string\"\n      },\n      \"custom_data\": {\n        \"currency\": \"NBR\",\n        \"price\": 1063.482276904466,\n        \"transaction_id\": \"string\",\n        \"search_string\": \"string\",\n        \"sign_up_method\": \"string\",\n        \"num_items\": 4204,\n        \"payment_info_available\": 1,\n        \"contents\": [\n          {\n            \"id\": \"string\",\n            \"quantity\": 9584,\n            \"item_price\": 8748.015549727099,\n            \"brand\": \"string\",\n            \"category\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"quantity\": 5323,\n            \"item_price\": 8351.950448672695,\n            \"brand\": \"string\",\n            \"category\": \"string\"\n          }\n        ]\n      },\n      \"app_data\": {\n        \"advertiser_tracking_enabled\": true,\n        \"application_tracking_enabled\": false,\n        \"extinfo\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://adsapi.snapchat.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "snapchat-marketing-api"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://accounts.snapchat.com/login/oauth2/access_token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://accounts.snapchat.com/accounts/oauth2/auth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0c312f5f-0909-4419-8496-a1f7ed921edd",
+    "name": "Snapchat Ads Ad Accounts Conversion Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Snapchat Ads API allows developers to programmatically create, manage, and optimize advertising campaigns on the Snapchat platform. It provides endpoints for managing organizations, ad accounts, campaigns, ad squads, ads, creatives, media, funding sources, audience segments, and measurement reporting. The API supports the full advertising lifecycle from campaign setup through reporting and optimization.\n\nContact Support:\n Name: Snap for Developers",
+      "type": "text/plain"
+    }
+  }
+}

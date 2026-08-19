@@ -1,0 +1,85 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.snap.com/marketing-api/Conversions-API/VerifySetUp
+provider: Snapchat
+providerId: snapchat
+has_sandbox: partial
+description: >-
+  Snap does not run a sandbox in the usual sense — there is no test-mode credential, no separate
+  test host, no test/live key prefix pair, and no fixture data. What it does ship is a Test Event
+  Tool on the Conversions API: a parallel /events/validate path on the production host that accepts
+  a real access token, validates a real event payload in near real time, and returns per-event
+  status without writing a production conversion. Everything else (Marketing API writes, Login Kit
+  OAuth) is exercised against production with production credentials.
+modes:
+- name: production
+  base: https://adsapi.snapchat.com/v1
+  credential: OAuth 2.0 access token (3600s) or long-lived CAPI token from Ads Manager
+- name: conversions validation
+  base: https://tr.snapchat.com/v3
+  path: /v3/{asset_id}/events/validate
+  credential: >-
+    Same credentials as production. Accepts an OAuth access token, or a long-lived access token so
+    long as the pixel or app is owned by the organization that generated it.
+  writes_production_data: false
+key_prefixes: []
+key_prefixes_note: >-
+  Snap publishes no test-vs-live key prefix convention (no sk_test_/pk_live_ analogue). One
+  credential works against both the production and the validate endpoints; the endpoint chosen, not
+  the key, decides whether the event is a test.
+test_endpoints:
+- name: Send a test event
+  method: POST
+  path: /v3/{asset_id}/events/validate
+  url: https://tr.snapchat.com/v3/{asset_id}/events/validate?access_token={access_token}
+  description: >-
+    Validates the parameters passed by the request and confirms the event reached Snap's servers,
+    without recording a production conversion. asset_id is a valid pixel_id or snap_app_id.
+  required_fields:
+  - event_name / event_type
+  - event_time / timestamp
+  - action_source / event_conversion_type
+  - event_source_url / page_url
+  invalid_conditions:
+  - Any required field missing -> INVALID, 400
+  - Missing price and/or currency on Purchase events -> INVALID, 400
+  - Invalid hashed IP address -> INVALID, 400
+  - Timestamp invalid or out of range -> INVALID, 400
+  - Unhashed PII -> INVALID, 400
+  - Insufficient PII -> INVALID, 400
+- name: Test event logs
+  description: >-
+    Returns a summary of test events sent within the past day. Exposed in the Java Business SDK as
+    getValidateEventLogs(assetId).
+- name: Test event stats
+  description: >-
+    Basic stats and summary of test events sent. Exposed in the Java Business SDK as
+    getValidateEventStats(assetId).
+sdk_support:
+  java:
+    package: com.snap.business.sdk.v3:snap-capi
+    methods:
+    - sendValidateEvent(String assetId, CapiEvent capiEvent)
+    - sendValidateEventsBatch(String assetId, List<CapiEvent> capiEvents)
+    - getValidateEventLogs(String assetId)
+    - getValidateEventStats(String assetId)
+    example: example/SendTestEvents.java
+    source: https://developers.snap.com/marketing-api/Conversions-API/JavaBusinessSDK
+ui_tooling:
+- name: Events Manager
+  description: >-
+    Test events sent to /events/validate are also viewable in Events Manager in Ads Manager. Snap
+    documents this under "Validating with Event Testing" in the Business Help Center.
+  url: https://businesshelp.snapchat.com
+test_values: []
+test_values_note: >-
+  Snap publishes no canonical test identifiers — no test pixel id, no test card, no fixture user.
+  Advertisers validate against their own pixel_id or snap_app_id. Nothing is invented here.
+test_clock: false
+gaps:
+- No sandbox for the Marketing API. Campaign, ad squad, ad, creative and media writes go to production.
+- No test-mode credential; production tokens are used everywhere.
+- No fixture or trigger tooling to force delivery, billing or review states.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

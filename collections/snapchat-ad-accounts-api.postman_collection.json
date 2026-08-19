@@ -1,0 +1,907 @@
+{
+  "item": [
+    {
+      "id": "5a69ae15-aa68-4685-858e-8174dfae869c",
+      "name": "Ad Accounts",
+      "description": {
+        "content": "Ad Accounts are owned by an Organization and contain Ad Campaigns. They have one or more Funding Sources.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "59caf27d-2eab-4a7e-bd64-3ac07e4399af",
+          "name": "List All Ad Accounts for an Organization",
+          "request": {
+            "name": "List All Ad Accounts for an Organization",
+            "description": {
+              "content": "Retrieves all ad accounts associated with the specified organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization_id",
+                "adaccounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization_id",
+                  "description": "(Required) The unique identifier of the organization"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8b0b6b79-b096-4fba-a994-43d8f218ec7b",
+              "name": "Successful retrieval of ad accounts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization_id",
+                    "adaccounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) The unique identifier of the organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_status\": \"string\",\n  \"request_id\": \"string\",\n  \"adaccounts\": [\n    {\n      \"adaccount\": {\n        \"id\": \"string\",\n        \"updated_at\": \"1981-10-29T11:55:09.184Z\",\n        \"created_at\": \"1950-04-17T18:47:11.979Z\",\n        \"name\": \"string\",\n        \"type\": \"PARTNER\",\n        \"status\": \"ACTIVE\",\n        \"organization_id\": \"string\",\n        \"funding_source_ids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"currency\": \"string\",\n        \"timezone\": \"string\",\n        \"advertiser\": \"string\"\n      }\n    },\n    {\n      \"adaccount\": {\n        \"id\": \"string\",\n        \"updated_at\": \"2026-03-01T21:13:14.964Z\",\n        \"created_at\": \"1954-06-02T10:00:19.719Z\",\n        \"name\": \"string\",\n        \"type\": \"DIRECT\",\n        \"status\": \"PAUSED\",\n        \"organization_id\": \"string\",\n        \"funding_source_ids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"currency\": \"string\",\n        \"timezone\": \"string\",\n        \"advertiser\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "334c007d-4360-4237-bdb4-fd50dfec3959",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization_id",
+                    "adaccounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) The unique identifier of the organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1a267b44-50ee-4e9b-afa9-3956b717a923",
+              "name": "Organization not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization_id",
+                    "adaccounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) The unique identifier of the organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e60aace-b403-46bd-b68c-50128fa3168c",
+          "name": "Create an Ad Account",
+          "request": {
+            "name": "Create an Ad Account",
+            "description": {
+              "content": "Creates a new ad account under the specified organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization_id",
+                "adaccounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization_id",
+                  "description": "(Required) The unique identifier of the organization"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"adaccounts\": [\n    {\n      \"id\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"organization_id\": \"<string>\",\n      \"funding_source_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"currency\": \"<string>\",\n      \"timezone\": \"<string>\",\n      \"advertiser\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"organization_id\": \"<string>\",\n      \"funding_source_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"currency\": \"<string>\",\n      \"timezone\": \"<string>\",\n      \"advertiser\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5f675ad9-60ff-4ef6-aa5b-1c777df65e50",
+              "name": "Ad account created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization_id",
+                    "adaccounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) The unique identifier of the organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"adaccounts\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1974-12-11T02:39:48.895Z\",\n      \"created_at\": \"2014-03-05T00:18:06.650Z\",\n      \"name\": \"string\",\n      \"type\": \"PARTNER\",\n      \"status\": \"DISABLED\",\n      \"organization_id\": \"string\",\n      \"funding_source_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"currency\": \"string\",\n      \"timezone\": \"string\",\n      \"advertiser\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1957-08-25T17:42:06.364Z\",\n      \"created_at\": \"1979-10-29T15:16:14.056Z\",\n      \"name\": \"string\",\n      \"type\": \"PARTNER\",\n      \"status\": \"ACTIVE\",\n      \"organization_id\": \"string\",\n      \"funding_source_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"currency\": \"string\",\n      \"timezone\": \"string\",\n      \"advertiser\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_status\": \"string\",\n  \"request_id\": \"string\",\n  \"adaccounts\": [\n    {\n      \"adaccount\": {\n        \"id\": \"string\",\n        \"updated_at\": \"1981-10-29T11:55:09.184Z\",\n        \"created_at\": \"1950-04-17T18:47:11.979Z\",\n        \"name\": \"string\",\n        \"type\": \"PARTNER\",\n        \"status\": \"ACTIVE\",\n        \"organization_id\": \"string\",\n        \"funding_source_ids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"currency\": \"string\",\n        \"timezone\": \"string\",\n        \"advertiser\": \"string\"\n      }\n    },\n    {\n      \"adaccount\": {\n        \"id\": \"string\",\n        \"updated_at\": \"2026-03-01T21:13:14.964Z\",\n        \"created_at\": \"1954-06-02T10:00:19.719Z\",\n        \"name\": \"string\",\n        \"type\": \"DIRECT\",\n        \"status\": \"PAUSED\",\n        \"organization_id\": \"string\",\n        \"funding_source_ids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"currency\": \"string\",\n        \"timezone\": \"string\",\n        \"advertiser\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "960bacae-6981-4360-9e8a-4b778d23d86f",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization_id",
+                    "adaccounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) The unique identifier of the organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"adaccounts\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1974-12-11T02:39:48.895Z\",\n      \"created_at\": \"2014-03-05T00:18:06.650Z\",\n      \"name\": \"string\",\n      \"type\": \"PARTNER\",\n      \"status\": \"DISABLED\",\n      \"organization_id\": \"string\",\n      \"funding_source_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"currency\": \"string\",\n      \"timezone\": \"string\",\n      \"advertiser\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1957-08-25T17:42:06.364Z\",\n      \"created_at\": \"1979-10-29T15:16:14.056Z\",\n      \"name\": \"string\",\n      \"type\": \"PARTNER\",\n      \"status\": \"ACTIVE\",\n      \"organization_id\": \"string\",\n      \"funding_source_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"currency\": \"string\",\n      \"timezone\": \"string\",\n      \"advertiser\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ecbcbcf6-2ac8-4d56-aff4-2e2843b00401",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization_id",
+                    "adaccounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) The unique identifier of the organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"adaccounts\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1974-12-11T02:39:48.895Z\",\n      \"created_at\": \"2014-03-05T00:18:06.650Z\",\n      \"name\": \"string\",\n      \"type\": \"PARTNER\",\n      \"status\": \"DISABLED\",\n      \"organization_id\": \"string\",\n      \"funding_source_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"currency\": \"string\",\n      \"timezone\": \"string\",\n      \"advertiser\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1957-08-25T17:42:06.364Z\",\n      \"created_at\": \"1979-10-29T15:16:14.056Z\",\n      \"name\": \"string\",\n      \"type\": \"PARTNER\",\n      \"status\": \"ACTIVE\",\n      \"organization_id\": \"string\",\n      \"funding_source_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"currency\": \"string\",\n      \"timezone\": \"string\",\n      \"advertiser\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4243d045-6573-49fb-a3d9-7a4c3358eaa0",
+          "name": "Update an Ad Account",
+          "request": {
+            "name": "Update an Ad Account",
+            "description": {
+              "content": "Updates one or more ad accounts under the specified organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization_id",
+                "adaccounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization_id",
+                  "description": "(Required) The unique identifier of the organization"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"adaccounts\": [\n    {\n      \"id\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"organization_id\": \"<string>\",\n      \"funding_source_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"currency\": \"<string>\",\n      \"timezone\": \"<string>\",\n      \"advertiser\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"organization_id\": \"<string>\",\n      \"funding_source_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"currency\": \"<string>\",\n      \"timezone\": \"<string>\",\n      \"advertiser\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "385beca2-f5d0-4313-9c6c-f505b5dacfdf",
+              "name": "Ad account updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization_id",
+                    "adaccounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) The unique identifier of the organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"adaccounts\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1974-12-11T02:39:48.895Z\",\n      \"created_at\": \"2014-03-05T00:18:06.650Z\",\n      \"name\": \"string\",\n      \"type\": \"PARTNER\",\n      \"status\": \"DISABLED\",\n      \"organization_id\": \"string\",\n      \"funding_source_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"currency\": \"string\",\n      \"timezone\": \"string\",\n      \"advertiser\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1957-08-25T17:42:06.364Z\",\n      \"created_at\": \"1979-10-29T15:16:14.056Z\",\n      \"name\": \"string\",\n      \"type\": \"PARTNER\",\n      \"status\": \"ACTIVE\",\n      \"organization_id\": \"string\",\n      \"funding_source_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"currency\": \"string\",\n      \"timezone\": \"string\",\n      \"advertiser\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_status\": \"string\",\n  \"request_id\": \"string\",\n  \"adaccounts\": [\n    {\n      \"adaccount\": {\n        \"id\": \"string\",\n        \"updated_at\": \"1981-10-29T11:55:09.184Z\",\n        \"created_at\": \"1950-04-17T18:47:11.979Z\",\n        \"name\": \"string\",\n        \"type\": \"PARTNER\",\n        \"status\": \"ACTIVE\",\n        \"organization_id\": \"string\",\n        \"funding_source_ids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"currency\": \"string\",\n        \"timezone\": \"string\",\n        \"advertiser\": \"string\"\n      }\n    },\n    {\n      \"adaccount\": {\n        \"id\": \"string\",\n        \"updated_at\": \"2026-03-01T21:13:14.964Z\",\n        \"created_at\": \"1954-06-02T10:00:19.719Z\",\n        \"name\": \"string\",\n        \"type\": \"DIRECT\",\n        \"status\": \"PAUSED\",\n        \"organization_id\": \"string\",\n        \"funding_source_ids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"currency\": \"string\",\n        \"timezone\": \"string\",\n        \"advertiser\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "564077f4-5f95-4652-96d6-c6a878509f9e",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization_id",
+                    "adaccounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) The unique identifier of the organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"adaccounts\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1974-12-11T02:39:48.895Z\",\n      \"created_at\": \"2014-03-05T00:18:06.650Z\",\n      \"name\": \"string\",\n      \"type\": \"PARTNER\",\n      \"status\": \"DISABLED\",\n      \"organization_id\": \"string\",\n      \"funding_source_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"currency\": \"string\",\n      \"timezone\": \"string\",\n      \"advertiser\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1957-08-25T17:42:06.364Z\",\n      \"created_at\": \"1979-10-29T15:16:14.056Z\",\n      \"name\": \"string\",\n      \"type\": \"PARTNER\",\n      \"status\": \"ACTIVE\",\n      \"organization_id\": \"string\",\n      \"funding_source_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"currency\": \"string\",\n      \"timezone\": \"string\",\n      \"advertiser\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "857128d0-98f9-457f-aaf7-72bd0b6dc4d9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization_id",
+                    "adaccounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) The unique identifier of the organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"adaccounts\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1974-12-11T02:39:48.895Z\",\n      \"created_at\": \"2014-03-05T00:18:06.650Z\",\n      \"name\": \"string\",\n      \"type\": \"PARTNER\",\n      \"status\": \"DISABLED\",\n      \"organization_id\": \"string\",\n      \"funding_source_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"currency\": \"string\",\n      \"timezone\": \"string\",\n      \"advertiser\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1957-08-25T17:42:06.364Z\",\n      \"created_at\": \"1979-10-29T15:16:14.056Z\",\n      \"name\": \"string\",\n      \"type\": \"PARTNER\",\n      \"status\": \"ACTIVE\",\n      \"organization_id\": \"string\",\n      \"funding_source_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"currency\": \"string\",\n      \"timezone\": \"string\",\n      \"advertiser\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce8fcc14-4547-4e8a-9cb3-61fbc6ef2d16",
+          "name": "Get a Specific Ad Account",
+          "request": {
+            "name": "Get a Specific Ad Account",
+            "description": {
+              "content": "Retrieves details for a specific ad account by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "adaccounts",
+                ":ad_account_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ad_account_id",
+                  "description": "(Required) The unique identifier of the ad account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c3a9324d-c3b9-4f23-9c35-ea1f38f567d3",
+              "name": "Successful retrieval of ad account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "adaccounts",
+                    ":ad_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_account_id",
+                      "description": "(Required) The unique identifier of the ad account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_status\": \"string\",\n  \"request_id\": \"string\",\n  \"adaccounts\": [\n    {\n      \"adaccount\": {\n        \"id\": \"string\",\n        \"updated_at\": \"1981-10-29T11:55:09.184Z\",\n        \"created_at\": \"1950-04-17T18:47:11.979Z\",\n        \"name\": \"string\",\n        \"type\": \"PARTNER\",\n        \"status\": \"ACTIVE\",\n        \"organization_id\": \"string\",\n        \"funding_source_ids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"currency\": \"string\",\n        \"timezone\": \"string\",\n        \"advertiser\": \"string\"\n      }\n    },\n    {\n      \"adaccount\": {\n        \"id\": \"string\",\n        \"updated_at\": \"2026-03-01T21:13:14.964Z\",\n        \"created_at\": \"1954-06-02T10:00:19.719Z\",\n        \"name\": \"string\",\n        \"type\": \"DIRECT\",\n        \"status\": \"PAUSED\",\n        \"organization_id\": \"string\",\n        \"funding_source_ids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"currency\": \"string\",\n        \"timezone\": \"string\",\n        \"advertiser\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a3ebc360-cd23-4678-9080-9c89e7bd6c54",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "adaccounts",
+                    ":ad_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_account_id",
+                      "description": "(Required) The unique identifier of the ad account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0b1f9e5f-3fa1-4438-ab9a-d69ee9d4738d",
+              "name": "Ad account not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "adaccounts",
+                    ":ad_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_account_id",
+                      "description": "(Required) The unique identifier of the ad account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://adsapi.snapchat.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "snapchat-marketing-api"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://accounts.snapchat.com/login/oauth2/access_token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://accounts.snapchat.com/accounts/oauth2/auth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "01d0e264-3ca4-41f2-a708-090655ed569d",
+    "name": "Snapchat Ads Ad Accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Snapchat Ads API allows developers to programmatically create, manage, and optimize advertising campaigns on the Snapchat platform. It provides endpoints for managing organizations, ad accounts, campaigns, ad squads, ads, creatives, media, funding sources, audience segments, and measurement reporting. The API supports the full advertising lifecycle from campaign setup through reporting and optimization.\n\nContact Support:\n Name: Snap for Developers",
+      "type": "text/plain"
+    }
+  }
+}

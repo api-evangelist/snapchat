@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Snapchat Ad Accounts Ads API",
+    "name": "Snapchat Ads Ad Accounts Ad Squads API",
     "version": "1.0"
   },
   "request": {
@@ -19,60 +19,18 @@
   "items": [
     {
       "info": {
-        "name": "Ads",
+        "name": "Ad Squads",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "List All Ads for an Ad Squad",
+            "name": "List All Ad Squads for a Campaign",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://adsapi.snapchat.com/v1/adsquads/:ad_squad_id/ads",
-            "params": [
-              {
-                "name": "ad_squad_id",
-                "value": "",
-                "type": "path",
-                "description": "The unique identifier of the ad squad"
-              }
-            ]
-          },
-          "docs": "Retrieves all ads within the specified ad squad."
-        },
-        {
-          "info": {
-            "name": "Create an Ad",
-            "type": "http"
-          },
-          "http": {
-            "method": "POST",
-            "url": "https://adsapi.snapchat.com/v1/adsquads/:ad_squad_id/ads",
-            "params": [
-              {
-                "name": "ad_squad_id",
-                "value": "",
-                "type": "path",
-                "description": "The unique identifier of the ad squad"
-              }
-            ],
-            "body": {
-              "type": "json",
-              "data": "{}"
-            }
-          },
-          "docs": "Creates a new ad within the specified ad squad."
-        },
-        {
-          "info": {
-            "name": "List All Ads for a Campaign",
-            "type": "http"
-          },
-          "http": {
-            "method": "GET",
-            "url": "https://adsapi.snapchat.com/v1/campaigns/:campaign_id/ads",
+            "url": "https://adsapi.snapchat.com/v1/campaigns/:campaign_id/adsquads",
             "params": [
               {
                 "name": "campaign_id",
@@ -82,16 +40,16 @@
               }
             ]
           },
-          "docs": "Retrieves all ads under the specified campaign."
+          "docs": "Retrieves all ad squads associated with the specified campaign."
         },
         {
           "info": {
-            "name": "List All Ads for an Ad Account",
+            "name": "List All Ad Squads for an Ad Account",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://adsapi.snapchat.com/v1/adaccounts/:ad_account_id/ads",
+            "url": "https://adsapi.snapchat.com/v1/adaccounts/:ad_account_id/adsquads",
             "params": [
               {
                 "name": "ad_account_id",
@@ -101,41 +59,22 @@
               }
             ]
           },
-          "docs": "Retrieves all ads under the specified ad account."
+          "docs": "Retrieves all ad squads associated with the specified ad account."
         },
         {
           "info": {
-            "name": "Get a Specific Ad",
+            "name": "Create an Ad Squad",
             "type": "http"
           },
           "http": {
-            "method": "GET",
-            "url": "https://adsapi.snapchat.com/v1/ads/:ad_id",
+            "method": "POST",
+            "url": "https://adsapi.snapchat.com/v1/adaccounts/:ad_account_id/adsquads",
             "params": [
               {
-                "name": "ad_id",
+                "name": "ad_account_id",
                 "value": "",
                 "type": "path",
-                "description": "The unique identifier of the ad"
-              }
-            ]
-          },
-          "docs": "Retrieves details for a specific ad by its ID."
-        },
-        {
-          "info": {
-            "name": "Update an Ad",
-            "type": "http"
-          },
-          "http": {
-            "method": "PUT",
-            "url": "https://adsapi.snapchat.com/v1/ads/:ad_id",
-            "params": [
-              {
-                "name": "ad_id",
-                "value": "",
-                "type": "path",
-                "description": "The unique identifier of the ad"
+                "description": "The unique identifier of the ad account"
               }
             ],
             "body": {
@@ -143,26 +82,68 @@
               "data": "{}"
             }
           },
-          "docs": "Updates an existing ad."
+          "docs": "Creates a new ad squad under the specified ad account."
         },
         {
           "info": {
-            "name": "Delete an Ad",
+            "name": "Get a Specific Ad Squad",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/adsquads/:ad_squad_id",
+            "params": [
+              {
+                "name": "ad_squad_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad squad"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific ad squad by its ID."
+        },
+        {
+          "info": {
+            "name": "Update an Ad Squad",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://adsapi.snapchat.com/v1/adsquads/:ad_squad_id",
+            "params": [
+              {
+                "name": "ad_squad_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad squad"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing ad squad."
+        },
+        {
+          "info": {
+            "name": "Delete an Ad Squad",
             "type": "http"
           },
           "http": {
             "method": "DELETE",
-            "url": "https://adsapi.snapchat.com/v1/ads/:ad_id",
+            "url": "https://adsapi.snapchat.com/v1/adsquads/:ad_squad_id",
             "params": [
               {
-                "name": "ad_id",
+                "name": "ad_squad_id",
                 "value": "",
                 "type": "path",
-                "description": "The unique identifier of the ad"
+                "description": "The unique identifier of the ad squad"
               }
             ]
           },
-          "docs": "Deletes a specific ad by its ID."
+          "docs": "Deletes a specific ad squad by its ID."
         }
       ]
     }

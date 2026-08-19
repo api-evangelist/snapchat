@@ -1,0 +1,73 @@
+generated: '2026-08-13'
+method: generated
+source: openapi/*.yml, conventions/, errors/, scopes/, mcp/, sandbox/
+provider: Snapchat
+providerId: snapchat
+description: >-
+  Packaged Agent Skills for Snapchat's developer surface. Each is grounded in operationIds that
+  exist in the OpenAPI files in this repo — no invented operations — and each carries the runtime
+  rules Snap documents in prose but not in the contract: the missing idempotency, the absent
+  rate-limit headers, the 200-with-failures envelope, and the fact that there is no sandbox for
+  anything except conversion-event validation.
+skills:
+- name: snapchat-launch-campaign
+  file: snapchat-launch-campaign.md
+  description: >-
+    Build a Snapchat ad end to end — organization, ad account, funding check, media upload,
+    creative, campaign, ad squad, ad — in the order the API enforces.
+  api: Snapchat Marketing API
+  operations:
+  - listOrganizations
+  - listAdAccounts
+  - listFundingSources
+  - createMedia
+  - uploadMedia
+  - createCreative
+  - createCampaign
+  - createAdSquad
+  - createAd
+- name: snapchat-report-performance
+  file: snapchat-report-performance.md
+  description: >-
+    Pull performance at account, campaign, ad squad or ad level and walk the inventory with cursor
+    pagination without dropping or double-counting entities.
+  api: Snapchat Marketing API
+  operations:
+  - listOrganizations
+  - listAdAccounts
+  - listCampaigns
+  - listAdSquadsByCampaign
+  - listAdsByCampaign
+  - getAdAccountStats
+  - getCampaignStats
+  - getAdSquadStats
+  - getAdStats
+- name: snapchat-send-conversion-events
+  file: snapchat-send-conversion-events.md
+  description: >-
+    Send server-to-server web, app and offline conversions to CAPI v3, validate against the test
+    endpoint first, hash PII correctly, and deduplicate against the Snap Pixel.
+  api: Snapchat Conversions API
+  operations:
+  - sendWebConversionEvents
+  - sendAppConversionEvents
+- name: snapchat-authenticate
+  file: snapchat-authenticate.md
+  description: >-
+    Get and keep a credential across all three Snap authorization servers, including connecting an
+    agent to the hosted Ads MCP server.
+  api: Snapchat OAuth / Login Kit / Ads MCP
+  operations:
+  - authorize
+  - exchangeToken
+  - getUserProfile
+skill_count: 4
+provider_published_skills: none
+provider_published_skills_note: >-
+  Searched developers.snap.com/llms.txt and the Snapchat GitHub organization for a provider-authored
+  AGENTS.md or skills/ directory. None found. Snap ships an MCP server but no packaged agent skills,
+  so these four are API Evangelist generations grounded in the repo's OpenAPI, not verbatim provider
+  artifacts.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

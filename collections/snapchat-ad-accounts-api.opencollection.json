@@ -1,0 +1,114 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snapchat Ads Ad Accounts API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://accounts.snapchat.com/accounts/oauth2/auth",
+      "accessTokenUrl": "https://accounts.snapchat.com/login/oauth2/access_token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ad Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Ad Accounts for an Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/organizations/:organization_id/adaccounts",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the organization"
+              }
+            ]
+          },
+          "docs": "Retrieves all ad accounts associated with the specified organization."
+        },
+        {
+          "info": {
+            "name": "Create an Ad Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://adsapi.snapchat.com/v1/organizations/:organization_id/adaccounts",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the organization"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new ad account under the specified organization."
+        },
+        {
+          "info": {
+            "name": "Update an Ad Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://adsapi.snapchat.com/v1/organizations/:organization_id/adaccounts",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the organization"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates one or more ad accounts under the specified organization."
+        },
+        {
+          "info": {
+            "name": "Get a Specific Ad Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/adaccounts/:ad_account_id",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad account"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific ad account by its ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

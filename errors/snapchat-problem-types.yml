@@ -1,0 +1,187 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://developers.snap.com/marketing-api/Ads-API/errors,
+  https://developers.snap.com/marketing-api/Ads-API/api-patterns,
+  https://developers.snap.com/marketing-api/Conversions-API/VerifySetUp, openapi/*.yml
+provider: Snapchat
+providerId: snapchat
+format: proprietary
+problem_json: false
+description: >-
+  Snapchat's error surface is two different things wearing one name. The Marketing API wraps every
+  response — success or failure — in a request_status envelope with a per-entity sub_request_status,
+  which means a caller cannot read the HTTP status line alone and must inspect the body. The
+  Conversions API uses a separate status / reason / param shape with numeric event codes. Neither is
+  RFC 9457 problem+json. Snap's own published error-code table is a caveat in itself: it is
+  unmaintained Slate boilerplate that still says "Bad Request -- Your request sucks" and "404 Not
+  Found -- The specified kitten could not be found", so the titles below come from the OpenAPI
+  operations rather than from that table.
+envelope:
+  marketing_api:
+    fields:
+    - name: request_status
+      description: Overall status of the request, e.g. SUCCESS.
+    - name: request_id
+      description: Opaque per-request trace identifier; quote it in support tickets.
+    - name: sub_request_status
+      description: Per-entity status inside a list or batch response.
+    - name: paging.next_link
+      description: Present on paginated collection responses.
+    caveat: >-
+      A batch write can return HTTP 200 while individual entities carry a failing
+      sub_request_status. Treat 200 as "the request was accepted", not "the work succeeded".
+    source: https://developers.snap.com/marketing-api/Ads-API/api-patterns
+  conversions_api:
+    fields:
+    - name: status
+      description: VALID or INVALID for the submitted batch.
+    - name: reason
+      description: Human-readable failure reason.
+    - name: param
+      description: The parameter that caused the error.
+    - name: test_event
+      description: true when the event was sent to the /events/validate endpoint.
+    - name: event_logs[].errors.codes[]
+      description: Numeric per-event error codes, e.g. 517.
+    source: https://developers.snap.com/marketing-api/Conversions-API/VerifySetUp
+  oauth:
+    fields:
+    - name: error
+      description: >-
+        RFC 6749 error code — invalid_request, invalid_client, invalid_grant, unauthorized_client,
+        unsupported_grant_type.
+    - name: error_description
+      description: Human-readable description.
+    source: openapi/snapchat-oauth-api-openapi.yml
+problems:
+- status: 400
+  title: Bad request
+  operations: 9
+  remediation: >-
+    Validate required attributes and enum values against the entity reference before writing.
+    Since 2026-05-27 PATCH responses also carry sub-cause context strings.
+  source: openapi/
+- status: 400
+  title: Bad request - invalid parameters
+  operations: 3
+  remediation: Check path and query parameter formats; entity ids are UUIDs.
+  source: openapi/
+- status: 400
+  title: Bad request - invalid event data
+  media_type: application/json
+  schema: ErrorResponse
+  operations: 2
+  remediation: >-
+    Conversions API. Required fields are event_name/event_type, event_time/timestamp,
+    action_source/event_conversion_type and event_source_url/page_url. Also returned for missing
+    price or currency on Purchase events, invalid hashed IP, out-of-range timestamps, unhashed PII,
+    and insufficient PII. At least one of em, ph, client_ip_address + client_user_agent, or madid
+    must be present.
+  source: https://developers.snap.com/marketing-api/Conversions-API/VerifySetUp
+- status: 400
+  title: Bad request - invalid file or exceeds size limit
+  operations: 1
+  remediation: Check media specifications, including long-form video chunking rules.
+  source: openapi/snapchat-media-api-openapi.yml
+- status: 400
+  title: Bad request - invalid grant or parameters
+  media_type: application/json
+  schema: OAuthError
+  operations: 1
+  remediation: >-
+    Authorization codes are single-use and short-lived; re-run the authorization request. Confirm
+    redirect_uri matches exactly and, for public clients, that code_verifier matches code_challenge.
+  source: openapi/snapchat-oauth-api-openapi.yml
+- status: 401
+  title: Unauthorized
+  operations: 36
+  remediation: >-
+    Access tokens expire after 3600 seconds. Refresh with the refresh_token grant against
+    https://accounts.snapchat.com/login/oauth2/access_token and retry.
+  source: openapi/
+- status: 401
+  title: Unauthorized - invalid or missing access token
+  operations: 2
+  remediation: >-
+    Conversions API accepts either an OAuth token or the long-lived CAPI token created in Ads
+    Manager, but the token must belong to the organization that owns the pixel_id or snap_app_id.
+  source: openapi/snapchat-conversion-events-api-openapi.yml
+- status: 401
+  title: Unauthorized - invalid or expired access token
+  operations: 2
+  remediation: Refresh the token; do not retry with the same expired credential.
+  source: openapi/
+- status: 401
+  title: Unauthorized - invalid client credentials
+  operations: 1
+  remediation: Verify client_id and client_secret from https://kit.snapchat.com/manage/apps.
+  source: openapi/snapchat-oauth-api-openapi.yml
+- status: 403
+  title: Forbidden - insufficient permissions
+  operations: 1
+  remediation: >-
+    The Marketing API scopes calls to what the authorizing user can access. Roles are managed in
+    Business Manager; agency_admin and agency_member were added 2026-07-01.
+  source: openapi/snapchat-organizations-api-openapi.yml
+- status: 403
+  title: Forbidden - insufficient scopes
+  operations: 1
+  remediation: >-
+    Re-authorize with the required Login Kit scope, e.g.
+    https://auth.snapchat.com/oauth2/api/user.display_name.
+  source: openapi/snapchat-user-profile-api-openapi.yml
+- status: 404
+  title: Organization not found
+  operations: 3
+  source: openapi/
+- status: 404
+  title: Ad account not found
+  operations: 8
+  source: openapi/
+- status: 404
+  title: Campaign not found
+  operations: 6
+  source: openapi/
+- status: 404
+  title: Ad squad not found
+  operations: 5
+  source: openapi/
+- status: 404
+  title: Ad not found
+  operations: 4
+  source: openapi/
+- status: 404
+  title: Creative not found
+  operations: 1
+  source: openapi/
+- status: 404
+  title: Media object not found
+  operations: 1
+  source: openapi/
+- status: 429
+  title: Rate limit exceeded
+  operations: 2
+  remediation: >-
+    Two simultaneous caps — 20 req/s per registered application and 10 req/s per access token. Snap
+    documents no Retry-After header; back off exponentially with jitter. See rate-limits/.
+  source: https://developers.snap.com/marketing-api/Ads-API/rate-limits
+named_error_codes:
+- code: E2023
+  meaning: Immutable-field violation on a PATCH request.
+  added: '2026-05-27'
+  source: https://developers.snap.com/marketing-api/Ads-API/changelog
+- code: '517'
+  meaning: >-
+    Conversions API per-event validation failure code, shown in the published
+    /events/validate example response.
+  source: https://developers.snap.com/marketing-api/Conversions-API/VerifySetUp
+published_status_table:
+  url: https://developers.snap.com/marketing-api/Ads-API/errors
+  codes: [400, 401, 403, 404, 405, 406, 410, 418, 429, 500, 503]
+  caveat: >-
+    Unmaintained boilerplate — the descriptions reference kittens and include HTTP 418 "I'm a
+    teapot". Listed for completeness; not used as a source of truth for titles or remediation.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

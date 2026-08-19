@@ -1,0 +1,52 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enrichment overlay — Snapchat Ads Ad Accounts Conversion Events API
+  version: 1.0.0
+  x-generated: '2026-08-13'
+  x-method: generated
+  x-source: openapi/snapchat-conversion-events-api-openapi.yml
+  x-description: OpenAPI Overlay 1.0.0 capturing API Evangelist enrichments for this spec. It adds runtime
+    semantics Snap documents in prose but does not express in the contract — rate limits, cursor pagination,
+    partial-success responses, and the absence of idempotency. Apply it to the spec; never mutate the
+    original.
+extends: openapi/snapchat-conversion-events-api-openapi.yml
+actions:
+- target: $.info
+  description: Record the API Evangelist enrichment provenance and link the repo artifacts that carry
+    the runtime semantics the published spec omits.
+  update:
+    x-api-evangelist:
+      provider: snapchat
+      enriched: '2026-08-13'
+      artifacts:
+        authentication: authentication/snapchat-authentication.yml
+        scopes: scopes/snapchat-scopes.yml
+        conventions: conventions/snapchat-conventions.yml
+        errors: errors/snapchat-problem-types.yml
+        rate_limits: rate-limits/snapchat-rate-limits.yml
+        lifecycle: lifecycle/snapchat-lifecycle.yml
+        data_model: data-model/snapchat-data-model.yml
+        mcp: mcp/snapchat-mcp.yml
+- target: $.info
+  description: Attach the documentation entry point Snap publishes for this surface.
+  update:
+    x-documentation: https://developers.snap.com/marketing-api/Conversions-API/Introduction
+    x-changelog: https://developers.snap.com/marketing-api/Ads-API/changelog
+- target: $.paths[*].post
+  description: Conversions API events are validated before they are recorded, and Snap publishes a parallel
+    test path plus event-level deduplication rules.
+  update:
+    x-test-endpoint:
+      path: /v3/{asset_id}/events/validate
+      writes_production_data: false
+      source: https://developers.snap.com/marketing-api/Conversions-API/VerifySetUp
+    x-deduplication:
+      supported: true
+      scope: event
+      note: Event-level dedup across Pixel and CAPI. This is analytics dedup, NOT HTTP request idempotency.
+      source: https://developers.snap.com/marketing-api/Conversions-API/Deduplication
+    x-pii:
+      hashing_required: true
+      note: Hashed user-data parameters (em, ph) are accepted only as hashed values. Unhashed PII returns
+        INVALID / 400.
+      source: https://developers.snap.com/marketing-api/Conversions-API/BestPractices

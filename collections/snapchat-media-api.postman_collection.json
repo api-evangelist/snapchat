@@ -1,0 +1,777 @@
+{
+  "item": [
+    {
+      "id": "71cfc638-0f0a-41e3-8349-963ecf5d9c0b",
+      "name": "Media",
+      "description": {
+        "content": "Media endpoints handle uploading and managing media assets such as images and videos used in creatives.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2733ee5a-7359-4edf-96be-dfcab18d2b5a",
+          "name": "List All Media for an Ad Account",
+          "request": {
+            "name": "List All Media for an Ad Account",
+            "description": {
+              "content": "Retrieves all media objects associated with the specified ad account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "adaccounts",
+                ":ad_account_id",
+                "media"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ad_account_id",
+                  "description": "(Required) The unique identifier of the ad account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0236f0a5-693c-4443-abd8-9d0365892a22",
+              "name": "Successful retrieval of media",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "adaccounts",
+                    ":ad_account_id",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_account_id",
+                      "description": "(Required) The unique identifier of the ad account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_status\": \"string\",\n  \"request_id\": \"string\",\n  \"media\": [\n    {\n      \"media\": {\n        \"id\": \"string\",\n        \"updated_at\": \"2004-05-25T01:19:56.099Z\",\n        \"created_at\": \"1962-03-17T22:33:51.954Z\",\n        \"name\": \"string\",\n        \"ad_account_id\": \"string\",\n        \"type\": \"PLAYABLE\",\n        \"media_status\": \"READY\"\n      }\n    },\n    {\n      \"media\": {\n        \"id\": \"string\",\n        \"updated_at\": \"2008-03-29T19:38:38.136Z\",\n        \"created_at\": \"1991-01-26T07:18:00.314Z\",\n        \"name\": \"string\",\n        \"ad_account_id\": \"string\",\n        \"type\": \"PLAYABLE\",\n        \"media_status\": \"READY\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "41a5fe9a-586a-48f4-ba95-c4e58aa51330",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "adaccounts",
+                    ":ad_account_id",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_account_id",
+                      "description": "(Required) The unique identifier of the ad account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b5b2f623-32d4-4708-be8d-4d28579b3b94",
+              "name": "Ad account not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "adaccounts",
+                    ":ad_account_id",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_account_id",
+                      "description": "(Required) The unique identifier of the ad account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea6cb84a-a08f-46e1-8b45-866a9ca2ae68",
+          "name": "Create a Media Object",
+          "request": {
+            "name": "Create a Media Object",
+            "description": {
+              "content": "Creates a new media object under the specified ad account. The media object must be created before uploading the actual media file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "adaccounts",
+                ":ad_account_id",
+                "media"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ad_account_id",
+                  "description": "(Required) The unique identifier of the ad account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"media\": [\n    {\n      \"id\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"ad_account_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"media_status\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"ad_account_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"media_status\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bc2b95b7-8bee-4c76-ab8c-8970b422d6b2",
+              "name": "Media object created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "adaccounts",
+                    ":ad_account_id",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_account_id",
+                      "description": "(Required) The unique identifier of the ad account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"media\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"2002-01-20T20:55:53.533Z\",\n      \"created_at\": \"1988-02-27T20:46:07.245Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"type\": \"VIDEO\",\n      \"media_status\": \"PENDING_UPLOAD\"\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1963-11-20T23:15:02.926Z\",\n      \"created_at\": \"1972-08-19T21:52:36.768Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"type\": \"IMAGE\",\n      \"media_status\": \"ERROR\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "679c2ba0-dc9c-47b3-850e-c5d6873d2008",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "adaccounts",
+                    ":ad_account_id",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_account_id",
+                      "description": "(Required) The unique identifier of the ad account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"media\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"2002-01-20T20:55:53.533Z\",\n      \"created_at\": \"1988-02-27T20:46:07.245Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"type\": \"VIDEO\",\n      \"media_status\": \"PENDING_UPLOAD\"\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1963-11-20T23:15:02.926Z\",\n      \"created_at\": \"1972-08-19T21:52:36.768Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"type\": \"IMAGE\",\n      \"media_status\": \"ERROR\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bd9289da-73d3-4f44-ae7d-4140900be45e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "adaccounts",
+                    ":ad_account_id",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_account_id",
+                      "description": "(Required) The unique identifier of the ad account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"media\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"2002-01-20T20:55:53.533Z\",\n      \"created_at\": \"1988-02-27T20:46:07.245Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"type\": \"VIDEO\",\n      \"media_status\": \"PENDING_UPLOAD\"\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1963-11-20T23:15:02.926Z\",\n      \"created_at\": \"1972-08-19T21:52:36.768Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"type\": \"IMAGE\",\n      \"media_status\": \"ERROR\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1fe6c3ef-6307-4f45-9eb4-fc9a300de457",
+          "name": "Upload Media Content",
+          "request": {
+            "name": "Upload Media Content",
+            "description": {
+              "content": "Uploads the actual media file content to an existing media object. Supports images, videos, and playable media. Maximum chunk size is 32MB per request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "media",
+                ":media_id",
+                "upload"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "media_id",
+                  "description": "(Required) The unique identifier of the media object"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "The media file to upload (image, video, or ZIP for playable)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5e91c2dd-f834-4090-b99f-daa5c5f0e95c",
+              "name": "Media uploaded successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "media",
+                    ":media_id",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "media_id",
+                      "description": "(Required) The unique identifier of the media object"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The media file to upload (image, video, or ZIP for playable)",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ff8f0662-e125-43e0-8441-47ed4d7c9fce",
+              "name": "Bad request - invalid file or exceeds size limit",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "media",
+                    ":media_id",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "media_id",
+                      "description": "(Required) The unique identifier of the media object"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The media file to upload (image, video, or ZIP for playable)",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "31d21692-2ad5-45ac-b55d-e4918ba4c852",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "media",
+                    ":media_id",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "media_id",
+                      "description": "(Required) The unique identifier of the media object"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The media file to upload (image, video, or ZIP for playable)",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "36712f97-75cf-4534-b7da-3a24f3b0a89b",
+              "name": "Media object not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "media",
+                    ":media_id",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "media_id",
+                      "description": "(Required) The unique identifier of the media object"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The media file to upload (image, video, or ZIP for playable)",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://adsapi.snapchat.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "snapchat-marketing-api"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://accounts.snapchat.com/login/oauth2/access_token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://accounts.snapchat.com/accounts/oauth2/auth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fd26a2c6-552d-4c29-b9a5-38752a2086aa",
+    "name": "Snapchat Ads Ad Accounts Media API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Snapchat Ads API allows developers to programmatically create, manage, and optimize advertising campaigns on the Snapchat platform. It provides endpoints for managing organizations, ad accounts, campaigns, ad squads, ads, creatives, media, funding sources, audience segments, and measurement reporting. The API supports the full advertising lifecycle from campaign setup through reporting and optimization.\n\nContact Support:\n Name: Snap for Developers",
+      "type": "text/plain"
+    }
+  }
+}

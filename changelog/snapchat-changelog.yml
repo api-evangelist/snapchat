@@ -1,0 +1,115 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.snap.com/marketing-api/Ads-API/changelog
+provider: Snapchat
+providerId: snapchat
+api: Snapchat Marketing API
+description: >-
+  Snap maintains a dated change log for the Marketing API as a single table of date + description
+  rows. It is a documentation change log rather than a release log — entries record which section
+  of the reference changed, not a version number, and there is no semantic version, no breaking /
+  non-breaking classification, and no deprecation column. Deprecations are announced separately
+  through the Marketing API Newsletter and the Announcements page. Recent window only (2026).
+scheme: dated-documentation-log
+versioning: path
+current_version: v1
+version_source: https://developers.snap.com/marketing-api/Ads-API/version
+classifies_breaking: false
+url: https://developers.snap.com/marketing-api/Ads-API/changelog
+related:
+  announcements: https://developers.snap.com/marketing-api/Ads-API/announcements
+  newsletter: https://developers.snap.com/marketing-api/Ads-API/newsletter
+  camera_kit_changelog: https://developers.snap.com/camera-kit/getting-started/changelog
+  lens_api_deprecation: https://developers.snap.com/api/lens-api-deprecation
+entries:
+- date: '2026-07-20'
+  area: Public Profile API
+  type: addition
+  highlight: New section for Audience sharing across Organizations.
+- date: '2026-07-09'
+  area: Measurement
+  type: change
+  highlight: Insights report_dimension for DMA and REGION are no longer US-only features.
+- date: '2026-07-09'
+  area: Dynamic Product Ads
+  type: change
+  highlight: Product Set instructions for creating a set from 1,000 individual ID values.
+- date: '2026-07-01'
+  area: Roles
+  type: addition
+  highlight: Two new roles, agency_admin and agency_member.
+- date: '2026-06-22'
+  area: Ad Squad
+  type: change
+  highlight: >-
+    Sponsored Snaps — DEEP_LINK ads usable with the CHAT_FEED placement; Housing, Credit and
+    Employment (HCE) campaigns and ad squads usable with CHAT_FEED.
+- date: '2026-06-22'
+  area: Commercials
+  type: change
+  highlight: REMINDER and APP_INSTALL creatives can now be used as Commercials.
+- date: '2026-06-22'
+  area: Reporting
+  type: change
+  highlight: Async reports are available for download for 7 days after generation.
+- date: '2026-05-27'
+  area: API Patterns / Errors
+  type: addition
+  highlight: >-
+    PATCH error codes expanded with sub-cause context strings, new code E2023 for immutable-field
+    violations, and an example error response.
+- date: '2026-05-26'
+  area: API Patterns
+  type: addition
+  highlight: New PATCH request entry added to the API Pattern section.
+- date: '2026-05-26'
+  area: Campaign / Ad Squad / Ad / Creative
+  type: addition
+  highlight: New PATCH request entry and editable-attribute lists per entity.
+- date: '2026-05-21'
+  area: Media
+  type: change
+  highlight: Specifications for long form video and chunking updated.
+- date: '2026-04-27'
+  area: Targeting
+  type: change
+  highlight: Smart Targeting renamed to Smart Audience.
+- date: '2026-04-27'
+  area: Campaign / Ad Squad
+  type: addition
+  highlight: Smart Budgets gain campaign_budget_optimization_properties.
+- date: '2026-04-09'
+  area: Ad Squad
+  type: change
+  highlight: Upcoming FEED placement changes for Sponsored Snaps.
+- date: '2026-04-09'
+  area: Dynamic Ads
+  type: change
+  highlight: Feed uploads now allow deletion of items via the UPSERT update_type.
+- date: '2026-03-30'
+  area: Campaign
+  type: addition
+  highlight: >-
+    SKAd opt-in example via app_optimization_type at campaign level; Smart Budgets now allow
+    lifetime and daily budgets, mixed ad types, and a new auto_bid_max_bid_micro attribute.
+- date: '2026-03-30'
+  area: Creative
+  type: addition
+  highlight: App End Cards for App Install creatives.
+- date: '2026-03-30'
+  area: Media
+  type: addition
+  highlight: media_usages gains APP_END_CARD.
+- date: '2026-03-30'
+  area: Delivery Status
+  type: addition
+  highlight: New status NOT_DELIVERING_AD_CONTAINS_INVALID_AUDIENCE.
+- date: '2026-01-11'
+  area: Creative Elements
+  type: addition
+  highlight: Creative Elements section updated and a new Interaction Zones page created.
+entry_count: 20
+window: 2026-01-11 to 2026-07-20
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

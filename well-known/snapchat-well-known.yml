@@ -1,0 +1,111 @@
+generated: '2026-08-13'
+method: probed
+source: live GET of /.well-known/* on every Snapchat / Snap host named in apis.yml and the OpenAPI servers[]
+provider: Snapchat
+providerId: snapchat
+description: >-
+  Well-known discovery probe across every Snap-controlled host in this repo. Two real documents
+  were served: an RFC 9116 security.txt on snapchat.com pointing at Snap's HackerOne program, and
+  the RFC 8414 / RFC 9728 OAuth metadata pair that the Snapchat Ads MCP server publishes for its
+  own resource path. Note the metadata pair is served at the RESOURCE-SUFFIXED paths
+  (/.well-known/oauth-authorization-server/ads), not the bare host paths, which 404.
+hosts:
+- https://snapchat.com
+- https://snap.com
+- https://developers.snap.com
+- https://adsapi.snapchat.com
+- https://tr.snapchat.com
+- https://kit.snapchat.com
+- https://accounts.snapchat.com
+- https://mcp.snapchat.com
+documents:
+- host: https://snapchat.com
+  path: /.well-known/security.txt
+  status: 200
+  file: snapchat-security.txt
+  note: RFC 9116. Contact + Policy both point at https://hackerone.com/snapchat.
+- host: https://mcp.snapchat.com
+  path: /.well-known/oauth-authorization-server/ads
+  status: 200
+  file: snapchat-mcp-oauth-authorization-server.json
+  note: >-
+    RFC 8414 authorization server metadata for the Snapchat Ads MCP server. authorization_code +
+    refresh_token grants, PKCE S256 required, token_endpoint_auth_methods_supported = ["none"]
+    (public client). No dynamic client registration endpoint is advertised, matching the docs.
+- host: https://mcp.snapchat.com
+  path: /.well-known/oauth-protected-resource/ads
+  status: 200
+  file: snapchat-mcp-oauth-protected-resource.json
+  note: RFC 9728 protected resource metadata. resource = https://mcp.snapchat.com/ads, bearer in header.
+misses:
+- host: https://snap.com
+  path: /.well-known/security.txt
+  status: 404
+- host: https://developers.snap.com
+  path: /.well-known/security.txt
+  status: 404
+- host: https://adsapi.snapchat.com
+  path: /.well-known/security.txt
+  status: 404
+- host: https://accounts.snapchat.com
+  path: /.well-known/security.txt
+  status: 404
+- host: https://kit.snapchat.com
+  path: /.well-known/security.txt
+  status: 200
+  note: >-
+    NOT A DOCUMENT. kit.snapchat.com is fronted by the same Docusaurus site as developers.snap.com
+    and answers 200 with an HTML SPA shell for every /.well-known/* path. Treated as a miss.
+- host: https://tr.snapchat.com
+  path: /.well-known/security.txt
+  status: 200
+  note: >-
+    NOT A DOCUMENT. tr.snapchat.com is the Conversions API / pixel endpoint and returns a 68-byte
+    1x1 transparent PNG for every unmatched path, including /.well-known/*. Treated as a miss.
+- host: https://accounts.snapchat.com
+  path: /.well-known/openid-configuration
+  status: 404
+  note: >-
+    Login Kit is OAuth 2.0 only. Snap's own docs describe authorization code + PKCE and implicit
+    grant, and no OpenID Connect layer; the Ads MCP docs state explicitly "This server supports
+    neither dynamic client registration nor OpenID Connect."
+- host: https://accounts.snapchat.com
+  path: /.well-known/oauth-authorization-server
+  status: 404
+- host: https://mcp.snapchat.com
+  path: /.well-known/oauth-authorization-server
+  status: 404
+  note: Bare host path 404s; the metadata lives at the /ads resource suffix.
+- host: https://mcp.snapchat.com
+  path: /.well-known/oauth-protected-resource
+  status: 404
+- host: https://snapchat.com
+  path: /.well-known/api-catalog
+  status: 404
+- host: https://developers.snap.com
+  path: /.well-known/api-catalog
+  status: 404
+- host: https://developers.snap.com
+  path: /.well-known/ai-plugin.json
+  status: 404
+- host: https://snap.com
+  path: /.well-known/agent-card.json
+  status: 404
+- host: https://snapchat.com
+  path: /.well-known/agent-card.json
+  status: 404
+- host: https://developers.snap.com
+  path: /.well-known/agent-card.json
+  status: 404
+- host: https://developers.snap.com
+  path: /.well-known/agent.json
+  status: 404
+- host: https://adsapi.snapchat.com
+  path: /.well-known/agent-card.json
+  status: 404
+- host: https://mcp.snapchat.com
+  path: /.well-known/agent-card.json
+  status: 404
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

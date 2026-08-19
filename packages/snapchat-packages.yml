@@ -1,0 +1,161 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  registry.npmjs.org, repo1.maven.org, pypi.org, github.com/Snapchat, and
+  https://developers.snap.com/marketing-api/Conversions-API/JavaBusinessSDK
+provider: Snapchat
+providerId: snapchat
+description: >-
+  First-party Snap client libraries across npm, Maven Central and PyPI. Currency splits sharply by
+  product line: the Camera Kit family is actively released (npm @snap/camera-kit 1.20.0 on
+  2026-08-07, Maven com.snap.camerakit 1.50.0 in June 2026), while the Snap Kit family — Login Kit,
+  Creative Kit, Core Kit — has not shipped a Maven release since November 2023, consistent with
+  Snap's own docs deprecating the Login Kit and Creative Kit SDKs in favour of raw OAuth 2.0 and a
+  code-only integration. The Conversions API Business SDKs are Java-current and stale everywhere
+  else; the published Java docs still cite version 1.1.5 while Maven Central has shipped 1.2.1.
+packages:
+- language: javascript
+  registry: npm
+  name: '@snap/camera-kit'
+  url: https://www.npmjs.com/package/@snap/camera-kit
+  install: npm install @snap/camera-kit
+  official: true
+  version: 1.20.0
+  published: '2026-08-07'
+  description: Camera Kit Web — Snap AR lens rendering in the browser.
+- language: javascript
+  registry: npm
+  name: '@snap/react-camera-kit'
+  url: https://www.npmjs.com/package/@snap/react-camera-kit
+  install: npm install @snap/react-camera-kit
+  official: true
+  version: 0.6.0
+  published: '2026-08-05'
+  description: Official React bindings for Snap Camera Kit (github.com/Snapchat/react-camera-kit).
+- language: javascript
+  registry: npm
+  name: '@snap/camera-kit-react-native'
+  url: https://www.npmjs.com/package/@snap/camera-kit-react-native
+  install: npm install @snap/camera-kit-react-native
+  official: true
+  version: 0.6.0
+  published: '2025-03-14'
+  description: Camera Kit wrapper for React Native (github.com/Snapchat/camera-kit-react-native).
+- language: java
+  registry: maven
+  name: com.snap.camerakit:camerakit
+  url: https://repo1.maven.org/maven2/com/snap/camerakit/camerakit/
+  install: implementation "com.snap.camerakit:camerakit:1.50.0"
+  official: true
+  version: 1.50.0
+  published: '2026-06-18'
+  description: >-
+    Camera Kit Android SDK. The com.snap.camerakit group also publishes camerakit-api,
+    camerakit-kotlin, camerakit-plugin-api, lenses-bundle and the extension modules
+    (connected-lenses, lens-push-to-device, auth-token-provider, auth-token-provider-loginkit,
+    profiling, extension-api-kotlin).
+- language: java
+  registry: maven
+  name: com.snap.business.sdk.v3:snap-capi
+  url: https://repo1.maven.org/maven2/com/snap/business/sdk/v3/snap-capi/
+  install: implementation "com.snap.business.sdk.v3:snap-capi:1.2.1"
+  official: true
+  version: 1.2.1
+  published: '2025-05-07'
+  description: >-
+    Java Business SDK for Conversions API v3. NOTE the documentation drift — Snap's own
+    JavaBusinessSDK page still instructs developers to depend on 1.1.5, two minor versions behind
+    what Maven Central actually serves.
+  source: https://github.com/Snapchat/business-sdk-v3-java
+- language: java
+  registry: maven
+  name: com.snap.loginkit:loginkit
+  url: https://repo1.maven.org/maven2/com/snap/loginkit/loginkit/
+  install: implementation "com.snap.loginkit:loginkit:3.0.0"
+  official: true
+  version: 3.0.0
+  published: '2023-11-30'
+  description: >-
+    Login Kit Android SDK. DEPRECATED by the provider — Snap's Login Kit overview states the SDKs
+    "are being deprecated" and that Login Kit must now be implemented directly via OAuth 2.0.
+- language: java
+  registry: maven
+  name: com.snap.creativekit:creativekit
+  url: https://repo1.maven.org/maven2/com/snap/creativekit/creativekit/
+  install: implementation "com.snap.creativekit:creativekit:3.0.0"
+  official: true
+  version: 3.0.0
+  published: '2023-11-30'
+  description: >-
+    Creative Kit Android SDK. DEPRECATED — Snap retired the Creative Kit SDK in October 2024 in
+    favour of a code-only integration.
+- language: java
+  registry: maven
+  name: com.snap.corekit:corekit
+  url: https://repo1.maven.org/maven2/com/snap/corekit/corekit/
+  install: implementation "com.snap.corekit:corekit:3.0.0"
+  official: true
+  version: 3.0.0
+  published: '2023-11-30'
+  description: Shared Snap Kit core runtime for the Login Kit / Creative Kit Android SDKs.
+- language: java
+  registry: maven
+  name: com.snap.adkit:adkit
+  url: https://repo1.maven.org/maven2/com/snap/adkit/adkit/
+  install: implementation "com.snap.adkit:adkit:2.3.4"
+  official: true
+  version: 2.3.4
+  published: '2022-04-01'
+  description: Ad Kit Android SDK. No release in over four years.
+- language: java
+  registry: maven
+  name: com.snap.appadskit:appadskit
+  url: https://repo1.maven.org/maven2/com/snap/appadskit/appadskit/
+  install: implementation "com.snap.appadskit:appadskit:2.1.0"
+  official: true
+  version: 2.1.0
+  published: '2021-08-31'
+  description: App Ads Kit Android SDK. No release in five years.
+- language: python
+  registry: pypi
+  name: snap-business-sdk
+  url: https://pypi.org/project/snap-business-sdk/
+  install: pip install snap-business-sdk
+  official: true
+  version: 1.0.0
+  published: '2022-12-20'
+  description: >-
+    Python Business SDK for Snap Conversions API. Confirmed first-party by its project URLs, which
+    both point at github.com/Snapchat/business-sdk-python. Never released past 1.0.0 and targets
+    CAPI v2, not the v3 the Java SDK covers.
+- language: swift
+  registry: spm
+  name: Snapchat/camera-kit-ios-sdk
+  url: https://github.com/Snapchat/camera-kit-ios-sdk
+  install: Swift Package Manager — https://github.com/Snapchat/camera-kit-ios-sdk
+  official: true
+  version: null
+  published: null
+  description: >-
+    Camera Kit SDK for iOS, distributed from the GitHub repository (and mirrored for Carthage via
+    Snapchat/snap-kit-carthage and for SPM via Snapchat/snap-kit-spm) rather than a versioned
+    package registry.
+  note: >-
+    version/published are null because there is no package-registry metadata endpoint to query —
+    iOS distribution is git-tag based out of the repo. Checked; nothing to record.
+unofficial_note: >-
+  npm carries several third-party Snapchat packages (node-snapchat-marketing, passport-snapchat on
+  npm, @cesteral/snapchat-mcp, @honkandgo/snapchatads) and Packagist several PHP ones. None are
+  first-party and none are listed above. Snapchat/passport-snapchat and
+  Snapchat/express-4.x-passport-snapchat-example exist in Snap's GitHub org but are not
+  published to npm under a Snap-controlled name.
+languages:
+- javascript
+- java
+- kotlin
+- python
+- swift
+official_count: 12
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

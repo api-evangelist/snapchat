@@ -1,0 +1,666 @@
+{
+  "item": [
+    {
+      "id": "206a8dbd-9f53-4b83-8e9b-d4be87d1f9aa",
+      "name": "Creatives",
+      "description": {
+        "content": "Creatives define the visual and interactive content of ads, including images, videos, and call-to-action overlays.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9f46beb4-d192-45c5-8013-d9d24d087c29",
+          "name": "List All Creatives for an Ad Account",
+          "request": {
+            "name": "List All Creatives for an Ad Account",
+            "description": {
+              "content": "Retrieves all creatives associated with the specified ad account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "adaccounts",
+                ":ad_account_id",
+                "creatives"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ad_account_id",
+                  "description": "(Required) The unique identifier of the ad account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c780f820-848b-4ac8-8286-4e413dd3688e",
+              "name": "Successful retrieval of creatives",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "adaccounts",
+                    ":ad_account_id",
+                    "creatives"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_account_id",
+                      "description": "(Required) The unique identifier of the ad account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_status\": \"string\",\n  \"request_id\": \"string\",\n  \"creatives\": [\n    {\n      \"creative\": {\n        \"id\": \"string\",\n        \"updated_at\": \"1993-04-06T11:13:05.387Z\",\n        \"created_at\": \"2005-11-08T11:14:51.847Z\",\n        \"name\": \"string\",\n        \"ad_account_id\": \"string\",\n        \"type\": \"DEEP_LINK\",\n        \"headline\": \"string\",\n        \"brand_name\": \"string\",\n        \"shareable\": false,\n        \"call_to_action\": \"APPLY_NOW\",\n        \"top_snap_media_id\": \"string\",\n        \"top_snap_crop_position\": \"string\"\n      }\n    },\n    {\n      \"creative\": {\n        \"id\": \"string\",\n        \"updated_at\": \"1961-01-12T14:49:00.917Z\",\n        \"created_at\": \"1980-08-08T10:21:37.350Z\",\n        \"name\": \"string\",\n        \"ad_account_id\": \"string\",\n        \"type\": \"COLLECTION\",\n        \"headline\": \"string\",\n        \"brand_name\": \"string\",\n        \"shareable\": true,\n        \"call_to_action\": \"PLAY\",\n        \"top_snap_media_id\": \"string\",\n        \"top_snap_crop_position\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b56e9f8-8f39-4bd4-8bbc-1e805c6ae474",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "adaccounts",
+                    ":ad_account_id",
+                    "creatives"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_account_id",
+                      "description": "(Required) The unique identifier of the ad account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dbeaa38e-4263-4bc3-abd1-b5794263ce2a",
+              "name": "Ad account not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "adaccounts",
+                    ":ad_account_id",
+                    "creatives"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_account_id",
+                      "description": "(Required) The unique identifier of the ad account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cc9521f1-a03e-4055-a57d-0f3bb54f582e",
+          "name": "Create a Creative",
+          "request": {
+            "name": "Create a Creative",
+            "description": {
+              "content": "Creates a new creative under the specified ad account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "adaccounts",
+                ":ad_account_id",
+                "creatives"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ad_account_id",
+                  "description": "(Required) The unique identifier of the ad account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"creatives\": [\n    {\n      \"id\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"ad_account_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"headline\": \"<string>\",\n      \"brand_name\": \"<string>\",\n      \"shareable\": \"<boolean>\",\n      \"call_to_action\": \"<string>\",\n      \"top_snap_media_id\": \"<string>\",\n      \"top_snap_crop_position\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"ad_account_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"headline\": \"<string>\",\n      \"brand_name\": \"<string>\",\n      \"shareable\": \"<boolean>\",\n      \"call_to_action\": \"<string>\",\n      \"top_snap_media_id\": \"<string>\",\n      \"top_snap_crop_position\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "397dd733-0318-47ce-8054-f7a619124fcf",
+              "name": "Creative created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "adaccounts",
+                    ":ad_account_id",
+                    "creatives"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_account_id",
+                      "description": "(Required) The unique identifier of the ad account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"creatives\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1998-12-22T04:17:55.315Z\",\n      \"created_at\": \"1948-10-30T06:22:51.537Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"type\": \"COLLECTION\",\n      \"headline\": \"string\",\n      \"brand_name\": \"string\",\n      \"shareable\": true,\n      \"call_to_action\": \"ORDER_NOW\",\n      \"top_snap_media_id\": \"string\",\n      \"top_snap_crop_position\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1994-01-07T16:57:24.024Z\",\n      \"created_at\": \"2014-09-02T13:50:55.142Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"type\": \"DYNAMIC\",\n      \"headline\": \"string\",\n      \"brand_name\": \"string\",\n      \"shareable\": false,\n      \"call_to_action\": \"SEND\",\n      \"top_snap_media_id\": \"string\",\n      \"top_snap_crop_position\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "aeb71807-3332-4cdb-b727-46409b30b8c3",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "adaccounts",
+                    ":ad_account_id",
+                    "creatives"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_account_id",
+                      "description": "(Required) The unique identifier of the ad account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"creatives\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1998-12-22T04:17:55.315Z\",\n      \"created_at\": \"1948-10-30T06:22:51.537Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"type\": \"COLLECTION\",\n      \"headline\": \"string\",\n      \"brand_name\": \"string\",\n      \"shareable\": true,\n      \"call_to_action\": \"ORDER_NOW\",\n      \"top_snap_media_id\": \"string\",\n      \"top_snap_crop_position\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1994-01-07T16:57:24.024Z\",\n      \"created_at\": \"2014-09-02T13:50:55.142Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"type\": \"DYNAMIC\",\n      \"headline\": \"string\",\n      \"brand_name\": \"string\",\n      \"shareable\": false,\n      \"call_to_action\": \"SEND\",\n      \"top_snap_media_id\": \"string\",\n      \"top_snap_crop_position\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4698d17a-ecf0-43f0-b2f0-be111ddb04ae",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "adaccounts",
+                    ":ad_account_id",
+                    "creatives"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ad_account_id",
+                      "description": "(Required) The unique identifier of the ad account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"creatives\": [\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1998-12-22T04:17:55.315Z\",\n      \"created_at\": \"1948-10-30T06:22:51.537Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"type\": \"COLLECTION\",\n      \"headline\": \"string\",\n      \"brand_name\": \"string\",\n      \"shareable\": true,\n      \"call_to_action\": \"ORDER_NOW\",\n      \"top_snap_media_id\": \"string\",\n      \"top_snap_crop_position\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"updated_at\": \"1994-01-07T16:57:24.024Z\",\n      \"created_at\": \"2014-09-02T13:50:55.142Z\",\n      \"name\": \"string\",\n      \"ad_account_id\": \"string\",\n      \"type\": \"DYNAMIC\",\n      \"headline\": \"string\",\n      \"brand_name\": \"string\",\n      \"shareable\": false,\n      \"call_to_action\": \"SEND\",\n      \"top_snap_media_id\": \"string\",\n      \"top_snap_crop_position\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f9462013-c044-45f6-bfad-0badcde2c1ea",
+          "name": "Get a Specific Creative",
+          "request": {
+            "name": "Get a Specific Creative",
+            "description": {
+              "content": "Retrieves details for a specific creative by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "creatives",
+                ":creative_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "creative_id",
+                  "description": "(Required) The unique identifier of the creative"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cf3ce16f-90ef-4792-bc89-61fd2a675471",
+              "name": "Successful retrieval of creative",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "creatives",
+                    ":creative_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "creative_id",
+                      "description": "(Required) The unique identifier of the creative"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_status\": \"string\",\n  \"request_id\": \"string\",\n  \"creatives\": [\n    {\n      \"creative\": {\n        \"id\": \"string\",\n        \"updated_at\": \"1993-04-06T11:13:05.387Z\",\n        \"created_at\": \"2005-11-08T11:14:51.847Z\",\n        \"name\": \"string\",\n        \"ad_account_id\": \"string\",\n        \"type\": \"DEEP_LINK\",\n        \"headline\": \"string\",\n        \"brand_name\": \"string\",\n        \"shareable\": false,\n        \"call_to_action\": \"APPLY_NOW\",\n        \"top_snap_media_id\": \"string\",\n        \"top_snap_crop_position\": \"string\"\n      }\n    },\n    {\n      \"creative\": {\n        \"id\": \"string\",\n        \"updated_at\": \"1961-01-12T14:49:00.917Z\",\n        \"created_at\": \"1980-08-08T10:21:37.350Z\",\n        \"name\": \"string\",\n        \"ad_account_id\": \"string\",\n        \"type\": \"COLLECTION\",\n        \"headline\": \"string\",\n        \"brand_name\": \"string\",\n        \"shareable\": true,\n        \"call_to_action\": \"PLAY\",\n        \"top_snap_media_id\": \"string\",\n        \"top_snap_crop_position\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a4b14ef-9e3f-4cb6-b199-3f916e598a97",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "creatives",
+                    ":creative_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "creative_id",
+                      "description": "(Required) The unique identifier of the creative"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f766429d-33ae-4f62-9cce-c5269f91a0dc",
+              "name": "Creative not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "creatives",
+                    ":creative_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "creative_id",
+                      "description": "(Required) The unique identifier of the creative"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://adsapi.snapchat.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "snapchat-marketing-api"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://accounts.snapchat.com/login/oauth2/access_token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://accounts.snapchat.com/accounts/oauth2/auth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "02f9f43a-148c-4434-92b8-c62d3bb06a4e",
+    "name": "Snapchat Ads Ad Accounts Creatives API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Snapchat Ads API allows developers to programmatically create, manage, and optimize advertising campaigns on the Snapchat platform. It provides endpoints for managing organizations, ad accounts, campaigns, ad squads, ads, creatives, media, funding sources, audience segments, and measurement reporting. The API supports the full advertising lifecycle from campaign setup through reporting and optimization.\n\nContact Support:\n Name: Snap for Developers",
+      "type": "text/plain"
+    }
+  }
+}

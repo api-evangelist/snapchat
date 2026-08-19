@@ -1,0 +1,137 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://developers.snap.com/marketing-api/Ads-API/api-patterns,
+  https://developers.snap.com/marketing-api/Ads-API/authentication,
+  https://developers.snap.com/marketing-api/Ads-API/rate-limits,
+  https://developers.snap.com/marketing-api/Ads-API/version, openapi/*.yml
+provider: Snapchat
+providerId: snapchat
+description: >-
+  Cross-cutting runtime semantics for the Snapchat Marketing API and Conversions API. Snap
+  documents its request/response shape unusually explicitly for an ads platform — a named URL
+  pattern per operation class, a cursor pagination contract with a listed set of supported
+  endpoints, and a request_id on every response. The two significant gaps for an agent are the
+  absence of any idempotency mechanism on writes and the absence of rate-limit response headers.
+auth:
+  style: oauth2-bearer
+  header: 'Authorization: Bearer <access_token>'
+  token_ttl_seconds: 3600
+  refresh: refresh_token grant against https://accounts.snapchat.com/login/oauth2/access_token
+  alternative: >-
+    The Conversions API also accepts a long-lived access token generated from the Business Details
+    page in Ads Manager, passed as the access_token query parameter.
+  scoping: >-
+    "The access token reflects the user's permissions, so API calls are scoped to what that user
+    can access." Role-based, managed in Snap Business Manager.
+  detail: authentication/snapchat-authentication.yml
+  source: https://developers.snap.com/marketing-api/Ads-API/authentication
+idempotency:
+  supported: false
+  header: null
+  note: >-
+    Snap documents no Idempotency-Key header, no request-deduplication key, and no idempotency
+    parameter appears in any of the 13 OpenAPI files. A retried POST to /adaccounts/{id}/campaigns
+    creates a second campaign. Note that the Conversions API DOES support event-level deduplication
+    (a different concern — deduplicating the same conversion arriving via Pixel and CAPI, keyed on
+    event id, documented at
+    https://developers.snap.com/marketing-api/Conversions-API/Deduplication); that is analytics
+    dedup, not HTTP request idempotency, and it does not make writes safe to retry.
+pagination:
+  style: cursor
+  request:
+    limit:
+      param: limit
+      in: query
+      min: 50
+      max: 1000
+  response:
+    container: paging
+    next: paging.next_link
+    cursor_param: cursor
+    note: next_link is a fully-formed absolute URL; follow it rather than reconstructing it.
+  ordering: Paginated calls are ordered by CreatedAt. Non-paginated calls are unsorted.
+  supported_on:
+  - Ads under an Ad Account / Campaign / Ad Squad
+  - Ad Squads under an Ad Account / Campaign
+  - Campaigns under an Ad Account
+  - Creatives under an Ad Account
+  - Media under an Ad Account
+  - Ad Accounts under an Organization
+  - Audience Segments under an Ad Account
+  - Mobile Apps under an Organization
+  - Billing Centers under an Organization
+  - Pixels under an Organization
+  - Interaction Zones under an Ad Account
+  - Dynamic Templates under an Ad Account
+  - Zipcode targeting options
+  - Audit logs
+  source: https://developers.snap.com/marketing-api/Ads-API/api-patterns
+url_patterns:
+- name: Get many entities
+  pattern: GET /v1/{PLURAL_PARENT_ENTITY}/{PARENT_ID}/{PLURAL_ENTITY}
+  example: GET /v1/adaccounts/ff869d1f-0923-4d28-8577-4c36291f0fca/campaigns
+- name: Get a single entity
+  pattern: GET /v1/{PLURAL_ENTITY}/{ENTITY_ID}
+  example: GET /v1/adaccounts/ff869d1f-0923-4d28-8577-4c36291f0fca
+- name: Partial update
+  pattern: PATCH /v1/{PLURAL_ENTITY}/{ENTITY_ID}
+  added: '2026-05-26'
+  note: >-
+    PATCH arrived in May 2026 alongside per-entity editable-attribute lists and error code E2023
+    for attempting to change an immutable field.
+field_expansion:
+  supported: false
+  note: No expand / fields / sparse-fieldset parameter is documented.
+metadata:
+  supported: false
+  note: >-
+    No free-form metadata bag on entities. Third-party tracking on Ads is done with explicit
+    tracking URLs and macros, not a metadata map.
+tracing:
+  request_id:
+    field: request_id
+    location: response body
+    header: null
+    note: >-
+      Returned in the JSON envelope on every Marketing API response, not as an HTTP header. Quote
+      it in support requests.
+versioning:
+  style: path
+  current: v1
+  conversions_api: v3
+  detail: lifecycle/snapchat-lifecycle.yml
+  source: https://developers.snap.com/marketing-api/Ads-API/version
+error_envelope:
+  style: proprietary
+  fields:
+  - request_status
+  - request_id
+  - sub_request_status
+  problem_json: false
+  partial_success: >-
+    A 200 can contain failing entities. Always inspect sub_request_status on list and batch
+    responses.
+  detail: errors/snapchat-problem-types.yml
+rate_limit_signaling:
+  headers: []
+  status_on_exhaustion: 429
+  retry_after: false
+  note: >-
+    Snap publishes the numbers (20 req/s per app, 10 req/s per token) but no runtime signal — no
+    X-RateLimit-*, no RateLimit-*, no Retry-After. A client learns it is throttled only by
+    receiving a 429, and cannot see how close it is beforehand.
+  detail: rate-limits/snapchat-rate-limits.yml
+  source: https://developers.snap.com/marketing-api/Ads-API/rate-limits
+identifiers:
+  format: UUID v4
+  note: >-
+    Ad accounts, campaigns, ad squads, ads, creatives, media and pixels are all UUIDs with no type
+    prefix, so an id alone does not tell you what kind of entity it is.
+media_types:
+  request: application/json
+  response: application/json
+  upload: multipart/form-data on POST /media/{media_id}/upload
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

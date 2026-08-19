@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snapchat Ads Ad Accounts Conversion Events API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://accounts.snapchat.com/accounts/oauth2/auth",
+      "accessTokenUrl": "https://accounts.snapchat.com/login/oauth2/access_token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Conversion Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send Web Conversion Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://adsapi.snapchat.com/v1/:pixel_id/events",
+            "params": [
+              {
+                "name": "pixel_id",
+                "value": "",
+                "type": "path",
+                "description": "The Snap Pixel ID used for tracking web conversion events."
+              },
+              {
+                "name": "access_token",
+                "value": "",
+                "type": "query",
+                "description": "The static long-lived access token for authentication."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends one or more web conversion events to Snap using a Pixel ID. Events can include purchases, page views, add-to-cart actions, sign-ups, and other custom conversion events. Multiple events can be sent in a single request (up to 2,000 per request). Events can have a timestamp of up to 37 days in the past."
+        },
+        {
+          "info": {
+            "name": "Send App Conversion Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://adsapi.snapchat.com/v1/:snap_app_id/events",
+            "params": [
+              {
+                "name": "snap_app_id",
+                "value": "",
+                "type": "path",
+                "description": "The Snap App ID used for tracking app conversion events."
+              },
+              {
+                "name": "access_token",
+                "value": "",
+                "type": "query",
+                "description": "The static long-lived access token for authentication."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends one or more app conversion events to Snap using a Snap App ID. Used for tracking in-app events such as app installs, purchases, level completions, and other app-specific conversion events. Multiple events can be sent in a single request (up to 2,000 per request)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

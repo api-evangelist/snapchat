@@ -1,0 +1,233 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/*.yml, json-schema/, https://developers.snap.com/marketing-api/Ads-API/api-patterns
+provider: Snapchat
+providerId: snapchat
+description: >-
+  Entity-relationship graph for the Snapchat Marketing API, derived from the id-reference fields and
+  URL nesting in the 13 refined OpenAPI files. The hierarchy is strictly five deep — Organization
+  owns Ad Accounts, an Ad Account owns Campaigns, a Campaign owns Ad Squads, an Ad Squad owns Ads,
+  and an Ad points at exactly one Creative — with Media, Audience Segments and Funding Sources
+  hanging off the sides. Snap's own URL pattern
+  (/{PLURAL_PARENT_ENTITY}/{PARENT_ID}/{PLURAL_ENTITY}) makes the containment relationships
+  legible directly from the path. Conversions API events are a separate, unrelated write surface
+  keyed on a pixel or app asset id.
+id_format:
+  type: uuid
+  prefixed: false
+  note: >-
+    All entity ids are bare UUID v4 with no type prefix — an id string alone does not identify what
+    kind of entity it is. This matters for agents: unlike Stripe's cus_/ch_ prefixes, a Snap id
+    carries no self-describing type, so the operation that returned it is the only type evidence.
+root: Organization
+entities:
+- name: Organization
+  description: A brand, partner or ad agency. Created in Snap Business Manager, not via the API.
+  read_only_via_api: true
+  operations:
+  - listOrganizations
+  - getOrganization
+  relationships:
+  - type: has_many
+    target: AdAccount
+    via: organization_id
+  - type: has_many
+    target: FundingSource
+    via: organization_id
+- name: AdAccount
+  description: Container for campaigns, owned by one Organization, backed by one or more Funding Sources.
+  operations:
+  - listAdAccounts
+  - createAdAccount
+  - updateAdAccount
+  - getAdAccount
+  relationships:
+  - type: belongs_to
+    target: Organization
+    via: organization_id
+  - type: has_many
+    target: Campaign
+    via: ad_account_id
+  - type: has_many
+    target: Creative
+    via: ad_account_id
+  - type: has_many
+    target: Media
+    via: ad_account_id
+  - type: has_many
+    target: AudienceSegment
+    via: ad_account_id
+- name: FundingSource
+  description: Payment method for an Organization — credit card, PayPal, or line of credit.
+  operations:
+  - listFundingSources
+  relationships:
+  - type: belongs_to
+    target: Organization
+    via: organization_id
+- name: Campaign
+  description: Business objective plus a budget; groups Ad Squads and aggregates their statistics.
+  operations:
+  - listCampaigns
+  - createCampaign
+  - getCampaign
+  - updateCampaign
+  - deleteCampaign
+  relationships:
+  - type: belongs_to
+    target: AdAccount
+    via: ad_account_id
+  - type: has_many
+    target: AdSquad
+    via: campaign_id
+  - type: has_many
+    target: Ad
+    via: campaign_id
+    note: Convenience traversal — GET /campaigns/{id}/ads flattens across the campaign's ad squads.
+  - type: has_one
+    target: Stats
+    via: campaign_id
+- name: AdSquad
+  description: Targeting, budget, schedule, placement and bid strategy for a set of Ads.
+  operations:
+  - listAdSquadsByCampaign
+  - listAdSquadsByAdAccount
+  - createAdSquad
+  - getAdSquad
+  - updateAdSquad
+  - deleteAdSquad
+  relationships:
+  - type: belongs_to
+    target: Campaign
+    via: campaign_id
+  - type: has_many
+    target: Ad
+    via: ad_squad_id
+  - type: has_many
+    target: AudienceSegment
+    via: targeting
+    note: Referenced through the ad squad's targeting block rather than a single foreign key.
+  - type: has_one
+    target: Stats
+    via: ad_squad_id
+- name: Ad
+  description: The deliverable unit — one Creative placed inside one Ad Squad.
+  operations:
+  - listAdsByAdSquad
+  - listAdsByCampaign
+  - listAdsByAdAccount
+  - createAd
+  - getAd
+  - updateAd
+  - deleteAd
+  relationships:
+  - type: belongs_to
+    target: AdSquad
+    via: ad_squad_id
+  - type: has_one
+    target: Creative
+    via: creative_id
+  - type: has_one
+    target: Stats
+    via: ad_id
+  fields_of_note:
+  - status
+  - review_status
+  - type
+- name: Creative
+  description: Visual and interactive content — image, video, call-to-action overlay, end card.
+  operations:
+  - listCreatives
+  - createCreative
+  - getCreative
+  relationships:
+  - type: belongs_to
+    target: AdAccount
+    via: ad_account_id
+  - type: has_one
+    target: Media
+    via: media_id
+  note: >-
+    No delete operation is exposed for Creatives, unlike Campaigns, Ad Squads and Ads. Creatives
+    accumulate.
+- name: Media
+  description: Uploaded image or video asset. Two-step — create the record, then upload the bytes.
+  operations:
+  - listMedia
+  - createMedia
+  - uploadMedia
+  relationships:
+  - type: belongs_to
+    target: AdAccount
+    via: ad_account_id
+  upload:
+    path: POST /media/{media_id}/upload
+    media_type: multipart/form-data
+    note: >-
+      createMedia returns a media_id; the bytes go to a second call. An agent must sequence these
+      two, and there is no idempotency key protecting the pair.
+- name: AudienceSegment
+  description: Custom audience for targeting — Snap Audience Match, lookalike, or pixel-based.
+  operations:
+  - listAudienceSegments
+  - createAudienceSegment
+  relationships:
+  - type: belongs_to
+    target: AdAccount
+    via: ad_account_id
+- name: Stats
+  description: >-
+    Performance metrics, retrieved per level of the hierarchy rather than as a standalone entity.
+  operations:
+  - getCampaignStats
+  - getAdSquadStats
+  - getAdStats
+  - getAdAccountStats
+  relationships:
+  - type: belongs_to
+    target: Campaign
+    via: campaign_id
+  - type: belongs_to
+    target: AdSquad
+    via: ad_squad_id
+  - type: belongs_to
+    target: Ad
+    via: ad_id
+  - type: belongs_to
+    target: AdAccount
+    via: ad_account_id
+- name: ConversionEvent
+  description: >-
+    Server-to-server web, app or offline conversion event. A separate write-only surface on
+    tr.snapchat.com/v3, not part of the ads hierarchy.
+  operations:
+  - sendWebConversionEvents
+  - sendAppConversionEvents
+  relationships:
+  - type: belongs_to
+    target: Pixel
+    via: pixel_id
+  - type: belongs_to
+    target: SnapApp
+    via: snap_app_id
+  components:
+  - UserData
+  - CustomData
+  - AppData
+  note: >-
+    Pixel and SnapApp are addressed by id in the path but have no CRUD operations in the specs in
+    this repo; they are provisioned in Ads Manager.
+- name: UserProfile
+  description: Authenticated Snapchat user identity from Login Kit — display name, external id, Bitmoji.
+  operations:
+  - getUserProfile
+  host: https://kit.snapchat.com/v1
+  note: >-
+    Entirely disjoint from the ads graph. Login Kit identity and Marketing API entities share no
+    foreign key.
+relationship_count: 24
+entity_count: 12
+subway: null
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

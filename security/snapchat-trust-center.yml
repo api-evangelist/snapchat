@@ -1,0 +1,112 @@
+generated: '2026-08-13'
+method: probed
+source: https://trust.snap.com
+provider: Snapchat
+providerId: snapchat
+has_trust_center: true
+url: https://trust.snap.com
+platform: SecurityPal (Customer Assurance Profile)
+profile_id: 3bb1e6c4-15a1-4476-8769-2c672d7e4de8
+published: '2026-07-28'
+last_updated: '2026-07-28'
+http_status: 200
+description: >-
+  Snap Inc. publishes a trust / assurance profile at trust.snap.com covering application security,
+  infrastructure, data protection, access control, incident response and business resiliency. What
+  it does NOT publish is a certification: the profile's own certificationSelections list is empty,
+  and every attached document — including the Information Security Policy, the Security Incident
+  Response Policy, the Resiliency and Crisis Management Policy, the Pentest Report summary, and the
+  CAIQ and SIG Lite questionnaires — is marked isPublic false, i.e. released only on request.
+  Recording this as an assurance surface, NOT as published compliance.
+certifications: []
+certifications_note: >-
+  No SOC 2, SOC 1, ISO 27001, ISO 27701, PCI DSS, HIPAA, FedRAMP or CSA STAR attestation is named
+  anywhere on the profile, and the platform's certificationSelections array is literally empty.
+  Absence of a named certification here is a measurement, not an inference.
+documents:
+- title: Information Security Policy
+  public: false
+- title: Security Incident Response Policy
+  public: false
+- title: Resiliency and Crisis Management Policy
+  public: false
+- title: Pentest Report
+  description: Summary of Pentest Report
+  public: false
+- title: CAIQ
+  public: false
+  note: Cloud Security Alliance Consensus Assessments Initiative Questionnaire, request-gated.
+- title: SIG Lite
+  public: false
+  note: Shared Assessments Standardized Information Gathering questionnaire, request-gated.
+- title: Conversions API (CAPI) FAQs
+  public: false
+- title: Snap Pixel FAQs
+  public: false
+- title: Snap Audience Match (SAM) FAQs
+  public: false
+controls_published:
+  application_security:
+  - Code Analysis
+  - Software Development Lifecycle
+  - Separate Production Environment
+  - Vulnerability Scanning
+  - Vulnerability and Patch Management
+  infrastructure:
+  - AWS
+  - GCP
+  - Virtual Private Cloud
+  - Firewall
+  - Web Application Firewall
+  - Anti-DDoS
+  - IDS/IPS
+  - Traffic Filtering
+  - Endpoint Detection and Response
+  data_protection:
+  - Encryption-at-rest
+  - Encryption-in-transit
+  - Disk Encryption
+  - Backups Enabled
+  - Data Erasure
+  - Data Breach Notifications
+  access_control:
+  - Multi-Factor Authentication
+  - Role-Based Access Control
+  - SSO Support
+  - Access Reviews
+  - Credential Management
+  - Password Security
+  resiliency:
+  - BC/DR
+  - Recovery Point Objective
+  - Recovery Time Objective
+  - Business Resiliency and Crisis Management Program
+  - Incident Response
+  - Incident Response Plan
+  organizational:
+  - HR Security
+  - Employee Training
+  - Employee Privacy Training
+  - Physical Security
+  - Cyber Insurance
+  - Asset Management Practices
+  - Audit Logging
+  - Logging
+  - Subprocessors
+related:
+  privacy_policy: https://snap.com/en-US/privacy/privacy-policy
+  transparency: https://snap.com/en-US/privacy/transparency
+  terms: https://snap.com/en-US/terms
+  developer_terms: https://www.snap.com/en-US/terms/developer
+  business_services_terms: https://www.snap.com/en-US/terms/business-services
+  business_tools_terms: https://www.snap.com/en-US/terms/snap-business-tools
+x-evidence:
+  fetched: '2026-08-13'
+  probes:
+  - url: https://trust.snap.com
+    http_status: 200
+  - url: https://snap.com/en-US/privacy/transparency
+    http_status: 200
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

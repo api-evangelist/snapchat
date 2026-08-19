@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snapchat Ads Ad Accounts Audience Segments API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://accounts.snapchat.com/accounts/oauth2/auth",
+      "accessTokenUrl": "https://accounts.snapchat.com/login/oauth2/access_token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Audience Segments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Audience Segments for an Ad Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/adaccounts/:ad_account_id/segments",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad account"
+              }
+            ]
+          },
+          "docs": "Retrieves all audience segments associated with the specified ad account, including custom audiences, Snap Audience Match segments, and lookalike audiences."
+        },
+        {
+          "info": {
+            "name": "Create an Audience Segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://adsapi.snapchat.com/v1/adaccounts/:ad_account_id/segments",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad account"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new audience segment under the specified ad account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

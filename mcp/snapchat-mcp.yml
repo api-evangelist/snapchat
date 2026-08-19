@@ -1,0 +1,113 @@
+generated: '2026-08-13'
+method: probed
+source: https://developers.snap.com/marketing-api/Ads-MCP/Introduction.md
+provider: Snapchat
+providerId: snapchat
+name: Snapchat Ads MCP Server
+status: published
+description: >-
+  Snap ships a first-party, hosted, remote MCP server for the Snapchat Ads API. A supported agent
+  POSTs directly to https://mcp.snapchat.com/ads over streamable HTTP and authenticates with OAuth
+  2.0 (authorization code + PKCE S256, public client, scope snapads.read). The current release is
+  READ-ONLY — an agent can read authorized Snapchat Ads data but cannot create, update, or delete;
+  Snap says write access is planned. Onboarding is self-serve: an organization Admin or Business
+  Admin approves each agent once during sign-in, then every member authorizes their own access, and
+  a member only ever reaches the organizations and ad accounts their existing Ads permissions
+  already allow.
+docs:
+- https://developers.snap.com/marketing-api/Ads-MCP/Introduction
+- https://developers.snap.com/marketing-api/Ads-MCP/connect-an-agent
+
+deployment:
+  mode: remote
+  endpoint: https://mcp.snapchat.com/ads
+  auth: oauth
+  verified: probed
+
+transport: streamable-http
+authorization:
+  type: oauth2
+  flows:
+  - authorizationCode
+  pkce: S256
+  authorization_endpoint: https://mcp.snapchat.com/authorize
+  token_endpoint: https://mcp.snapchat.com/token
+  resource: https://mcp.snapchat.com/ads
+  token_endpoint_auth_method: none
+  scopes:
+  - snapads.read
+  dynamic_client_registration: false
+  openid_connect: false
+  note: >-
+    Client ids are pre-registered by Snap per agent vendor; advertisers do not register their own,
+    and other client ids are rejected. Members revoke at accounts.snapchat.com/v2/manage-apps;
+    an org admin can revoke for the whole organization from the consent screen.
+  registered_clients:
+  - agent: Claude (Claude Code, Claude Desktop, Claude web)
+    client_id: claude-snap-ads
+  - agent: Codex (Codex CLI, ChatGPT desktop app)
+    client_id: codex-snap-ads
+  - agent: ChatGPT (web connector)
+    client_id: chatgpt-snap-ads
+  - agent: Antigravity
+    client_id: antigravity-snap-ads
+  - agent: Gemini CLI
+    client_id: gemini-snap-ads
+
+x-evidence:
+  fetched: '2026-08-13'
+  tools_list:
+    url: https://mcp.snapchat.com/ads
+    method: POST
+    body: '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+    http_status: 401
+    www_authenticate: Bearer resource_metadata="https://mcp.snapchat.com/.well-known/oauth-protected-resource/ads"
+    note: >-
+      The live tool manifest is auth-gated behind OAuth. The 401 carries a correct RFC 9728
+      resource_metadata challenge, which is itself evidence the endpoint is a real MCP resource
+      server rather than a guessed path.
+  oauth_protected_resource:
+    url: https://mcp.snapchat.com/.well-known/oauth-protected-resource/ads
+    http_status: 200
+    file: ../well-known/snapchat-mcp-oauth-protected-resource.json
+  oauth_authorization_server:
+    url: https://mcp.snapchat.com/.well-known/oauth-authorization-server/ads
+    http_status: 200
+    file: ../well-known/snapchat-mcp-oauth-authorization-server.json
+
+tools:
+  count: null
+  note: >-
+    NOT RECORDED. Snap publishes no tool list — neither in the Ads MCP documentation nor in
+    developers.snap.com/llms.txt — and tools/list returns 401 without an authorized token, so no
+    tool names or inputSchemas could be observed. Establishing the real tool surface requires an
+    authenticated introspection against an approved organization. Nothing is inferred here.
+
+capabilities:
+  read: true
+  write: false
+  note: Snap states the release is read-only; write access is planned for a future release.
+
+other_mcp_servers:
+- name: Lens Studio MCP Server
+  mode: local-stdio
+  status: published
+  description: >-
+    Lens Studio's Developer Mode exposes the Lens Studio AI ChatTools (list SceneObjects,
+    setProperty, and other in-editor actions) over MCP so an external client — Claude Code, Cursor,
+    VS Code — can drive the Lens Studio desktop application. It is bundled with and served by the
+    Lens Studio desktop app, not distributed as a registry package, and there is no hosted endpoint.
+  docs:
+  - https://developers.snap.com/lens-studio/features/lens-studio-ai/developer-mode
+  - https://developers.snap.com/lens-studio/features/lens-studio-ai/developer-mode/with-claude-code
+  - https://developers.snap.com/lens-studio/features/lens-studio-ai/developer-mode/custom-prompt-for-mcp
+  install: null
+  package: null
+  note: >-
+    install/package are null on purpose — the server ships inside the Lens Studio desktop
+    application and Snap publishes no npx/pip invocation for it. Recorded here rather than in
+    deployment[] because the repo-level agent surface is the hosted Ads server.
+
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

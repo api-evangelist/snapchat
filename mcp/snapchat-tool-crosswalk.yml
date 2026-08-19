@@ -1,0 +1,181 @@
+generated: '2026-08-13'
+method: derived
+source: mcp/snapchat-mcp.yml, openapi/*.yml
+provider: Snapchat
+providerId: snapchat
+description: >-
+  Crosswalk between Snapchat's agent surface (the hosted Ads MCP server) and its REST surface (the
+  Marketing API OpenAPIs in this repo). The crosswalk is DELIBERATELY EMPTY. Snap publishes a real
+  remote MCP server at https://mcp.snapchat.com/ads, but publishes no tool list anywhere — not in
+  the Ads MCP docs, not in developers.snap.com/llms.txt — and tools/list returns 401 without an
+  OAuth token issued to an approved organization. With zero observed tool names there is nothing to
+  bind, and inventing plausible tool names to fill rows would be fabrication. What IS recorded is
+  the shape of the gate and the full REST inventory the tools must be drawn from.
+
+surfaces:
+  openapi:
+    files: 13
+    path: openapi/
+    base: https://adsapi.snapchat.com/v1
+    gated: false
+    note: Public specs; live calls require an OAuth bearer token.
+  mcp:
+    url: https://mcp.snapchat.com/ads
+    gated: true
+    gate: OAuth 2.0 authorization code + PKCE, scope snapads.read, pre-registered client id per agent vendor
+    http_status_anonymous: 401
+  graphql:
+    endpoint: null
+    gated: null
+    note: >-
+      Snap publishes no public GraphQL endpoint. The graphql/ directory in this repo holds a
+      CONCEPTUAL model authored by API Evangelist, not a provider contract, and is not a surface.
+
+crosswalk: []
+
+mcp_only: []
+
+rest_only:
+- operationId: listOrganizations
+  method: GET
+  path: /me/organizations
+- operationId: getOrganization
+  method: GET
+  path: /organizations/{organization_id}
+- operationId: listAdAccounts
+  method: GET
+  path: /organizations/{organization_id}/adaccounts
+- operationId: createAdAccount
+  method: POST
+  path: /organizations/{organization_id}/adaccounts
+- operationId: updateAdAccount
+  method: PUT
+  path: /organizations/{organization_id}/adaccounts
+- operationId: getAdAccount
+  method: GET
+  path: /adaccounts/{ad_account_id}
+- operationId: listFundingSources
+  method: GET
+  path: /organizations/{organization_id}/fundingsources
+- operationId: listCampaigns
+  method: GET
+  path: /adaccounts/{ad_account_id}/campaigns
+- operationId: createCampaign
+  method: POST
+  path: /adaccounts/{ad_account_id}/campaigns
+- operationId: getCampaign
+  method: GET
+  path: /campaigns/{campaign_id}
+- operationId: updateCampaign
+  method: PUT
+  path: /campaigns/{campaign_id}
+- operationId: deleteCampaign
+  method: DELETE
+  path: /campaigns/{campaign_id}
+- operationId: listAdSquadsByCampaign
+  method: GET
+  path: /campaigns/{campaign_id}/adsquads
+- operationId: listAdSquadsByAdAccount
+  method: GET
+  path: /adaccounts/{ad_account_id}/adsquads
+- operationId: createAdSquad
+  method: POST
+  path: /adaccounts/{ad_account_id}/adsquads
+- operationId: getAdSquad
+  method: GET
+  path: /adsquads/{ad_squad_id}
+- operationId: updateAdSquad
+  method: PUT
+  path: /adsquads/{ad_squad_id}
+- operationId: deleteAdSquad
+  method: DELETE
+  path: /adsquads/{ad_squad_id}
+- operationId: listAdsByAdSquad
+  method: GET
+  path: /adsquads/{ad_squad_id}/ads
+- operationId: createAd
+  method: POST
+  path: /adsquads/{ad_squad_id}/ads
+- operationId: listAdsByCampaign
+  method: GET
+  path: /campaigns/{campaign_id}/ads
+- operationId: listAdsByAdAccount
+  method: GET
+  path: /adaccounts/{ad_account_id}/ads
+- operationId: getAd
+  method: GET
+  path: /ads/{ad_id}
+- operationId: updateAd
+  method: PUT
+  path: /ads/{ad_id}
+- operationId: deleteAd
+  method: DELETE
+  path: /ads/{ad_id}
+- operationId: listCreatives
+  method: GET
+  path: /adaccounts/{ad_account_id}/creatives
+- operationId: createCreative
+  method: POST
+  path: /adaccounts/{ad_account_id}/creatives
+- operationId: getCreative
+  method: GET
+  path: /creatives/{creative_id}
+- operationId: listMedia
+  method: GET
+  path: /adaccounts/{ad_account_id}/media
+- operationId: createMedia
+  method: POST
+  path: /adaccounts/{ad_account_id}/media
+- operationId: uploadMedia
+  method: POST
+  path: /media/{media_id}/upload
+- operationId: listAudienceSegments
+  method: GET
+  path: /adaccounts/{ad_account_id}/segments
+- operationId: createAudienceSegment
+  method: POST
+  path: /adaccounts/{ad_account_id}/segments
+- operationId: getCampaignStats
+  method: GET
+  path: /campaigns/{campaign_id}/stats
+- operationId: getAdSquadStats
+  method: GET
+  path: /adsquads/{ad_squad_id}/stats
+- operationId: getAdStats
+  method: GET
+  path: /ads/{ad_id}/stats
+- operationId: getAdAccountStats
+  method: GET
+  path: /adaccounts/{ad_account_id}/stats
+- operationId: sendWebConversionEvents
+  method: POST
+  path: /{pixel_id}/events
+- operationId: sendAppConversionEvents
+  method: POST
+  path: /{snap_app_id}/events
+- operationId: authorize
+  method: GET
+  path: /accounts/oauth2/auth
+- operationId: exchangeToken
+  method: POST
+  path: /login/oauth2/access_token
+- operationId: getUserProfile
+  method: GET
+  path: /me
+
+coverage:
+  mcp_tools_observed: 0
+  mcp_tools_published: 0
+  rest_operations: 42
+  mapped: 0
+  mcp_only: 0
+  rest_only: 42
+  note: >-
+    rest_only = 42 is an artifact of the gate, not a statement that these 42 operations are absent
+    from the MCP server. Snap says the MCP release is read-only, so at most the 24 GET operations
+    above could be represented; the 18 write operations cannot be. Re-run this crosswalk with an
+    authorized token to replace it with real bindings.
+
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

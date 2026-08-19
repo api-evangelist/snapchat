@@ -1,0 +1,405 @@
+{
+  "item": [
+    {
+      "id": "1602d601-0815-4fd1-bdc8-73d6dff8c5fb",
+      "name": "Organizations",
+      "description": {
+        "content": "Organizations represent brands, partners, or ad agencies. Organizations are created via Snap Business Manager.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2fa702df-5a59-4e04-b05a-a16ea5d1583d",
+          "name": "List All Organizations",
+          "request": {
+            "name": "List All Organizations",
+            "description": {
+              "content": "Retrieves all organizations the authenticated user has access to, along with the ad accounts beneath each organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "me",
+                "organizations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "98a3d967-68b7-40db-948a-6bee445886a7",
+              "name": "Successful retrieval of organizations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "me",
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_status\": \"string\",\n  \"request_id\": \"string\",\n  \"organizations\": [\n    {\n      \"organization\": {\n        \"id\": \"string\",\n        \"updated_at\": \"1948-11-21T20:53:42.359Z\",\n        \"created_at\": \"2008-03-29T15:38:55.214Z\",\n        \"name\": \"string\",\n        \"address_line_1\": \"string\",\n        \"locality\": \"string\",\n        \"administrative_district_level_1\": \"string\",\n        \"country\": \"string\",\n        \"postal_code\": \"string\",\n        \"type\": \"ENTERPRISE\",\n        \"my_display_name\": \"string\",\n        \"my_invited_email\": \"oSHEa8JBF-u@FSJXfzvPSVGnbLhrXftCoFDBe.vvh\",\n        \"my_member_id\": \"string\"\n      }\n    },\n    {\n      \"organization\": {\n        \"id\": \"string\",\n        \"updated_at\": \"1973-12-26T21:37:00.219Z\",\n        \"created_at\": \"1991-04-17T05:09:21.643Z\",\n        \"name\": \"string\",\n        \"address_line_1\": \"string\",\n        \"locality\": \"string\",\n        \"administrative_district_level_1\": \"string\",\n        \"country\": \"string\",\n        \"postal_code\": \"string\",\n        \"type\": \"ENTERPRISE\",\n        \"my_display_name\": \"string\",\n        \"my_invited_email\": \"ESgq@pCprfLzQMpiBiQB.yn\",\n        \"my_member_id\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c942a38-6170-4c3f-b9ac-2068bd87a8e8",
+              "name": "Unauthorized - invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "me",
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d4affd42-53a0-4a82-b0fe-b141cf048f6e",
+              "name": "Forbidden - insufficient permissions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "me",
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3c4bf342-d857-4fdc-92b5-ef8fa008a336",
+          "name": "Get a Specific Organization",
+          "request": {
+            "name": "Get a Specific Organization",
+            "description": {
+              "content": "Retrieves details for a specific organization by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization_id",
+                  "description": "(Required) The unique identifier of the organization"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "37ab703f-6223-4e4c-a630-1a80f5c97f1a",
+              "name": "Successful retrieval of organization",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) The unique identifier of the organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_status\": \"string\",\n  \"request_id\": \"string\",\n  \"organizations\": [\n    {\n      \"organization\": {\n        \"id\": \"string\",\n        \"updated_at\": \"1948-11-21T20:53:42.359Z\",\n        \"created_at\": \"2008-03-29T15:38:55.214Z\",\n        \"name\": \"string\",\n        \"address_line_1\": \"string\",\n        \"locality\": \"string\",\n        \"administrative_district_level_1\": \"string\",\n        \"country\": \"string\",\n        \"postal_code\": \"string\",\n        \"type\": \"ENTERPRISE\",\n        \"my_display_name\": \"string\",\n        \"my_invited_email\": \"oSHEa8JBF-u@FSJXfzvPSVGnbLhrXftCoFDBe.vvh\",\n        \"my_member_id\": \"string\"\n      }\n    },\n    {\n      \"organization\": {\n        \"id\": \"string\",\n        \"updated_at\": \"1973-12-26T21:37:00.219Z\",\n        \"created_at\": \"1991-04-17T05:09:21.643Z\",\n        \"name\": \"string\",\n        \"address_line_1\": \"string\",\n        \"locality\": \"string\",\n        \"administrative_district_level_1\": \"string\",\n        \"country\": \"string\",\n        \"postal_code\": \"string\",\n        \"type\": \"ENTERPRISE\",\n        \"my_display_name\": \"string\",\n        \"my_invited_email\": \"ESgq@pCprfLzQMpiBiQB.yn\",\n        \"my_member_id\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7769f99f-caba-459a-84b6-d57c7c7afc2f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) The unique identifier of the organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a71637b0-f1b9-43ca-99a1-2f08a066897c",
+              "name": "Organization not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) The unique identifier of the organization"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://adsapi.snapchat.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "snapchat-marketing-api"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://accounts.snapchat.com/login/oauth2/access_token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://accounts.snapchat.com/accounts/oauth2/auth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "70552f1d-eaad-470d-bfb7-85f40fca1f9c",
+    "name": "Snapchat Ads Ad Accounts Organizations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Snapchat Ads API allows developers to programmatically create, manage, and optimize advertising campaigns on the Snapchat platform. It provides endpoints for managing organizations, ad accounts, campaigns, ad squads, ads, creatives, media, funding sources, audience segments, and measurement reporting. The API supports the full advertising lifecycle from campaign setup through reporting and optimization.\n\nContact Support:\n Name: Snap for Developers",
+      "type": "text/plain"
+    }
+  }
+}

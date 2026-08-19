@@ -1,0 +1,178 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snapchat Ads Ad Accounts Measurement API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://accounts.snapchat.com/accounts/oauth2/auth",
+      "accessTokenUrl": "https://accounts.snapchat.com/login/oauth2/access_token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Measurement",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Campaign Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/campaigns/:campaign_id/stats",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the campaign"
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query",
+                "description": "The time granularity for statistics. Determines how data points are grouped in the response."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "The start time for the statistics query in ISO 8601 format."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "The end time for the statistics query in ISO 8601 format."
+              }
+            ]
+          },
+          "docs": "Retrieves performance statistics for a specific campaign, including impressions, spend, and conversion metrics."
+        },
+        {
+          "info": {
+            "name": "Get Ad Squad Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/adsquads/:ad_squad_id/stats",
+            "params": [
+              {
+                "name": "ad_squad_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad squad"
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query",
+                "description": "The time granularity for statistics. Determines how data points are grouped in the response."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "The start time for the statistics query in ISO 8601 format."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "The end time for the statistics query in ISO 8601 format."
+              }
+            ]
+          },
+          "docs": "Retrieves performance statistics for a specific ad squad."
+        },
+        {
+          "info": {
+            "name": "Get Ad Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/ads/:ad_id/stats",
+            "params": [
+              {
+                "name": "ad_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad"
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query",
+                "description": "The time granularity for statistics. Determines how data points are grouped in the response."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "The start time for the statistics query in ISO 8601 format."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "The end time for the statistics query in ISO 8601 format."
+              }
+            ]
+          },
+          "docs": "Retrieves performance statistics for a specific ad."
+        },
+        {
+          "info": {
+            "name": "Get Ad Account Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://adsapi.snapchat.com/v1/adaccounts/:ad_account_id/stats",
+            "params": [
+              {
+                "name": "ad_account_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ad account"
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query",
+                "description": "The time granularity for statistics. Determines how data points are grouped in the response."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "The start time for the statistics query in ISO 8601 format."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "The end time for the statistics query in ISO 8601 format."
+              }
+            ]
+          },
+          "docs": "Retrieves performance statistics for a specific ad account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

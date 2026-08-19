@@ -1,0 +1,73 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enrichment overlay — Snapchat Ads Ad Accounts Funding Sources API
+  version: 1.0.0
+  x-generated: '2026-08-13'
+  x-method: generated
+  x-source: openapi/snapchat-funding-sources-api-openapi.yml
+  x-description: OpenAPI Overlay 1.0.0 capturing API Evangelist enrichments for this spec. It adds runtime
+    semantics Snap documents in prose but does not express in the contract — rate limits, cursor pagination,
+    partial-success responses, and the absence of idempotency. Apply it to the spec; never mutate the
+    original.
+extends: openapi/snapchat-funding-sources-api-openapi.yml
+actions:
+- target: $.info
+  description: Record the API Evangelist enrichment provenance and link the repo artifacts that carry
+    the runtime semantics the published spec omits.
+  update:
+    x-api-evangelist:
+      provider: snapchat
+      enriched: '2026-08-13'
+      artifacts:
+        authentication: authentication/snapchat-authentication.yml
+        scopes: scopes/snapchat-scopes.yml
+        conventions: conventions/snapchat-conventions.yml
+        errors: errors/snapchat-problem-types.yml
+        rate_limits: rate-limits/snapchat-rate-limits.yml
+        lifecycle: lifecycle/snapchat-lifecycle.yml
+        data_model: data-model/snapchat-data-model.yml
+        mcp: mcp/snapchat-mcp.yml
+- target: $.info
+  description: Attach the documentation entry point Snap publishes for this surface.
+  update:
+    x-documentation: https://developers.snap.com/marketing-api/Ads-API/introduction
+    x-changelog: https://developers.snap.com/marketing-api/Ads-API/changelog
+- target: $.paths[*][*]
+  description: Every Marketing API operation shares one rate-limit envelope and one non-idempotent write
+    posture. Snap publishes the numbers but no response headers, so record them on the operations where
+    a client can act on them.
+  update:
+    x-rate-limit:
+      application: 20 requests/second average across all tokens issued to the app
+      token: 10 requests/second average per access token
+      status: 429
+      headers: []
+      retry_after: false
+      source: https://developers.snap.com/marketing-api/Ads-API/rate-limits
+    x-idempotency:
+      supported: false
+      note: No Idempotency-Key header. A retried write creates a duplicate entity.
+- target: $.paths[*].get
+  description: 'Snap documents cursor pagination for collection reads: a limit between 50 and 1000, and
+    an absolute paging.next_link carrying an opaque cursor, ordered by CreatedAt.'
+  update:
+    x-pagination:
+      style: cursor
+      limit_param: limit
+      limit_min: 50
+      limit_max: 1000
+      next: paging.next_link
+      ordering: CreatedAt
+      source: https://developers.snap.com/marketing-api/Ads-API/api-patterns
+- target: $.paths[*][*].responses.200
+  description: The Marketing API can return HTTP 200 with failing entities inside. Warn consumers that
+    the status line is not the outcome.
+  update:
+    x-partial-success:
+      possible: true
+      inspect: sub_request_status
+      envelope:
+      - request_status
+      - request_id
+      - sub_request_status
+      note: A 200 means the request was accepted, not that every entity succeeded.

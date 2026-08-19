@@ -1,0 +1,104 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://developers.snap.com/api/snapchat-for-web/social-plugins/introduction,
+  https://developers.snap.com/api/snapchat-for-web/social-plugins/embedding-web-content,
+  https://developers.snap.com/api/snapchat-for-web/social-plugins/share-link-to-snapchat,
+  https://developers.snap.com/camera-kit/home
+provider: Snapchat
+providerId: snapchat
+description: >-
+  Client-side and embeddable surfaces Snap ships for the browser and for host applications, as
+  distinct from its HTTP APIs and server SDKs. Two families: Snapchat for Web Social Plugins — a
+  loader-script embed system for Lenses, Spotlight videos, Public Stories and Public Profiles, plus
+  a Share Sheet — and Camera Kit, which renders live Snap AR lenses inside a third-party app's own
+  camera surface on Web, iOS, Android, React Native and Unity.
+families:
+- name: Snapchat for Web — Social Plugins
+  type: embed
+  docs: https://developers.snap.com/api/snapchat-for-web/social-plugins/introduction
+  loader:
+    script: https://www.snapchat.com/embed.js
+    attribute: async
+    note: >-
+      Unpinned. The loader URL carries no version, so a site cannot tell which build it is running
+      and Snap can change the rendered embed under it at any time.
+  markup:
+    element: blockquote
+    class: snapchat-embed
+    data_attributes:
+    - data-snapchat-embed-url
+    - data-snapchat-embed-width
+    - data-snapchat-embed-height
+    - data-snapchat-embed-title
+    - data-snapchat-embed-style
+  components:
+  - name: Lens embed
+    embed_url_pattern: https://www.snapchat.com/lens/{lens_id}/embed
+    description: Renders a Snapchat Lens card inline in an article or page.
+  - name: Spotlight video embed
+    description: Embeds a Spotlight video.
+  - name: Public Story embed
+    description: Embeds a public or Saved Story.
+  - name: Public Profile embed
+    description: Embeds a Snapchat Public Profile.
+  acquisition: >-
+    Snap generates the snippet — find the content on snapchat.com, click the embed button, copy the
+    code. There is no programmatic embed-code endpoint.
+- name: Share Sheet API
+  type: share-surface
+  docs: https://developers.snap.com/api/snapchat-for-web/social-plugins/share-link-to-snapchat
+  description: >-
+    Share a link from a website into Snapchat. Part of the Social Plugins set rather than the
+    deprecated Creative Kit SDK.
+- name: Creative Kit
+  type: share-surface
+  docs: https://developers.snap.com/snap-kit/creative-kit/overview
+  description: >-
+    Share Lenses, AR experiences, filters, GIFs, videos, links and captions from a site or app to
+    Snapchat's camera or preview screen. Supports Dynamic Lenses, Stickers and Spotlight posting.
+  status: sdk-deprecated
+  note: The Creative Kit SDK was retired in October 2024; the integration is now code-only.
+- name: Camera Kit
+  type: embedded-camera
+  docs: https://developers.snap.com/camera-kit/home
+  description: >-
+    Embeds Snap's AR camera into a host application — camera session management, lens rendering and
+    lens scheduling. Not every Lens Studio feature is available through it.
+  platforms:
+  - platform: web
+    package: '@snap/camera-kit'
+    version: 1.20.0
+  - platform: react
+    package: '@snap/react-camera-kit'
+    version: 0.6.0
+  - platform: react-native
+    package: '@snap/camera-kit-react-native'
+    version: 0.6.0
+  - platform: android
+    package: com.snap.camerakit:camerakit
+    version: 1.50.0
+  - platform: ios
+    package: Snapchat/camera-kit-ios-sdk
+  - platform: unity
+    package: Snapchat/camera-kit-unity-sample
+  - platform: flutter
+    package: Snapchat/camera-kit-flutter-sample
+  companion_surfaces:
+  - name: Lens Scheduler
+    url: https://developers.snap.com/camera-kit/ar-content/lens-scheduler
+    description: Manage and schedule which Lenses are delivered to an integrating application.
+  attribution_required: >-
+    Snap attribution ("Powered by Snap") may be required depending on how Camera Kit is used; see
+    the Camera Kit design guidelines.
+- name: Login with Snapchat button
+  type: auth-surface
+  docs: https://developers.snap.com/snap-kit/login-kit/overview
+  description: >-
+    The "Log in with Snapchat" button. Now implemented directly against OAuth 2.0 rather than
+    through the deprecated Login Kit SDKs.
+  status: sdk-deprecated
+component_count: 5
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
