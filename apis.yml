@@ -30,7 +30,7 @@ tags:
 - Social Media
 created: '2026-05-02'
 modified: '2026-08-13'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: snapchat:snapchat-ads-api
   name: Snapchat Ads API
