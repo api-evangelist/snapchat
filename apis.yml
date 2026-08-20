@@ -27,6 +27,13 @@ tags:
 - Augmented Reality
 - Marketing
 - Messaging
+- Social-Media
+tags_raw:
+- Advertising
+- AR
+- Augmented Reality
+- Marketing
+- Messaging
 - Social Media
 created: '2026-05-02'
 modified: '2026-08-13'
@@ -64,6 +71,11 @@ apis:
     deprecated October 2024).
   humanURL: https://developers.snap.com/snap-kit/creative-kit/overview
   tags:
+  - AR
+  - Content Sharing
+  - Integration
+  - Social-Media
+  tags_raw:
   - AR
   - Content Sharing
   - Integration
@@ -242,6 +254,8 @@ apis:
   humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
   baseURL: https://adsapi.snapchat.com/v1
   tags:
+  - Measurements
+  tags_raw:
   - Measurement
   properties:
   - type: OpenAPI
@@ -279,6 +293,8 @@ apis:
   humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
   baseURL: https://accounts.snapchat.com
   tags:
+  - Authentication
+  tags_raw:
   - OAuth
   properties:
   - type: OpenAPI
@@ -298,6 +314,8 @@ apis:
   humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
   baseURL: https://adsapi.snapchat.com/v1
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
