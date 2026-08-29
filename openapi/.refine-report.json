@@ -1,38 +1,35 @@
 {
   "provider": "snapchat",
   "sources": [
-    "snapchat-ad-accounts-api-openapi.yml",
-    "snapchat-ad-squads-api-openapi.yml",
-    "snapchat-ads-api-openapi.yml",
-    "snapchat-audience-segments-api-openapi.yml",
-    "snapchat-campaigns-api-openapi.yml",
-    "snapchat-conversion-events-api-openapi.yml",
-    "snapchat-creatives-api-openapi.yml",
-    "snapchat-funding-sources-api-openapi.yml",
-    "snapchat-measurement-api-openapi.yml",
-    "snapchat-media-api-openapi.yml",
-    "snapchat-oauth-api-openapi.yml",
-    "snapchat-organizations-api-openapi.yml",
-    "snapchat-user-profile-api-openapi.yml"
+    "_original/snapchat-conversions-api-openapi.yml",
+    "_original/snapchat-login-kit-openapi.yml"
   ],
   "outputs": [
-    "snapchat-ad-accounts-api-openapi.yml",
-    "snapchat-ad-squads-api-openapi.yml",
-    "snapchat-ads-api-openapi.yml",
-    "snapchat-audience-segments-api-openapi.yml",
-    "snapchat-campaigns-api-openapi.yml",
     "snapchat-conversion-events-api-openapi.yml",
-    "snapchat-creatives-api-openapi.yml",
-    "snapchat-funding-sources-api-openapi.yml",
-    "snapchat-measurement-api-openapi.yml",
-    "snapchat-media-api-openapi.yml",
     "snapchat-oauth-api-openapi.yml",
-    "snapchat-organizations-api-openapi.yml",
     "snapchat-user-profile-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "snapchat-conversions-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "snapchat-login-kit-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+  ],
+  "skipped": [
+    "snapchat-ad-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "snapchat-ad-squads-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "snapchat-ads-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "snapchat-audience-segments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "snapchat-campaigns-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "snapchat-conversion-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "snapchat-creatives-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "snapchat-funding-sources-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "snapchat-measurement-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "snapchat-media-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "snapchat-oauth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "snapchat-organizations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "snapchat-user-profile-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

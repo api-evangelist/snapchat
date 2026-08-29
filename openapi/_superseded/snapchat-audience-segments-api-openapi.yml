@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Snapchat Ads Ad Accounts Audience Segments API
   description: The Snapchat Ads API allows developers to programmatically create, manage, and optimize advertising campaigns on the Snapchat platform. It provides endpoints for managing organizations, ad accounts, campaigns, ad squads, ads, creatives, media, funding sources, audience segments, and measurement reporting. The API supports the full advertising lifecycle from campaign setup through reporting and optimization.
@@ -75,6 +75,14 @@ paths:
         '401':
           description: Unauthorized
 components:
+  parameters:
+    adAccountId:
+      name: ad_account_id
+      in: path
+      required: true
+      description: The unique identifier of the ad account
+      schema:
+        type: string
   schemas:
     AudienceSegment:
       type: object
@@ -116,14 +124,6 @@ components:
         approximate_number_users:
           type: integer
           description: Approximate number of users in the segment
-  parameters:
-    adAccountId:
-      name: ad_account_id
-      in: path
-      required: true
-      description: The unique identifier of the ad account
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: oauth2

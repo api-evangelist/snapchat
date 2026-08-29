@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Snapchat Ads Ad Accounts Campaigns API
+  title: Snapchat Ads Ad Accounts Ad Squads API
   description: The Snapchat Ads API allows developers to programmatically create, manage, and optimize advertising campaigns on the Snapchat platform. It provides endpoints for managing organizations, ad accounts, campaigns, ad squads, ads, creatives, media, funding sources, audience segments, and measurement reporting. The API supports the full advertising lifecycle from campaign setup through reporting and optimization.
   version: '1.0'
   contact:
@@ -13,21 +13,21 @@ servers:
 security:
 - bearerAuth: []
 tags:
-- name: Campaigns
-  description: Campaigns define a business objective and organize Ad Squads, allowing advertisers to view aggregate statistics.
+- name: Ad Squads
+  description: Ad Squads organize ads within a campaign, defining targeting, budget, schedule, and bid strategy.
 paths:
-  /adaccounts/{ad_account_id}/campaigns:
+  /campaigns/{campaign_id}/adsquads:
     get:
-      operationId: listCampaigns
-      summary: List All Campaigns for an Ad Account
-      description: Retrieves all campaigns associated with the specified ad account.
+      operationId: listAdSquadsByCampaign
+      summary: List All Ad Squads for a Campaign
+      description: Retrieves all ad squads associated with the specified campaign.
       tags:
-      - Campaigns
+      - Ad Squads
       parameters:
-      - $ref: '#/components/parameters/adAccountId'
+      - $ref: '#/components/parameters/campaignId'
       responses:
         '200':
-          description: Successful retrieval of campaigns
+          description: Successful retrieval of ad squads
           content:
             application/json:
               schema:
@@ -37,23 +37,55 @@ paths:
                     type: string
                   request_id:
                     type: string
-                  campaigns:
+                  adsquads:
                     type: array
                     items:
                       type: object
                       properties:
-                        campaign:
-                          $ref: '#/components/schemas/Campaign'
+                        adsquad:
+                          $ref: '#/components/schemas/AdSquad'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Campaign not found
+  /adaccounts/{ad_account_id}/adsquads:
+    get:
+      operationId: listAdSquadsByAdAccount
+      summary: List All Ad Squads for an Ad Account
+      description: Retrieves all ad squads associated with the specified ad account.
+      tags:
+      - Ad Squads
+      parameters:
+      - $ref: '#/components/parameters/adAccountId'
+      responses:
+        '200':
+          description: Successful retrieval of ad squads
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_status:
+                    type: string
+                  request_id:
+                    type: string
+                  adsquads:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        adsquad:
+                          $ref: '#/components/schemas/AdSquad'
         '401':
           description: Unauthorized
         '404':
           description: Ad account not found
     post:
-      operationId: createCampaign
-      summary: Create a Campaign
-      description: Creates a new campaign under the specified ad account.
+      operationId: createAdSquad
+      summary: Create an Ad Squad
+      description: Creates a new ad squad under the specified ad account.
       tags:
-      - Campaigns
+      - Ad Squads
       parameters:
       - $ref: '#/components/parameters/adAccountId'
       requestBody:
@@ -63,45 +95,29 @@ paths:
             schema:
               type: object
               properties:
-                campaigns:
+                adsquads:
                   type: array
                   items:
-                    $ref: '#/components/schemas/Campaign'
+                    $ref: '#/components/schemas/AdSquad'
       responses:
         '200':
-          description: Campaign created successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  request_status:
-                    type: string
-                  request_id:
-                    type: string
-                  campaigns:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        campaign:
-                          $ref: '#/components/schemas/Campaign'
+          description: Ad squad created successfully
         '400':
-          description: Bad request - invalid parameters
+          description: Bad request
         '401':
           description: Unauthorized
-  /campaigns/{campaign_id}:
+  /adsquads/{ad_squad_id}:
     get:
-      operationId: getCampaign
-      summary: Get a Specific Campaign
-      description: Retrieves details for a specific campaign by its ID.
+      operationId: getAdSquad
+      summary: Get a Specific Ad Squad
+      description: Retrieves details for a specific ad squad by its ID.
       tags:
-      - Campaigns
+      - Ad Squads
       parameters:
-      - $ref: '#/components/parameters/campaignId'
+      - $ref: '#/components/parameters/adSquadId'
       responses:
         '200':
-          description: Successful retrieval of campaign
+          description: Successful retrieval of ad squad
           content:
             application/json:
               schema:
@@ -111,25 +127,25 @@ paths:
                     type: string
                   request_id:
                     type: string
-                  campaigns:
+                  adsquads:
                     type: array
                     items:
                       type: object
                       properties:
-                        campaign:
-                          $ref: '#/components/schemas/Campaign'
+                        adsquad:
+                          $ref: '#/components/schemas/AdSquad'
         '401':
           description: Unauthorized
         '404':
-          description: Campaign not found
+          description: Ad squad not found
     put:
-      operationId: updateCampaign
-      summary: Update a Campaign
-      description: Updates an existing campaign.
+      operationId: updateAdSquad
+      summary: Update an Ad Squad
+      description: Updates an existing ad squad.
       tags:
-      - Campaigns
+      - Ad Squads
       parameters:
-      - $ref: '#/components/parameters/campaignId'
+      - $ref: '#/components/parameters/adSquadId'
       requestBody:
         required: true
         content:
@@ -137,36 +153,43 @@ paths:
             schema:
               type: object
               properties:
-                campaigns:
+                adsquads:
                   type: array
                   items:
-                    $ref: '#/components/schemas/Campaign'
+                    $ref: '#/components/schemas/AdSquad'
       responses:
         '200':
-          description: Campaign updated successfully
+          description: Ad squad updated successfully
         '400':
           description: Bad request
         '401':
           description: Unauthorized
         '404':
-          description: Campaign not found
+          description: Ad squad not found
     delete:
-      operationId: deleteCampaign
-      summary: Delete a Campaign
-      description: Deletes a specific campaign by its ID.
+      operationId: deleteAdSquad
+      summary: Delete an Ad Squad
+      description: Deletes a specific ad squad by its ID.
       tags:
-      - Campaigns
+      - Ad Squads
       parameters:
-      - $ref: '#/components/parameters/campaignId'
+      - $ref: '#/components/parameters/adSquadId'
       responses:
         '200':
-          description: Campaign deleted successfully
+          description: Ad squad deleted successfully
         '401':
           description: Unauthorized
         '404':
-          description: Campaign not found
+          description: Ad squad not found
 components:
   parameters:
+    adSquadId:
+      name: ad_squad_id
+      in: path
+      required: true
+      description: The unique identifier of the ad squad
+      schema:
+        type: string
     campaignId:
       name: campaign_id
       in: path
@@ -182,13 +205,13 @@ components:
       schema:
         type: string
   schemas:
-    Campaign:
+    AdSquad:
       type: object
-      description: A Campaign defines a business objective and organizes Ad Squads. It provides aggregate statistics for all ad squads within it.
+      description: An Ad Squad organizes ads within a campaign, defining targeting criteria, budget allocation, schedule, and bid strategy.
       properties:
         id:
           type: string
-          description: The unique identifier of the campaign
+          description: The unique identifier of the ad squad
         updated_at:
           type: string
           format: date-time
@@ -199,39 +222,48 @@ components:
           description: Timestamp of creation
         name:
           type: string
-          description: The name of the campaign
-        ad_account_id:
+          description: The name of the ad squad
+        campaign_id:
           type: string
-          description: The ID of the parent ad account
+          description: The ID of the parent campaign
         status:
           type: string
-          description: The status of the campaign
+          description: The status of the ad squad
           enum:
           - ACTIVE
           - PAUSED
+        type:
+          type: string
+          description: The delivery type of the ad squad
+          enum:
+          - SNAP_ADS
+          - STORY_ADS
+        placement:
+          type: string
+          description: Where ads will be placed
+        bid_micro:
+          type: integer
+          format: int64
+          description: The bid amount in micro-currency units
         daily_budget_micro:
           type: integer
           format: int64
           description: Daily budget in micro-currency units
-        lifetime_spend_cap_micro:
+        lifetime_budget_micro:
           type: integer
           format: int64
-          description: Lifetime spend cap in micro-currency units
+          description: Lifetime budget in micro-currency units
         start_time:
           type: string
           format: date-time
-          description: The start time of the campaign
+          description: The start time of the ad squad
         end_time:
           type: string
           format: date-time
-          description: The end time of the campaign
-        objective_v2_properties:
+          description: The end time of the ad squad
+        targeting:
           type: object
-          description: The objective properties for the campaign using the v2 objective format, which replaces the deprecated objective field.
-          properties:
-            objective:
-              type: string
-              description: The campaign objective type
+          description: Targeting criteria for the ad squad
   securitySchemes:
     bearerAuth:
       type: oauth2
