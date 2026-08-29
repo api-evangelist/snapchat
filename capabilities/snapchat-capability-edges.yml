@@ -1,0 +1,25 @@
+slug: snapchat
+provider: Snapchat
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Telecommunications
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Conversion Events
+  spec_file: snapchat-conversion-events-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.85
+  evidence: POST /{pixel_id}/events  sendWebConversionEvents  Send Web Conversion Events ... 'It helps
+    optimize ad campaigns, improve targeting, and measure conversions'
+  reason: Server-side conversion event ingestion for ad campaign optimisation and audience population
+    is paid-media / digital marketing measurement.

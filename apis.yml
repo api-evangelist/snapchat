@@ -188,6 +188,9 @@ apis:
   - type: ToolCrosswalk
     url: mcp/snapchat-tool-crosswalk.yml
 common:
+- type: CapabilityMap
+  url: capabilities/snapchat-capability-edges.yml
+  name: Snapchat Business Capability Map
 - type: Overlay
   url: overlays/snapchat-ad-accounts-api-overlay.yaml
 - type: Overlay
