@@ -175,6 +175,8 @@ apis:
   humanURL: https://developers.snap.com/snap-kit/creative-kit/overview
   baseURL: https://tr.snapchat.com/v3
   tags:
+  - Authentication
+  tags_raw:
   - OAuth
   properties:
   - type: OpenAPI
