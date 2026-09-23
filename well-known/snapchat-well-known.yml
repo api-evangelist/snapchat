@@ -1,14 +1,13 @@
-generated: '2026-08-13'
+generated: '2026-09-19'
 method: probed
 source: live GET of /.well-known/* on every Snapchat / Snap host named in apis.yml and the OpenAPI servers[]
 provider: Snapchat
 providerId: snapchat
-description: >-
-  Well-known discovery probe across every Snap-controlled host in this repo. Two real documents
-  were served: an RFC 9116 security.txt on snapchat.com pointing at Snap's HackerOne program, and
-  the RFC 8414 / RFC 9728 OAuth metadata pair that the Snapchat Ads MCP server publishes for its
-  own resource path. Note the metadata pair is served at the RESOURCE-SUFFIXED paths
-  (/.well-known/oauth-authorization-server/ads), not the bare host paths, which 404.
+description: 'Well-known discovery probe across every Snap-controlled host in this repo. Two real documents
+  were served: an RFC 9116 security.txt on snapchat.com pointing at Snap''s HackerOne program, and the
+  RFC 8414 / RFC 9728 OAuth metadata pair that the Snapchat Ads MCP server publishes for its own resource
+  path. Note the metadata pair is served at the RESOURCE-SUFFIXED paths (/.well-known/oauth-authorization-server/ads),
+  not the bare host paths, which 404.'
 hosts:
 - https://snapchat.com
 - https://snap.com
@@ -18,6 +17,17 @@ hosts:
 - https://kit.snapchat.com
 - https://accounts.snapchat.com
 - https://mcp.snapchat.com
+- host: https://mcp.snapchat.com
+  documents:
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: snapchat-mcp-oauth-protected-resource.json
+    bytes: 138
+  - path: /.well-known/oauth-authorization-server/ads
+    status: 200
+    file: snapchat-mcp-oauth-authorization-server.json
+    bytes: 455
+  path_echo_control: passed
 documents:
 - host: https://snapchat.com
   path: /.well-known/security.txt
@@ -28,10 +38,9 @@ documents:
   path: /.well-known/oauth-authorization-server/ads
   status: 200
   file: snapchat-mcp-oauth-authorization-server.json
-  note: >-
-    RFC 8414 authorization server metadata for the Snapchat Ads MCP server. authorization_code +
-    refresh_token grants, PKCE S256 required, token_endpoint_auth_methods_supported = ["none"]
-    (public client). No dynamic client registration endpoint is advertised, matching the docs.
+  note: RFC 8414 authorization server metadata for the Snapchat Ads MCP server. authorization_code + refresh_token
+    grants, PKCE S256 required, token_endpoint_auth_methods_supported = ["none"] (public client). No dynamic
+    client registration endpoint is advertised, matching the docs.
 - host: https://mcp.snapchat.com
   path: /.well-known/oauth-protected-resource/ads
   status: 200
@@ -53,22 +62,19 @@ misses:
 - host: https://kit.snapchat.com
   path: /.well-known/security.txt
   status: 200
-  note: >-
-    NOT A DOCUMENT. kit.snapchat.com is fronted by the same Docusaurus site as developers.snap.com
+  note: NOT A DOCUMENT. kit.snapchat.com is fronted by the same Docusaurus site as developers.snap.com
     and answers 200 with an HTML SPA shell for every /.well-known/* path. Treated as a miss.
 - host: https://tr.snapchat.com
   path: /.well-known/security.txt
   status: 200
-  note: >-
-    NOT A DOCUMENT. tr.snapchat.com is the Conversions API / pixel endpoint and returns a 68-byte
+  note: NOT A DOCUMENT. tr.snapchat.com is the Conversions API / pixel endpoint and returns a 68-byte
     1x1 transparent PNG for every unmatched path, including /.well-known/*. Treated as a miss.
 - host: https://accounts.snapchat.com
   path: /.well-known/openid-configuration
   status: 404
-  note: >-
-    Login Kit is OAuth 2.0 only. Snap's own docs describe authorization code + PKCE and implicit
-    grant, and no OpenID Connect layer; the Ads MCP docs state explicitly "This server supports
-    neither dynamic client registration nor OpenID Connect."
+  note: Login Kit is OAuth 2.0 only. Snap's own docs describe authorization code + PKCE and implicit grant,
+    and no OpenID Connect layer; the Ads MCP docs state explicitly "This server supports neither dynamic
+    client registration nor OpenID Connect."
 - host: https://accounts.snapchat.com
   path: /.well-known/oauth-authorization-server
   status: 404
@@ -109,3 +115,19 @@ misses:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-mcp-probe:
+  probed: '2026-09-19'
+  issue: roadmap#321, roadmap#337
+  documents:
+  - host: https://mcp.snapchat.com
+    path: /.well-known/oauth-protected-resource
+    file: snapchat-mcp-oauth-protected-resource.json
+  - host: https://mcp.snapchat.com
+    path: /.well-known/oauth-authorization-server/ads
+    file: snapchat-mcp-oauth-authorization-server.json
+  validated_on: resource (RFC 9728) / issuer (RFC 8414, OIDC)
+  negative_control: one per host; a 2xx JSON object at an impossible path discards the host
+note: 'MCP-host OAuth discovery added 2026-09-19 (roadmap#321/#337): the harvest visits a provider''s
+  primary hosts, and RFC 9728 protected-resource metadata lives on the MCP host, so these documents existed
+  and were invisible to the scorer. Fetched live and validated on `resource`/`issuer`; one negative control
+  per host.'
