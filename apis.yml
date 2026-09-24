@@ -40,7 +40,7 @@ tags:
 - Augmented Reality
 - Marketing
 - Messaging
-- Social-Media
+- Social Media
 tags_raw:
 - Advertising
 - AR
@@ -48,6 +48,7 @@ tags_raw:
 - Marketing
 - Messaging
 - Social Media
+- Social-Media
 created: '2026-05-02'
 modified: '2026-08-13'
 specificationVersion: '0.23'
@@ -64,12 +65,13 @@ apis:
   - AR
   - Content Sharing
   - Integration
-  - Social-Media
+  - Social Media
   tags_raw:
   - AR
   - Content Sharing
   - Integration
   - Social Media
+  - Social-Media
   properties:
   - type: Documentation
     url: https://developers.snap.com/snap-kit/creative-kit/overview
