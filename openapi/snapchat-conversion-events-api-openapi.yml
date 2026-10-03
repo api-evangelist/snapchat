@@ -84,100 +84,6 @@ paths:
           description: Rate limit exceeded
 components:
   schemas:
-    ConversionEventRequest:
-      type: object
-      description: The request body for sending conversion events. Contains an array of one or more event objects.
-      required:
-      - data
-      properties:
-        data:
-          type: array
-          description: Array of conversion event objects. Maximum 2,000 events per request.
-          maxItems: 2000
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/ConversionEvent'
-    AppData:
-      type: object
-      description: App-specific data for mobile app conversion events.
-      properties:
-        advertiser_tracking_enabled:
-          type: boolean
-          description: Whether the user has enabled advertiser tracking.
-        application_tracking_enabled:
-          type: boolean
-          description: Whether the app has tracking enabled.
-        extinfo:
-          type: array
-          description: Extended device information array.
-          items:
-            type: string
-    CustomData:
-      type: object
-      description: Custom data associated with the conversion event, such as purchase amount, currency, and product information.
-      properties:
-        currency:
-          type: string
-          description: ISO 4217 currency code (e.g., USD, EUR).
-          pattern: ^[A-Z]{3}$
-        price:
-          type: number
-          format: double
-          description: The value or price associated with the event.
-        transaction_id:
-          type: string
-          description: A unique transaction identifier for deduplication.
-        search_string:
-          type: string
-          description: The search query string for SEARCH events.
-        sign_up_method:
-          type: string
-          description: The method used for sign-up (e.g., email, google, facebook).
-        num_items:
-          type: integer
-          description: Number of items associated with the event.
-        payment_info_available:
-          type: integer
-          description: Whether payment info is available (1 or 0).
-          enum:
-          - 0
-          - 1
-        contents:
-          type: array
-          description: Array of product or content items associated with the event.
-          items:
-            $ref: '#/components/schemas/ContentItem'
-    ContentItem:
-      type: object
-      description: A product or content item associated with a conversion event.
-      properties:
-        id:
-          type: string
-          description: The product or content identifier.
-        quantity:
-          type: integer
-          description: The quantity of the item.
-          minimum: 1
-        item_price:
-          type: number
-          format: double
-          description: The price of the individual item.
-        brand:
-          type: string
-          description: The brand name of the item.
-        category:
-          type: string
-          description: The category of the item.
-    ConversionEventResponse:
-      type: object
-      description: Response returned after successfully submitting conversion events.
-      properties:
-        status:
-          type: string
-          description: The status of the request
-        reason:
-          type: string
-          description: Additional details about the response
     UserData:
       type: object
       description: User identification data for matching conversion events to Snapchat users. All personally identifiable information should be hashed using SHA-256 before sending.
@@ -301,6 +207,41 @@ components:
           $ref: '#/components/schemas/CustomData'
         app_data:
           $ref: '#/components/schemas/AppData'
+    CustomData:
+      type: object
+      description: Custom data associated with the conversion event, such as purchase amount, currency, and product information.
+      properties:
+        currency:
+          type: string
+          description: ISO 4217 currency code (e.g., USD, EUR).
+          pattern: ^[A-Z]{3}$
+        price:
+          type: number
+          format: double
+          description: The value or price associated with the event.
+        transaction_id:
+          type: string
+          description: A unique transaction identifier for deduplication.
+        search_string:
+          type: string
+          description: The search query string for SEARCH events.
+        sign_up_method:
+          type: string
+          description: The method used for sign-up (e.g., email, google, facebook).
+        num_items:
+          type: integer
+          description: Number of items associated with the event.
+        payment_info_available:
+          type: integer
+          description: Whether payment info is available (1 or 0).
+          enum:
+          - 0
+          - 1
+        contents:
+          type: array
+          description: Array of product or content items associated with the event.
+          items:
+            $ref: '#/components/schemas/ContentItem'
     ErrorResponse:
       type: object
       description: Error response returned when conversion event submission fails.
@@ -314,19 +255,78 @@ components:
         param:
           type: string
           description: The parameter that caused the error
+    ConversionEventResponse:
+      type: object
+      description: Response returned after successfully submitting conversion events.
+      properties:
+        status:
+          type: string
+          description: The status of the request
+        reason:
+          type: string
+          description: Additional details about the response
+    AppData:
+      type: object
+      description: App-specific data for mobile app conversion events.
+      properties:
+        advertiser_tracking_enabled:
+          type: boolean
+          description: Whether the user has enabled advertiser tracking.
+        application_tracking_enabled:
+          type: boolean
+          description: Whether the app has tracking enabled.
+        extinfo:
+          type: array
+          description: Extended device information array.
+          items:
+            type: string
+    ContentItem:
+      type: object
+      description: A product or content item associated with a conversion event.
+      properties:
+        id:
+          type: string
+          description: The product or content identifier.
+        quantity:
+          type: integer
+          description: The quantity of the item.
+          minimum: 1
+        item_price:
+          type: number
+          format: double
+          description: The price of the individual item.
+        brand:
+          type: string
+          description: The brand name of the item.
+        category:
+          type: string
+          description: The category of the item.
+    ConversionEventRequest:
+      type: object
+      description: The request body for sending conversion events. Contains an array of one or more event objects.
+      required:
+      - data
+      properties:
+        data:
+          type: array
+          description: Array of conversion event objects. Maximum 2,000 events per request.
+          maxItems: 2000
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/ConversionEvent'
   parameters:
-    pixelId:
-      name: pixel_id
-      in: path
-      required: true
-      description: The Snap Pixel ID used for tracking web conversion events.
-      schema:
-        type: string
     snapAppId:
       name: snap_app_id
       in: path
       required: true
       description: The Snap App ID used for tracking app conversion events.
+      schema:
+        type: string
+    pixelId:
+      name: pixel_id
+      in: path
+      required: true
+      description: The Snap Pixel ID used for tracking web conversion events.
       schema:
         type: string
     accessTokenQuery:
