@@ -84,64 +84,79 @@ paths:
           description: Rate limit exceeded
 components:
   schemas:
-    UserData:
+    ConversionEventRequest:
       type: object
-      description: User identification data for matching conversion events to Snapchat users. All personally identifiable information should be hashed using SHA-256 before sending.
+      description: The request body for sending conversion events. Contains an array of one or more event objects.
+      required:
+      - data
       properties:
-        em:
+        data:
+          type: array
+          description: Array of conversion event objects. Maximum 2,000 events per request.
+          maxItems: 2000
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/ConversionEvent'
+    ConversionEventResponse:
+      type: object
+      description: Response returned after successfully submitting conversion events.
+      properties:
+        status:
           type: string
-          description: SHA-256 hashed lowercase email address of the user.
-        ph:
+          description: The status of the request
+        reason:
           type: string
-          description: SHA-256 hashed phone number in E.164 format.
-        fn:
+          description: Additional details about the response
+    CustomData:
+      type: object
+      description: Custom data associated with the conversion event, such as purchase amount, currency, and product information.
+      properties:
+        currency:
           type: string
-          description: SHA-256 hashed lowercase first name of the user.
-        ln:
+          description: ISO 4217 currency code (e.g., USD, EUR).
+          pattern: ^[A-Z]{3}$
+        price:
+          type: number
+          format: double
+          description: The value or price associated with the event.
+        transaction_id:
           type: string
-          description: SHA-256 hashed lowercase last name of the user.
-        ge:
+          description: A unique transaction identifier for deduplication.
+        search_string:
           type: string
-          description: SHA-256 hashed gender (m or f).
-        db:
+          description: The search query string for SEARCH events.
+        sign_up_method:
           type: string
-          description: SHA-256 hashed date of birth in YYYYMMDD format.
-        ct:
-          type: string
-          description: SHA-256 hashed lowercase city name.
-        st:
-          type: string
-          description: SHA-256 hashed lowercase two-letter state code.
-        zp:
-          type: string
-          description: SHA-256 hashed five-digit zip code.
-        country:
-          type: string
-          description: SHA-256 hashed lowercase two-letter country code.
-        external_id:
-          type: string
-          description: SHA-256 hashed external ID for the user.
-        client_ip_address:
-          type: string
-          description: The IP address of the user's browser or device.
-        client_user_agent:
-          type: string
-          description: The user agent string of the user's browser.
-        sc_click_id:
-          type: string
-          description: The Snapchat click ID from the ad click URL parameter.
-        sc_cookie1:
-          type: string
-          description: The Snapchat first-party cookie value.
-        idfv:
-          type: string
-          description: iOS identifier for vendor.
-        idfa:
-          type: string
-          description: iOS identifier for advertisers.
-        madid:
-          type: string
-          description: Mobile advertising device ID (Android).
+          description: The method used for sign-up (e.g., email, google, facebook).
+        num_items:
+          type: integer
+          description: Number of items associated with the event.
+        payment_info_available:
+          type: integer
+          description: Whether payment info is available (1 or 0).
+          enum:
+          - 0
+          - 1
+        contents:
+          type: array
+          description: Array of product or content items associated with the event.
+          items:
+            $ref: '#/components/schemas/ContentItem'
+    AppData:
+      type: object
+      description: App-specific data for mobile app conversion events.
+      properties:
+        advertiser_tracking_enabled:
+          type: boolean
+          description: Whether the user has enabled advertiser tracking.
+        application_tracking_enabled:
+          type: boolean
+          description: Whether the app has tracking enabled.
+        extinfo:
+          type: array
+          description: Extended device information array.
+          items:
+            type: string
     ConversionEvent:
       type: object
       description: A single conversion event with event details, user data, and optional custom data.
@@ -207,79 +222,6 @@ components:
           $ref: '#/components/schemas/CustomData'
         app_data:
           $ref: '#/components/schemas/AppData'
-    CustomData:
-      type: object
-      description: Custom data associated with the conversion event, such as purchase amount, currency, and product information.
-      properties:
-        currency:
-          type: string
-          description: ISO 4217 currency code (e.g., USD, EUR).
-          pattern: ^[A-Z]{3}$
-        price:
-          type: number
-          format: double
-          description: The value or price associated with the event.
-        transaction_id:
-          type: string
-          description: A unique transaction identifier for deduplication.
-        search_string:
-          type: string
-          description: The search query string for SEARCH events.
-        sign_up_method:
-          type: string
-          description: The method used for sign-up (e.g., email, google, facebook).
-        num_items:
-          type: integer
-          description: Number of items associated with the event.
-        payment_info_available:
-          type: integer
-          description: Whether payment info is available (1 or 0).
-          enum:
-          - 0
-          - 1
-        contents:
-          type: array
-          description: Array of product or content items associated with the event.
-          items:
-            $ref: '#/components/schemas/ContentItem'
-    ErrorResponse:
-      type: object
-      description: Error response returned when conversion event submission fails.
-      properties:
-        status:
-          type: string
-          description: The error status
-        reason:
-          type: string
-          description: Human-readable error message
-        param:
-          type: string
-          description: The parameter that caused the error
-    ConversionEventResponse:
-      type: object
-      description: Response returned after successfully submitting conversion events.
-      properties:
-        status:
-          type: string
-          description: The status of the request
-        reason:
-          type: string
-          description: Additional details about the response
-    AppData:
-      type: object
-      description: App-specific data for mobile app conversion events.
-      properties:
-        advertiser_tracking_enabled:
-          type: boolean
-          description: Whether the user has enabled advertiser tracking.
-        application_tracking_enabled:
-          type: boolean
-          description: Whether the app has tracking enabled.
-        extinfo:
-          type: array
-          description: Extended device information array.
-          items:
-            type: string
     ContentItem:
       type: object
       description: A product or content item associated with a conversion event.
@@ -301,25 +243,83 @@ components:
         category:
           type: string
           description: The category of the item.
-    ConversionEventRequest:
+    UserData:
       type: object
-      description: The request body for sending conversion events. Contains an array of one or more event objects.
-      required:
-      - data
+      description: User identification data for matching conversion events to Snapchat users. All personally identifiable information should be hashed using SHA-256 before sending.
       properties:
-        data:
-          type: array
-          description: Array of conversion event objects. Maximum 2,000 events per request.
-          maxItems: 2000
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/ConversionEvent'
+        em:
+          type: string
+          description: SHA-256 hashed lowercase email address of the user.
+        ph:
+          type: string
+          description: SHA-256 hashed phone number in E.164 format.
+        fn:
+          type: string
+          description: SHA-256 hashed lowercase first name of the user.
+        ln:
+          type: string
+          description: SHA-256 hashed lowercase last name of the user.
+        ge:
+          type: string
+          description: SHA-256 hashed gender (m or f).
+        db:
+          type: string
+          description: SHA-256 hashed date of birth in YYYYMMDD format.
+        ct:
+          type: string
+          description: SHA-256 hashed lowercase city name.
+        st:
+          type: string
+          description: SHA-256 hashed lowercase two-letter state code.
+        zp:
+          type: string
+          description: SHA-256 hashed five-digit zip code.
+        country:
+          type: string
+          description: SHA-256 hashed lowercase two-letter country code.
+        external_id:
+          type: string
+          description: SHA-256 hashed external ID for the user.
+        client_ip_address:
+          type: string
+          description: The IP address of the user's browser or device.
+        client_user_agent:
+          type: string
+          description: The user agent string of the user's browser.
+        sc_click_id:
+          type: string
+          description: The Snapchat click ID from the ad click URL parameter.
+        sc_cookie1:
+          type: string
+          description: The Snapchat first-party cookie value.
+        idfv:
+          type: string
+          description: iOS identifier for vendor.
+        idfa:
+          type: string
+          description: iOS identifier for advertisers.
+        madid:
+          type: string
+          description: Mobile advertising device ID (Android).
+    ErrorResponse:
+      type: object
+      description: Error response returned when conversion event submission fails.
+      properties:
+        status:
+          type: string
+          description: The error status
+        reason:
+          type: string
+          description: Human-readable error message
+        param:
+          type: string
+          description: The parameter that caused the error
   parameters:
-    snapAppId:
-      name: snap_app_id
-      in: path
+    accessTokenQuery:
+      name: access_token
+      in: query
       required: true
-      description: The Snap App ID used for tracking app conversion events.
+      description: The static long-lived access token for authentication.
       schema:
         type: string
     pixelId:
@@ -329,11 +329,11 @@ components:
       description: The Snap Pixel ID used for tracking web conversion events.
       schema:
         type: string
-    accessTokenQuery:
-      name: access_token
-      in: query
+    snapAppId:
+      name: snap_app_id
+      in: path
       required: true
-      description: The static long-lived access token for authentication.
+      description: The Snap App ID used for tracking app conversion events.
       schema:
         type: string
   securitySchemes:
