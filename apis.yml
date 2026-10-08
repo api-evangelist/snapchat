@@ -191,6 +191,8 @@ apis:
   - type: Documentation
     url: https://developers.snap.com/snap-kit/login-kit/overview
 common:
+- type: FinOps
+  url: finops/snapchat-finops.yml
 - type: Overlay
   url: overlays/snapchat-oauth-api-overlay.yaml
 - type: CapabilityMap
