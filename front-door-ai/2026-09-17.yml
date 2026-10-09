@@ -7,14 +7,17 @@ front_door_ai:
   probed_at: '2026-09-17'
   host: snap.com
   final_host: www.snap.com
-  ownership: inherited
+  ownership: own
   owner: snapchat
   shares_host_with: null
-  inherited_from: www.snap.com
+  inherited_from: null
+  alias_of: www.snap.com
   verdict: scored
-  score: null
+  score: 1
+  band: 2
+  band_label: trace
   host_score: 1
-  density: null
+  density: 8.2
   words: 122
   tiers:
     agentic: 0
