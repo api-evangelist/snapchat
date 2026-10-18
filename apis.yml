@@ -39,7 +39,6 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/snapchat.png
 tags:
 - Advertising
-- AR
 - Augmented Reality
 - Marketing
 - Messaging
@@ -65,7 +64,7 @@ apis:
     deprecated October 2024).
   humanURL: https://developers.snap.com/snap-kit/creative-kit/overview
   tags:
-  - AR
+  - Augmented Reality
   - Content Sharing
   - Integration
   - Social Media
@@ -88,6 +87,10 @@ apis:
     the host app.
   humanURL: https://developers.snap.com/camera-kit/home
   tags:
+  - Augmented Reality
+  - Camera
+  - SDK
+  tags_raw:
   - AR
   - Augmented Reality
   - Camera
@@ -103,6 +106,10 @@ apis:
     Lens Network.
   humanURL: https://developers.snap.com/lens-studio/home
   tags:
+  - Augmented Reality
+  - Creative Tools
+  - Lens
+  tags_raw:
   - AR
   - Augmented Reality
   - Creative Tools
