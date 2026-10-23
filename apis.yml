@@ -198,6 +198,8 @@ apis:
   - type: Documentation
     url: https://developers.snap.com/snap-kit/login-kit/overview
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/snapchat/overview
 - type: FinOps
   url: finops/snapchat-finops.yml
 - type: Overlay
