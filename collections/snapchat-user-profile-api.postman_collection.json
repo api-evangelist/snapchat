@@ -1,251 +1,206 @@
 {
+  "info": {
+    "_postman_id": "35aef1b8-95ba-4f9b-b782-c5445ac2241a",
+    "name": "Snapchat Login Kit User Profile API",
+    "description": "Snapchat Login Kit enables developers to let users sign up and log in to their apps using their Snapchat account credentials. Built on the OAuth 2.0 standard, it provides endpoints for authorization, token exchange, token refresh, and retrieving user profile information including display name and Bitmoji avatar. Login Kit is available for iOS, Android, and Web platforms.\n\nContact Support:\n Name: Snap for Developers",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:12:41.000Z",
+    "updatedAt": "2026-10-21T20:12:41.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-35aef1b8-95ba-4f9b-b782-c5445ac2241a"
+  },
   "item": [
     {
-      "id": "428b7c52-b854-45c0-ae28-603ab9e100e1",
-      "name": "User Profile",
-      "description": {
-        "content": "Endpoints for retrieving authenticated user profile information including display name and Bitmoji avatar.",
-        "type": "text/plain"
-      },
+      "name": "me",
       "item": [
         {
-          "id": "53bb488d-5044-401c-9678-90d6008f8d5b",
           "name": "Get Authenticated User Profile",
+          "id": "01c32925-fb21-4349-9f08-6c0ff7e27228",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Get Authenticated User Profile",
-            "description": {
-              "content": "Retrieves the profile information of the authenticated Snapchat user, including their external ID, display name, and Bitmoji avatar URL based on the scopes granted during authorization.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "me"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
+            "auth": {
+              "type": "bearer",
+              "bearer": [
                 {
-                  "disabled": false,
-                  "key": "query",
-                  "value": "<string>",
-                  "description": "A JSON-encoded query string specifying which fields to retrieve from the user profile."
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
                 }
-              ],
-              "variable": []
+              ]
             },
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": {
-              "type": "oauth2",
-              "oauth2": [
+            "url": {
+              "raw": "{{baseUrl}}/me?query=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "me"
+              ],
+              "query": [
                 {
-                  "key": "scope",
-                  "value": "snapchat-marketing-api"
-                },
-                {
-                  "key": "accessTokenUrl",
-                  "value": "https://accounts.snapchat.com/login/oauth2/access_token"
-                },
-                {
-                  "key": "authUrl",
-                  "value": "https://accounts.snapchat.com/accounts/oauth2/auth"
-                },
-                {
-                  "key": "grant_type",
-                  "value": "authorization_code"
+                  "description": "A JSON-encoded query string specifying which fields to retrieve from the user profile.",
+                  "key": "query",
+                  "value": "<string>"
                 }
               ]
-            }
+            },
+            "description": "Retrieves the profile information of the authenticated Snapchat user, including their external ID, display name, and Bitmoji avatar URL based on the scopes granted during authorization."
           },
           "response": [
             {
-              "id": "2bf85278-6cbb-42ca-b3a2-73d7e27b2c53",
+              "id": "73c8cc1d-a813-4a09-bc07-db54457d4eb6",
               "name": "User profile retrieved successfully",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "me"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "query",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/me?query=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "me"
+                  ],
+                  "query": [
+                    {
+                      "description": "A JSON-encoded query string specifying which fields to retrieve from the user profile.",
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"data\": {\n    \"me\": {\n      \"externalId\": \"string\",\n      \"displayName\": \"string\",\n      \"bitmoji\": {\n        \"avatar\": \"https://e.dxdcoiAFpC8XCjxQKByx6,792qIOh\",\n        \"id\": \"string\"\n      }\n    }\n  }\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"me\": {\n      \"externalId\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"bitmoji\": {\n        \"avatar\": \"<uri>\",\n        \"id\": \"<string>\"\n      }\n    }\n  }\n}",
+              "createdAt": "2026-10-21T20:12:41.000Z",
+              "updatedAt": "2026-10-21T20:12:41.000Z",
+              "uid": "35240-73c8cc1d-a813-4a09-bc07-db54457d4eb6"
             },
             {
-              "id": "4aea5b30-8610-422f-8c84-de540aa85bd2",
+              "id": "9ed86cfd-f9ff-4fc8-b530-c27e05798e29",
               "name": "Unauthorized - invalid or expired access token",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "me"
-                  ],
+                  "raw": "{{baseUrl}}/me?query=<string>",
                   "host": [
                     "{{baseUrl}}"
                   ],
+                  "path": [
+                    "me"
+                  ],
                   "query": [
                     {
+                      "description": "A JSON-encoded query string specifying which fields to retrieve from the user profile.",
                       "key": "query",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-21T20:12:41.000Z",
+              "updatedAt": "2026-10-21T20:12:41.000Z",
+              "uid": "35240-9ed86cfd-f9ff-4fc8-b530-c27e05798e29"
             },
             {
-              "id": "dc2c2021-21c8-43d3-8d85-602a09c74fbf",
+              "id": "83098874-7dfd-47cc-b234-a7371813fe95",
               "name": "Forbidden - insufficient scopes",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "me"
-                  ],
+                  "raw": "{{baseUrl}}/me?query=<string>",
                   "host": [
                     "{{baseUrl}}"
                   ],
+                  "path": [
+                    "me"
+                  ],
                   "query": [
                     {
+                      "description": "A JSON-encoded query string specifying which fields to retrieve from the user profile.",
                       "key": "query",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "Forbidden",
               "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-21T20:12:41.000Z",
+              "updatedAt": "2026-10-21T20:12:41.000Z",
+              "uid": "35240-83098874-7dfd-47cc-b234-a7371813fe95"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-21T20:12:41.000Z",
+          "updatedAt": "2026-10-21T20:12:41.000Z",
+          "uid": "35240-01c32925-fb21-4349-9f08-6c0ff7e27228"
         }
       ],
-      "event": []
+      "id": "86a59e8a-714b-43f6-becf-db530d99dd02",
+      "createdAt": "2026-10-21T20:12:41.000Z",
+      "updatedAt": "2026-10-21T20:12:41.000Z",
+      "uid": "35240-86a59e8a-714b-43f6-becf-db530d99dd02"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://adsapi.snapchat.com/v1",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://accounts.snapchat.com"
     }
-  ],
-  "auth": {
-    "type": "oauth2",
-    "oauth2": [
-      {
-        "key": "scope",
-        "value": "snapchat-marketing-api"
-      },
-      {
-        "key": "accessTokenUrl",
-        "value": "https://accounts.snapchat.com/login/oauth2/access_token"
-      },
-      {
-        "key": "authUrl",
-        "value": "https://accounts.snapchat.com/accounts/oauth2/auth"
-      },
-      {
-        "key": "grant_type",
-        "value": "authorization_code"
-      }
-    ]
-  },
-  "info": {
-    "_postman_id": "84a8a368-3d5c-40b3-b672-cdfc1a2117c4",
-    "name": "Snapchat Ads Ad Accounts User Profile API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Snapchat Ads API allows developers to programmatically create, manage, and optimize advertising campaigns on the Snapchat platform. It provides endpoints for managing organizations, ad accounts, campaigns, ad squads, ads, creatives, media, funding sources, audience segments, and measurement reporting. The API supports the full advertising lifecycle from campaign setup through reporting and optimization.\n\nContact Support:\n Name: Snap for Developers",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

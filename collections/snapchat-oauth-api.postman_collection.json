@@ -1,626 +1,538 @@
 {
+  "info": {
+    "_postman_id": "8f462a6d-909d-426a-8282-322d8fccaca6",
+    "name": "Snapchat Login Kit OAuth API",
+    "description": "Snapchat Login Kit enables developers to let users sign up and log in to their apps using their Snapchat account credentials. Built on the OAuth 2.0 standard, it provides endpoints for authorization, token exchange, token refresh, and retrieving user profile information including display name and Bitmoji avatar. Login Kit is available for iOS, Android, and Web platforms.\n\nContact Support:\n Name: Snap for Developers",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:12:46.000Z",
+    "updatedAt": "2026-10-21T20:12:47.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8f462a6d-909d-426a-8282-322d8fccaca6"
+  },
   "item": [
     {
-      "id": "38a07c1a-e77d-45e9-8223-c100d82e8e33",
-      "name": "OAuth",
-      "description": {
-        "content": "OAuth 2.0 authorization and token management endpoints for authenticating users via their Snapchat account.",
-        "type": "text/plain"
-      },
+      "name": "accounts",
       "item": [
         {
-          "id": "8ec4877b-b4bd-4f86-972c-eccaaf45d126",
-          "name": "Authorize a User via Snapchat",
-          "request": {
-            "name": "Authorize a User via Snapchat",
-            "description": {
-              "content": "Redirects the user to the Snapchat authorization page where they can grant permission to the application. This is the initial step in the OAuth 2.0 authorization code flow. After authorization, the user is redirected back to the specified redirect URI with an authorization code.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "accounts",
-                "oauth2",
-                "auth"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "client_id",
-                  "value": "<string>",
-                  "description": "(Required) The OAuth client ID assigned to the application."
-                },
-                {
-                  "disabled": false,
-                  "key": "redirect_uri",
-                  "value": "<uri>",
-                  "description": "(Required) The URI to redirect the user to after authorization. Must match one of the registered redirect URIs."
-                },
-                {
-                  "disabled": false,
-                  "key": "response_type",
-                  "value": "<string>",
-                  "description": "(Required) The OAuth response type. Use 'code' for authorization code flow or 'token' for implicit flow."
-                },
-                {
-                  "disabled": false,
-                  "key": "scope",
-                  "value": "<string>",
-                  "description": "(Required) Space-separated list of requested scopes defining what user data the application wants access to."
-                },
-                {
-                  "disabled": false,
-                  "key": "state",
-                  "value": "<string>",
-                  "description": "An opaque value used to maintain state between the request and callback for CSRF protection."
-                }
-              ],
-              "variable": []
-            },
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "oauth2",
+          "item": [
             {
-              "id": "726865ba-1d1c-4d8c-9bef-afd2341d45cb",
-              "name": "Redirects to Snapchat login page for user authorization",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    "oauth2",
-                    "auth"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              "name": "auth",
+              "item": [
+                {
+                  "name": "Authorize a User via Snapchat",
+                  "id": "8021f665-f8eb-4c15-a050-6c331c22bcad",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/oauth2/auth?client_id=<string>&redirect_uri=<uri>&response_type=token&scope=<string>&state=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        "oauth2",
+                        "auth"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The OAuth client ID assigned to the application.",
+                          "key": "client_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The URI to redirect the user to after authorization. Must match one of the registered redirect URIs.",
+                          "key": "redirect_uri",
+                          "value": "<uri>"
+                        },
+                        {
+                          "description": "(Required) The OAuth response type. Use 'code' for authorization code flow or 'token' for implicit flow.",
+                          "key": "response_type",
+                          "value": "token"
+                        },
+                        {
+                          "description": "(Required) Space-separated list of requested scopes defining what user data the application wants access to.",
+                          "key": "scope",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "An opaque value used to maintain state between the request and callback for CSRF protection.",
+                          "key": "state",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Redirects the user to the Snapchat authorization page where they can grant permission to the application. This is the initial step in the OAuth 2.0 authorization code flow. After authorization, the user is redirected back to the specified redirect URI with an authorization code."
+                  },
+                  "response": [
                     {
-                      "key": "client_id",
-                      "value": "<string>"
+                      "id": "c9e23ced-c690-4041-bf14-c590e674f77e",
+                      "name": "Redirects to Snapchat login page for user authorization",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/oauth2/auth?client_id=<string>&redirect_uri=<uri>&response_type=token&scope=<string>&state=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            "oauth2",
+                            "auth"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The OAuth client ID assigned to the application.",
+                              "key": "client_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) The URI to redirect the user to after authorization. Must match one of the registered redirect URIs.",
+                              "key": "redirect_uri",
+                              "value": "<uri>"
+                            },
+                            {
+                              "description": "(Required) The OAuth response type. Use 'code' for authorization code flow or 'token' for implicit flow.",
+                              "key": "response_type",
+                              "value": "token"
+                            },
+                            {
+                              "description": "(Required) Space-separated list of requested scopes defining what user data the application wants access to.",
+                              "key": "scope",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An opaque value used to maintain state between the request and callback for CSRF protection.",
+                              "key": "state",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Found",
+                      "code": 302,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T20:12:47.000Z",
+                      "updatedAt": "2026-10-21T20:12:47.000Z",
+                      "uid": "35240-c9e23ced-c690-4041-bf14-c590e674f77e"
                     },
                     {
-                      "key": "redirect_uri",
-                      "value": "<uri>"
-                    },
-                    {
-                      "key": "response_type",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "scope",
-                      "value": "https://auth.snapchat.com/oauth2/api/user.display_name https://auth.snapchat.com/oauth2/api/user.bitmoji.avatar"
-                    },
-                    {
-                      "key": "state",
-                      "value": "<string>"
+                      "id": "43b55f3e-b385-4b73-b3ec-d2d4238ad5f3",
+                      "name": "Bad request - invalid parameters",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/oauth2/auth?client_id=<string>&redirect_uri=<uri>&response_type=token&scope=<string>&state=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            "oauth2",
+                            "auth"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The OAuth client ID assigned to the application.",
+                              "key": "client_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) The URI to redirect the user to after authorization. Must match one of the registered redirect URIs.",
+                              "key": "redirect_uri",
+                              "value": "<uri>"
+                            },
+                            {
+                              "description": "(Required) The OAuth response type. Use 'code' for authorization code flow or 'token' for implicit flow.",
+                              "key": "response_type",
+                              "value": "token"
+                            },
+                            {
+                              "description": "(Required) Space-separated list of requested scopes defining what user data the application wants access to.",
+                              "key": "scope",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An opaque value used to maintain state between the request and callback for CSRF protection.",
+                              "key": "state",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T20:12:47.000Z",
+                      "updatedAt": "2026-10-21T20:12:47.000Z",
+                      "uid": "35240-43b55f3e-b385-4b73-b3ec-d2d4238ad5f3"
                     }
                   ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Found",
-              "code": 302,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "createdAt": "2026-10-21T20:12:47.000Z",
+                  "updatedAt": "2026-10-21T20:12:47.000Z",
+                  "uid": "35240-8021f665-f8eb-4c15-a050-6c331c22bcad"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "01de942d-511b-4e2e-ac55-4d37ae731eac",
-              "name": "Bad request - invalid parameters",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    "oauth2",
-                    "auth"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "client_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "redirect_uri",
-                      "value": "<uri>"
-                    },
-                    {
-                      "key": "response_type",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "scope",
-                      "value": "https://auth.snapchat.com/oauth2/api/user.display_name https://auth.snapchat.com/oauth2/api/user.bitmoji.avatar"
-                    },
-                    {
-                      "key": "state",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "15cb9248-ab61-4414-a8a6-49e8ea26d339",
+              "createdAt": "2026-10-21T20:12:47.000Z",
+              "updatedAt": "2026-10-21T20:12:47.000Z",
+              "uid": "35240-15cb9248-ab61-4414-a8a6-49e8ea26d339"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "8daf010d-62a5-4b22-b794-c34aec4ba1db",
-          "name": "Exchange Authorization Code for Tokens",
-          "request": {
-            "name": "Exchange Authorization Code for Tokens",
-            "description": {
-              "content": "Exchanges an authorization code for an access token and refresh token. Access tokens expire after 3600 seconds (60 minutes). This endpoint is also used to refresh expired access tokens using a refresh token.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "login",
-                "oauth2",
-                "access_token"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/x-www-form-urlencoded"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "disabled": false,
-                  "key": "client_id",
-                  "value": "<string>",
-                  "description": "(Required) The OAuth client ID assigned to the application."
-                },
-                {
-                  "disabled": false,
-                  "key": "client_secret",
-                  "value": "<string>",
-                  "description": "(Required) The OAuth client secret assigned to the application."
-                },
-                {
-                  "disabled": false,
-                  "key": "grant_type",
-                  "value": "<string>",
-                  "description": "(Required) The type of token exchange. Use 'authorization_code' for initial exchange or 'refresh_token' for renewal."
-                },
-                {
-                  "disabled": false,
-                  "key": "code",
-                  "value": "<string>",
-                  "description": "The authorization code received from the authorization endpoint. Required when grant_type is authorization_code."
-                },
-                {
-                  "disabled": false,
-                  "key": "redirect_uri",
-                  "value": "<uri>",
-                  "description": "The redirect URI used in the authorization request. Required when grant_type is authorization_code."
-                },
-                {
-                  "disabled": false,
-                  "key": "refresh_token",
-                  "value": "<string>",
-                  "description": "The refresh token for obtaining a new access token. Required when grant_type is refresh_token."
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "6f295c87-ada1-4a69-8442-b1d0fe8290f7",
-              "name": "Token exchange successful",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "login",
-                    "oauth2",
-                    "access_token"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "urlencoded",
-                  "urlencoded": [
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) The OAuth client ID assigned to the application.",
-                        "type": "text/plain"
-                      },
-                      "key": "client_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) The OAuth client secret assigned to the application.",
-                        "type": "text/plain"
-                      },
-                      "key": "client_secret",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) The type of token exchange. Use 'authorization_code' for initial exchange or 'refresh_token' for renewal.",
-                        "type": "text/plain"
-                      },
-                      "key": "grant_type",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "The authorization code received from the authorization endpoint. Required when grant_type is authorization_code.",
-                        "type": "text/plain"
-                      },
-                      "key": "code",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "The redirect URI used in the authorization request. Required when grant_type is authorization_code.",
-                        "type": "text/plain"
-                      },
-                      "key": "redirect_uri",
-                      "value": "<uri>"
-                    },
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "The refresh token for obtaining a new access token. Required when grant_type is refresh_token.",
-                        "type": "text/plain"
-                      },
-                      "key": "refresh_token",
-                      "value": "<string>"
-                    }
-                  ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"access_token\": \"string\",\n  \"token_type\": \"Bearer\",\n  \"expires_in\": 3600,\n  \"refresh_token\": \"string\",\n  \"scope\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8f01ee4d-f0bb-4f2a-87bd-9a2bc5f6cbe3",
-              "name": "Bad request - invalid grant or parameters",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "login",
-                    "oauth2",
-                    "access_token"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "urlencoded",
-                  "urlencoded": [
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) The OAuth client ID assigned to the application.",
-                        "type": "text/plain"
-                      },
-                      "key": "client_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) The OAuth client secret assigned to the application.",
-                        "type": "text/plain"
-                      },
-                      "key": "client_secret",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) The type of token exchange. Use 'authorization_code' for initial exchange or 'refresh_token' for renewal.",
-                        "type": "text/plain"
-                      },
-                      "key": "grant_type",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "The authorization code received from the authorization endpoint. Required when grant_type is authorization_code.",
-                        "type": "text/plain"
-                      },
-                      "key": "code",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "The redirect URI used in the authorization request. Required when grant_type is authorization_code.",
-                        "type": "text/plain"
-                      },
-                      "key": "redirect_uri",
-                      "value": "<uri>"
-                    },
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "The refresh token for obtaining a new access token. Required when grant_type is refresh_token.",
-                        "type": "text/plain"
-                      },
-                      "key": "refresh_token",
-                      "value": "<string>"
-                    }
-                  ]
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"invalid_client\",\n  \"error_description\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "bcf628c1-ea5b-4f60-82d4-38a3c96c278a",
-              "name": "Unauthorized - invalid client credentials",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "login",
-                    "oauth2",
-                    "access_token"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "urlencoded",
-                  "urlencoded": [
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) The OAuth client ID assigned to the application.",
-                        "type": "text/plain"
-                      },
-                      "key": "client_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) The OAuth client secret assigned to the application.",
-                        "type": "text/plain"
-                      },
-                      "key": "client_secret",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) The type of token exchange. Use 'authorization_code' for initial exchange or 'refresh_token' for renewal.",
-                        "type": "text/plain"
-                      },
-                      "key": "grant_type",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "The authorization code received from the authorization endpoint. Required when grant_type is authorization_code.",
-                        "type": "text/plain"
-                      },
-                      "key": "code",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "The redirect URI used in the authorization request. Required when grant_type is authorization_code.",
-                        "type": "text/plain"
-                      },
-                      "key": "redirect_uri",
-                      "value": "<uri>"
-                    },
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "The refresh token for obtaining a new access token. Required when grant_type is refresh_token.",
-                        "type": "text/plain"
-                      },
-                      "key": "refresh_token",
-                      "value": "<string>"
-                    }
-                  ]
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "2373430f-e3d6-4e51-ae07-11f47a4c3548",
+          "createdAt": "2026-10-21T20:12:47.000Z",
+          "updatedAt": "2026-10-21T20:12:47.000Z",
+          "uid": "35240-2373430f-e3d6-4e51-ae07-11f47a4c3548"
         }
       ],
-      "event": []
+      "id": "6764e0a3-4710-4a7b-8e70-2b977a9f400c",
+      "createdAt": "2026-10-21T20:12:47.000Z",
+      "updatedAt": "2026-10-21T20:12:47.000Z",
+      "uid": "35240-6764e0a3-4710-4a7b-8e70-2b977a9f400c"
+    },
+    {
+      "name": "login",
+      "item": [
+        {
+          "name": "oauth2",
+          "item": [
+            {
+              "name": "access_token",
+              "item": [
+                {
+                  "name": "Exchange Authorization Code for Tokens",
+                  "id": "e6e2790c-d6be-4bee-99a3-ede2d413ac1a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) The OAuth client ID assigned to the application.",
+                          "key": "client_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The OAuth client secret assigned to the application.",
+                          "key": "client_secret",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The type of token exchange. Use 'authorization_code' for initial exchange or 'refresh_token' for renewal.",
+                          "key": "grant_type",
+                          "value": "refresh_token"
+                        },
+                        {
+                          "description": "The authorization code received from the authorization endpoint. Required when grant_type is authorization_code.",
+                          "key": "code",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The redirect URI used in the authorization request. Required when grant_type is authorization_code.",
+                          "key": "redirect_uri",
+                          "value": "<uri>"
+                        },
+                        {
+                          "description": "The refresh token for obtaining a new access token. Required when grant_type is refresh_token.",
+                          "key": "refresh_token",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/login/oauth2/access_token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "login",
+                        "oauth2",
+                        "access_token"
+                      ]
+                    },
+                    "description": "Exchanges an authorization code for an access token and refresh token. Access tokens expire after 3600 seconds (60 minutes). This endpoint is also used to refresh expired access tokens using a refresh token."
+                  },
+                  "response": [
+                    {
+                      "id": "76c477af-c962-49ae-a784-6a6aa0c0c7d2",
+                      "name": "Token exchange successful",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) The OAuth client ID assigned to the application.",
+                              "key": "client_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) The OAuth client secret assigned to the application.",
+                              "key": "client_secret",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) The type of token exchange. Use 'authorization_code' for initial exchange or 'refresh_token' for renewal.",
+                              "key": "grant_type",
+                              "value": "refresh_token"
+                            },
+                            {
+                              "description": "The authorization code received from the authorization endpoint. Required when grant_type is authorization_code.",
+                              "key": "code",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The redirect URI used in the authorization request. Required when grant_type is authorization_code.",
+                              "key": "redirect_uri",
+                              "value": "<uri>"
+                            },
+                            {
+                              "description": "The refresh token for obtaining a new access token. Required when grant_type is refresh_token.",
+                              "key": "refresh_token",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/login/oauth2/access_token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "login",
+                            "oauth2",
+                            "access_token"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"access_token\": \"<string>\",\n  \"token_type\": \"Bearer\",\n  \"expires_in\": \"<integer>\",\n  \"refresh_token\": \"<string>\",\n  \"scope\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:12:47.000Z",
+                      "updatedAt": "2026-10-21T20:12:47.000Z",
+                      "uid": "35240-76c477af-c962-49ae-a784-6a6aa0c0c7d2"
+                    },
+                    {
+                      "id": "12b85a0e-94dd-4918-a113-ed18bc8f2577",
+                      "name": "Bad request - invalid grant or parameters",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) The OAuth client ID assigned to the application.",
+                              "key": "client_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) The OAuth client secret assigned to the application.",
+                              "key": "client_secret",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) The type of token exchange. Use 'authorization_code' for initial exchange or 'refresh_token' for renewal.",
+                              "key": "grant_type",
+                              "value": "refresh_token"
+                            },
+                            {
+                              "description": "The authorization code received from the authorization endpoint. Required when grant_type is authorization_code.",
+                              "key": "code",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The redirect URI used in the authorization request. Required when grant_type is authorization_code.",
+                              "key": "redirect_uri",
+                              "value": "<uri>"
+                            },
+                            {
+                              "description": "The refresh token for obtaining a new access token. Required when grant_type is refresh_token.",
+                              "key": "refresh_token",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/login/oauth2/access_token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "login",
+                            "oauth2",
+                            "access_token"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"unsupported_grant_type\",\n  \"error_description\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:12:47.000Z",
+                      "updatedAt": "2026-10-21T20:12:47.000Z",
+                      "uid": "35240-12b85a0e-94dd-4918-a113-ed18bc8f2577"
+                    },
+                    {
+                      "id": "ecc79ec6-2f6b-4cfe-b849-3417d064830e",
+                      "name": "Unauthorized - invalid client credentials",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) The OAuth client ID assigned to the application.",
+                              "key": "client_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) The OAuth client secret assigned to the application.",
+                              "key": "client_secret",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) The type of token exchange. Use 'authorization_code' for initial exchange or 'refresh_token' for renewal.",
+                              "key": "grant_type",
+                              "value": "refresh_token"
+                            },
+                            {
+                              "description": "The authorization code received from the authorization endpoint. Required when grant_type is authorization_code.",
+                              "key": "code",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The redirect URI used in the authorization request. Required when grant_type is authorization_code.",
+                              "key": "redirect_uri",
+                              "value": "<uri>"
+                            },
+                            {
+                              "description": "The refresh token for obtaining a new access token. Required when grant_type is refresh_token.",
+                              "key": "refresh_token",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/login/oauth2/access_token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "login",
+                            "oauth2",
+                            "access_token"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T20:12:47.000Z",
+                      "updatedAt": "2026-10-21T20:12:47.000Z",
+                      "uid": "35240-ecc79ec6-2f6b-4cfe-b849-3417d064830e"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:12:47.000Z",
+                  "updatedAt": "2026-10-21T20:12:47.000Z",
+                  "uid": "35240-e6e2790c-d6be-4bee-99a3-ede2d413ac1a"
+                }
+              ],
+              "id": "b5bc74d5-0a05-41b3-a161-4986f41b1f27",
+              "createdAt": "2026-10-21T20:12:47.000Z",
+              "updatedAt": "2026-10-21T20:12:47.000Z",
+              "uid": "35240-b5bc74d5-0a05-41b3-a161-4986f41b1f27"
+            }
+          ],
+          "id": "5e1ec253-4c6b-47ea-9593-2457f0f2e5e9",
+          "createdAt": "2026-10-21T20:12:47.000Z",
+          "updatedAt": "2026-10-21T20:12:47.000Z",
+          "uid": "35240-5e1ec253-4c6b-47ea-9593-2457f0f2e5e9"
+        }
+      ],
+      "id": "c653782c-6578-4d6d-b8e7-0fdb7a4144bb",
+      "createdAt": "2026-10-21T20:12:47.000Z",
+      "updatedAt": "2026-10-21T20:12:47.000Z",
+      "uid": "35240-c653782c-6578-4d6d-b8e7-0fdb7a4144bb"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://adsapi.snapchat.com/v1",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://accounts.snapchat.com"
     }
-  ],
-  "auth": {
-    "type": "oauth2",
-    "oauth2": [
-      {
-        "key": "scope",
-        "value": "snapchat-marketing-api"
-      },
-      {
-        "key": "accessTokenUrl",
-        "value": "https://accounts.snapchat.com/login/oauth2/access_token"
-      },
-      {
-        "key": "authUrl",
-        "value": "https://accounts.snapchat.com/accounts/oauth2/auth"
-      },
-      {
-        "key": "grant_type",
-        "value": "authorization_code"
-      }
-    ]
-  },
-  "info": {
-    "_postman_id": "66f01633-0835-4c96-bddb-3e07c5584015",
-    "name": "Snapchat Ads Ad Accounts OAuth API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Snapchat Ads API allows developers to programmatically create, manage, and optimize advertising campaigns on the Snapchat platform. It provides endpoints for managing organizations, ad accounts, campaigns, ad squads, ads, creatives, media, funding sources, audience segments, and measurement reporting. The API supports the full advertising lifecycle from campaign setup through reporting and optimization.\n\nContact Support:\n Name: Snap for Developers",
-      "type": "text/plain"
-    }
-  }
+  ]
 }
