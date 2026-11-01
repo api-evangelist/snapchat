@@ -1,4 +1,4 @@
-# Snapchat (snapchat)
+# Snapchat
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,185 +66,246 @@
 
 Snap Inc. operates Snapchat, a visual messaging app and camera platform with developer tools including the Marketing API for programmatic advertising, Conversions API for server-side conversion tracking, Login Kit for OAuth-based user authentication, Creative Kit for content sharing to Snapchat, Camera Kit for embedding Snap AR technology into third-party apps, and Lens Studio for building augmented reality experiences.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/snapchat/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/snapchat/refs/heads/main/apis.yml)
+**Areas:** Advertising · Augmented Reality · Marketing · Messaging · Social Media
 
-## Scope
+## Snapchat on APIs.io
 
-- **Type:** Index
+Everything profiled for Snapchat is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/snapchat/](https://apis.io/providers/snapchat/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (7)
 
-- Advertising
-- AR
-- Augmented Reality
-- Marketing
-- Messaging
-- Social Media
+- [Snapchat Creative Kit](https://apis.io/apis/snapchat/snapchat-creative-kit/) — Creative Kit allows developers to let users share content including Lenses, AR experiences, filters, GIFs, videos, links, and captions from a website or app…
+- [Snapchat Camera Kit](https://apis.io/apis/snapchat/snapchat-camera-kit/) — Camera Kit enables developers to integrate Snap's AR camera technology directly into iOS, Android, and web applications, giving users access to Snap's lens…
+- [Lens Studio](https://apis.io/apis/snapchat/snapchat-lens-studio/) — Lens Studio is Snap's desktop application for building augmented reality lenses for Snapchat and Spectacles. Provides an API for scripting lens behaviors,…
+- [Snapchat Conversion Events API](https://apis.io/apis/snapchat/snapchat-conversion-events-api/) — Endpoints for sending web, app, and offline conversion events to Snap for campaign measurement and optimization.
+- [Snapchat User Profile API](https://apis.io/apis/snapchat/snapchat-user-profile-api/) — Endpoints for retrieving authenticated user profile information including display name and Bitmoji avatar.
+- [Snapchat Ads MCP Server](https://apis.io/apis/snapchat/snapchat-ads-mcp/) — Snap's first-party hosted Model Context Protocol server for the Snapchat Ads API. A supported agent connects over streamable HTTP to…
+- [Snapchat O Auth API](https://apis.io/apis/snapchat/snapchat-oauth-api/) — OAuth 2.0 authorization and token management endpoints for authenticating users via their Snapchat account.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-02
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### GraphQL (1)
 
-### Snapchat Ads API
+GraphQL schemas.
 
-The Snapchat Ads API (Marketing API) allows developers to programmatically create, manage, and optimize advertising campaigns on the Snapchat platform. It provides endpoints for managing organizations, ad accounts, campaigns, ad squads, ads, creatives, media, funding sources, audience segments, and measurement reporting. The API supports the full advertising lifecycle from campaign setup through reporting and optimization.
+- [Moved to /providers/snapchat/](https://apis.io/graphqls/snapchat/snapchat-graphql/)
 
-- **Human URL:** [https://developers.snap.com/api/marketing-api/Ads-API/introduction](https://developers.snap.com/api/marketing-api/Ads-API/introduction)
+#### MCP servers (1)
 
-#### Tags
+Model Context Protocol servers that expose the API to agents.
 
-- Advertising
-- Campaigns
-- Marketing
+- [Snapchat Ads MCP Server](https://apis.io/servers/snapchat/snapchat-ads-mcp-server/)
 
-#### Properties
+#### Agentic access (1)
 
-- [Documentation](https://developers.snap.com/api/marketing-api/Ads-API/introduction)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/snapchat/refs/heads/main/openapi/snapchat-ads-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/snapchat-ads-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/snapchat-ads-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/snapchat-conversions-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/snapchat-conversions-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/snapchat-login-kit.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/snapchat-login-kit.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-### Snapchat Conversions API
+- [Snapchat Agentic Access](https://apis.io/agentic-access/snapchat/snapchat-agentic-access/)
 
-The Snapchat Conversions API (CAPI) is a structured, privacy-centric server-to-server interface allowing advertisers to pass web, app, and offline conversion events directly to Snap. It helps optimize ad campaigns, improve targeting, and measure conversions while supporting first-party custom audience population in real-time. Current version is v3.
+#### JSON Schema (23)
 
-- **Human URL:** [https://developers.snap.com/api/marketing-api/Conversions-API/Introduction](https://developers.snap.com/api/marketing-api/Conversions-API/Introduction)
+The data models the API reads and writes.
 
-#### Tags
+- [Ad](https://apis.io/schemas/snapchat/snapchat-ad/)
+- [Snapchat Ad Campaign](https://apis.io/schemas/snapchat/snapchat-ad-campaign/)
+- [AdAccount](https://apis.io/schemas/snapchat/snapchat-adaccount/)
+- [AdSquad](https://apis.io/schemas/snapchat/snapchat-adsquad/)
+- [AppData](https://apis.io/schemas/snapchat/snapchat-appdata/)
+- [AudienceSegment](https://apis.io/schemas/snapchat/snapchat-audiencesegment/)
+- [Campaign](https://apis.io/schemas/snapchat/snapchat-campaign/)
+- [ContentItem](https://apis.io/schemas/snapchat/snapchat-contentitem/)
+- [Snapchat Conversion Event](https://apis.io/schemas/snapchat/snapchat-conversion-event/)
+- [ConversionEvent](https://apis.io/schemas/snapchat/snapchat-conversionevent/)
+- [ConversionEventRequest](https://apis.io/schemas/snapchat/snapchat-conversioneventrequest/)
+- [ConversionEventResponse](https://apis.io/schemas/snapchat/snapchat-conversioneventresponse/)
+- [Creative](https://apis.io/schemas/snapchat/snapchat-creative/)
+- [CustomData](https://apis.io/schemas/snapchat/snapchat-customdata/)
+- [ErrorResponse](https://apis.io/schemas/snapchat/snapchat-errorresponse/)
+- [FundingSource](https://apis.io/schemas/snapchat/snapchat-fundingsource/)
+- [Media](https://apis.io/schemas/snapchat/snapchat-media/)
+- [OAuthError](https://apis.io/schemas/snapchat/snapchat-oautherror/)
+- [Organization](https://apis.io/schemas/snapchat/snapchat-organization/)
+- [Stats](https://apis.io/schemas/snapchat/snapchat-stats/)
+- [TokenResponse](https://apis.io/schemas/snapchat/snapchat-tokenresponse/)
+- [UserData](https://apis.io/schemas/snapchat/snapchat-userdata/)
+- [UserProfile](https://apis.io/schemas/snapchat/snapchat-userprofile/)
 
-- Advertising
-- Analytics
-- Conversions
-- Privacy
+#### JSON Structure (2)
 
-#### Properties
+Data models expressed in JSON Structure.
 
-- [Documentation](https://developers.snap.com/api/marketing-api/Conversions-API/Introduction)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/snapchat/refs/heads/main/openapi/snapchat-conversions-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/snapchat-ads-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/snapchat-ads-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/snapchat-conversions-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/snapchat-conversions-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/snapchat-login-kit.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/snapchat-login-kit.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Snapchat Campaign Structure](https://apis.io/json-structure/snapchat/snapchat-campaign-structure/)
+- [Snapchat Structure](https://apis.io/json-structure/snapchat/snapchat-structure/)
 
-### Snapchat Login Kit API
+#### JSON-LD (1)
 
-Snapchat Login Kit enables developers to let users sign up and log in to their apps using their Snapchat account credentials. Built on the OAuth 2.0 standard, it provides endpoints for authorization, token exchange, token refresh, and retrieving user profile information including display name and Bitmoji avatar. Available for iOS, Android, and Web platforms.
+Linked-data contexts for the provider's vocabulary.
 
-- **Human URL:** [https://developers.snap.com/snap-kit/login-kit/overview](https://developers.snap.com/snap-kit/login-kit/overview)
+- [Snapchat Context](https://apis.io/jsonld/snapchat/snapchat-context/)
 
-#### Tags
+#### Vocabulary (1)
 
-- Authentication
-- Identity
-- OAuth
+The provider's domain terms, defined.
 
-#### Properties
+- [Snapchat Vocabulary](https://apis.io/vocabularies/snapchat/snapchat-vocabulary/)
 
-- [Documentation](https://developers.snap.com/snap-kit/login-kit/overview)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/snapchat/refs/heads/main/openapi/snapchat-login-kit-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/snapchat-ads-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/snapchat-ads-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/snapchat-conversions-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/snapchat-conversions-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/snapchat-login-kit.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/snapchat-login-kit.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Examples (2)
 
-### Snapchat Creative Kit
+Example requests and responses.
 
-Creative Kit allows developers to let users share content including Lenses, AR experiences, filters, GIFs, videos, links, and captions from a website or app directly to Snapchat's camera or preview screen. Supports Dynamic Lenses, Stickers, and Spotlight Posting. Available as a code-only integration (SDK deprecated October 2024).
+- [Snapchat Create Campaign Example](https://apis.io/examples/snapchat/snapchat-create-campaign-example/)
+- [Snapchat Send Conversion Events Example](https://apis.io/examples/snapchat/snapchat-send-conversion-events-example/)
 
-- **Human URL:** [https://developers.snap.com/snap-kit/creative-kit/overview](https://developers.snap.com/snap-kit/creative-kit/overview)
+#### Collections (15)
 
-#### Tags
+Postman and Open Collection request collections.
 
-- AR
-- Content Sharing
-- Integration
-- Social Media
+- [Snapchat Ads Ad Accounts API](https://apis.io/collections/snapchat/open-snapchat-ad-accounts-api/)
+- [Snapchat Ads Ad Accounts Ad Squads API](https://apis.io/collections/snapchat/open-snapchat-ad-squads-api/)
+- [Snapchat Ad Accounts Ads API](https://apis.io/collections/snapchat/open-snapchat-ads-api/)
+- [Snapchat Ads Ad Accounts Audience Segments API](https://apis.io/collections/snapchat/open-snapchat-audience-segments-api/)
+- [Snapchat Ads Ad Accounts Campaigns API](https://apis.io/collections/snapchat/open-snapchat-campaigns-api/)
+- [Snapchat Ads Ad Accounts Conversion Events API](https://apis.io/collections/snapchat/open-snapchat-conversion-events-api/)
+- [Snapchat Conversions API](https://apis.io/collections/snapchat/open-snapchat-conversions-api/)
+- [Snapchat Ads Ad Accounts Creatives API](https://apis.io/collections/snapchat/open-snapchat-creatives-api/)
+- [Snapchat Ads Ad Accounts Funding Sources API](https://apis.io/collections/snapchat/open-snapchat-funding-sources-api/)
+- [Snapchat Login Kit API](https://apis.io/collections/snapchat/open-snapchat-login-kit/)
+- [Snapchat Ads Ad Accounts Measurement API](https://apis.io/collections/snapchat/open-snapchat-measurement-api/)
+- [Snapchat Ads Ad Accounts Media API](https://apis.io/collections/snapchat/open-snapchat-media-api/)
+- [Snapchat Ads Ad Accounts OAuth API](https://apis.io/collections/snapchat/open-snapchat-oauth-api/)
+- [Snapchat Ads Ad Accounts Organizations API](https://apis.io/collections/snapchat/open-snapchat-organizations-api/)
+- [Snapchat Ads Ad Accounts User Profile API](https://apis.io/collections/snapchat/open-snapchat-user-profile-api/)
 
-#### Properties
+#### Overlays (16)
 
-- [Documentation](https://developers.snap.com/snap-kit/creative-kit/overview)
-- [GitHub Repository](https://github.com/Snapchat/creative-kit)
-- [Postman Collection](collections/snapchat-ads-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/snapchat-ads-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/snapchat-conversions-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/snapchat-conversions-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/snapchat-login-kit.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/snapchat-login-kit.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+OpenAPI overlays, including conversational phrasing for each operation.
 
-### Snapchat Camera Kit
+- [Snapchat Ad Accounts Api Overlay](https://apis.io/overlays/snapchat/snapchat-ad-accounts-api-overlay/)
+- [Snapchat Ad Squads Api Overlay](https://apis.io/overlays/snapchat/snapchat-ad-squads-api-overlay/)
+- [Snapchat Ads Api Overlay](https://apis.io/overlays/snapchat/snapchat-ads-api-overlay/)
+- [Snapchat Audience Segments Api Overlay](https://apis.io/overlays/snapchat/snapchat-audience-segments-api-overlay/)
+- [Snapchat Campaigns Api Overlay](https://apis.io/overlays/snapchat/snapchat-campaigns-api-overlay/)
+- [Snapchat Conversion Events Api Overlay](https://apis.io/overlays/snapchat/snapchat-conversion-events-api-overlay/)
+- [Snapchat Conversion Events Api Phrasing Overlay](https://apis.io/overlays/snapchat/snapchat-conversion-events-api-phrasing-overlay/)
+- [Snapchat Creatives Api Overlay](https://apis.io/overlays/snapchat/snapchat-creatives-api-overlay/)
+- [Snapchat Funding Sources Api Overlay](https://apis.io/overlays/snapchat/snapchat-funding-sources-api-overlay/)
+- [Snapchat Measurement Api Overlay](https://apis.io/overlays/snapchat/snapchat-measurement-api-overlay/)
+- [Snapchat Media Api Overlay](https://apis.io/overlays/snapchat/snapchat-media-api-overlay/)
+- [Snapchat Oauth Api Overlay](https://apis.io/overlays/snapchat/snapchat-oauth-api-overlay/)
+- [Snapchat Oauth Api Phrasing Overlay](https://apis.io/overlays/snapchat/snapchat-oauth-api-phrasing-overlay/)
+- [Snapchat Organizations Api Overlay](https://apis.io/overlays/snapchat/snapchat-organizations-api-overlay/)
+- [Snapchat User Profile Api Overlay](https://apis.io/overlays/snapchat/snapchat-user-profile-api-overlay/)
+- [Snapchat User Profile Api Phrasing Overlay](https://apis.io/overlays/snapchat/snapchat-user-profile-api-phrasing-overlay/)
 
-Camera Kit enables developers to integrate Snap's AR camera technology directly into iOS, Android, and web applications, giving users access to Snap's lens library and AR experiences without leaving the host app.
+#### Governance rules (2)
 
-- **Human URL:** [https://developers.snap.com/camera-kit/home](https://developers.snap.com/camera-kit/home)
+Spectral rulesets for the provider's contracts.
 
-#### Tags
+- [Snapchat — jsonschema rules](https://apis.io/rules/snapchat/snapchat-jsonschema-spectral-rules/)
+- [Snapchat API Rules](https://apis.io/rules/snapchat/snapchat-rules/)
 
-- AR
-- Augmented Reality
-- Camera
-- SDK
+#### Security (4)
 
-#### Properties
+Authentication, trust centre, and vulnerability disclosure.
 
-- [Documentation](https://developers.snap.com/camera-kit/home)
-- [Postman Collection](collections/snapchat-ads-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/snapchat-ads-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/snapchat-conversions-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/snapchat-conversions-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/snapchat-login-kit.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/snapchat-login-kit.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Snapchat Authentication](https://apis.io/security/snapchat/snapchat-authentication/)
+- [Snapchat Domain Security](https://apis.io/security/snapchat/snapchat-domain-security/)
+- [Snapchat Trust Center](https://apis.io/security/snapchat/snapchat-trust-center/)
+- [Snapchat Vulnerability Disclosure](https://apis.io/security/snapchat/snapchat-vulnerability-disclosure/)
 
-### Lens Studio
+#### OAuth scopes (1)
 
-Lens Studio is Snap's desktop application for building augmented reality lenses for Snapchat and Spectacles. Provides an API for scripting lens behaviors, integrating dynamic data, and publishing to the Snap Lens Network.
+The permissions the API asks for.
 
-- **Human URL:** [https://developers.snap.com/lens-studio/home](https://developers.snap.com/lens-studio/home)
+- [Snapchat Scopes](https://apis.io/scopes/snapchat/snapchat-scopes/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- AR
-- Augmented Reality
-- Creative Tools
-- Lens
+Published plans, tiers and prices.
 
-#### Properties
+- [Snapchat Plans Pricing](https://apis.io/plans/snapchat/snapchat-plans-pricing/)
 
-- [Documentation](https://developers.snap.com/lens-studio/home)
-- [Postman Collection](collections/snapchat-ads-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/snapchat-ads-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/snapchat-conversions-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/snapchat-conversions-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/snapchat-login-kit.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/snapchat-login-kit.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-## Common Properties
+Published request limits.
 
-- [LinkedIn](https://www.linkedin.com/company/snap-inc-co)
+- [Snapchat Rate Limits](https://apis.io/rate-limits/snapchat/snapchat-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Snapchat Finops](https://apis.io/finops/snapchat/snapchat-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://snap.com)
-- [Developer Portal](https://developers.snap.com)
 - [Documentation](https://developers.snap.com/api/marketing-api/Ads-API/introduction)
-- [GitHub Organization](https://github.com/Snapchat)
-- [Terms of Service](https://snap.com/en-US/terms)
-- [Privacy Policy](https://snap.com/en-US/privacy/privacy-policy)
-- [Blog](https://eng.snap.com)
-- [Support](https://businesshelp.snapchat.com)
-- [Login](https://kit.snapchat.com/manage/)
+- [Getting started](https://developers.snap.com/marketing-api/home)
+- [API reference](https://developers.snap.com/marketing-api/Ads-API/introduction)
 - [Pricing](https://ads.snapchat.com)
-- [Sign Up](https://kit.snapchat.com/manage/)
-- [L L Ms Txt](https://developers.snap.com/llms.txt)
+- [Support](https://businesshelp.snapchat.com)
+- [Changelog](https://developers.snap.com/marketing-api/Ads-API/changelog)
+- [Blog](https://eng.snap.com)
+- [Terms of service](https://snap.com/en-US/terms)
+- [Privacy policy](https://snap.com/en-US/privacy/privacy-policy)
+- [GitHub](https://github.com/Snapchat)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 65.7** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.7 |
+| Contract quality | 55.2 |
+| Contract governance | 31.8 |
+| Operational transparency | 57.9 |
+| Developer ergonomics | 73.2 |
+| Access clarity | 63.2 |
+
+**Agent readiness 48.1** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 45.1** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/snapchat/](https://apis.io/providers/snapchat/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Snapchat: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/snapchat/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
