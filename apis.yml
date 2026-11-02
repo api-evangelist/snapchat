@@ -1,0 +1,330 @@
+aid: snapchat
+url: https://raw.githubusercontent.com/api-evangelist/snapchat/refs/heads/main/apis.yml
+name: Snapchat
+description: Snap Inc. operates Snapchat, a visual messaging app and camera platform
+  with developer tools including the Marketing API for programmatic advertising, Conversions
+  API for server-side conversion tracking, Login Kit for OAuth-based user authentication,
+  Creative Kit for content sharing to Snapchat, Camera Kit for embedding Snap AR technology
+  into third-party apps, and Lens Studio for building augmented reality experiences.
+type: Index
+deliveryModel:
+  model: saas
+  license_evidence:
+    not_product:
+    - snapchat/creative-kit
+  open_source: unknown
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: low
+  source:
+  - openapi
+  - pricing
+  - repository-not-product
+  generated: '2026-09-25'
+  method: derived
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/snapchat.png
+x-docs-platform: docusaurus
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-10-04
+tags:
+- Advertising
+- Augmented Reality
+- Marketing
+- Messaging
+- Social Media
+tags_raw:
+- Advertising
+- AR
+- Augmented Reality
+- Marketing
+- Messaging
+- Social Media
+- Social-Media
+created: '2026-05-02'
+modified: '2026-08-13'
+specificationVersion: '0.23'
+apis:
+- aid: snapchat:snapchat-creative-kit
+  name: Snapchat Creative Kit
+  description: >-
+    Creative Kit allows developers to let users share content including Lenses, AR experiences, filters,
+    GIFs, videos, links, and captions from a website or app directly to Snapchat's camera or preview screen.
+    Supports Dynamic Lenses, Stickers, and Spotlight Posting. Available as a code-only integration (SDK
+    deprecated October 2024).
+  humanURL: https://developers.snap.com/snap-kit/creative-kit/overview
+  tags:
+  - Augmented Reality
+  - Content Sharing
+  - Integration
+  - Social Media
+  tags_raw:
+  - AR
+  - Content Sharing
+  - Integration
+  - Social Media
+  - Social-Media
+  properties:
+  - type: Documentation
+    url: https://developers.snap.com/snap-kit/creative-kit/overview
+  - type: GitHubRepository
+    url: https://github.com/Snapchat/creative-kit
+- aid: snapchat:snapchat-camera-kit
+  name: Snapchat Camera Kit
+  description: >-
+    Camera Kit enables developers to integrate Snap's AR camera technology directly into iOS, Android,
+    and web applications, giving users access to Snap's lens library and AR experiences without leaving
+    the host app.
+  humanURL: https://developers.snap.com/camera-kit/home
+  tags:
+  - Augmented Reality
+  - Camera
+  - SDK
+  tags_raw:
+  - AR
+  - Augmented Reality
+  - Camera
+  - SDK
+  properties:
+  - type: Documentation
+    url: https://developers.snap.com/camera-kit/home
+- aid: snapchat:snapchat-lens-studio
+  name: Lens Studio
+  description: >-
+    Lens Studio is Snap's desktop application for building augmented reality lenses for Snapchat and Spectacles.
+    Provides an API for scripting lens behaviors, integrating dynamic data, and publishing to the Snap
+    Lens Network.
+  humanURL: https://developers.snap.com/lens-studio/home
+  tags:
+  - Augmented Reality
+  - Creative Tools
+  - Lens
+  tags_raw:
+  - AR
+  - Augmented Reality
+  - Creative Tools
+  - Lens
+  properties:
+  - type: Documentation
+    url: https://developers.snap.com/lens-studio/home
+- aid: snapchat:snapchat-conversion-events-api
+  name: Snapchat Conversion Events API
+  description: >-
+    Endpoints for sending web, app, and offline conversion events to Snap for campaign measurement and
+    optimization.
+  humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+  baseURL: https://tr.snapchat.com/v3
+  tags:
+  - Conversion Events
+  properties:
+  - type: OpenAPI
+    url: openapi/snapchat-conversion-events-api-openapi.yml
+  - type: Documentation
+    url: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
+  - type: Documentation
+    url: https://developers.snap.com/snap-kit/login-kit/overview
+  - type: Overlay
+    url: overlays/snapchat-conversion-events-api-overlay.yaml
+- aid: snapchat:snapchat-user-profile-api
+  name: Snapchat User Profile API
+  description: >-
+    Endpoints for retrieving authenticated user profile information including display name and Bitmoji
+    avatar.
+  humanURL: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+  baseURL: https://kit.snapchat.com/v1
+  tags:
+  - User Profile
+  properties:
+  - type: OpenAPI
+    url: openapi/snapchat-user-profile-api-openapi.yml
+  - type: Documentation
+    url: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
+  - type: Documentation
+    url: https://developers.snap.com/snap-kit/login-kit/overview
+  - type: Overlay
+    url: overlays/snapchat-user-profile-api-overlay.yaml
+- aid: snapchat:snapchat-ads-mcp
+  name: Snapchat Ads MCP Server
+  description: >-
+    Snap's first-party hosted Model Context Protocol server for the Snapchat Ads API. A supported agent
+    connects over streamable HTTP to https://mcp.snapchat.com/ads and authenticates with OAuth 2.0 (authorization
+    code + PKCE S256, public client, scope snapads.read) against Snap's own authorization server at mcp.snapchat.com.
+    The current release is read-only — an agent can read authorized Snapchat Ads data but cannot create,
+    update or delete. Onboarding is self-serve: an organization Admin or Business Admin approves each
+    agent once, then every member authorizes individually, and no member gains a permission their Ads
+    Manager role does not already grant.
+  humanURL: https://developers.snap.com/marketing-api/Ads-MCP/Introduction
+  baseURL: https://mcp.snapchat.com/ads
+  tags:
+  - Advertising
+  - Agents
+  - MCP
+  - Marketing
+  properties:
+  - type: Documentation
+    url: https://developers.snap.com/marketing-api/Ads-MCP/Introduction
+  - type: GettingStarted
+    url: https://developers.snap.com/marketing-api/Ads-MCP/connect-an-agent
+  - type: MCPServer
+    url: mcp/snapchat-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/snapchat-tool-crosswalk.yml
+- aid: snapchat:snapchat-oauth-api
+  name: Snapchat O Auth API
+  description: >-
+    OAuth 2.0 authorization and token management endpoints for authenticating users via their Snapchat
+    account.
+  humanURL: https://developers.snap.com/snap-kit/creative-kit/overview
+  baseURL: https://tr.snapchat.com/v3
+  tags:
+  - OAuth
+  - Authentication
+  tags_raw:
+  - OAuth
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/snapchat-oauth-api-openapi.yml
+  - type: Documentation
+    url: https://developers.snap.com/api/marketing-api/Conversions-API/Introduction
+  - type: Documentation
+    url: https://developers.snap.com/snap-kit/login-kit/overview
+common:
+- type: FinOps
+  url: finops/snapchat-finops.yml
+- type: Overlay
+  url: overlays/snapchat-oauth-api-overlay.yaml
+- type: CapabilityMap
+  url: capabilities/snapchat-capability-edges.yml
+  name: Snapchat Business Capability Map
+- type: Overlay
+  url: overlays/snapchat-ad-accounts-api-overlay.yaml
+- type: Overlay
+  url: overlays/snapchat-ad-squads-api-overlay.yaml
+- type: Overlay
+  url: overlays/snapchat-audience-segments-api-overlay.yaml
+- type: Overlay
+  url: overlays/snapchat-campaigns-api-overlay.yaml
+- type: Overlay
+  url: overlays/snapchat-creatives-api-overlay.yaml
+- type: Overlay
+  url: overlays/snapchat-funding-sources-api-overlay.yaml
+- type: Overlay
+  url: overlays/snapchat-measurement-api-overlay.yaml
+- type: Overlay
+  url: overlays/snapchat-media-api-overlay.yaml
+- type: Overlay
+  url: overlays/snapchat-organizations-api-overlay.yaml
+- type: IssueTracker
+  url: https://github.com/Snapchat/creative-kit/issues
+- type: AgenticAccess
+  url: agentic-access/snapchat-agentic-access.yml
+- type: DomainSecurity
+  url: security/snapchat-domain-security.yml
+- type: Authentication
+  url: authentication/snapchat-authentication.yml
+- type: OAuthScopes
+  url: scopes/snapchat-scopes.yml
+- type: LinkedIn
+  url: https://www.linkedin.com/company/snap-inc-co
+- type: Website
+  url: https://snap.com
+- type: DeveloperPortal
+  url: https://developers.snap.com
+- type: Documentation
+  url: https://developers.snap.com/api/marketing-api/Ads-API/introduction
+- type: GitHubOrganization
+  url: https://github.com/Snapchat
+- type: TermsOfService
+  url: https://snap.com/en-US/terms
+- type: PrivacyPolicy
+  url: https://snap.com/en-US/privacy/privacy-policy
+- type: Blog
+  url: https://eng.snap.com
+- type: Support
+  url: https://businesshelp.snapchat.com
+- type: Login
+  url: https://kit.snapchat.com/manage/
+- type: Pricing
+  url: https://ads.snapchat.com
+- type: Signup
+  url: https://kit.snapchat.com/manage/
+- type: LlmsText
+  url: https://developers.snap.com/llms.txt
+- type: Packages
+  url: packages/snapchat-packages.yml
+- type: SDKs
+  url: packages/snapchat-packages.yml
+- type: WellKnown
+  url: well-known/snapchat-well-known.yml
+- type: SecurityTxt
+  url: well-known/snapchat-security.txt
+- type: MCPServer
+  url: mcp/snapchat-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/snapchat-tool-crosswalk.yml
+- type: LLMsTxt
+  url: llms/snapchat-llms.txt
+- type: Overlay
+  url: overlays/snapchat-ads-api-overlay.yaml
+- type: Conformance
+  url: conformance/snapchat-conformance.yml
+- type: ErrorCatalog
+  url: errors/snapchat-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/snapchat-lifecycle.yml
+- type: Deprecation
+  url: lifecycle/snapchat-lifecycle.yml
+- type: VulnerabilityDisclosure
+  url: security/snapchat-vulnerability-disclosure.yml
+- type: Security
+  url: security/snapchat-vulnerability-disclosure.yml
+- type: TrustCenter
+  url: security/snapchat-trust-center.yml
+- type: Sandbox
+  url: sandbox/snapchat-sandbox.yml
+- type: Conventions
+  url: conventions/snapchat-conventions.yml
+- type: ChangeLog
+  url: changelog/snapchat-changelog.yml
+- type: Components
+  url: components/snapchat-components.yml
+- type: DataModel
+  url: data-model/snapchat-data-model.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Plans
+  url: plans/snapchat-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/snapchat-rate-limits.yml
+- type: APIReference
+  url: https://developers.snap.com/marketing-api/Ads-API/introduction
+- type: GettingStarted
+  url: https://developers.snap.com/marketing-api/home
+- type: ChangeLog
+  url: https://developers.snap.com/marketing-api/Ads-API/changelog
+segments:
+- Social Media
+- Advertising
+- AR/VR
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 36
+  pass: local-v1
