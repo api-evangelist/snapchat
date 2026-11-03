@@ -29,12 +29,19 @@ accessModel:
   trial: false
   try_now: true
   public: false
+  gated: none
+  gated_source:
+  - onboarding
   label: Free · Self-serve signup
   confidence: high
   source:
   - plans
   - authentication
-  generated: '2026-07-22'
+  - scopes
+  - rate-limits
+  - security
+  - sandbox
+  generated: '2026-11-02'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/snapchat.png
 x-docs-platform: docusaurus
